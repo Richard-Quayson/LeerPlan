@@ -1,0 +1,643 @@
+BA DEPARTMENT  
+  
+        Page 1 of 10  
+  
+  
+ 
+   
+ECON 100: Principles of Economics  
+COHORT E, 2025 CS/MIS 
+Course Outline: Spring semester 
+(Semester II), 2024 
+Lecturer: Stephen Armah (PhD) 
+Email: searmah@ashesi.edu.gh   
+Office Location: 105 
+Office hours: 9am-10am on Tues 
+Faculty Intern (FI): TBA 
+FI Office Location:  General FI Office 
+FI Office Hours:  TBA 
+Phone: TBA (Email preferred) 
+Course Times and Locations 
+Lecture Days: T/TH |          Venue: Nutor Hall 100            | Times: 3: 00 pm to 4: 30 Pm 
+Friday Discussion F |          Venue: Nana Araba Apt 217   | Time: 9: 10-10:10 am 
+  
+Pre-requisite: Pre-Calculus and Microeconomics or Calculus 1 
+Canvas/WhatsAPP/CAMU/Outlook Email list Information: TBA 
+  
+COURSE DESCRIPTION: Welcome to Principles of Economics. This course is an exciting introduction 
+to the field of economics, with application to the local African and Ghanaian context. Economics has two 
+main divisions: microeconomics and macroeconomics.  We will first tackle the microeconomics topics and 
+then move on to the macroeconomics topics, but both set of topics are equally pertinent.  After a general 
+introduction to the field of economics and explaining the difference between microeconomics and 
+macroeconomics, the course will start by delving into microeconomic theory before finishing up with 
+macroeconomics theory. Traditional microeconomic topics that will be treated include the concept of the 
+invisible hand and the role of incentives in the market; supply and demand; international trade; demand and 
+supply, elasticity; taxation, and the implications of government policy for individual firms. For the section 
+on macroeconomics, we will discuss simple models of goods and services, assets, capital, and labour 
+markets which can be usefully applied to generate realistic predictions regarding the behaviour of such 
+macroeconomic variables as: output and growth; employment; inflation; the current account; as well as 
+interest and exchange rates. The course will teach students to use these models to understand and interpret 
+current and historical macroeconomic developments. Macroeconomic developments such as the effects of 
+the COVID 19 pandemic, global inflation related to rising oil prices and the geopolitical conflict between 
+Russia and Ukraine and possible impacts of national debt and corruption on macroeconomic stability and 
+performance of African countries like Ghana will be discussed. The role of the IMF in helping countries to 
+manage economic challenges will be assessed.  Finally, currency crises periodically plaguing Anglophone 
+African countries such as Ghana and Nigeria that are not part of any monetary union will be discussed. 
+ 
+Teaching style: Apart from lecturers, this class will use in-class assignments. small group discussions, 
+student led discussions, student presentations, class debates, analysis of short videos viewed in class and 
+reviews of assigned journal articles.  The course is designed to be very interactive with a focus on student 
+participation. 
+ 
+Note: Class material such as notes, articles, policy briefs, guides to assignments and links to videos will be 
+accessible via Canvas and final grades will be available via CAMU.  Make sure you are registered on both 
+platforms.  Official university recognition of registration for the course is by CAMU registration. 
+ 
+BA DEPARTMENT  
+  
+        Page 2 of 10  
+  
+  
+ 
+  
+TEXTBOOKS & OTHER REQUIRED COURSE MATERIALS:    
+Required Textbook: Mankiw, Gregory (2017, 2015, 2009 or 2012), Principles of Economics (9th Edition), 
+Southwestern Cengage Learning [referred to as Mankiw].  
+ 
+Supplementary Textbooks:   
+• 
+George B. N. Ayittey (2018). Applied Economics for Africa. Atlantic Press, USA 
+• 
+Mankiw, Gregory (2017, 2015, 2009 or 2012), Principles of Macroenomics (9th Edition), 
+Southwestern Cengage Learning  
+• 
+Mankiw, Gregory (2017, 2015, 2009 or 2012), Principles of Microeconomics (9th Edition), 
+Southwestern Cengage Learning [referred to as Mankiw]. 
+• 
+Samuelson Paul and William Nordhaus (1995) Principles of Microeconomics, McGraw-Hill 
+• 
+Samuelson Paul and William Nordhaus (1995) Macroeconomics, McGraw-Hill 
+• 
+Bade Robin and Michael Parkin (2015) Foundations of Macroeconomics, 7th Edition, Pearson 
+• 
+The CORE Project, The Economy. Available at: www.core-econ.org. Selected Chapters.  
+• 
+Huq, M.M. (1989), The Ghanaian Economy: The First 25 Years Since Independence. New York: St. 
+Martins Press, Inc.  
+• 
+Killick, Tony (2010), Development Economics in Action: A Study of Economic Policies in Ghana. 
+2nd Edition, Abingdon, UK: Routledge  
+• 
+Kling, Arnold (2016), Specialization and Trade: A Re-introduction to Economics, CATO Institute 
+(free e-book at www.libertarianism.org) Chapters 7—10.  
+ 
+Useful YouTube Videos 
+Microeconomics- Everything You Need to Know 
+https://www.youtube.com/watch?v=1UxA6JzoT-4 
+Microeconomics Graphs Review 
+https://www.youtube.com/watch?v=M25CsaA8xCk 
+Microeconomics Graphs!! All the Microeconomics Graphs you need to know for Exam Day 
+https://www.youtube.com/watch?v=bQaSDK0v3uA 
+Jacob Clifford -Macroeconomics- Everything You Need to Know 
+https://www.youtube.com/watch?v=MKO1icFVtDc 
+Economics 15 Minute Review 
+https://www.youtube.com/watch?v=e18RXFFoL9c&list=RDLVMKO1icFVtDc&index=2 
+ 
+  
+COURSE OBJECTIVES/LEARNING OUTCOMES:  
+   
+The primary goal of this course is to help students develop an understanding of the market economy 
+as a whole and of the actions of the different players within the market economy such as consumers and 
+firms.  The course will help students to appreciate and deal with the ubiquitous problem of scarcity in 
+production in addition to explaining the actions of consumers and firms because of scarcity from a 
+microeconomic perspective and the behavior of the economy from a macroeconomic perspective in an 
+increasingly globalized and interconnected world. 
+  
+In delivering the course we aim to guide students to be able to make informed decision in production 
+and consumption from an economic perspective by always considering the real cost (or the opportunity cost) 
+of decisions, currency depreciation and time value of money. It is also vital for students to be able to identify 
+the unintended consequences that incentives inherent in decisions taken imply. 
+   
+The skills gained from the course will be useful in executing projects created in the fields of 
+Management Information Systems (MIS), Computer Science, Engineering, and other STEM fields by 
+enabling an understanding of costs, pricing, and the effect of the economic environment on the marketing 
+and supply chain of products designed in these STEM fields. The course will help students to consume 
+information derived from databases and from news outlets that pertain to the local and global economy and 
+to make correct inferences from these pieces of information. We also aim to assist students to develop an 
+BA DEPARTMENT  
+  
+        Page 3 of 10  
+  
+  
+understanding of the workings of macroeconomic policy and to familiarise students with the interpretation 
+of macroeconomic and monetary data. We encourage students to use the tools provided in the class activities 
+and lectures to gain a better understanding of current global macroeconomic events and trends as well as 
+macroeconomic issues in Africa, Ghana and beyond. Weekly classes, assignments, exams, and projects will 
+consolidate the understanding and interpretation of macroeconomic data.  
+ 
+ 
+ 
+Intended Learning Outcomes:  
+  
+Upon successful completion of the course, students will be able to:  
+ 
+i. 
+Analyze the fundamental and ubiquitous problem of scarcity and the role of economics in ensuring 
+  
+the survival of man despite the paucity of resources. 
+ii. 
+Apply supply and demand analysis to explain how a typical market works. 
+iii. 
+Investigate how changes in basic variables such as prices of outputs, prices of inputs as well as 
+income affect the market and the participants in the market (elasticity). 
+iv. 
+Discuss government policies that affect the economy such as taxes, price ceiling and floors 
+v. 
+Evaluate Measures of National Income and Analyse the factors that increase National Income.  
+vi. 
+Evaluate the trends in Gross Domestic Product (GDP) and GDP growth rates in measuring income. 
+vii. 
+Discuss the role of capital, human capital, technology, and effective labour in the growth process.  
+viii. 
+Evaluate the policies required to raise productivity and growth in a country. 
+ix. 
+Determine and discuss the causes and costs of inflation.  
+x. 
+Discuss the role of money and interest rates in an economy. 
+xi. 
+Apply the AD-AS model in explaining economic fluctuations. 
+xii. 
+Analyze the Budget of a Typical Developing African Country like Ghana 
+ 
+THE 8 ASHESI LEARNING GOALS 
+Ashesi has 8 learning goals that are represented verbatim below.  Specific goals addressed by this course are 
+also presented. The course activities and assignments are designed to achieve the Intended Learning 
+Outcomes (ILOs) and the ILOs in turn are designed to reflect and help achieve the Ashesi learning goals 
+presented here. 
+1. Ethics and Civic Engagement 
+• 
+An Ashesi student is an ethical, responsible, and engaged member of his/her community. 
+• 
+Demonstrates concern for others. 
+• 
+Has the courage to be ethical. 
+• 
+Does the right thing when nobody is looking. 
+2. Critical thinking and Quantitative Reasoning 
+An Ashesi student can apply critical thinking and quantitative reasoning to approach complex problems. 
+• 
+Demonstrates skills in data analysis and modelling. 
+• 
+Sees things from multiple perspectives. 
+• 
+Has awareness of a broad range of concepts and ideas that have personal, local, and global 
+significance. 
+3. Communication 
+• An Ashesi student is an excellent communicator in a variety of forms. 
+4. Leadership and Teamwork 
+• An Ashesi student is adept at leading and functioning in teams. 
+• 
+Demonstrates confidence and humility. 
+• 
+Has good interpersonal skills and engages fully with members of a team. 
+• 
+Is organized and able to plan and follow through on complex projects. 
+5. Innovative and Action Oriented 
+• An Ashesi student takes intellectual risks and demonstrates an entrepreneurial spirit. 
+6. Curious and Skilled 
+BA DEPARTMENT  
+  
+        Page 4 of 10  
+  
+  
+• An Ashesi student is inquisitive and confident, has breadth of knowledge, and has attained a high 
+level of mastery in their chosen field. 
+• 
+Probes deeply and continuously in their chosen field. 
+• 
+Keeps an open mind. 
+• 
+Shows confidence but never feels he/she knows it all. 
+• 
+Demonstrates awareness of global and multicultural issues. 
+ 
+7. Technological Competence 
+• An Ashesi student is an effective and flexible user of technology. 
+ 
+8. Professionalism 
+An Ashesi student: 
+• 
+Honours contracts and commitments and adheres to professional standards. 
+• 
+Is respectful of people, time, and resources. 
+• 
+Executes responsibilities with excellence. 
+• 
+Takes ownership of his/her own development 
+ 
+ASHESI LEARNING GOALS ADDRESSED IN THIS COURSE:  
+(1) Ethics and Civic Engagement (2) Critical thinking and quantitative reasoning (3) Communication (4) 
+Leadership and Teamwork (5) Innovation and Action Oriented (6) Curiosity and Skills (7) 
+Technological competence (8) Professionalism.  
+(2)   
+REQUIRED COURSE ELEMENTS, ASSESSMENT, AND GRADING:   
+The mid-term and final exams test familiarity with basic information and concepts encountered in the 
+lectures and readings. To do well in the exams, you must attend class regularly and solve all practice 
+questions.   
+ 
+Quizzes (20% of total grade)-Individual Assignment 
+There will be a minimum of 3 major (in-class) quizzes during the semester, but more are possible.  However, 
+the instructor reserves the right to organize shorter quizzes to test the understanding of key concepts.  There 
+will be a minimum of two (2) of these short quizzes but a lot more are possible. The best three (3) of the 
+major quizzes and the best two (2) of the shorted quizzes will constitute their cumulative score for the quiz 
+assessment. The quizzes are designed to test, on a regular basis, the understanding of students as well as help 
+students develop critical thinking, problem solving and quantitative reasoning skills.  
+  
+Problem sets (10% of total grade)-Individual and Group Assignments 
+There will be one problem set for every two major topics covered in the semester. The assignment is due on 
+Friday of the week they are assigned. The purpose of the problem set is to help you understand the class 
+material in a timely manner. Please note that the problem set grade is a major part of your total grade. All 
+assignments should include the cover sheet on the first page. The cover sheet must contain the full name of 
+the student and date as well as a description for individual assignments.  For group assignments, the cover 
+page must have the full names of all members of the group as well as the group name, date, and a description 
+of the assignments. Each of the problem sets is designed to give students a practical understanding of the 
+concept taught and may involve the requirement to get familiar and work with macroeconomic databases.  A 
+minimum of three (3) problem sets will be assigned but most likely more problem sets will be assigned.  The 
+best 3 of the problem sets will constitute the grade for students. The problem sets often involve the 
+requirement to use Excel to plot graphs and are designed to develop the following Ashesi Learning Goals: 
+(2) Curiosity and skill, (3) Technological competence, (4) Critical thinking and quantitative reasoning (7) 
+Innovation and Action (8) Professionalism. 
+Late work: A 10% penalty applies for each day an assignment is late. Any assignment that is more than 3 
+days (including Saturday and Sunday) late will not be accepted. Note that: it is incumbent on the student to 
+be able to plan their time well to meet all deadlines not only for this course but all the courses.  
+  
+BA DEPARTMENT  
+  
+        Page 5 of 10  
+  
+  
+Mid-Semester Exam (15% of total grade)-Individual Assignment 
+There will be a sit-in midsemester exam in the third week of lectures. This exam covers content treated in 
+the weeks prior to the exam. To perform well in the midsemester exams, students are encouraged to follow 
+keenly in-class discussions and attempt all practice questions.  
+ 
+Review of Academic Article- (5% of total grade)-Group Assignment 
+Each student group will be required to execute a review of an assigned economic journal article.  The 
+students will provide a summary of the article’s take home message then identify the specific research 
+question, its justification, summarize the literature review and discuss the methods used including the type of 
+data analyzed and the results obtained.  The student will then critique the article in terms of the procedures 
+used, mastery of the subject matter and whether the objectives were achieved. The Review of Academic 
+Article will be a 2-page maximum document. Use APA style referencing with font size 12 times New 
+Roman 
+and 
+double 
+space 
+your 
+work. 
+ 
+Save 
+the 
+work 
+in 
+the 
+correct 
+format. 
+FirstName_LastName_AssignmentDescription_Date of Submission.  As an example, if Group 1 is turning in 
+a review of a paper by Stephen Armah and Alfred Berkoh on Corruption and Inflation published in 2022 and 
+their submission is being done on June 14th, they must save the work as: Group 1_Review of Academic 
+Article on Corruption and Inflation by Armah and Berkoh 2022_ June 14th, 2022 
+  
+Final Exam (40% of total grade)-Individual Assignment 
+This is a sit-in exam which will cover all topics treated for the semester. Students are advised to prepare 
+adequately for the exam. The exam will test understanding and application of concepts studied. Rote 
+learning will not be the best strategy to prepare for the final exam.  
+ 
+The Government Debt Debate: - Group Assignment.  To be counted as part of HW (HW 3) 
+ The African Experience leading to HIPC (Heavily Indebted Poor Country); historical global debt default in 
+Latin America, Asia, Europe, and Africa; Africa’s increasing indebtedness to China and the role of IMF 
+There is an ongoing debate in the economics literature as to whether it is a good idea for developed and 
+developing countries especially, African countries to take on large amounts of debt, and how much debt is 
+enough? There is also a debate as to whether increasing African indebtedness to China reflects a new form 
+of colonization and whether the IMF does some good by helping African countries manage their debt despite 
+IMF’s often unhealthy reputation in development economics as a loan shark. The problems of rising national 
+debt are not new. Historically, rising national debt often heralds financial crisis and led to defaults of loan 
+payments in Latin America, Asia, Europe, and Africa leading to the unpopular Structural Adjustment 
+Programs (SAPs) and for the case of African countries like Ghana, several defaults within the same country. 
+The SAPs designed to help African countries pay back their loans were unpopular because apart from 
+limiting funding for social programs in health and education, they restricted wanton and profligate 
+government expenditure and imposed conditionalities on African economies. 
+ 
+To put the debate in proper context, remember that countries take on debt because they cannot finance all the 
+projects and activities, they intend to do in a year with current revenues so they must borrow from different 
+sources, but how much borrowing is too much borrowing?  The concept of national debt is a little different 
+from the debt that private companies or individuals take on.  Unlike private firms and individuals who must 
+pay back all loans from their own resources or profits or at a minimum provide collateral to cover their debt, 
+the government of a country is unique because it takes on debt and pays back debt by taxing its citizens, 
+from selling natural resources such as gold and oil (in the case of developing countries) or simply by 
+printing money.  While citizens generally hate taxes and taxes make governments unpopular, the printing of 
+money (termed seignorage in economics) leads to inflation and devalues the currency so national 
+governments cannot tax citizens unreasonably or print money forever. 
+ 
+ The Debate as to whether increasing national debt stalls development or not, and just how bad is a high 
+level of government debt, divides opinion and depends on context. While some developed country 
+BA DEPARTMENT  
+  
+        Page 6 of 10  
+  
+  
+economists believe that national governments of developed countries can print money or raise taxes so they 
+can in fact always print money or raise taxes to pay all debt, other developed country economists disagree 
+and argue that high taxes reduce business activity and too much debt creates stress in the system and causes 
+inflation which has dire consequences. The developed country economists in favor of high debt argue that if 
+the economy that takes on the debt is productive, the debt will be paid back with no problem if the return on 
+the debt I higher than its opportunity cost or the interest rate. In contrast most developing country 
+economists and economists who work on developing countries tend to have a negative view of rising 
+national debt (maybe because of fears of corruption or low productivity) and go as far as to suggest a level 
+of the ratio of debt to GDP beyond which the national government must put a stop to borrowing.  So just 
+how bad is rising national debt to an African country like Ghana? Historically it is known that rising debt 
+has sent Ghana to seek help from the IMF on 17 different occasions with the last one in the current year of 
+2022. Further, during the early tenure of President Kuffuor from 2000 to 2008, Ghana enjoyed the benefits 
+of the Heavily Indebted Poor Countries (HIPC) initiative where a substantial amount of Ghana’s debt was 
+forgiven after Ghana’s debt rose so high that the economy grounded to a halt. Growth followed HIPC 
+although Ghana’s national debt also kept increasing until the debt has increased so high it is currently almost 
+as big as the economy and is much higher than the levels that sent Ghana to HIPC. 
+ 
+The principles of economics class will hold a debate between different assigned groups about whether it is 
+worth is for a developing African country like Ghana to carry high levels of government debt? Is there a 
+situation where high levels of debt can facilitate growth? Why does high national debt rather always lead to 
+economic crisis and what must Ghana do to avoid economic crisis related to National Debt? 
+  
+Motion for the Debate: High and Increasing Government Debt is always deleterious for the economic 
+outlook of Ghana so the Ghana Parliament must enact a law that forbids the government of Ghana from 
+borrowing more than 20% of its GDP. 
+ 
+Participation-(5% of total grade)-Group Assignment 
+Attendance and participation are mandatory.  Student involvement in presentations, discussions as well as 
+contributions and participation in lecturers will be closely monitored and graded.  
+ 
+Academic Integrity  
+Academic dishonesty will not be tolerated. Academic dishonesty includes, but is not limited to, cheating, 
+plagiarism, falsifying identity, or academic records, and being an accessory to acts of academic dishonesty.  
+Ignorance about what counts as plagiarism is not an acceptable excuse. Each student is required to maintain 
+the standards of integrity set forth in the Ashesi University College Handbook.  
+  
+The final course grade will be assigned based on the following weighting of course components:  
+  
+Activity  
+Weight  
+Mid-Semester Exam (Individual) 
+15%  
+Problem Sets (Individual and 
+Group) 
+10%  
+Quizes (Individual) 
+20%  
+Review of Academic Article 
+(Group) 
+10% 
+Class Participation (Individual) 
+5% 
+Final Exam (Individual) 
+ 40% 
+ 
+  
+ 
+ 
+BA DEPARTMENT  
+  
+        Page 7 of 10  
+  
+  
+Total  
+100%  
+  
+  
+  
+Other information  
+Regular attendance to class is required and will be checked. Students are expected to read assigned materials 
+before class. Be prepared to ask questions and to participate in class discussion. I will ask for input from 
+students and welcome questions.  
+  
+ 
+ 
+Laptop Policy:  Note that laptops are not allowed in class.   
+Cell Phone Policy:  Cell Phones are strictly not allowed.   
+  
+Canvas: Please check Canvas frequently for announcements, lecture slides, materials, and assignments.  
+  
+  
+TOPICS COVERED:  
+PART A- MICROECONOMICS 
+1. The Ten Principles of Economics 
+ 
+Readings: Mankiw Ch. 1 
+ 
+2. Thinking Like an Economics 
+Readings: Mankiw Ch. 2 
+ 
+3. The Benefits of Trade 
+Readings: Mankiw Ch. 3 
+ 
+4. Demand and Supply 
+Readings: Mankiw Ch. 4 
+ 
+5. Elasticity 
+Readings: Mankiw Ch. 5 
+ 
+6. Taxation and Government Policy 
+Readings: Mankiw Ch. 6 
+ 
+PART B-MACROECONOMICS 
+7. Goss Domestic Product (GDP and Inflation)-Measuring a Nation’s Income and the Cost of 
+Living  
+(a) Income and Expenditure, GDP, Components of GDP, Is GDP a good measure of quality of life, 
+calculating the CPI, CPI vs. GDP Deflator  
+(b) Consumer Price Index (CPI) and Inflation 
+  
+Readings: Mankiw Ch. 10 & 11 (all chapter references to Mankiw are based on the required textbook – 
+principles of macroeconomics)  
+  
+o Armah Stephen and Berkoh Alfred (2024) "Interrogating the Inflation-Corruption nexus for 
+developing countries: The case of Ghana. Paper Accepted for presentation at the AFEA-AEA-
+BA DEPARTMENT  
+  
+        Page 8 of 10  
+  
+  
+ASSA 2024 Annual Conference (Paper # 1257-MS), to be held on January 5 - 7, 2024 (Friday, 
+Saturday, Sunday), at Grand Hyatt Hotel, San Antonio, Texas. 
+ 
+o Cross, P. (2016). What do the Different Measures of GDP Tell Us? Working Paper Ontario,  
+Canada: C.D. Howe Institute   
+o Tily,  
+G.  
+(2015)  ‘The  national  
+accounts,  
+GDP  and  
+the 
+ 
+growthmen’ http://www.primeeconomics.org   
+  
+8. Production and Growth: Economic growth, productivity, economic growth, and public policy  
+  
+Readings: Mankiw Ch. 12  
+  
+o Armah, S. (2016). Strategies to Stimulate Ghana’s Economic Transformation and Diversification. 
+The Ashesi Economic Lecture Series Journal, Volume 2 (1): 9-16.  
+o Barro, R. J. (1989). Economic Growth in a Cross Section of Countries. NBER Working Paper, 
+No. W3120.  
+o *Huq, M. M. (1989). Growth and Structure of the Economy (Chp. 2), pp. 45 – 60  
+o Sachs, J. D., Warner, A. M. (1997). Sources of Slow Growth in African Economies. J Afr Econ 
+6, 335–376.  
+  
+9. Savings, Investment, and the Financial System: Financial institutions, savings and investment and 
+the national accounts, market for loanable funds.  
+o *Brownbridge, M., & Gockel, A. F. (1996). The impact of financial sector policies on banking 
+in Ghana.  
+Readings: Mankiw Ch. 13  
+  
+10. The Monetary System: Meaning of money, banks and the money supply, tools of monetary policy  
+Open Market Operations 
+Open Market Operations (Short) 
+https://www.youtube.com/watch?v=Vy6gSr2AtUE 
+ 
+Managing the Money Supply (Long) 
+https://www.youtube.com/watch?v=ELdPv3-cS0M 
+ 
+Money Market and FED Tools (Monetary Policy) 
+https://www.youtube.com/watch?v=_dNIDo8UFSc 
+ 
+  
+Readings: Mankiw Ch. 16  
+  
+11. Money Growth, Inflation and Unemployment: Classical theory of inflation, causes and costs of 
+inflation, identifying unemployment.  
+  
+Readings: Mankiw Chs. 16 (pages 218 – 224), 15 (pages 298 – 308), 17 & 22 (pages 490 – 501).  
+  
+o Cline, W. R. (2015). Quantity theory of money redux? Will inflation be the legacy of quantitative 
+easing? PIIE Policy Brief No. PB15 – 7  
+o *Osiakwan, R and S. E. Armah (2014) “Clearing the Muddy Waters: An attempt to decompose 
+the impacts of inflation on the welfare of Ghanaian citizens in light of recent political rhetoric on 
+inflation” Journal of Economic Development, Management, IT, Finance and Marketing, 5(2), 32-
+65 Sept 2013 
+ The Inflation and Corruption Nexus: How can corruption result in inflation and vice versa? 
+BA DEPARTMENT  
+  
+        Page 9 of 10  
+  
+  
+12. 
+Aggregate Demand and Aggregate Supply (AS and AD) 
+  
+Readings 
+Mankiw Ch 20 
+Note: The textbook chapters and Asterisked (*) articles are compulsory readings.  
+COURSE SCHEDULE:  
+Below is the tentative schedule for the course. Note that the schedule is subject to change.  
+WEEKS  
+Topics   
+Reading  
+Deadlines  
+Week 1 -3  
+(January-
+February)   
+Ten Principles of Economics, 
+Economic Thinking, Argument for 
+trade 
+Mankiw Ch 1-3 
+Quiz 1 (January 22nd)  
+Rev of Academic 
+Article, Groups formed. 
+Homework 1 given out 
+(30th Jan 2024) 
+Week 4 and 5  
+(February) 
+Demand and Supply & Elasticity 
+Mankiw Ch 4-5 
+Quiz 2 (15th February)  
+ 
+Week 6 -
+(February- 
+March) 
+Taxation and Government Policy 
+Mankiw Ch 6  
+Quiz 3 (27th Feb)  
+Homework 2- (27th 
+February) 
+ 
+Week 7 
+(3 MARCH)  
+Mid-Semester Exam and Break 
+ 
+ 
+Weeks 8   
+(March) 
+Measuring a Nation’s Income, I &  
+II and the Cost of Living 
+Mankiw CH 10 and 
+11 
+Osiakwan and Armah 
+(2013) 
+Quiz 4 (March – 14th)  
+ 
+Week 9 
+(March) 
+Production and Growth I & II  
+ The Monetary System 
+Mankiw CH 12, 13, 
+16,  
+Sachs & Warner 
+(1997)  
+Brownbridge & 
+Gockel  
+(1996)  
+Armah (2016) 
+Antwi et al (2020) 
+HW 2 
+ (March 21 2024 
+Week   10 and 
+11 
+(March)  
+Money, Growth, Inflation and 
+Unemployment  
+ 
+Mankiw Ch 17 
+Draft of Rev of 
+Academic Article 
+Due: March 26th 2024 
+• Week 12- 
+This may 
+not be 
+covered   
+(March-April)  
+Aggregate Demand and Supply I  
+Ferreiro, et al. (2011)  
+Seidman (2012)  
+Mankiw Ch 20 
+Friedman (1968) 
+HW 3 – National Debt 
+Debate 
+ (March/April 2024)  
+ 
+Week 13 
+(April)  
+ Final Exam  
+ 
+  
+Review of Academic 
+BA DEPARTMENT  
+  
+        Page 10 of 10    
+  
+Article Write up due 
+  
+ 
+ 
+  
+ 
+RELEVANT VIDEOS FOR THE COURSE 
+IMF Programme: Stakeholders discuss how Ghana can maximize the opportunity - AM Talk with Bernice 
+https://www.youtube.com/watch?v=ww6iWgxKC5A 
+ 
+ 
