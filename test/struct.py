@@ -105,7 +105,7 @@ class Topic(BaseModel):
     defines the title of a topic for a week
 
     Attributes:
-        - title (str): the title of the topic (e.g. Introduction to Computing, Data Structures and Algorithms)
+        - title (str): the title of the topic (e.g. Asymptotic Notation, Sorting Algorithms)
     """
 
     title: str
