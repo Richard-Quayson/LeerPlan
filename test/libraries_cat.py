@@ -1,6 +1,6 @@
 # pip install pydantic
 "annotated-types==0.6.0"
-"pydantic==2.6.3"
+"pydantic==2.6.4"
 "pydantic_core==2.16.3"
 "typing_extensions==4.10.0"
 
