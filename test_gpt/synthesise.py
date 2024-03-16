@@ -29,7 +29,7 @@ response = client.chat.completions.create(
         {
             "role": "user",
             "content": 
-                "Provide Provide a json response for information defined in the Pydantic classes defined in the test/struct.py file."
+                "Provide a json response for information defined in the Pydantic classes defined in the test/struct.py file."
         }
     ]
 )
