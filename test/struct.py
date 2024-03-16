@@ -170,8 +170,8 @@ class Course(BaseModel):
         - name (str): the name of the course (e.g. Introduction to Computing, Data Structures and Algorithms)
         - description (str): the description of the course (e.g. This course introduces students to the basics of computing)
         - semester (Semester): the semester of the course (e.g. Semester)
-        - instructor (Instructor): the instructor of the course (e.g. Instructor)
-        - faculty_intern (Instructor): the faculty intern of the course (e.g. Instructor)
+        - instructors (Instructor): the instructor of the course (e.g. [Instructor, Instructor, ...])
+        - faculty_interns (Instructor): the faculty intern of the course (e.g. [Instructor, Instructor, ...])
         - textbooks (List[Textbook]): the textbooks for the course (e.g. [Textbook, Textbook, ...])
         - evaluation_criteria (List[EvaluationCriteria]): the evaluation criteria for the course (e.g. [EvaluationCriteria, EvaluationCriteria, ...])
         - lecture_days (List[LectureDay]): the lecture days for the course (e.g. [LectureDay, LectureDay, ...])
@@ -182,8 +182,8 @@ class Course(BaseModel):
     name: str
     description: str
     semester: Semester
-    instructor: Instructor
-    faculty_intern: Instructor
+    instructors: List[Instructor]
+    faculty_interns: List[Instructor]
     textbooks: List[Textbook]
     evaluation_criteria: List[EvaluationCriteria]
     lecture_days: List[LectureDay]
