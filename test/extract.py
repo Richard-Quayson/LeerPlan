@@ -13,7 +13,7 @@ def extract_text_from_pdf(pdf_path):
         full_text += text
 
     # create output .txt file
-    output_path = "data/" + pdf_path.split("/")[-1].replace(".pdf", ".txt")
+    output_path = "extracted_PDF_data/" + pdf_path.split("/")[-1].replace(".pdf", ".txt")
     with open(output_path, 'w', encoding='utf-8') as text_file:
         text_file.write(full_text)
     
