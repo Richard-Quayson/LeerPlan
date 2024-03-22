@@ -1,3 +1,4 @@
 venv/
-test/.env
-__pycache__/
+test_gpt/__pycache__/
+test_gpt/.env
+test_llama/.env
