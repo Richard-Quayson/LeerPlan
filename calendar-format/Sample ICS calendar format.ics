@@ -1,0 +1,1962 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:quaysonrichard23@gmail.com
+X-WR-TIMEZONE:Etc/GMT
+BEGIN:VTIMEZONE
+TZID:America/New_York
+X-LIC-LOCATION:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20220103T173000
+DTEND;TZID=America/New_York:20220103T180000
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20220217T045959Z;BYDAY=FR,MO,TH,TU,WE
+DTSTAMP:20240402T160949Z
+UID:46ojfjcancpu96b927lb2n22gl@google.com
+CREATED:20220103T171310Z
+DESCRIPTION:Course: Programming for Everybody (Getting Started with Python)
+ \nhttps://www.coursera.org/learn/python/home/welcome
+LAST-MODIFIED:20220103T171310Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Learning time - Programming for Everybody (Getting Started with Pyt
+ hon)
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20220415T190000Z
+DTEND:20220415T200000Z
+DTSTAMP:20240402T160949Z
+UID:6dj6cc34c4q3cb9gcos3eb9kc9im4bb1c5im2b9i61i66dpj6gs3edr26o@google.com
+CREATED:20220415T183839Z
+DESCRIPTION:The blood and body of Christ\; 
+LAST-MODIFIED:20220415T183839Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Lord's supper 
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20221019T160000Z
+DTEND:20221022T000000Z
+DTSTAMP:20240402T160949Z
+UID:6p7o3p0t2afcv1lak2s6hu35vp@google.com
+CREATED:20220914T001720Z
+DESCRIPTION:For more information about this event - https://exchange.scale.
+ com/public/events/scale-transformx-2022
+LAST-MODIFIED:20220914T001720Z
+LOCATION:https://exchange.scale.com/events/scale-transformx-2022
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:[AI Exchange] Scale TransformX
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230606
+DTEND;VALUE=DATE:20230607
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=6;BYMONTH=6
+DTSTAMP:20240402T160949Z
+UID:6cp32c3475h68bb6ccsjeb9k6lgmabb160qjcb9n6kr6adhm61gmao9g6c@google.com
+CREATED:20230103T083651Z
+LAST-MODIFIED:20230103T083802Z
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Timothy's birthday
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230311
+DTEND;VALUE=DATE:20230312
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=11;BYMONTH=3
+DTSTAMP:20240402T160949Z
+UID:61gm4o9p64om4bb3ckpj6b9k70q68bb16ksmcbb36os62eb1ccp3ecpm6o@google.com
+CREATED:20230103T083803Z
+LAST-MODIFIED:20230103T083803Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Geoffery's birthday
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230114
+DTEND;VALUE=DATE:20230115
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=14;BYMONTH=1
+DTSTAMP:20240402T160949Z
+UID:60s64d1g65gm8bb66kpm4b9k65hj8bb160o3ib9lchhmap9p6lh6cc1p74@google.com
+CREATED:20230103T084209Z
+DESCRIPTION:The man himself 🤝 
+LAST-MODIFIED:20230103T084209Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bright's birthday 
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230114
+DTEND;VALUE=DATE:20230115
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=14;BYMONTH=1
+DTSTAMP:20240402T160949Z
+UID:75j34cpm6osjib9g64oj8b9kc4pjeb9ocoqmabb374qm4pb16di3id1pck@google.com
+CREATED:20230103T084828Z
+LAST-MODIFIED:20230103T084828Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Maame C's birthday
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230107
+DTEND;VALUE=DATE:20230108
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=7;BYMONTH=1
+DTSTAMP:20240402T160949Z
+UID:64s3ie31cgo6ab9l6krj8b9k6kp64bb171j3abb46so34d9m6kom8d1p64@google.com
+CREATED:20230106T112654Z
+LAST-MODIFIED:20230106T112654Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Felicia's birthday 
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230214T210000Z
+DTEND:20230214T220000Z
+DTSTAMP:20240402T160949Z
+UID:6cp64p9m6lj6cb9k6pimab9k60ojibb160pj8b9o6gq62d1h6dj66p9h6k@google.com
+CREATED:20230210T134909Z
+DESCRIPTION:Join us for the next edition of “LinkedIn 101” for students and
+  young professionals to learn all about job search strategies and the tools
+  to help you discover your next role.\n\nYou’ll hear directly from top care
+ er coaches\, recruiters\, and LinkedIn product experts to help you get ahea
+ d in your career. \n\nIn this episode\, we’ll discuss the latest tips and t
+ ricks for a successful job search and how to land your next opportunity.\n\
+ nWe’ll cover:\n- Key strategies for an effective job search \n- How to buil
+ d a LinkedIn profile that attracts recruiters \n- LinkedIn’s top job search
+  tools & features\n- The importance of skills and how to use them to land y
+ our next role\n- Live Q&A with the experts.\n\n
+LAST-MODIFIED:20230210T134909Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Job Search Strategies for Young Professionals: Tools for Finding Su
+ ccess
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230621
+DTEND;VALUE=DATE:20230622
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=21;BYMONTH=6
+DTSTAMP:20240402T160949Z
+UID:6ss3eeb36krj8bb568r3cb9k6opj4bb264o3gb9mc4sjgcb26csjichl6s@google.com
+CREATED:20230621T211943Z
+LAST-MODIFIED:20230621T211943Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Morgan Sarpong's birthday 🎂 
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230901T233000Z
+DTEND:20230902T003000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:2jtlg3eqstid57pcmv0q3oorub@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/xax-kxer-dpe
+CREATED:20230901T173352Z
+DESCRIPTION:App_Demo_Meeting\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https:
+ //meet.google.com/xax-kxer-dpe\n\nLearn more about Meet at: https://support
+ .google.com/a/users/answer/9282720\n\nPlease do not edit this section.\n-::
+ ~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~::~:~::-
+LAST-MODIFIED:20230901T173354Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:App_Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230901T233000Z
+DTEND:20230902T003000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:57707smcbsvsptiodl2e59gjpf@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=DECLINED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=OPT-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/rgn-smrv-byd
+CREATED:20230901T173713Z
+DESCRIPTION:Demo\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.googl
+ e.com/rgn-smrv-byd\n\nLearn more about Meet at: https://support.google.com/
+ a/users/answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230901T174225Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:App_Demo_Meeting
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230904T171000Z
+DTEND:20230904T174000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:7a27o2ua5csidr71god9tt7aol@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/rec-htex-ccz
+CREATED:20230904T162344Z
+DESCRIPTION:Demonstration Meeting\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: h
+ ttps://meet.google.com/rec-htex-ccz\n\nLearn more about Meet at: https://su
+ pport.google.com/a/users/answer/9282720\n\nPlease do not edit this section.
+ \n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~::~:~::-
+LAST-MODIFIED:20230904T162346Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:App_Demo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230904T170000Z
+DTEND:20230904T180000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:2sq8kk96ih4nrqdgedf8lcpcl7@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/hxi-qhfb-sgp
+CREATED:20230904T162643Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/hx
+ i-qhfb-sgp\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230904T162645Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:DEMO
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230927T113000Z
+DTEND:20230927T123000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:4skt1i3o1ro7fn9u1fd84tc4ua@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/dsh-vhgk-wiw
+CREATED:20230927T160904Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/ds
+ h-vhgk-wiw\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230927T160905Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Dem
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230927T163000Z
+DTEND:20230927T173000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:4jjqppr4ur1u1rbh1dgrii662e@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/nex-eutd-yjx
+CREATED:20230927T161148Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/ne
+ x-eutd-yjx\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230927T161150Z
+SEQUENCE:0
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230928T013000Z
+DTEND:20230928T020000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:2g9sgg43jjacq0rdt6chi52d6t@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/dst-cgai-dfj
+CREATED:20230928T062759Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/ds
+ t-cgai-dfj\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230928T062801Z
+LOCATION:Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Demot
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230928T064500Z
+DTEND:20230928T074500Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:0ullc2kp7siatm96rqdrf0nk6v@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/yyb-dqpo-btb
+CREATED:20230928T063439Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/yy
+ b-dqpo-btb\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230928T063441Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Demomo
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230928T070000Z
+DTEND:20230928T080000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:2g37g867i6j6kvqknuojt14c7j@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ed
+ dynap@yahoo.com;X-NUM-GUESTS=0:mailto:eddynap@yahoo.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/yhi-pwkz-dxx
+CREATED:20230928T063710Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/yh
+ i-pwkz-dxx\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230928T063713Z
+LOCATION:Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Demomo
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230928T121500Z
+DTEND:20230928T131500Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:6mpmfg3mh3h3k87gup11li3ifj@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/zsw-ycpb-rpa
+CREATED:20230928T082119Z
+DESCRIPTION:Proj_Dem\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.g
+ oogle.com/zsw-ycpb-rpa\n\nLearn more about Meet at: https://support.google.
+ com/a/users/answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::
+ -
+LAST-MODIFIED:20230928T082121Z
+LOCATION:Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Dem
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20230928T121500Z
+DTEND:20230928T131500Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:1a4cdo8k6paac4t2ja5k8derln@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ri
+ shnachaitanya.nunna@usm.edu;X-NUM-GUESTS=0:mailto:rishnachaitanya.nunna@usm
+ .edu
+X-GOOGLE-CONFERENCE:https://meet.google.com/kty-yoiz-ouv
+CREATED:20230928T115749Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/kt
+ y-yoiz-ouv\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20230928T115750Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Dem
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231001T163000Z
+DTEND:20231001T173000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:0geritcvvhbf3lft5jataqm6b8@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/oxr-jtim-xos
+CREATED:20231001T125816Z
+DESCRIPTION:Next/Final Project  Codes/Algorithm Implementation Stage Discus
+ sion.\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/oxr-j
+ tim-xos\n\nLearn more about Meet at: https://support.google.com/a/users/ans
+ wer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231001T125817Z
+LOCATION:Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Proj_Discns
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231001T191500Z
+DTEND:20231001T194500Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:5oleakcdepkgpgqf09o4lg7p30@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/qgu-cigq-mtu
+CREATED:20231001T190005Z
+DESCRIPTION:Let's go\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.g
+ oogle.com/qgu-cigq-mtu\n\nLearn more about Meet at: https://support.google.
+ com/a/users/answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::
+ -
+LAST-MODIFIED:20231001T190007Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Dis
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231006T180000Z
+DTEND:20231006T190000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:2psqcg66qp4v5c8ioic6hpfbr0@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/kai-kjvv-kbo
+CREATED:20231006T103416Z
+DESCRIPTION:Project Discussion\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: http
+ s://meet.google.com/kai-kjvv-kbo\n\nLearn more about Meet at: https://suppo
+ rt.google.com/a/users/answer/9282720\n\nPlease do not edit this section.\n-
+ ::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~::~:~::-
+LAST-MODIFIED:20231006T103418Z
+LOCATION:Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Proj_Res
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231006T180000Z
+DTEND:20231006T190000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:6mvuurm9rsvu64o9ve0dl0tb91@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/jsu-bcqy-awo
+CREATED:20231006T103614Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/js
+ u-bcqy-awo\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231006T103615Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Proj_Res
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20231009T160000Z
+DTEND:20231009T170000Z
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=eddynap@gmail.com:mailto:eddynap@gmail.com
+UID:3l5pojcq5c23lbd2oee5rreits@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=eddyna
+ p@gmail.com;X-NUM-GUESTS=0:mailto:eddynap@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=qu
+ aysonrichard23@gmail.com;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=am
+ enuxorsenyoedwin.115148@marwadiuniversity.ac.in;X-NUM-GUESTS=0:mailto:amenu
+ xorsenyoedwin.115148@marwadiuniversity.ac.in
+X-GOOGLE-CONFERENCE:https://meet.google.com/aud-merc-sgg
+CREATED:20231009T154208Z
+DESCRIPTION:Pro_Dis\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.go
+ ogle.com/aud-merc-sgg\n\nLearn more about Meet at: https://support.google.c
+ om/a/users/answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231009T154210Z
+LOCATION:Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Pro_Dis
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20230324T200000
+DTEND;TZID=America/New_York:20230324T210000
+RRULE:FREQ=WEEKLY;UNTIL=20231208T045959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:54onq3ecvpbeqpgcg2i2otkdkh@google.com
+X-GOOGLE-CONFERENCE:https://meet.google.com/ndq-nfpi-img
+CREATED:20230323T101647Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/nd
+ q-nfpi-img\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231208T051844Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:YOTOS Friday Meeting
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:EMAIL
+ATTENDEE:mailto:quaysonrichard23@gmail.com
+TRIGGER:-P0DT1H0M0S
+DESCRIPTION:This is an event reminder
+SUMMARY:Alarm notification
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;TZID=America/New_York:20230324T200000
+DTEND;TZID=America/New_York:20230324T210000
+DTSTAMP:20240402T160949Z
+ORGANIZER;CN=Richard Quayson:mailto:quaysonrichard23@gmail.com
+UID:54onq3ecvpbeqpgcg2i2otkdkh@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=em
+ madinortey@gmail.com;X-NUM-GUESTS=0:mailto:emmadinortey@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Richar
+ d Quayson;X-NUM-GUESTS=0:mailto:quaysonrichard23@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=se
+ amenu@gmail.com;X-NUM-GUESTS=0:mailto:seamenu@gmail.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=sa
+ ndrine.houngninou@ashesi.edu.gh;X-NUM-GUESTS=0:mailto:sandrine.houngninou@a
+ shesi.edu.gh
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ha
+ wa.opata@ashesi.edu.gh;X-NUM-GUESTS=0:mailto:hawa.opata@ashesi.edu.gh
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;CN=ab
+ igail.owusu@ashesi.edu.gh;X-NUM-GUESTS=0:mailto:abigail.owusu@ashesi.edu.gh
+X-GOOGLE-CONFERENCE:https://meet.google.com/ndq-nfpi-img
+RECURRENCE-ID;TZID=America/New_York:20230324T200000
+CREATED:20230323T101647Z
+DESCRIPTION:-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~::~:~::-\nJoin with Google Meet: https://meet.google.com/nd
+ q-nfpi-img\n\nLearn more about Meet at: https://support.google.com/a/users/
+ answer/9282720\n\nPlease do not edit this section.\n-::~:~::~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
+LAST-MODIFIED:20231208T051844Z
+SEQUENCE:2
+STATUS:CONFIRMED
+SUMMARY:YOTOS Friday Meeting
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:EMAIL
+ATTENDEE:mailto:quaysonrichard23@gmail.com
+TRIGGER:-P0DT1H0M0S
+DESCRIPTION:This is an event reminder
+SUMMARY:Alarm notification
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240824
+DTEND;VALUE=DATE:20240825
+DTSTAMP:20240402T160949Z
+UID:3rpjd3im5bdvpcvim4ur70suep@google.com
+CREATED:20240114T135545Z
+LAST-MODIFIED:20240114T135545Z
+LOCATION:Ashesi University\, 1 University Ave\, Berekuso\, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Graduation
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240108T080000Z
+DTEND:20240108T093000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:1vtpc8pp5p4h1mp84chpbg3ult@google.com
+CREATED:20240114T160732Z
+LAST-MODIFIED:20240114T160742Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240110T080000Z
+DTEND:20240110T093000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:4cnden6jmghhl5u2g4bcqoql8g@google.com
+CREATED:20240114T160800Z
+LAST-MODIFIED:20240114T160800Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240108T094500Z
+DTEND:20240108T111500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:2i746ijp4m93b86k6idtq4r65s@google.com
+CREATED:20240114T160828Z
+LAST-MODIFIED:20240114T160828Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240110T094500Z
+DTEND:20240110T111500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:63vm3eag1huscqjn8rms31hi42@google.com
+CREATED:20240114T160836Z
+LAST-MODIFIED:20240114T160836Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240112T121500Z
+DTEND:20240112T134500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:73i1lsc7gqc621f1hu7juf7pi9@google.com
+CREATED:20240114T160857Z
+LAST-MODIFIED:20240114T160857Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240109T131500Z
+DTEND:20240109T144500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:1ssdktlvi9hfef9c17l4k10fch@google.com
+CREATED:20240114T160937Z
+LAST-MODIFIED:20240114T160937Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240111T131500Z
+DTEND:20240111T144500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:1q07tsnt84b634n1gk31gnuld2@google.com
+CREATED:20240114T160947Z
+LAST-MODIFIED:20240114T160947Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240110T113000Z
+DTEND:20240110T130000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:2rkho36n4e11bam35pjhn35bi0@google.com
+CREATED:20240114T161004Z
+LAST-MODIFIED:20240114T161004Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240108T131500Z
+DTEND:20240108T144500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:68eb0tsoipq9a65akuqglmphp1@google.com
+CREATED:20240114T161110Z
+LAST-MODIFIED:20240114T161129Z
+LOCATION:Patrick Nutor Hall 100\, Ashesi Universtiy College Engineering Blo
+ ck\, University Ave\, Berekuso\, Ghana
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:CS410-SEM CSIS Capstone Seminar
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240112T091000Z
+DTEND:20240112T101000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:38nfjutpslk485b5io1kuvu7k6@google.com
+CREATED:20240114T161320Z
+LAST-MODIFIED:20240114T161330Z
+LOCATION:Nana Araba Apt Hall 217\, 1 University Ave\, Berekuso\, Ghana
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240109T150000Z
+DTEND:20240109T163000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:5p5g0gtcmcad1k7ja0q6bcv0lh@google.com
+CREATED:20240114T161205Z
+LAST-MODIFIED:20240114T161429Z
+LOCATION:Patrick Nutor Hall 100\, Ashesi Universtiy College Engineering Blo
+ ck\, University Ave\, Berekuso\, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240111T150000Z
+DTEND:20240111T163000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:0m05tmdouhrivr69fo9vqbc1sr@google.com
+CREATED:20240114T161214Z
+LAST-MODIFIED:20240114T161545Z
+LOCATION:Patrick Nutor Hall 100\, Ashesi Universtiy College Engineering Blo
+ ck\, University Ave\, Berekuso\, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240109T113000Z
+DTEND:20240109T130000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:45i0tf7v1mngk6ebh3r6q9p9bk@google.com
+CREATED:20240114T161631Z
+LAST-MODIFIED:20240114T161631Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240111T113000Z
+DTEND:20240111T130000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:2p749rtnngpfbmb2d6tn3g3mcv@google.com
+CREATED:20240114T161639Z
+LAST-MODIFIED:20240114T161639Z
+LOCATION:King's Engineering Lab 102
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240112T102000Z
+DTEND:20240112T115000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:2us02ck5jfsogr4b43g0j4ddtc@google.com
+CREATED:20240114T161712Z
+LAST-MODIFIED:20240114T161712Z
+LOCATION:Science Lab
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240111T164500Z
+DTEND:20240111T181500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:5jopg1rk4jrivg38ussoo38aa8@google.com
+CREATED:20240114T161753Z
+LAST-MODIFIED:20240114T161753Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T000000Z
+DTEND:20240114T020000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SU
+DTSTAMP:20240402T160949Z
+UID:19v6v18hsvsqvqm80hed1i13g9@google.com
+CREATED:20240114T161945Z
+LAST-MODIFIED:20240114T162035Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Projects
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T130000Z
+DTEND:20240114T150000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SU
+DTSTAMP:20240402T160949Z
+UID:5hlrajc209d35l129i8re9dp2v@google.com
+CREATED:20240114T162217Z
+LAST-MODIFIED:20240114T162217Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T153000Z
+DTEND:20240114T173000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SU
+DTSTAMP:20240402T160949Z
+UID:1u55asbqh84od6t9n9hajoemab@google.com
+CREATED:20240114T162255Z
+LAST-MODIFIED:20240114T162255Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T190000Z
+DTEND:20240114T210000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SU
+DTSTAMP:20240402T160949Z
+UID:24sht3708carhkaaeorjjdjtu7@google.com
+CREATED:20240114T162331Z
+LAST-MODIFIED:20240114T162331Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T213000Z
+DTEND:20240114T233000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SU
+DTSTAMP:20240402T160949Z
+UID:129oe6hva657jo4od2bt6i9tec@google.com
+CREATED:20240114T162356Z
+LAST-MODIFIED:20240114T162356Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240108T000000Z
+DTEND:20240108T013000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+EXDATE:20240108T000000Z
+DTSTAMP:20240402T160949Z
+UID:355s9369emvcke643u5pl7iok2@google.com
+CREATED:20240114T162455Z
+LAST-MODIFIED:20240114T162455Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240115T190000Z
+DTEND:20240115T210000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:57b1rkjpevusg3807dro917ukt@google.com
+CREATED:20240114T162713Z
+LAST-MODIFIED:20240114T162713Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240116T190000Z
+DTEND:20240116T210000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:1u0upabhh8l53m8u68cib1anrj@google.com
+CREATED:20240114T162727Z
+LAST-MODIFIED:20240114T162727Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240116T070000Z
+DTEND:20240116T083000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:6qbrou07dgi4ijs1putnianqqp@google.com
+CREATED:20240114T162753Z
+LAST-MODIFIED:20240114T162753Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240117T140000Z
+DTEND:20240117T160000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:57ljqspe9h6he2fuuemdnhl2r3@google.com
+CREATED:20240114T162821Z
+LAST-MODIFIED:20240114T162821Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240118T190000Z
+DTEND:20240118T210000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:7k4129bf2pbqvf5bd1qmneu5sa@google.com
+CREATED:20240114T162832Z
+LAST-MODIFIED:20240114T162832Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T080000Z
+DTEND:20240120T100000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:3r5o986novlkda8cpa1kosr3lv@google.com
+CREATED:20240114T162904Z
+LAST-MODIFIED:20240114T162904Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240115T213000Z
+DTEND:20240115T233000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:7holporte1ps4s9qf2gkh953l5@google.com
+CREATED:20240114T162946Z
+LAST-MODIFIED:20240114T162946Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240116T000000Z
+DTEND:20240116T013000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:4nuk6173br3d34jt0l1pi1i3lu@google.com
+CREATED:20240114T163016Z
+LAST-MODIFIED:20240114T163132Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240116T090000Z
+DTEND:20240116T110000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:62i6vedsqau6je1cac32n7vov3@google.com
+CREATED:20240114T163247Z
+LAST-MODIFIED:20240114T163247Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240116T213000Z
+DTEND:20240116T233000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:5e66t5gfc0vli2j9deu6ofn6n7@google.com
+CREATED:20240114T163326Z
+LAST-MODIFIED:20240114T163326Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240117T000000Z
+DTEND:20240117T020000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:460qsplhcrn5d2ubvoimnk88et@google.com
+CREATED:20240114T163410Z
+LAST-MODIFIED:20240114T163410Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240114T021500Z
+DTEND:20240114T073000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SU
+DTSTAMP:20240402T160949Z
+UID:79vdgd5cva7jbrlnq58lim6ljl@google.com
+CREATED:20240114T162131Z
+LAST-MODIFIED:20240114T163512Z
+LOCATION:Kofi Tawiah
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240108T020000Z
+DTEND:20240108T070000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240114T235959Z;BYDAY=MO
+EXDATE:20240108T020000Z
+DTSTAMP:20240402T160949Z
+UID:59fnnvd5n0jff0cuddb83ib8ma@google.com
+CREATED:20240114T162533Z
+LAST-MODIFIED:20240114T163524Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240115T020000Z
+DTEND:20240115T070000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:59fnnvd5n0jff0cuddb83ib8ma_R20240115T020000@google.com
+CREATED:20240114T162533Z
+LAST-MODIFIED:20240114T163524Z
+LOCATION:Kofi Tawiah
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240116T014500Z
+DTEND:20240116T063000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TU
+DTSTAMP:20240402T160949Z
+UID:t0q5a312tvl3fk0l0fp0uc9j5s@google.com
+CREATED:20240114T163048Z
+LAST-MODIFIED:20240114T163532Z
+LOCATION:Kofi Tawiah
+SEQUENCE:3
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240117T023000Z
+DTEND:20240117T071500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:49ba0sckkf2rbk2edm8t48154g@google.com
+CREATED:20240114T163431Z
+LAST-MODIFIED:20240114T163547Z
+LOCATION:Kofi Tawiah
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240117T190000Z
+DTEND:20240117T210000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:398lvfi8gsftvnhtof5u3pddod@google.com
+CREATED:20240114T163622Z
+LAST-MODIFIED:20240114T163622Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240117T213000Z
+DTEND:20240117T233000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=WE
+DTSTAMP:20240402T160949Z
+UID:4opeeg21i211e8gbcbo7sr0obo@google.com
+CREATED:20240114T163640Z
+LAST-MODIFIED:20240114T163640Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240118T000000Z
+DTEND:20240118T020000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:7ttoof5h56pd2o4jhu8juulcbk@google.com
+CREATED:20240114T163657Z
+LAST-MODIFIED:20240114T163657Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240118T023000Z
+DTEND:20240118T071500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:57668sndfl4s06uuhvt4jlkj06@google.com
+CREATED:20240114T163711Z
+LAST-MODIFIED:20240114T163711Z
+LOCATION:Kofi Tawiah
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240118T080000Z
+DTEND:20240118T093000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:6hg47qfah3k14scveaql8qba0c@google.com
+CREATED:20240114T163800Z
+LAST-MODIFIED:20240114T163800Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240118T094500Z
+DTEND:20240118T111500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:65s4qtrred01ifq9v48k9896kf@google.com
+CREATED:20240114T163819Z
+LAST-MODIFIED:20240114T163819Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240118T213000Z
+DTEND:20240118T233000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=TH
+DTSTAMP:20240402T160949Z
+UID:19t62t9rtdv00rqvdcjv4mcicc@google.com
+CREATED:20240114T163839Z
+LAST-MODIFIED:20240114T163839Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240119T070000Z
+DTEND:20240119T084500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:4igjj0hp97na8emmdgbe1949aq@google.com
+CREATED:20240114T163920Z
+LAST-MODIFIED:20240114T163944Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240119T000000Z
+DTEND:20240119T060000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:2c38v41sl64q2jkq4k6962vf22@google.com
+CREATED:20240114T164012Z
+LAST-MODIFIED:20240114T164028Z
+LOCATION:Kofi Tawiah
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240119T213000Z
+DTEND:20240119T233000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:6nvtu5480eor2ickbb16p7qegc@google.com
+CREATED:20240114T162846Z
+LAST-MODIFIED:20240114T164104Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Buffer
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240119T190000Z
+DTEND:20240119T210000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:0epj7sgbqfr66fpnq7mj8jj1ha@google.com
+CREATED:20240114T164156Z
+LAST-MODIFIED:20240114T164156Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T000000Z
+DTEND:20240120T020000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:553k7a3rn9k754rgq7cgkn7s18@google.com
+CREATED:20240114T164219Z
+LAST-MODIFIED:20240114T164219Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS452 Machine Learning
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T023000Z
+DTEND:20240120T071500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:25d1no0kgbbhfcp18nikrtmnou@google.com
+CREATED:20240114T164244Z
+LAST-MODIFIED:20240114T164244Z
+LOCATION:Kofi Tawiah
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Bed Time
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T103000Z
+DTEND:20240120T123000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:4e8pqv8vlj422dbhfum2o4vaqg@google.com
+CREATED:20240114T164318Z
+LAST-MODIFIED:20240114T164318Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T133000Z
+DTEND:20240120T150000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:11jg2trcelf589m9tc6hhao5v8@google.com
+CREATED:20240114T164344Z
+LAST-MODIFIED:20240114T164344Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Projects
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T153000Z
+DTEND:20240120T173000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:3cjt68em8qkai83norkhv6a3gl@google.com
+CREATED:20240114T164407Z
+LAST-MODIFIED:20240114T164407Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS433 Operating Systems
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T193000Z
+DTEND:20240120T213000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:42rkts0l8o4ffd45kel9i3ffhp@google.com
+CREATED:20240114T164421Z
+LAST-MODIFIED:20240114T164431Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:ECON100 Principles of Economics
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240120T220000Z
+DTEND:20240121T000000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=SA
+DTSTAMP:20240402T160949Z
+UID:2mlk3tpmkho1om2s8cn42bprnl@google.com
+CREATED:20240114T164519Z
+LAST-MODIFIED:20240114T164519Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS462 Cloud Computing
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240115T151500Z
+DTEND:20240115T174500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240121T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:6e7n6m973hfljkpafq2r76nljr@google.com
+CREATED:20240114T162623Z
+LAST-MODIFIED:20240121T173253Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Projects
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240122T151500Z
+DTEND:20240122T164500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:6e7n6m973hfljkpafq2r76nljr_R20240122T151500@google.com
+CREATED:20240114T162623Z
+LAST-MODIFIED:20240121T173253Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Projects
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240119T150000Z
+DTEND:20240119T170000Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240125T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:1v8at84c057rc24n2gutn8igl3@google.com
+CREATED:20240114T164128Z
+LAST-MODIFIED:20240121T173321Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240126T150000Z
+DTEND:20240126T164500Z
+RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=20240430T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:1v8at84c057rc24n2gutn8igl3_R20240126T150000@google.com
+CREATED:20240114T164128Z
+LAST-MODIFIED:20240121T173321Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:CS491 Undergraduate Thesis I (CS)
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240122T170000Z
+DTEND:20240122T180000Z
+RRULE:FREQ=WEEKLY;UNTIL=20240218T235959Z;BYDAY=MO
+DTSTAMP:20240402T160949Z
+UID:724id9lp5gfu81d5t8nt3u06kk@google.com
+CREATED:20240121T173431Z
+LAST-MODIFIED:20240219T105737Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:1
+STATUS:CONFIRMED
+SUMMARY:Capstone Meeting
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART:20240126T170000Z
+DTEND:20240126T180000Z
+RRULE:FREQ=WEEKLY;UNTIL=20240222T235959Z;BYDAY=FR
+DTSTAMP:20240402T160949Z
+UID:57f333q8a3043c5mar4m5t2jl2@google.com
+CREATED:20240121T173516Z
+LAST-MODIFIED:20240219T105744Z
+LOCATION:Computer Lab 221\, Ashesi University\, 1 University Ave\, Berekuso
+ \, Ghana
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Capstone Meeting
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT0H15M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240331
+DTEND;VALUE=DATE:20240401
+RRULE:FREQ=YEARLY
+DTSTAMP:20240402T160949Z
+UID:59o7ilkrc94j71hl7q6pn8j3nv@google.com
+CREATED:20231208T051813Z
+LAST-MODIFIED:20240324T205104Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Jacinta's Birthday
+TRANSP:OPAQUE
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20230404
+DTEND;VALUE=DATE:20230405
+RRULE:FREQ=YEARLY;WKST=MO;UNTIL=20240403T235959Z;INTERVAL=1;BYMONTHDAY=4;BY
+ MONTH=4
+DTSTAMP:20240402T160949Z
+UID:6hh3ec1pcphmab9l74ojcb9k6pim2b9o69j3ebb5cos30c1h70p3apj36g@google.com
+CREATED:20230103T084005Z
+DESCRIPTION:It's Sardine's birthday 🎂 😂 
+LAST-MODIFIED:20240324T210354Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Laurik's birthday
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTART;VALUE=DATE:20240402
+DTEND;VALUE=DATE:20240403
+RRULE:FREQ=YEARLY;WKST=MO;INTERVAL=1;BYMONTHDAY=2
+DTSTAMP:20240402T160949Z
+UID:70s6copi69h34bb66thmcb9k70o3ebb1cormab9m69j6ap9hccqmaeb66c@google.com
+CREATED:20240324T210355Z
+DESCRIPTION:It's Sardine's birthday 🎂 😂 
+LAST-MODIFIED:20240324T210355Z
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Laurik's birthday
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P0DT7H0M0S
+DESCRIPTION:This is an event reminder
+END:VALARM
+END:VEVENT
+END:VCALENDAR
