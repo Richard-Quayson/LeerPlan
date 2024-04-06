@@ -1,0 +1,98 @@
+class UserAccount:
+    - firstname
+    - lastname
+    - email
+    - university
+    - password
+    - major
+    - date_created
+
+class AccountMetadata:
+    - min_study_time
+    - max_study_time
+    - ...
+
+class UserRoutine:
+    - user
+    - name (wake-up time, bed time, breakfast, lunch, dinner, me time)
+    - type
+    - start_time
+    - end_time
+
+class Semester:
+    - name
+    - year
+
+class Course:
+    - code
+    - name
+    - description
+    - semester
+    - university
+    - date_created
+
+class UserCourse:
+    - user
+    - course
+
+class Instructor:
+    - name
+    - email
+    - university
+    - phone
+    - type (Faculty Member, Faculty Intern)
+
+class CourseInstructor:
+    - course
+    - instructor
+
+class CourseInstructorOfficeHour:
+    - course_instructor
+    - day
+    - start_time
+    - end_time
+
+class CourseTextbook:
+    - course
+    - title
+    - type (primary, secondary)
+
+class CourseEvaluationCriteria:
+    - course
+    - type (quiz, lab, midsem)
+    - weight (15, 20, --units: %)
+
+class CourseLectureDays:
+    - course
+    - day
+    - start_time
+    - end_time
+    - location
+
+class CourseWeeklySchedule:
+    - course
+    - week_number
+    - start_date
+    - start_time
+    - type (revision, midsem, lecture)
+
+class WeeklyTopic:
+    - course_weekly_schedule
+    - topic
+
+class WeeklyReading:
+    - course_weekly_schedule
+    - chapter
+
+class WeeklyAssessment:
+    - course_weekly_schedule
+    - name (Quiz 1, Lab 1)
+    - type (quiz, lab)
+    - due_date
+    - weight
+
+class Calendar:
+    ...
+
+class Tasks:
+    ...
