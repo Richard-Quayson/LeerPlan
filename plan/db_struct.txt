@@ -1,11 +1,17 @@
+class University:
+    - name
+
 class UserAccount:
     - firstname
     - lastname
     - email
-    - university
     - password
     - major
     - date_created
+
+class userUniversity:
+    - user
+    - university
 
 class AccountMetadata:
     - min_study_time
