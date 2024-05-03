@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken, TokenError
 from datetime import timezone
 
 from .models import UserAccount, AccessTokenBlacklist
@@ -77,3 +78,33 @@ class ChangePasswordView(generics.UpdateAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return Response({"message": "Password changed successfully!"}, status=status.HTTP_200_OK)
+    
+
+class AccountLogoutView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def post(self, request):
+
+        refresh_token = request.COOKIES.get("refresh_token")
+        access_token = request.COOKIES.get("access_token")
+
+        try:
+            refresh = RefreshToken(refresh_token)
+            refresh.blacklist()
+        except TokenError:
+            return Response({"message": "Invalid JWT token!"})
+        
+        try:
+            access = AccessToken(access_token)
+
+            if AccessTokenBlacklist.objects.filter(token=access_token).exists():
+                return Response({"message": "Access token already blacklisted!"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            AccessTokenBlacklist.objects.create(token=access)
+        except TokenError:
+            return Response({"message": "Invalid JWT token!"})
+        
+        response = Response({"message": "User logged out!"}, status=status.HTTP_200_OK)
+        response.delete_cookie("refresh_token")
+        response.delete_cookie("access_token")
+        return response
