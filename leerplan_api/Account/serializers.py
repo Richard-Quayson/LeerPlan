@@ -214,6 +214,7 @@ class ChangePasswordSerializer(serializers.Serializer):
         if current_password == new_password:
             raise serializers.ValidationError("New password cannot be the same as current password!")
         
+        validate_password(password=new_password, user=self.context["request"].user)
         return attrs
     
     def update(self, instance: UserAccount, validated_data: dict) -> UserAccount:
