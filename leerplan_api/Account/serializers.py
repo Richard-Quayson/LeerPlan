@@ -201,7 +201,7 @@ class ChangePasswordSerializer(serializers.Serializer):
         
         return serializers.ValidationError("Invalid password format!")
     
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> dict:
         current_password = attrs.get("current_password")
         new_password = attrs.get("new_password")
         confirm_password = attrs.get("confirm_password")
