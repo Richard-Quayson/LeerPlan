@@ -1,4 +1,5 @@
 import re
+from contextvars import Token
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
@@ -21,7 +22,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
 
     def validate_firsname(self, value:str) -> str:
         """
-            method to validate the first name
+            method to validate the first name from request body
         """
 
         if not re.match(NAME_REGEX, value):
@@ -31,7 +32,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
     
     def validate_lastname(self, value:str) -> str:
         """
-            method to validate the last name
+            method to validate the last name from request body
         """
 
         if not re.match(NAME_REGEX, value):
@@ -41,7 +42,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
     
     def validate_email(self, value:str) -> str:
         """
-            method to validate the email
+            method to validate the email from request body
         """
 
         if not re.match(EMAIL_REGEX, value):
@@ -51,7 +52,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
     
     def validate_password(self, value:str) -> str:
         """
-            method to validate the password
+            method to validate the password from request body
         """
 
         if not re.match(PASSWORD_REGEX, value):
@@ -61,7 +62,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
     
     def validate_confirm_password(self, value:str) -> str:
         """
-            method to validate the confirm password
+            method to validate the confirm password from request body
         """
 
         if not re.match(PASSWORD_REGEX, value):
@@ -112,3 +113,60 @@ class AccountLoginSerializer(TokenObtainPairSerializer):
         serializer class to handle user login with email and password
     """
 
+    email = serializers.EmailField(required=True, validators=[EMAIL_REGEX], label="email",
+                                   trim_whitespace=False, style={"input_type": "email"})
+    password = serializers.CharField(write_only=True, required=True, trim_whitespace=False,
+                                     label="password", style={"input_type": "password"}, validators=[PASSWORD_REGEX])
+    token = serializers.SerializerMethodField("generate_token")
+
+    class Meta:
+        model = UserAccount
+        fields = ["email", "password", "token"]
+    
+    @classmethod
+    def generate_token(cls, account:UserAccount) -> Token:
+        token = super().get_token(account)
+
+        # add user's firstname and lastname to token payload
+        token["firstname"] = account.firstname
+        token["lastname"] = account.lastname
+
+        return token
+    
+    def validate_email(self, value):
+        if re.match(EMAIL_REGEX, value):
+            return value
+        
+        return serializers.SerializerMethodField("Invalid email address!")
+    
+    def validate_password(self, value):
+        if re.match(PASSWORD_REGEX, value):
+            return value
+        
+        return serializers.SerializerMethodField("Invalid password format!")
+    
+    def validate(self, attrs):
+        email = attrs.get("email")
+        password = attrs.get("password")
+
+        try:
+            user = UserAccount.objects.get(email=email)
+        except UserAccount.DoesNotExist:
+            return serializers.ValidationError(f"User account with email {email} does not exist!")
+        
+        # ensure password is correct
+        if not user.check_password(password):
+            serializers.SerializerMethodField("Incorrect password!")
+
+        # ensure account has not been disabled
+        if not user.is_active:
+            return serializers.ValidationError(f"Sorry, the user account with email {email} has been disabled.
+                                               Please contact the admin to resolve it!")
+
+        # generate access and refresh tokens
+        token = self.generate_token(user)
+        user_data = UserAccountSerializer(user).data
+        user_data["refresh_data"] = str(token)
+        user_data["access_data"] = str(token.access_token)
+        
+        return user_data
