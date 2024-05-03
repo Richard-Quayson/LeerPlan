@@ -64,3 +64,16 @@ class AccountView(APIView):
     def get(self, request):
         serializer = UserAccountSerializer(request.user, context={"request", request})
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+    
+class ChangePasswordView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    queryset = UserAccount.objects.all()
+
+    def update(self, request, **kwargs):
+
+        partial = kwargs.pop("partial", False)
+        serializer = ChangePasswordSerializer(request.user, data=request.data, partial=partial, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response({"message": "Password changed successfully!"}, status=status.HTTP_200_OK)
