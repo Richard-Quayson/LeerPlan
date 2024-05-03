@@ -56,3 +56,11 @@ class AccountLoginView(TokenObtainPairView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"error": "Failed to generate refresh and access tokens!"}, status=status.HTTP_424_FAILED_DEPENDENCY)
+    
+
+class AccountView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request):
+        serializer = UserAccountSerializer(request.user, context={"request", request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
