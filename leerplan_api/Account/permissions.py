@@ -3,7 +3,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from .models import AccessTokenBlacklist
 
 
-class AccessTokenBlacklisted(BasePermission):
+class IsAccessTokenBlacklisted(BasePermission):
     """
         custom permission class to check if the access token is blacklisted
 
