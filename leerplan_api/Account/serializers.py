@@ -133,19 +133,19 @@ class AccountLoginSerializer(TokenObtainPairSerializer):
 
         return token
     
-    def validate_email(self, value):
+    def validate_email(self, value: str) -> str:
         if re.match(EMAIL_REGEX, value):
             return value
         
         return serializers.SerializerMethodField("Invalid email address!")
     
-    def validate_password(self, value):
+    def validate_password(self, value: str) -> str:
         if re.match(PASSWORD_REGEX, value):
             return value
         
         return serializers.SerializerMethodField("Invalid password format!")
     
-    def validate(self, attrs):
+    def validate(self, attrs: dict) -> dict:
         email = attrs.get("email")
         password = attrs.get("password")
 
@@ -170,3 +170,59 @@ class AccountLoginSerializer(TokenObtainPairSerializer):
         user_data["access_data"] = str(token.access_token)
         
         return user_data
+
+
+class ChangePasswordSerializer(serializers.Serializer):
+
+    current_password = serializers.CharField(required=True, write_only=True)
+    new_password = serializers.CharField(required=True, write_only=True)
+    confirm_password = serializers.CharField(required=True, write_only=True)
+
+    def validate_current_password(self, value: str) -> str:
+        
+        if not re.match(PASSWORD_REGEX, value):
+            raise serializers.ValidationError("Invalid password format!")
+        
+        user = self.context["request"].user
+        if not user.check_password(value):
+            return serializers.ValidationError("Current password is incorrect!")
+        
+        return value
+    
+    def validate_new_password(self, value: str) -> str:
+        if re.match(PASSWORD_REGEX, value):
+            return value
+        
+        return serializers.ValidationError("Invalid password format!")
+    
+    def validate_confirm_password(self, value: str) -> str:
+        if re.match(PASSWORD_REGEX, value):
+            return value
+        
+        return serializers.ValidationError("Invalid password format!")
+    
+    def validate(self, attrs):
+        current_password = attrs.get("current_password")
+        new_password = attrs.get("new_password")
+        confirm_password = attrs.get("confirm_password")
+
+        # ensure new password matches confirm password
+        if new_password != confirm_password:
+            raise serializers.ValidationError("New passwords must match!")
+        
+        # ensure new password is different from current password
+        if current_password == new_password:
+            raise serializers.ValidationError("New password cannot be the same as current password!")
+        
+        return attrs
+    
+    def update(self, instance: UserAccount, validated_data: dict) -> UserAccount:
+        user = self.context["request"].user
+
+        # ensure authenticated user is the account owner
+        if user != instance:
+            raise serializers.ValidationError("You do not have permission to update this user account!")
+        
+        instance.set_password(validated_data.get("new_password"))
+        instance.save()
+        return instance
