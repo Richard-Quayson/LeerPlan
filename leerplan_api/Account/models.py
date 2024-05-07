@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from datetime import timedelta
+from .helper import profile_picture_upload_path
 
 
 class CustomUserAccountManager(BaseUserManager):
@@ -87,6 +88,7 @@ class UserAccount(AbstractUser, PermissionsMixin):
             - lastname ([CharField]): [last name of the user]
             - email ([EmailField]): [email of the user]
             - major ([CharField]): [major of the user]
+            - profile_picture ([ImageField]): [profile picture of the user]
             - date_joined ([DateTimeField]): [date the user joined]
     """
     
@@ -95,6 +97,7 @@ class UserAccount(AbstractUser, PermissionsMixin):
     lastname = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     major = models.CharField(max_length=100)
+    profile_picture = models.ImageField(upload_to=profile_picture_upload_path, blank=True, null=True)
     date_joined = models.DateTimeField(default=timezone.now)
 
     # define the user manager
