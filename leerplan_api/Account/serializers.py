@@ -187,6 +187,49 @@ class AccountLoginSerializer(TokenObtainPairSerializer):
         return user_data
 
 
+class UpdateAccountSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = ["firstname", "lastname", "major", "profile_picture"]
+        model = UserAccount
+    
+    def validate_firstname(self, value: str) -> str:
+        if re.match(NAME_REGEX, value):
+            return value
+        
+        return serializers.ValidationError("Invalid first name format!")
+    
+    def validate_lastname(self, value: str) -> str:
+        if re.match(NAME_REGEX, value):
+            return value
+        
+        return serializers.ValidationError("Invalid last name format!")
+    
+    def validate(self, attrs: dict) -> dict:
+        if "profile_picture" in attrs:
+            if not attrs["profile_picture"].name.endswith((".jpg", ".jpeg", ".png")):
+                raise serializers.ValidationError("Profile picture must be an image!")
+            
+            if UserAccount.objects.filter(profile_picture=attrs["profile_picture"]).exists():
+                raise serializers.ValidationError("Profile picture already exists!")
+        
+        return attrs
+    
+    def update(self, instance: UserAccount, validated_data: dict) -> UserAccount:
+        user = self.context["request"].user
+
+        # ensure authenticated user is the account owner
+        if user != instance:
+            raise serializers.ValidationError("You do not have permission to update this user account!")
+        
+        instance.firstname = validated_data.get("firstname", instance.firstname)
+        instance.lastname = validated_data.get("lastname", instance.lastname)
+        instance.major = validated_data.get("major", instance.major)
+        instance.profile_picture = validated_data.get("profile_picture", instance.profile_picture)
+        instance.save()
+        return instance
+
+
 class ChangePasswordSerializer(serializers.Serializer):
 
     current_password = serializers.CharField(required=True, write_only=True)
