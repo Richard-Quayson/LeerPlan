@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken, TokenError
-from datetime import timezone
+from django.utils import timezone
 import os
 
 from .models import UserAccount, AccessTokenBlacklist
@@ -64,7 +64,7 @@ class AccountView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
     def get(self, request):
-        serializer = UserAccountSerializer(request.user, context={"request", request})
+        serializer = UserAccountSerializer(request.user, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     
@@ -75,14 +75,15 @@ class UpdateAccountView(APIView):
         serializer = UpdateAccountSerializer(request.user, data=request.data, partial=True, context={"request": request})
 
         if serializer.is_valid():
-            serializer.save()
+            account = serializer.save()
 
             # if the profile picture is updated, remove the previous profile picture
             if "profile_picture" in request.data and request.user.profile_picture:
                 if os.path.exists(request.user.profile_picture.path):
                     os.remove(request.user.profile_picture.path)
 
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            account = UserAccountSerializer(account)
+            return Response(account.data, status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -117,10 +118,9 @@ class AccountLogoutView(APIView):
         try:
             access = AccessToken(access_token)
 
-            if AccessTokenBlacklist.objects.filter(token=access_token).exists():
-                return Response({"message": "Access token already blacklisted!"}, status=status.HTTP_400_BAD_REQUEST)
+            if not AccessTokenBlacklist.objects.filter(token=access_token).exists():
+                AccessTokenBlacklist.objects.create(token=access)
             
-            AccessTokenBlacklist.objects.create(token=access)
         except TokenError:
             return Response({"message": "Invalid JWT token!"})
         
