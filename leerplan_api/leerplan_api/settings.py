@@ -140,7 +140,7 @@ PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 sys.path.append(os.path.join(PROJECT_ROOT, 'django_project_name'))
 
-# AUTH_USER_MODEL = 'Account.UserAccount'
+AUTH_USER_MODEL = 'Account.UserAccount'
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
