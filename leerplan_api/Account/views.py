@@ -5,10 +5,11 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.tokens import RefreshToken, AccessToken, TokenError
 from datetime import timezone
+import os
 
 from .models import UserAccount, AccessTokenBlacklist
 from .serializers import (AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
-                          ChangePasswordSerializer)
+                          UpdateAccountSerializer, ChangePasswordSerializer)
 from .permissions import IsAccessTokenBlacklisted
 
 
@@ -67,6 +68,25 @@ class AccountView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     
+class UpdateAccountView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def patch(self, request):
+        serializer = UpdateAccountSerializer(request.user, data=request.data, partial=True, context={"request": request})
+
+        if serializer.is_valid():
+            serializer.save()
+
+            # if the profile picture is updated, remove the previous profile picture
+            if "profile_picture" in request.data and request.user.profile_picture:
+                if os.path.exists(request.user.profile_picture.path):
+                    os.remove(request.user.profile_picture.path)
+
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class ChangePasswordView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
     queryset = UserAccount.objects.all()
