@@ -1,0 +1,1438 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:icalendar-ruby
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Richard Quayson Calendar (Canvas)
+X-WR-CALDESC:Calendar events for the user\, Richard Quayson
+BEGIN:VEVENT
+DTSTAMP:20240318T141500Z
+UID:event-assignment-36740
+DTSTART;VALUE=DATE;VALUE=DATE:20240313
+CLASS:PUBLIC
+DESCRIPTION:Undergraduate Thesis:\n\nSubmit a complete requirements analysi
+ s (if needed).  You are also required to submit a refined version of your
+  capstone's methodology and experimental set-up.\n\n \n\nApplied Projects
+ :\n\nSubmit a complete requirement analysis\, and design/architecture of s
+ ystem.
+SEQUENCE:0
+SUMMARY:Assignment 3 (For both Thesis and Applied Projects) [23_SEM2_CS410-
+ SEM_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2254&month=03&year=2024#assignment_36740
+X-ALT-DESC;FMTTYPE=text/html:<p><strong>Undergraduate Thesis:</strong></p>\
+ n<p>Submit a c<span class="NormalTextRun SCXW145439447 BCX8">omplete requi
+ rements analysis (if needed)</span><span class="NormalTextRun SCXW14543944
+ 7 BCX8">.&nbsp\; You are also required to submit a r</span><span class="No
+ rmalTextRun SCXW145439447 BCX8">efined version of your capstone's </span><
+ span class="NormalTextRun SCXW145439447 BCX8">methodology</span><span clas
+ s="NormalTextRun SCXW145439447 BCX8"> and experimental set-up.</span></p>\
+ n<p>&nbsp\;</p>\n<p><strong>Applied Projects:</strong></p>\n<p>Submit a c<
+ span class="NormalTextRun SCXW21382625 BCX8">omplete requirement analysis<
+ /span><span class="NormalTextRun SCXW21382625 BCX8">\, and design/architec
+ ture of system.</span></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240319T152800Z
+UID:event-assignment-41585
+DTSTART;VALUE=DATE;VALUE=DATE:20240315
+CLASS:PUBLIC
+DESCRIPTION:[Lab4.docx] (https://ashesi.instructure.com/courses/2251/files/
+ 524556?wrap=1)\n\nFor this lab\, please submit a zip file with your .ipyn
+ b(notebook)\, then convert that notebook file to a .py(python file). When
+  done\, save your final work as follows:\n1. Kweku Yamoah_Lab4.ipynb\n2. K
+ weku Yamoah_Lab4.py\n3. Kweku Yamoah_Lab4.zip\nYou are to submit only the 
+ zip file\; however\, I want the files named above.
+SEQUENCE:0
+SUMMARY:Lab 4 [23_SEM2_CS 452_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2251&month=03&year=2024#assignment_41585
+X-ALT-DESC;FMTTYPE=text/html:<p><a class="instructure_file_link instructure
+ _scribd_file inline_disabled" title="Lab4.docx" href="https://ashesi.instr
+ ucture.com/courses/2251/files/524556?wrap=1" target="_blank" data-canvas-p
+ reviewable="false" data-api-endpoint="https://ashesi.instructure.com/api/v
+ 1/courses/2251/files/524556" data-api-returntype="File">Lab4.docx</a></p>\
+ n<p><span>For this lab\, please submit a zip file with your</span><strong>
+ <span>&nbsp\;</span>.ipynb(notebook)</strong><span>\, then convert that no
+ tebook file to a</span><strong><span>&nbsp\;</span>.py(python file)</stron
+ g><span>. When done\, save your final work as follows:</span><br><span>1. 
+ Kweku Yamoah_Lab4.ipynb</span><br><span>2. Kweku Yamoah_Lab4.py</span><br>
+ <span>3. Kweku Yamoah_Lab4.zip</span><br><span>You are to submit only the 
+ zip file\; however\, I want the files named above.</span></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240320T113100Z
+UID:event-assignment-41819
+DTSTART;VALUE=DATE;VALUE=DATE:20240320
+CLASS:PUBLIC
+DESCRIPTION:A model using the Most Frequent Class (MFC) approach predicts t
+ he most frequent class in the dataset for each example. For this milestone
+ \, you are to provide a complete solution to the task based on an MFC mode
+ l. Furthermore\, you are to evaluate the performance of the MCF model on a
+  held-out test set. Your evaluation must give the model’s accuracy\, pre
+ cision\, recall and F-1 score. The held-out test set should be the last 10
+ % of examples in the given training data. You are also to provide a comple
+ te solution to this task based on the “Next Most Frequent Class” (NMFC
+ ) model and evaluate that as well.\n\nSubmission You are to submit the fol
+ lowing:\n\n• Python notebook with all code used for prediction and evalu
+ ation.\n\n• A submissions file for the MFC model (submissions-mfc.csv) o
+ n the held-out test set in the format of the Kaggle competition.\n\n• A 
+ submissions file for the NMFC model (submissions-nmfc.csv) on the held-out
+  test set in the format of the Kaggle competition.\n\n• An evaluation fi
+ le (evaluations.csv) showing the corresponding ground truths for your pred
+ ictions. • A results file for the MFC model (results-mfc.json) showing t
+ he required evaluation metrics.\n\n• A results file for the NMFC model (
+ results-nmfc.json) showing the required evaluation metrics.
+SEQUENCE:0
+SUMMARY:Milestone 1: A Complete Solution Using Most Frequent Class [23_SEM2
+ _CS 452_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2251&month=03&year=2024#assignment_41819
+X-ALT-DESC;FMTTYPE=text/html:<p><span>A model using the Most Frequent Class
+  (MFC) approach predicts the most frequent class in the dataset for each e
+ xample. For this milestone\, you are to provide a complete solution to the
+  task based on an MFC model. Furthermore\, you are to evaluate the perform
+ ance of the MCF model on a held-out test set. Your evaluation must give th
+ e model’s accuracy\, precision\, recall and F-1 score. The held-out test
+  set should be the last 10% of examples in the given training data. You ar
+ e also to provide a complete solution to this task based on the “Next Mo
+ st Frequent Class” (NMFC) model and evaluate that as well.</span></p>\n<
+ p><span> Submission You are to submit the following: </span></p>\n<p><span
+ >• Python notebook with all code used for prediction and evaluation. </s
+ pan></p>\n<p><span>• A submissions file for the MFC model (submissions-m
+ fc.csv) on the held-out test set in the format of the Kaggle competition.<
+ /span></p>\n<p><span>• A submissions file for the NMFC model (submission
+ s-nmfc.csv) on the held-out test set in the format of the Kaggle competiti
+ on. </span></p>\n<p><span>• An evaluation file (evaluations.csv) showing
+  the corresponding ground truths for your predictions. • A results file 
+ for the MFC model (results-mfc.json) showing the required evaluation metri
+ cs. </span></p>\n<p><span>• A results file for the NMFC model (results-n
+ mfc.json) showing the required evaluation metrics.</span></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240320T213300Z
+UID:event-assignment-41823
+DTSTART:20240321T130000Z
+DTEND:20240321T130000Z
+CLASS:PUBLIC
+DESCRIPTION:For this milestone\, you are to propose and defend a modeling a
+ pproach you would like to use in solving the task. Your job is to convince
+  me that you have decided on a sensible approach to making your prediction
+ s and that you know what you are talking about. At this point\, you do not
+  need to understand every single detail of the approach\, but you need to 
+ have a good enough understanding to be convinced that it is a viable appro
+ ach and\, of course\, to convince me that it is a viable approach.\n\n \n
+ \nSubmission\n\nYou are to submit a brief paper with your proposal. Be sur
+ e to include a bibliography of all resources (research papers\, articles\,
+  videos\, textbook etc.) which helped you arrive at the solution
+SEQUENCE:0
+SUMMARY:Milestone 2: Proposal Detailing Approach to Solving the Task [23_SE
+ M2_CS 452_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2251&month=03&year=2024#assignment_41823
+X-ALT-DESC;FMTTYPE=text/html:<p><span>For this milestone\, you are to propo
+ se and defend a modeling approach you would like to use in solving the tas
+ k. Your job is to convince me that you have decided on a sensible approach
+  to making your predictions and that you know what you are talking about. 
+ At this point\, you do not need to understand every single detail of the a
+ pproach\, but you need to have a good enough understanding to be convinced
+  that it is a viable approach and\, of course\, to convince me that it is 
+ a viable approach.</span></p>\n<p>&nbsp\;</p>\n<p><strong>Submission </str
+ ong></p>\n<p><span>You are to submit a brief paper with your proposal. Be 
+ sure to include a bibliography of all resources (research papers\, article
+ s\, videos\, textbook etc.) which helped you arrive at the solution</span>
+ </p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240322T132700Z
+UID:event-assignment-41916
+DTSTART:20240322T014000Z
+DTEND:20240322T014000Z
+CLASS:PUBLIC
+DESCRIPTION:Honor code applies!
+SEQUENCE:0
+SUMMARY:Quiz 4 [23_SEM2_CS433_B]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2263&month=03&year=2024#assignment_41916
+X-ALT-DESC;FMTTYPE=text/html:<p>Honor code applies!</p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240322T170500Z
+UID:event-assignment-41960
+DTSTART:20240322T175000Z
+DTEND:20240322T175000Z
+CLASS:PUBLIC
+DESCRIPTION:Honor code applies!
+SEQUENCE:0
+SUMMARY:Quiz 5 [23_SEM2_CS433_B]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2263&month=03&year=2024#assignment_41960
+X-ALT-DESC;FMTTYPE=text/html:<p>Honor code applies!</p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240322T102200Z
+UID:event-assignment-41977
+DTSTART;VALUE=DATE;VALUE=DATE:20240322
+CLASS:PUBLIC
+DESCRIPTION:1. How to Install: [How to Install Kubernetes on Ubuntu 22.04] 
+ (https://phoenixnap.com/kb/install-kubernetes-on-ubuntu#:~:text=1%20Steps%
+ 20to%20Install%20Kubernetes%20on%20Ubuntu%202\,as%20the%20master%20node.%2
+ 0If%20you%20have%20)\n\n2. [How to Install Kubernetes Cluster on Ubuntu 2
+ 2.04] (https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/)\n\n
+ 3. https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/
+SEQUENCE:0
+SUMMARY:Lab 6: Kubernetes [23_SEM2_CS462_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2256&month=03&year=2024#assignment_41977
+X-ALT-DESC;FMTTYPE=text/html:<p>1. How to Install: <a class="inline_disable
+ d" title="Link" href="https://phoenixnap.com/kb/install-kubernetes-on-ubun
+ tu#:~:text=1%20Steps%20to%20Install%20Kubernetes%20on%20Ubuntu%202\,as%20t
+ he%20master%20node.%20If%20you%20have%20" target="_blank">How to Install K
+ ubernetes on Ubuntu 22.04</a></p>\n<p>2.&nbsp\;<a class="inline_disabled" 
+ href="https://www.linuxtechi.com/install-kubernetes-on-ubuntu-22-04/" targ
+ et="_blank">How to Install Kubernetes Cluster on Ubuntu 22.04</a></p>\n<p>
+ 3. <a class="inline_disabled" title="Link" href="https://www.linuxtechi.co
+ m/install-kubernetes-on-ubuntu-22-04/" target="_blank">https://www.linuxte
+ chi.com/install-kubernetes-on-ubuntu-22-04/</a></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240330T033900Z
+UID:event-assignment-override-8775
+DTSTART;VALUE=DATE;VALUE=DATE:20240329
+CLASS:PUBLIC
+DESCRIPTION:
+SEQUENCE:0
+SUMMARY:Final Academic Article Review  ([23_SEM2_ECON100_E] - Principles of
+  Economics) [23_SEM2_ECON100_E]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2235&month=03&year=2024#assignment_41962
+X-ALT-DESC;FMTTYPE=text/html:
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240327T090600Z
+UID:event-assignment-41893
+DTSTART;VALUE=DATE;VALUE=DATE:20240331
+CLASS:PUBLIC
+DESCRIPTION:The Assignment described below is a shortened version of the pr
+ oject provided by Remzi and Andrea at https://github.com/remzi-arpacidusse
+ au/ostep-projects/tree/master/initial-utilities. Feel free to refer to tha
+ t version if you find that helpful. \n\n \n\nIn this assignment\, you'll
+  build a few different UNIX utilities\, simple versions of commonly used c
+ ommands like cat\, ls\, etc. We'll call each of them a slightly differ
+ ent name to avoid confusion\; for example\, instead of cat\, you'll be i
+ mplementing wcat. \n\nObjectives: \n\n* Familiarize or re-familiarize 
+ yourself with a shell / terminal / command-line of UNIX \n\n* Learn a lit
+ tle about how UNIX utilities are implemented \n\nSummary of what gets tur
+ ned in: \n\n* A bunch of single .c files for each of the utilities below:
+  wcat.c\, wgrep.c\, wzip.c\, and wunzip.c. \n\n* Each should comp
+ ile successfully when compiled with the -Wall and -Werror flags. 
+ \n\n* Each should pass the tests we supply to you. \n\nwcat \n\nThe prog
+ ram wcat is a simple program. Generally\, it reads a file as specified
+  by the user and prints its contents. A typical usage is as follows\, in w
+ hich the user wants to see the contents of main.c\, and thus types: \n\np
+ rompt> ./wcat main.c \n\n#include <stdio.h> \n\n... \n\n \n\nAs shown\
+ , wcat reads the file main.c and prints out its contents. The "./"
+  before the wcat above is a UNIX thing\; it just tells the system whic
+ h directory to find wcat in (in this case\, in the "." (dot) directory
+ \, which means the current working directory). \n\nTo create the wcat
+  binary\, you'll be creating a single source file\, wcat.c\, and writi
+ ng a little C code to implement this simplified version of cat. To compi
+ le this program\, you will do the following: \n\nprompt> gcc -o wcat wcat
+ .c -Wall -Werror \n\nprompt>  \n\n \n\nThis will make a single execu
+ table binary called wcat which you can then run as above. \n\nYou'l
+ l need to learn how to use a few library routines from the C standard libr
+ ary (often called libc) to implement the source code for this program\, 
+ which we'll assume is in a file called wcat.c. All C code is automatical
+ ly linked with the C library\, which is full of useful functions you can c
+ all to implement your program. Learn more about the C library [here] (ht
+ tps://en.wikipedia.org/wiki/C_standard_library) and perhaps [here] (ht
+ tps://www-s.acm.illinois.edu/webmonkeys/book/c_guide/)[1] (https://github.
+ com/remzi-arpacidusseau/ostep-projects/tree/master/initial-utilities#myfoo
+ tnote1). \n\nFor this assignment\, we recommend using the following routi
+ nes to do file input and output: fopen()\, fgets()\, and fclose().\n
+ \nOn UNIX systems\, the best way to read about such functions is to use wh
+ at are called the man pages (short for manual).  \n\nTo access the
+  man page for fopen()\, for example\, just type the following at your UN
+ IX shell prompt: \n\nprompt> man fopen \n\n \n\nThe fopen() functio
+ n "opens" a file\, which is a common way in UNIX systems to begin the proc
+ ess of file access. In this case\, opening a file just gives you back a po
+ inter to a structure of type FILE\, which can then be passed to other ro
+ utines to read\, write\, etc. \n\nHere is a typical usage of fopen(): 
+ \n\nFILE *fp = fopen("main.c"\, "r")\; \n\nif (fp == NULL) { \n\n    
+ printf("cannot open file\n")\; \n\n    exit(1)\; \n\n} \n\n \n\nDet
+ ails \n\n* Your program wcat can be invoked with one or more files on
+  the command line\; it should just print out each file in turn. \n\n* In 
+ all non-error cases\, wcat should exit with status code 0\, usually by
+  returning a 0 from main() (or by calling exit(0)). \n\n* If no f
+ iles are specified on the command line\, wcat should just exit and r
+ eturn 0.  \n\n* If the program tries to fopen() a file and fails\, i
+ t should print the exact message "wcat: cannot open file" (followed by a n
+ ewline) and exit with status code 1. If multiple files are specified on th
+ e command line\, the files should be printed out in order until the end of
+  the file list is reached or an error opening a file is reached (at which 
+ point the error message is printed and wcat exits). \n\nwgrep \n\nTh
+ e second utility you will build is called wgrep\, a variant of the UNIX 
+ tool grep. This tool looks through a file\, line by line\, trying to fin
+ d a user-specified search term in the line. If a line has the word within 
+ it\, the line is printed out\, otherwise it is not. \n\nHere is how a use
+ r would look for the term foo in the file bar.txt: \n\nprompt> ./wg
+ rep foo bar.txt \n\nthis line has foo in it \n\nso does this foolish lin
+ e\; do you see where? \n\neven this line\, which has barfood in it\, will
+  be printed. \n\n \n\nDetails \n\n* Your program wgrep is always pa
+ ssed a search term and zero or more files to grep through (thus\, more tha
+ n one is possible). It should go through each line and see if the search t
+ erm is in it\; if so\, the line should be printed\, and if not\, the line 
+ should be skipped. \n\n* The matching is case sensitive. Thus\, if search
+ ing for foo\, lines with Foo will not match. \n\n* Lines can be
+  arbitrarily long (that is\, you may see many many characters before you e
+ ncounter a newline character\, \n). wgrep should work as expected even
+  with very long lines. For this\, you might want to look into the getlin
+ e() library call (instead of fgets())\, or roll your own. \n\n* If 
+ wgrep is passed no command-line arguments\, it should print "wgrep: sear
+ chterm [file ...]" (followed by a newline) and exit with status 1. \n\n* 
+ If wgrep encounters a file that it cannot open\, it should print "wgre
+ p: cannot open file" (followed by a newline) and exit with status 1. \n\n
+ * In all other cases\, wgrep should exit with return code 0. \n\n* If
+  a search term\, but no file\, is specified\, wgrep should work\, but 
+ instead of reading from a file\, wgrep should read from standard inp
+ ut. Doing so is easy\, because the file stream stdin is already open\;
+  you can use fgets() (or similar routines) to read from it. \n\n* For
+  simplicity\, if passed the empty string as a search string\, wgrep ca
+ n either match NO lines or match ALL lines\, both are acceptable. \n\nwzi
+ p and wunzip \n\nThe next tools you will build come in a pair\, because o
+ ne (wzip) is a file compression tool\, and the other (wunzip) is a file de
+ compression tool. \n\nThe type of compression used here is a simple form 
+ of compression called run-length encoding (RLE). RLE is quite simple: 
+ when you encounter n characters of the same type in a row\, the compre
+ ssion tool (wzip) will turn that into the number n and a single instan
+ ce of the character. \n\nThus\, if we had a file with the following conte
+ nts: \n\naaaaaaaaaabbbb \n\nthe tool would turn it (logically) into: \n
+ \n10a4b \n\n \n\nHowever\, the exact format of the compressed file is qu
+ ite important\; here\, you will write out a 4-byte integer in binary forma
+ t followed by the single character in ASCII. Thus\, a compressed file will
+  consist of some number of 5-byte entries\, each of which is comprised of 
+ a 4-byte integer (the run length) and the single character. \n\nTo write 
+ out an integer in binary format (not ASCII)\, you should use fwrite(). R
+ ead the man page for more details. For wzip\, all output should be writt
+ en to standard output (the stdout file stream\, which\, as with stdi
+ n\, is already open when the program starts running). \n\nNote that typic
+ al usage of the wzip tool would thus use shell redirection in order to
+  write the compressed output to a file. For example\, to compress the file
+  file.txt into a (hopefully smaller) file.z\, you would type: \n\np
+ rompt> ./wzip file.txt > file.z \n\n \n\nThe "greater than" sign is a UN
+ IX shell redirection\; in this case\, it ensures that the output from wz
+ ip is written to the file file.z (instead of being printed to the sc
+ reen).  \n\nThe wunzip tool simply does the reverse of the wzip 
+ tool\, taking in a compressed file and writing (to standard output again) 
+ the uncompressed results. For example\, to see the contents of file.txt\
+ , you would type: \n\nprompt> ./wunzip file.z \n\n \n\nwunzip should 
+ read in the compressed file (likely using fread()) and print out the unc
+ ompressed output to standard output using printf(). \n\nDetails \n\n* 
+ Correct invocation should pass one or more files via the command line to t
+ he program\; if no files are specified\, the program should exit with retu
+ rn code 1 and print "wzip: file1 [file2 ...]" (followed by a newline) or "
+ wunzip: file1 [file2 ...]" (followed by a newline) for wzip and wunz
+ ip respectively. \n\n* The format of the compressed file must match the
+  description above exactly (a 4-byte integer followed by a character for e
+ ach run). \n\n* Do note that if multiple files are passed to *wzip\, they
+  are compressed into a single compressed output\, and when unzipped\, will
+  turn into a single uncompressed stream of text (thus\, the information th
+ at multiple files were originally input into wzip is lost). The same t
+ hing holds for wunzip. \n\n \n\nTesting \n\nYou should aim to have yo
+ ur program pass as many of the provided tests as possible. The tests are a
+ vailable in the folder containing the program specification. For instance\
+ , the test for wcat is available within the tests folder within the wcat f
+ older (https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/i
+ nitial-utilities/wcat).  
+SEQUENCE:0
+SUMMARY:Assignment 2: UNIX Utilities [23_SEM2_CS433_B]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2263&month=03&year=2024#assignment_41893
+X-ALT-DESC;FMTTYPE=text/html:<p><i><span data-contrast="none">The Assignmen
+ t described below is a shortened version of the project provided by Remzi 
+ and Andrea at </span></i><a href="https://github.com/remzi-arpacidusseau/o
+ step-projects/tree/master/initial-utilities"><i><span data-contrast="none"
+ >https://github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial
+ -utilities</span></i></a><i><span data-contrast="none">. Feel free to refe
+ r to that version if you find that helpful.</span></i><span data-ccp-props
+ ="{&quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;
+ </span></p>\n<p><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&
+ quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="n
+ one">In this assignment\, you'll build a few different UNIX utilities\, si
+ mple versions of commonly used commands like </span><strong><span data-c
+ ontrast="none">cat</span></strong><span data-contrast="none">\, </span><
+ strong><span data-contrast="none">ls</span></strong><span data-contrast="n
+ one">\, etc. We'll call each of them a slightly different name to avoid co
+ nfusion\; for example\, instead of </span><strong><span data-contrast="n
+ one">cat</span></strong><span data-contrast="none">\, you'll be implementi
+ ng </span><strong><span data-contrast="none">wcat</span></strong><span d
+ ata-contrast="none">.</span><span data-ccp-props="{&quot\;335557856&quot\;
+ :16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data
+ -contrast="none">Objectives:</span><span data-ccp-props="{&quot\;335557856
+ &quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<ul>\n
+ <li data-leveltext="" data-font="Symbol" data-listid="1" data-list-defn
+ -props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;33
+ 5559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;4
+ 69769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\
+ ;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;multil
+ evel&quot\;}" data-aria-posinset="1" data-aria-level="1"><span data-contra
+ st="none">Familiarize or r</span><span data-contrast="none">e-familiarize 
+ yourself with a shell / terminal / command-line of UNIX</span><span data-c
+ cp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\
+ ,&quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n<li data-leveltext="
+ " data-font="Symbol" data-listid="1" data-list-defn-props="{&quot\;3355525
+ 41&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\;:360\,&qu
+ ot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\
+ ,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777804&quot\;:&quot
+ \;&quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}" data-aria
+ -posinset="3" data-aria-level="1"><span data-contrast="none">Learn a littl
+ e about how UNIX utilities are implemented</span><span data-ccp-props="{&q
+ uot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;33555
+ 9738&quot\;:60}">&nbsp\;</span></li>\n</ul>\n<p><span data-contrast="none"
+ >Summary of what gets turned in:</span><span data-ccp-props="{&quot\;33555
+ 7856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<u
+ l>\n<li data-leveltext="" data-font="Symbol" data-listid="2" data-list-
+ defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot
+ \;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quo
+ t\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&q
+ uot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;mu
+ ltilevel&quot\;}" data-aria-posinset="4" data-aria-level="1"><span data-co
+ ntrast="none">A bunch of single .c files for each of the utilities below:
+  </span><strong><span data-contrast="none">wcat.c</span></strong><span d
+ ata-contrast="none">\, </span><strong><span data-contrast="none">wgrep.c
+ </span></strong><span data-contrast="none">\, </span><strong><span data-
+ contrast="none">wzip.c</span></strong><span data-contrast="none">\, and 
+ </span><strong><span data-contrast="none">wunzip.c</span></strong><span da
+ ta-contrast="none">.</span><span data-ccp-props="{&quot\;134233117&quot\;:
+ true\,&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215}">&nb
+ sp\;</span></li>\n<li data-leveltext="" data-font="Symbol" data-listid=
+ "2" data-list-defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quo
+ t\;:720\,&quot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbo
+ l&quot\;\,&quot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;l
+ eft&quot\;\,&quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&qu
+ ot\;:&quot\;multilevel&quot\;}" data-aria-posinset="5" data-aria-level="1"
+ ><span data-contrast="none">Each should compile successfully when compiled
+  with the </span><strong><span data-contrast="none">-Wall</span></strong
+ ><span data-contrast="none"> and </span><strong><span data-contrast="n
+ one">-Werror</span></strong><span data-contrast="none"> flags.</span><sp
+ an data-ccp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:
+ 16777215\,&quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n<li data-level
+ text="" data-font="Symbol" data-listid="2" data-list-defn-props="{&quot
+ \;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\;
+ :360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot\
+ ;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777804&quo
+ t\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}" 
+ data-aria-posinset="6" data-aria-level="1"><span data-contrast="none">Each
+  should pass the tests we supply to you.</span><span data-ccp-props="{&quo
+ t\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;3355597
+ 38&quot\;:60}">&nbsp\;</span></li>\n</ul>\n<p><strong><span data-contrast=
+ "none">wcat</span></strong><span data-ccp-props="{&quot\;335557856&quot\;:
+ 16777215\,&quot\;335559738&quot\;:360\,&quot\;335559739&quot\;:240}">&nbsp
+ \;</span></p>\n<p><span data-contrast="none">The program </span><strong>
+ <span data-contrast="none">wcat</span></strong><span data-contrast="none">
+  is a simple program. Generally\, it reads a file as specified by the us
+ er and prints its contents. A typical usage is as follows\, in which the u
+ ser wants to see the contents of main.c\, and thus types:</span><span data
+ -ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240
+ }">&nbsp\;</span></p>\n<p><span data-contrast="none">prompt&gt\; ./wcat ma
+ in.c</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\
+ ;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,91
+ 60\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\
+ ,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\
+ ,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><sp
+ an data-contrast="none">#include &lt\;stdio.h&gt\;</span><span data-ccp-pr
+ ops="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,1832
+ \,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\,128
+ 24\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,
+ 0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,
+ 1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="none">...<
+ /span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;4697
+ 77462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,1
+ 0076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0
+ \,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1
+ \,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span da
+ ta-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[
+ 916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,1
+ 1908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,
+ 0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,
+ 1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="n
+ one">As shown\, </span><strong><span data-contrast="none">wcat</span></s
+ trong><span data-contrast="none"> reads the file </span><strong><span 
+ data-contrast="none">main.c</span></strong><span data-contrast="none"> a
+ nd prints out its contents. The "</span><strong><span data-contrast="none"
+ >./</span></strong><span data-contrast="none">" before the </span><stron
+ g><span data-contrast="none">wcat</span></strong><span data-contrast="none
+ "> above is a UNIX thing\; it just tells the system which directory to f
+ ind </span><strong><span data-contrast="none">wcat</span></strong><span 
+ data-contrast="none"> in (in this case\, in the "." (dot) directory\, wh
+ ich means the current working directory).</span><span data-ccp-props="{&qu
+ ot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span
+ ></p>\n<p><span data-contrast="none">To create the </span><strong><span 
+ data-contrast="none">wcat</span></strong><span data-contrast="none"> bin
+ ary\, you'll be creating a single source file\, </span><strong><span dat
+ a-contrast="none">wcat.c</span></strong><span data-contrast="none">\, and 
+ writing a little C code to implement this simplified version of </span><
+ strong><span data-contrast="none">cat</span></strong><span data-contrast="
+ none">. To compile this program\, you will do the following:</span><span d
+ ata-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:
+ 240}">&nbsp\;</span></p>\n<p><span data-contrast="none">prompt&gt\; gcc -o
+  wcat wcat.c -Wall -Werror</span><span data-ccp-props="{&quot\;335557856&q
+ uot\;:16777215\,&quot\;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496
+ \,6412\,7328\,8244\,9160\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot
+ \;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot
+ \;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbs
+ p\;</span></p>\n<p><span data-contrast="none">prompt&gt\;&nbsp\;</span><sp
+ an data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quo
+ t\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,109
+ 92\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0
+ \,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1
+ \,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-ccp-pr
+ ops="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,1832
+ \,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\,128
+ 24\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,
+ 0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,
+ 1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="none">This
+  will make a single </span><i><span data-contrast="none">executable bina
+ ry</span></i><span data-contrast="none"> called </span><strong><span d
+ ata-contrast="none">wcat</span></strong><span data-contrast="none"> whic
+ h you can then run as above.</span><span data-ccp-props="{&quot\;335557856
+ &quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><sp
+ an data-contrast="none">You'll need to learn how to use a few library rout
+ ines from the C standard library (often called </span><strong><span data
+ -contrast="none">libc</span></strong><span data-contrast="none">) to imple
+ ment the source code for this program\, which we'll assume is in a file ca
+ lled </span><strong><span data-contrast="none">wcat.c</span></strong><sp
+ an data-contrast="none">. All C code is automatically linked with the C li
+ brary\, which is full of useful functions you can call to implement your p
+ rogram. Learn more about the C library </span><a href="https://en.wikipe
+ dia.org/wiki/C_standard_library"><span>here</span></a><span data-contrast=
+ "none"> and perhaps </span><a href="https://www-s.acm.illinois.edu/web
+ monkeys/book/c_guide/"><span>here</span></a><a href="https://github.com/re
+ mzi-arpacidusseau/ostep-projects/tree/master/initial-utilities#myfootnote1
+ "><span data-contrast="none">1</span></a><span data-contrast="none">.</spa
+ n><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;33555973
+ 9&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">For this 
+ assignment\, we recommend using the following routines to do file input an
+ d output: </span><strong><span data-contrast="none">fopen()</span></stro
+ ng><span data-contrast="none">\, </span><strong><span data-contrast="non
+ e">fgets()</span></strong><span data-contrast="none">\, and </span><stro
+ ng><span data-contrast="none">fclose()</span></strong><span data-contrast=
+ "none">. </span></p>\n<p><span data-contrast="none">On UNIX systems\, the 
+ best way to read about such functions is to use what are called the </sp
+ an><strong><span data-contrast="none">man</span></strong><span data-contra
+ st="none"> pages (short for </span><strong><span data-contrast="none">
+ manual</span></strong><span data-contrast="none">).&nbsp\;</span><span dat
+ a-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:24
+ 0}">&nbsp\;</span></p>\n<p><span data-contrast="none">To access the man pa
+ ge for </span><strong><span data-contrast="none">fopen()</span></strong>
+ <span data-contrast="none">\, for example\, just type the following at you
+ r UNIX shell prompt:</span><span data-ccp-props="{&quot\;335557856&quot\;:
+ 16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-
+ contrast="none">prompt&gt\; man fopen</span><span data-ccp-props="{&quot\;
+ 335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,1832\,2748\,3664\
+ ,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\,12824\,13740\,14
+ 656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0
+ \,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1
+ \,1]}">&nbsp\;</span></p>\n<p><span data-ccp-props="{&quot\;335557856&quot
+ \;:16777215\,&quot\;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6
+ 412\,7328\,8244\,9160\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;4
+ 69777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;4
+ 69777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;
+ </span></p>\n<p><span data-contrast="none">The </span><strong><span data
+ -contrast="none">fopen()</span></strong><span data-contrast="none"> func
+ tion "opens" a file\, which is a common way in UNIX systems to begin the p
+ rocess of file access. In this case\, opening a file just gives you back a
+  pointer to a structure of type </span><strong><span data-contrast="none
+ ">FILE</span></strong><span data-contrast="none">\, which can then be pass
+ ed to other routines to read\, write\, etc.</span><span data-ccp-props="{&
+ quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</sp
+ an></p>\n<p><span data-contrast="none">Here is a typical usage of </span
+ ><strong><span data-contrast="none">fopen()</span></strong><span data-cont
+ rast="none">:</span><span data-ccp-props="{&quot\;335557856&quot\;:1677721
+ 5\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contras
+ t="none">FILE *fp = fopen("main.c"\, "r")\;</span><span data-ccp-props="{&
+ quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,1832\,2748\
+ ,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\,12824\,137
+ 40\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0
+ \,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1
+ \,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="none">if (fp == N
+ ULL) {</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quo
+ t\;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,
+ 9160\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[
+ 0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[
+ 1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><
+ span data-contrast="none">&nbsp\;&nbsp\;&nbsp\; printf("cannot open file\n
+ ")\;</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\
+ ;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,91
+ 60\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\
+ ,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\
+ ,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><sp
+ an data-contrast="none">&nbsp\;&nbsp\;&nbsp\; exit(1)\;</span><span data-c
+ cp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\
+ ,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908
+ \,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0
+ \,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1
+ \,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="none"
+ >}</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;4
+ 69777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160
+ \,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0
+ \,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1
+ \,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span
+  data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\
+ ;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992
+ \,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,
+ 0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,
+ 1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><strong><span data-
+ contrast="none">Details</span></strong><span data-ccp-props="{&quot\;33555
+ 7856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<u
+ l>\n<li data-leveltext="" data-font="Symbol" data-listid="3" data-list-
+ defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot
+ \;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quo
+ t\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&q
+ uot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;mu
+ ltilevel&quot\;}" data-aria-posinset="1" data-aria-level="1"><span data-co
+ ntrast="none">Your program </span><strong><span data-contrast="none">wca
+ t</span></strong><span data-contrast="none"> can be invoked with one or 
+ more files on the command line\; it should just print out each file in tur
+ n.</span><span data-ccp-props="{&quot\;134233117&quot\;:true\,&quot\;13423
+ 3118&quot\;:true\,&quot\;335557856&quot\;:16777215}">&nbsp\;</span></li>\n
+ <li data-leveltext="" data-font="Symbol" data-listid="3" data-list-defn
+ -props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;33
+ 5559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;4
+ 69769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\
+ ;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;multil
+ evel&quot\;}" data-aria-posinset="2" data-aria-level="1"><span data-contra
+ st="none">In all non-error cases\, </span><strong><span data-contrast="n
+ one">wcat</span></strong><span data-contrast="none"> should exit with st
+ atus code 0\, usually by returning a 0 from </span><strong><span data-co
+ ntrast="none">main()</span></strong><span data-contrast="none"> (or by c
+ alling </span><strong><span data-contrast="none">exit(0)</span></strong>
+ <span data-contrast="none">).</span><span data-ccp-props="{&quot\;13423311
+ 8&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;335559738&quot\;:6
+ 0}">&nbsp\;</span></li>\n<li data-leveltext="" data-font="Symbol" data-
+ listid="3" data-list-defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559
+ 685&quot\;:720\,&quot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot
+ \;Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&
+ quot\;left&quot\;\,&quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;46977
+ 7815&quot\;:&quot\;multilevel&quot\;}" data-aria-posinset="3" data-aria-le
+ vel="1"><span data-contrast="none">If </span><i><span data-contrast="non
+ e">no files</span></i><span data-contrast="none"> are specified on the c
+ ommand line\, </span><strong><span data-contrast="none">wcat</span></str
+ ong><span data-contrast="none"> should just exit and return 0.&nbsp\;</s
+ pan><span data-ccp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&
+ quot\;:16777215\,&quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n<li dat
+ a-leveltext="" data-font="Symbol" data-listid="3" data-list-defn-props=
+ "{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991
+ &quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;46976924
+ 2&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777
+ 804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&qu
+ ot\;}" data-aria-posinset="4" data-aria-level="1"><span data-contrast="non
+ e">If the program tries to </span><strong><span data-contrast="none">fop
+ en()</span></strong><span data-contrast="none"> a file and fails\, it sh
+ ould print the exact message "wcat: cannot open file" (followed by a newli
+ ne) and exit with status code 1. If multiple files are specified on the co
+ mmand line\, the files should be printed out in order until the end of the
+  file list is reached or an error opening a file is reached (at which poin
+ t the error message is printed and </span><strong><span data-contrast="n
+ one">wcat</span></strong><span data-contrast="none"> exits).</span><span
+  data-ccp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16
+ 777215\,&quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n</ul>\n<p><stron
+ g><span data-contrast="none">wgrep</span></strong><span data-ccp-props="{&
+ quot\;335557856&quot\;:16777215\,&quot\;335559738&quot\;:360\,&quot\;33555
+ 9739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">The se
+ cond utility you will build is called </span><strong><span data-contrast
+ ="none">wgrep</span></strong><span data-contrast="none">\, a variant of th
+ e UNIX tool </span><strong><span data-contrast="none">grep</span></stron
+ g><span data-contrast="none">. This tool looks through a file\, line by li
+ ne\, trying to find a user-specified search term in the line. If a line ha
+ s the word within it\, the line is printed out\, otherwise it is not.</spa
+ n><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;33555973
+ 9&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">Here is h
+ ow a user would look for the term </span><strong><span data-contrast="no
+ ne">foo</span></strong><span data-contrast="none"> in the file </span>
+ <strong><span data-contrast="none">bar.txt</span></strong><span data-contr
+ ast="none">:</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215
+ \,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast
+ ="none">prompt&gt\; ./wgrep foo bar.txt</span><span data-ccp-props="{&quot
+ \;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,1832\,2748\,366
+ 4\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\,12824\,13740\,
+ 14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\
+ ,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\
+ ,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="none">this line has f
+ oo in it</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&q
+ uot\;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244
+ \,9160\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;
+ :[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;
+ :[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p
+ ><span data-contrast="none">so does this foolish line\; do you see where?<
+ /span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;4697
+ 77462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,1
+ 0076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0
+ \,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1
+ \,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span da
+ ta-contrast="none">even this line\, which has barfood in it\, will be prin
+ ted.</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\
+ ;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,91
+ 60\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\
+ ,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\
+ ,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><sp
+ an data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quo
+ t\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,109
+ 92\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0
+ \,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1
+ \,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><strong><span dat
+ a-contrast="none">Details</span></strong><span data-ccp-props="{&quot\;335
+ 557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n
+ <ul>\n<li data-leveltext="" data-font="Symbol" data-listid="4" data-lis
+ t-defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&qu
+ ot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&q
+ uot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,
+ &quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;
+ multilevel&quot\;}" data-aria-posinset="1" data-aria-level="1"><span data-
+ contrast="none">Your program </span><strong><span data-contrast="none">w
+ grep</span></strong><span data-contrast="none"> is always passed a searc
+ h term and zero or more files to grep through (thus\, more than one is pos
+ sible). It should go through each line and see if the search term is in it
+ \; if so\, the line should be printed\, and if not\, the line should be sk
+ ipped.</span><span data-ccp-props="{&quot\;134233117&quot\;:true\,&quot\;1
+ 34233118&quot\;:true\,&quot\;335557856&quot\;:16777215}">&nbsp\;</span></l
+ i>\n<li data-leveltext="" data-font="Symbol" data-listid="4" data-list-
+ defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot
+ \;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quo
+ t\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&q
+ uot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;mu
+ ltilevel&quot\;}" data-aria-posinset="2" data-aria-level="1"><span data-co
+ ntrast="none">The matching is case sensitive. Thus\, if searching for </
+ span><strong><span data-contrast="none">foo</span></strong><span data-cont
+ rast="none">\, lines with </span><strong><span data-contrast="none">Foo<
+ /span></strong><span data-contrast="none"> will </span><i><span data-c
+ ontrast="none">not</span></i><span data-contrast="none"> match.</span><s
+ pan data-ccp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;
+ :16777215\,&quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n<li data-leve
+ ltext="" data-font="Symbol" data-listid="4" data-list-defn-props="{&quo
+ t\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\
+ ;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot
+ \;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777804&qu
+ ot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}"
+  data-aria-posinset="3" data-aria-level="1"><span data-contrast="none">Lin
+ es can be arbitrarily long (that is\, you may see many many characters bef
+ ore you encounter a newline character\, \n). </span><strong><span data-c
+ ontrast="none">wgrep</span></strong><span data-contrast="none"> should w
+ ork as expected even with very long lines. For this\, you might want to lo
+ ok into the </span><strong><span data-contrast="none">getline()</span></
+ strong><span data-contrast="none"> library call (instead of </span><st
+ rong><span data-contrast="none">fgets()</span></strong><span data-contrast
+ ="none">)\, or roll your own.</span><span data-ccp-props="{&quot\;13423311
+ 8&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;335559738&quot\;:6
+ 0}">&nbsp\;</span></li>\n<li data-leveltext="" data-font="Symbol" data-
+ listid="4" data-list-defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559
+ 685&quot\;:720\,&quot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot
+ \;Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&
+ quot\;left&quot\;\,&quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;46977
+ 7815&quot\;:&quot\;multilevel&quot\;}" data-aria-posinset="4" data-aria-le
+ vel="1"><span data-contrast="none">If </span><strong><span data-contrast
+ ="none">wgrep</span></strong><span data-contrast="none"> is passed no co
+ mmand-line arguments\, it should print "wgrep: searchterm [file ...]" (fol
+ lowed by a newline) and exit with status 1.</span><span data-ccp-props="{&
+ quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;3355
+ 59738&quot\;:60}">&nbsp\;</span></li>\n<li data-leveltext="" data-font=
+ "Symbol" data-listid="4" data-list-defn-props="{&quot\;335552541&quot\;:1\
+ ,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\;:360\,&quot\;46976922
+ 6&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\,&quot\;4697
+ 77803&quot\;:&quot\;left&quot\;\,&quot\;469777804&quot\;:&quot\;&quot\;
+ \,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}" data-aria-posinset="5
+ " data-aria-level="1"><span data-contrast="none">If </span><strong><span
+  data-contrast="none">wgrep</span></strong><span data-contrast="none"> e
+ ncounters a file that it cannot open\, it should print "wgrep: cannot open
+  file" (followed by a newline) and exit with status 1.</span><span data-cc
+ p-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,
+ &quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n<li data-leveltext=""
+  data-font="Symbol" data-listid="4" data-list-defn-props="{&quot\;33555254
+ 1&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\;:360\,&quo
+ t\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\,
+ &quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777804&quot\;:&quot\
+ ;&quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}" data-aria-
+ posinset="6" data-aria-level="1"><span data-contrast="none">In all other c
+ ases\, </span><strong><span data-contrast="none">wgrep</span></strong><s
+ pan data-contrast="none"> should exit with return code 0.</span><span da
+ ta-ccp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777
+ 215\,&quot\;335559738&quot\;:60}">&nbsp\;</span></li>\n<li data-leveltext=
+ "" data-font="Symbol" data-listid="4" data-list-defn-props="{&quot\;335
+ 552541&quot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\;:360\
+ ,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot\;:[82
+ 26]\,&quot\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777804&quot\;:&
+ quot\;&quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}" data-
+ aria-posinset="7" data-aria-level="1"><span data-contrast="none">If a sear
+ ch term\, but no file\, is specified\, </span><strong><span data-contras
+ t="none">wgrep</span></strong><span data-contrast="none"> should work\, 
+ but instead of reading from a file\, </span><strong><span data-contrast=
+ "none">wgrep</span></strong><span data-contrast="none"> should read from
+  </span><i><span data-contrast="none">standard input</span></i><span dat
+ a-contrast="none">. Doing so is easy\, because the file stream </span><s
+ trong><span data-contrast="none">stdin</span></strong><span data-contrast=
+ "none"> is already open\; you can use </span><strong><span data-contra
+ st="none">fgets()</span></strong><span data-contrast="none"> (or similar
+  routines) to read from it.</span><span data-ccp-props="{&quot\;134233118&
+ quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;335559738&quot\;:60}
+ ">&nbsp\;</span></li>\n<li data-leveltext="" data-font="Symbol" data-li
+ stid="4" data-list-defn-props="{&quot\;335552541&quot\;:1\,&quot\;33555968
+ 5&quot\;:720\,&quot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;
+ Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&qu
+ ot\;left&quot\;\,&quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;4697778
+ 15&quot\;:&quot\;multilevel&quot\;}" data-aria-posinset="8" data-aria-leve
+ l="1"><span data-contrast="none">For simplicity\, if passed the empty stri
+ ng as a search string\, </span><strong><span data-contrast="none">wgrep<
+ /span></strong><span data-contrast="none"> can either match NO lines or 
+ match ALL lines\, both are acceptable.</span><span data-ccp-props="{&quot\
+ ;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\;335559738
+ &quot\;:60}">&nbsp\;</span></li>\n</ul>\n<p><strong><span data-contrast="n
+ one">wzip and wunzip</span></strong><span data-ccp-props="{&quot\;33555785
+ 6&quot\;:16777215\,&quot\;335559738&quot\;:360\,&quot\;335559739&quot\;:24
+ 0}">&nbsp\;</span></p>\n<p><span data-contrast="none">The next tools you w
+ ill build come in a pair\, because one (</span><strong><span data-contrast
+ ="none">wzip</span></strong><span data-contrast="none">) is a file compres
+ sion tool\, and the other (</span><strong><span data-contrast="none">wunzi
+ p</span></strong><span data-contrast="none">) is a file decompression tool
+ .</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;33
+ 5559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">The
+  type of compression used here is a simple form of compression called </
+ span><i><span data-contrast="none">run-length encoding</span></i><span dat
+ a-contrast="none"> (</span><i><span data-contrast="none">RLE</span></i><
+ span data-contrast="none">). RLE is quite simple: when you encounter </s
+ pan><strong><span data-contrast="none">n</span></strong><span data-contras
+ t="none"> characters of the same type in a row\, the compression tool (<
+ /span><strong><span data-contrast="none">wzip</span></strong><span data-co
+ ntrast="none">) will turn that into the number </span><strong><span data
+ -contrast="none">n</span></strong><span data-contrast="none"> and a sing
+ le instance of the character.</span><span data-ccp-props="{&quot\;33555785
+ 6&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p><s
+ pan data-contrast="none">Thus\, if we had a file with the following conten
+ ts:</span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;
+ 335559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">a
+ aaaaaaaaabbbb</span><span data-ccp-props="{&quot\;335557856&quot\;:1677721
+ 5\,&quot\;469777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\
+ ,8244\,9160\,10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&q
+ uot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&q
+ uot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p
+ >\n<p><span data-contrast="none">the tool would turn it (logically) into:<
+ /span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;3355
+ 59739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">10a4b
+ </span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469
+ 777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,
+ 10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,
+ 0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,
+ 1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span d
+ ata-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:
+ [916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,
+ 11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\
+ ,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\
+ ,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="
+ none">However\, the exact format of the compressed file is quite important
+ \; here\, you will write out a 4-byte integer in binary format followed by
+  the single character in ASCII. Thus\, a compressed file will consist of s
+ ome number of 5-byte entries\, each of which is comprised of a 4-byte inte
+ ger (the run length) and the single character.</span><span data-ccp-props=
+ "{&quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;<
+ /span></p>\n<p><span data-contrast="none">To write out an integer in binar
+ y format (not ASCII)\, you should use </span><strong><span data-contrast
+ ="none">fwrite()</span></strong><span data-contrast="none">. Read the man 
+ page for more details. For </span><strong><span data-contrast="none">wzi
+ p</span></strong><span data-contrast="none">\, all output should be writte
+ n to standard output (the </span><strong><span data-contrast="none">stdo
+ ut</span></strong><span data-contrast="none"> file stream\, which\, as w
+ ith </span><strong><span data-contrast="none">stdin</span></strong><span
+  data-contrast="none">\, is already open when the program starts running).
+ </span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;335
+ 559739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">Note
+  that typical usage of the </span><strong><span data-contrast="none">wzi
+ p</span></strong><span data-contrast="none"> tool would thus use shell r
+ edirection in order to write the compressed output to a file. For example\
+ , to compress the file </span><strong><span data-contrast="none">file.tx
+ t</span></strong><span data-contrast="none"> into a (hopefully smaller)
+  </span><strong><span data-contrast="none">file.z</span></strong><span d
+ ata-contrast="none">\, you would type:</span><span data-ccp-props="{&quot\
+ ;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></
+ p>\n<p><span data-contrast="none">prompt&gt\; ./wzip file.txt &gt\; file.z
+ </span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469
+ 777462&quot\;:[916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,
+ 10076\,10992\,11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,
+ 0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,
+ 1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span d
+ ata-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:
+ [916\,1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,
+ 11908\,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\
+ ,0\,0\,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\
+ ,1\,1\,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-contrast="
+ none">The "greater than" sign is a UNIX shell redirection\; in this case\,
+  it ensures that the output from </span><strong><span data-contrast="non
+ e">wzip</span></strong><span data-contrast="none"> is written to the fil
+ e </span><strong><span data-contrast="none">file.z</span></strong><span 
+ data-contrast="none"> (instead of being printed to the screen).&nbsp\;</
+ span><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;33555
+ 9739&quot\;:240}">&nbsp\;</span></p>\n<p><span data-contrast="none">The 
+ </span><strong><span data-contrast="none">wunzip</span></strong><span data
+ -contrast="none"> tool simply does the reverse of the </span><strong><
+ span data-contrast="none">wzip</span></strong><span data-contrast="none">
+  tool\, taking in a compressed file and writing (to standard output agai
+ n) the uncompressed results. For example\, to see the contents of </span
+ ><strong><span data-contrast="none">file.txt</span></strong><span data-con
+ trast="none">\, you would type:</span><span data-ccp-props="{&quot\;335557
+ 856&quot\;:16777215\,&quot\;335559739&quot\;:240}">&nbsp\;</span></p>\n<p>
+ <span data-contrast="none">prompt&gt\; ./wunzip file.z</span><span data-cc
+ p-props="{&quot\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,
+ 1832\,2748\,3664\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\
+ ,12824\,13740\,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\
+ ,0\,0\,0\,0\,0\,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\
+ ,1\,1\,1\,1\,1\,1\,1]}">&nbsp\;</span></p>\n<p><span data-ccp-props="{&quo
+ t\;335557856&quot\;:16777215\,&quot\;469777462&quot\;:[916\,1832\,2748\,36
+ 64\,4580\,5496\,6412\,7328\,8244\,9160\,10076\,10992\,11908\,12824\,13740\
+ ,14656]\,&quot\;469777927&quot\;:[0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0\,0
+ \,0\,0]\,&quot\;469777928&quot\;:[1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1\,1
+ \,1\,1]}">&nbsp\;</span></p>\n<p><strong><span data-contrast="none">wunzip
+ </span></strong><span data-contrast="none"> should read in the compresse
+ d file (likely using </span><strong><span data-contrast="none">fread()</
+ span></strong><span data-contrast="none">) and print out the uncompressed 
+ output to standard output using </span><strong><span data-contrast="none
+ ">printf()</span></strong><span data-contrast="none">.</span><span data-cc
+ p-props="{&quot\;335557856&quot\;:16777215\,&quot\;335559739&quot\;:240}">
+ &nbsp\;</span></p>\n<p><strong><span data-contrast="none">Details</span></
+ strong><span data-ccp-props="{&quot\;335557856&quot\;:16777215\,&quot\;335
+ 559739&quot\;:240}">&nbsp\;</span></p>\n<ul>\n<li data-leveltext="" dat
+ a-font="Symbol" data-listid="5" data-list-defn-props="{&quot\;335552541&qu
+ ot\;:1\,&quot\;335559685&quot\;:720\,&quot\;335559991&quot\;:360\,&quot\;4
+ 69769226&quot\;:&quot\;Symbol&quot\;\,&quot\;469769242&quot\;:[8226]\,&quo
+ t\;469777803&quot\;:&quot\;left&quot\;\,&quot\;469777804&quot\;:&quot\;
+ &quot\;\,&quot\;469777815&quot\;:&quot\;multilevel&quot\;}" data-aria-posi
+ nset="1" data-aria-level="1"><span data-contrast="none">Correct invocation
+  should pass one or more files via the command line to the program\; if no
+  files are specified\, the program should exit with return code 1 and prin
+ t "wzip: file1 [file2 ...]" (followed by a newline) or "wunzip: file1 [fil
+ e2 ...]" (followed by a newline) for </span><strong><span data-contrast=
+ "none">wzip</span></strong><span data-contrast="none"> and </span><str
+ ong><span data-contrast="none">wunzip</span></strong><span data-contrast="
+ none"> respectively.</span><span data-ccp-props="{&quot\;134233117&quot\
+ ;:true\,&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215}">&
+ nbsp\;</span></li>\n<li data-leveltext="" data-font="Symbol" data-listi
+ d="5" data-list-defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&q
+ uot\;:720\,&quot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Sym
+ bol&quot\;\,&quot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\
+ ;left&quot\;\,&quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&
+ quot\;:&quot\;multilevel&quot\;}" data-aria-posinset="2" data-aria-level="
+ 1"><span data-contrast="none">The format of the compressed file must match
+  the description above exactly (a 4-byte integer followed by a character f
+ or each run).</span><span data-ccp-props="{&quot\;134233118&quot\;:true\,&
+ quot\;335557856&quot\;:16777215\,&quot\;335559738&quot\;:60}">&nbsp\;</spa
+ n></li>\n<li data-leveltext="" data-font="Symbol" data-listid="5" data-
+ list-defn-props="{&quot\;335552541&quot\;:1\,&quot\;335559685&quot\;:720\,
+ &quot\;335559991&quot\;:360\,&quot\;469769226&quot\;:&quot\;Symbol&quot\;\
+ ,&quot\;469769242&quot\;:[8226]\,&quot\;469777803&quot\;:&quot\;left&quot\
+ ;\,&quot\;469777804&quot\;:&quot\;&quot\;\,&quot\;469777815&quot\;:&quo
+ t\;multilevel&quot\;}" data-aria-posinset="3" data-aria-level="1"><span da
+ ta-contrast="none">Do note that if multiple files are passed to *</span><i
+ ><span data-contrast="none">wzip</span></i><span data-contrast="none">\, t
+ hey are compressed into a single compressed output\, and when unzipped\, w
+ ill turn into a single uncompressed stream of text (thus\, the information
+  that multiple files were originally input into </span><strong><span dat
+ a-contrast="none">wzip</span></strong><span data-contrast="none"> is los
+ t). The same thing holds for </span><strong><span data-contrast="none">w
+ unzip</span></strong><span data-contrast="none">.</span><span data-ccp-pro
+ ps="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot
+ \;335559738&quot\;:60}">&nbsp\;</span></li>\n</ul>\n<p><span data-ccp-prop
+ s="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\,&quot\
+ ;335559738&quot\;:60}">&nbsp\;</span></p>\n<p><strong><span data-contrast=
+ "none">Testing</span></strong><span data-ccp-props="{&quot\;335557856&quot
+ \;:16777215\,&quot\;335559738&quot\;:360\,&quot\;335559739&quot\;:240}">&n
+ bsp\;</span></p>\n<p><span data-contrast="none">You should aim to have you
+ r program pass as many of the provided tests as possible. The tests are av
+ ailable in the folder containing the program specification. For instance\,
+  the test for </span><i><span data-contrast="none">wcat</span></i><span da
+ ta-contrast="none"> is available within the </span><i><span data-contrast=
+ "none">tests</span></i><span data-contrast="none"> folder within the </spa
+ n><i><span data-contrast="none">wcat</span></i><span data-contrast="none">
+  folder (</span><a href="https://github.com/remzi-arpacidusseau/ostep-proj
+ ects/tree/master/initial-utilities/wcat"><span data-contrast="none">https:
+ //github.com/remzi-arpacidusseau/ostep-projects/tree/master/initial-utilit
+ ies/wcat</span></a><span data-contrast="none">).&nbsp\;</span><span data-c
+ cp-props="{&quot\;134233118&quot\;:true\,&quot\;335557856&quot\;:16777215\
+ ,&quot\;335559738&quot\;:60}">&nbsp\;</span></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240328T161000Z
+UID:event-assignment-override-8823
+DTSTART;VALUE=DATE;VALUE=DATE:20240402
+CLASS:PUBLIC
+DESCRIPTION:
+SEQUENCE:0
+SUMMARY:In Class Group Activity on 28 March 2024: Due On Tuesday 02 April 2
+ 024  ([23_SEM2_ECON100_E] - Principles of Economics) [23_SEM2_ECON100_E]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2235&month=04&year=2024#assignment_42113
+X-ALT-DESC;FMTTYPE=text/html:
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240330T083300Z
+UID:event-assignment-36742
+DTSTART;VALUE=DATE;VALUE=DATE:20240403
+CLASS:PUBLIC
+DESCRIPTION:NOTE: This this is a graded assignment.\n\nSubmit your Applied 
+ Project proposal comprising:\n\n* Chapters 1-3 of the applied project repo
+ rt\n\n* Preliminary results implementation \n\n* Plan and timeline for th
+ e remainder of the project.\n\n \n\n 
+SEQUENCE:0
+SUMMARY:Assignment 4 (For Applied Projects Only) [23_SEM2_CS410-SEM_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2254&month=04&year=2024#assignment_36742
+X-ALT-DESC;FMTTYPE=text/html:<p><strong>NOTE</strong>: <em>This this is a g
+ raded assignment.</em></p>\n<p>Submit your Applied Project proposal compri
+ sing:</p>\n<ol style="list-style-type: decimal\;">\n<li>Chapters 1-3 of th
+ e applied project report</li>\n<li><span class="TextRun SCXW69327176 BCX8"
+  lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW69327176
+  BCX8">Preliminary </span><span class="NormalTextRun SCXW69327176 BCX8">re
+ sults</span><span class="NormalTextRun SCXW69327176 BCX8"> implementation<
+ /span></span><span class="EOP SCXW69327176 BCX8" data-ccp-props="{&quot\;2
+ 01341983&quot\;:0\,&quot\;335559740&quot\;:259}">&nbsp\;</span></li>\n<li>
+ Plan and timeline for the remainder of the project.</li>\n</ol>\n<p>&nbsp\
+ ;</p>\n<p>&nbsp\;</p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240401T215800Z
+UID:event-assignment-41824
+DTSTART;VALUE=DATE;VALUE=DATE:20240405
+CLASS:PUBLIC
+DESCRIPTION:For this milestone\, you are to implement the solution from you
+ r proposal. Furthermore\, you are to evaluate the performance of the model
+  on a held-out test set. Your evaluation must give the model’s accuracy\
+ , precision\, recall and F-1 score. The held-out test set should be the la
+ st 10% of examples in the given training data.\n\n \n\nSubmission\n\nYou 
+ are to submit the following:\n\n• A clear Python notebook with all code 
+ used for prediction and evaluation. Your notebook should be well structure
+ d with headings and descriptions and your code should be well commented. T
+ hink of the notebook as both containing your code and a report of your wor
+ k.\n\n• A submissions file (submissions.csv) on the held-out test set in
+  the format of the Kaggle competition.\n\n• An evaluation file (evaluati
+ ons.csv) showing the corresponding ground truths for your predictions.\n\n
+ • A results file (results.json) showing the required evaluation metrics.
+ \n\n• A run Python notebook with all code used for prediction and evalua
+ tion. The notebook should print\, at least\, the following outputs:\n\n  
+        o Evidence of your model learning (graphs\, reduced loss etc.)\
+ n\n         o Your evaluation metrics\n\n         o 10 random ex
+ amples from your test set showing the examples\, your predictions and the 
+ ground truth
+SEQUENCE:0
+SUMMARY:Milestone 3: Your Solution [23_SEM2_CS 452_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2251&month=04&year=2024#assignment_41824
+X-ALT-DESC;FMTTYPE=text/html:<p><span>For this milestone\, you are to imple
+ ment the solution from your proposal. Furthermore\, you are to evaluate th
+ e performance of the model on a held-out test set. Your evaluation must gi
+ ve the model’s accuracy\, precision\, recall and F-1 score. The held-out
+  test set should be the last 10% of examples in the given training data.</
+ span></p>\n<p>&nbsp\;</p>\n<p><strong>Submission</strong></p>\n<p><span> Y
+ ou are to submit the following: </span></p>\n<p><span>• A clear Python n
+ otebook with all code used for prediction and evaluation. Your notebook sh
+ ould be well structured with headings and descriptions and your code shoul
+ d be well commented. Think of the notebook as both containing your code an
+ d a report of your work. </span></p>\n<p><span>• A submissions file (sub
+ missions.csv) on the held-out test set in the format of the Kaggle competi
+ tion. </span></p>\n<p><span>• An evaluation file (evaluations.csv) showi
+ ng the corresponding ground truths for your predictions. </span></p>\n<p><
+ span>• A results file (results.json) showing the required evaluation met
+ rics.</span></p>\n<p><span> • A run Python notebook with all code used f
+ or prediction and evaluation. The notebook should print\, at least\, the f
+ ollowing outputs: </span></p>\n<p><span>&nbsp\; &nbsp\; &nbsp\; &nbsp\; &n
+ bsp\;o Evidence of your model learning (graphs\, reduced loss etc.)</span>
+ </p>\n<p><span>&nbsp\; &nbsp\; &nbsp\; &nbsp\; &nbsp\;o Your evaluation me
+ trics </span></p>\n<p><span>&nbsp\; &nbsp\; &nbsp\; &nbsp\; &nbsp\;o 10 ra
+ ndom examples from your test set showing the examples\, your predictions a
+ nd the ground truth</span></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240402T095100Z
+UID:event-assignment-36743
+DTSTART;VALUE=DATE;VALUE=DATE:20240407
+CLASS:PUBLIC
+DESCRIPTION:Submit your Undergraduate Thesis proposal comprising:\n\n* Chap
+ ters 1-3 of thesis report\n\n* Preliminary results from initiation/executi
+ on of methodology\n\n* Plan and timeline for the remainder of the research
+ .\n\nKindly note: This submission is graded. Please refer to the rubric fo
+ r grading Thesis Proposal and the seminar outline.
+SEQUENCE:0
+SUMMARY:Assignment 5 (For Undergraduate Thesis Only) [23_SEM2_CS410-SEM_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2254&month=04&year=2024#assignment_36743
+X-ALT-DESC;FMTTYPE=text/html:<p>Submit your Undergraduate Thesis proposal c
+ omprising:</p>\n<ol>\n<li>Chapters 1-3 of thesis report</li>\n<li><span cl
+ ass="NormalTextRun SCXW56735880 BCX8">Preliminary results</span><span clas
+ s="NormalTextRun SCXW56735880 BCX8"> from initiation/execution of </span><
+ span class="NormalTextRun SCXW56735880 BCX8">methodology</span></li>\n<li>
+ Plan and timeline for the remainder <span class="TextRun SCXW166341374 BCX
+ 8" lang="EN-US" data-contrast="none"><span class="NormalTextRun SCXW166341
+ 374 BCX8">of the research.</span></span></li>\n</ol>\n<p><span class="Text
+ Run SCXW166341374 BCX8" lang="EN-US" data-contrast="none"><span class="Nor
+ malTextRun SCXW166341374 BCX8">Kindly note: This submission is graded. Ple
+ ase refer to the rubric for grading Thesis Proposal and the seminar outlin
+ e.</span></span></p>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240329T110000Z
+UID:event-assignment-42122
+DTSTART:20240408T150000Z
+DTEND:20240408T150000Z
+CLASS:PUBLIC
+DESCRIPTION:[CPI in Practice 2024 EC 100.pdf] (https://ashesi.instructure.c
+ om/courses/2235/files/539577?wrap=1)\n\nCPI in Practice: How does Ghana St
+ atistical Service (GSS) measure inflation in Ghana\n\nGroup Work -ECON 100
+ -ASHESI – 100 total points\n\n \n\nVisit the Ghana Statistical Service 
+ Website and perform the following tasks.\n\n \n\nPART 1\n\nScan through t
+ he various pages on the GSS website especially the Indices tab and choose 
+ CPI. Check out the monthly Bulletins and the Newsletters in April and Marc
+ h 2022 (an example attached as well).\n\n[Bulleting_CPI December 2022.pdf]
+  (https://ashesi.instructure.com/courses/2235/files/539573?wrap=1)\n\nNote
+  the components of the Ghana basket (which is the highest rank of the hier
+ archy of goods) and named (Divisions).  There are 13 divisions. An exampl
+ e of the occasional newsletter presented as a PPT is also attached\n\n[CPI
+  April 2022_110522 (1) (1).pptx] (https://ashesi.instructure.com/courses/2
+ 235/files/539574?wrap=1)\n\nFamiliarize yourself with how the basket is de
+ fined and how prices are obtained by the GSS and note the similarities wit
+ h what the BLS of the USA does which is what we learned in class. Scan oth
+ er documents including the Consumer Price Index Manual (CPI manual) from t
+ he UN (example attached) which served as the basis for Ghana's method for 
+ CPI.\n\n[cpi-manual-concepts-and-methods.pdf] (https://ashesi.instructure.
+ com/courses/2235/files/539576?wrap=1)\n\nFor the questions below\, when as
+ ked for a graph\, you may simply copy a relevant graph or use data to plot
+  your own graph.\n\n \n\n \n\n* a) [20 points] Explain how CPI is measur
+ ed in Ghana\n\n \n\n* b) [5 points] Present a graph of CPI inflation for 
+ Ghana from 2010 to 2023 using annual data\n\n \n\n* c) [25 points]\n\n(i)
+  Identify the main categories of goods in the Ghana CPI basket\n\n(ii) Whi
+ ch components of Ghana's CPI basket appear to carry the most weight?\n\n(i
+ ii) Identify the top 2 categories in the CPI basket. Plot inflation for th
+ ose categories from 2020-2023 using monthly or quarterly data depending on
+  which data is available\n\n \n\n \n\n(iv) Identify the biggest categori
+ es in the Ghana CPI that contain imported products.\n\n  (v) Plot inflati
+ on for the biggest category that contains imported goods from 2020-2023 us
+ ing monthly or quarterly data depending on which is available\n\n \n\nPAR
+ T 2\n\n Focus on Monthly data for Ghana from 2020 to 2023. You may either
+  copy an existing graph or plot new graphs.\n\n \n\n(vi) [5 points] Plot 
+ “Core" inflation (Inflation minus energy and food prices) from 2020 to 2
+ 023 using monthly data\n\n(vii) [5 points] Plot the Data for "Headline inf
+ lation" (or total inflation) from 2020 to 2023 using monthly data\n\n(viii
+ ) [5 points] Plot the data for food inflation from 2020 to 2023 using mont
+ hly data\n\n(ix) [5 points] Plot the data for energy price inflation from 
+ 2020 to 2023 using monthly data\n\n(ix) [5 points] Plot the data for trans
+ portation inflation from 2020 to 2023 using monthly data\n\n \n\n(x) [5 p
+ oints] Plot Identify the main drivers of CPI inflation for Ghana from 2020
+  to 2023 using information from i-viii\n\n* x) [20 points] Plot Suppose th
+ e IMF claims that COVID 19 was responsible for the significant inflation i
+ n Ghana between March 2022 and December 2022. Will you agree or disagree? 
+ Why? In particular are imported goods the main cause of inflation in Ghana
+ .
+SEQUENCE:0
+SUMMARY:Assignment 3 CPI In Practice) [23_SEM2_ECON100_E]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2235&month=04&year=2024#assignment_42122
+X-ALT-DESC;FMTTYPE=text/html:<p><strong><span><a class="instructure_file_li
+ nk instructure_scribd_file inline_disabled" title="CPI in Practice 2024 EC
+  100.pdf" href="https://ashesi.instructure.com/courses/2235/files/539577?w
+ rap=1" target="_blank" data-canvas-previewable="false" data-api-endpoint="
+ https://ashesi.instructure.com/api/v1/courses/2235/files/539577" data-api-
+ returntype="File">CPI in Practice 2024 EC 100.pdf</a></span></strong></p>\
+ n<p><strong><span>CPI in Practice: How does Ghana Statistical Service (GSS
+ ) measure inflation in Ghana</span></strong></p>\n<p><strong><span>Group W
+ ork -ECON 100-ASHESI – 100 total points</span></strong></p>\n<p><span>&n
+ bsp\;</span></p>\n<p><span>Visit the Ghana Statistical Service Website and
+  perform the following tasks.</span></p>\n<p><strong><span>&nbsp\;</span><
+ /strong></p>\n<p><strong><span>PART 1</span></strong></p>\n<p><span>Scan t
+ hrough the various pages on the GSS website especially the Indices tab and
+  choose CPI. Check out the monthly Bulletins and the Newsletters in April 
+ and March 2022 (an example attached as well).</span></p>\n<p><span><a clas
+ s="instructure_file_link instructure_scribd_file inline_disabled" title="B
+ ulleting_CPI December 2022.pdf" href="https://ashesi.instructure.com/cours
+ es/2235/files/539573?wrap=1" target="_blank" data-canvas-previewable="fals
+ e" data-api-endpoint="https://ashesi.instructure.com/api/v1/courses/2235/f
+ iles/539573" data-api-returntype="File">Bulleting_CPI December 2022.pdf</a
+ ></span></p>\n<p><span> Note the components of the Ghana basket (which is 
+ the highest rank of the hierarchy of goods) and named (Divisions).&nbsp\; 
+ There are 13 divisions. An example of the occasional newsletter presented 
+ as a PPT is also attached</span></p>\n<p><span><a class="instructure_file_
+ link instructure_scribd_file inline_disabled" title="CPI April 2022_110522
+  (1) (1).pptx" href="https://ashesi.instructure.com/courses/2235/files/539
+ 574?wrap=1" target="_blank" data-canvas-previewable="false" data-api-endpo
+ int="https://ashesi.instructure.com/api/v1/courses/2235/files/539574" data
+ -api-returntype="File">CPI April 2022_110522 (1) (1).pptx</a></span></p>\n
+ <p><span style="color: var(--ic-brand-font-color-dark)\; font-family: inhe
+ rit\; font-size: 1rem\;"><span>Familiarize</span> yourself with how the ba
+ sket is defined and how prices are obtained by the GSS and note the simila
+ rities with what the BLS of the USA does which is what we learned in class
+ . Scan other documents including the Consumer Price Index Manual (CPI manu
+ al) from the UN (example attached) which served as the basis for Ghana's m
+ ethod for CPI.</span></p>\n<p><span style="color: var(--ic-brand-font-colo
+ r-dark)\; font-family: inherit\; font-size: 1rem\;"><a class="instructure_
+ file_link instructure_scribd_file inline_disabled" title="cpi-manual-conce
+ pts-and-methods.pdf" href="https://ashesi.instructure.com/courses/2235/fil
+ es/539576?wrap=1" target="_blank" data-canvas-previewable="false" data-api
+ -endpoint="https://ashesi.instructure.com/api/v1/courses/2235/files/539576
+ " data-api-returntype="File">cpi-manual-concepts-and-methods.pdf</a></span
+ ></p>\n<p><span style="color: var(--ic-brand-font-color-dark)\; font-famil
+ y: inherit\; font-size: 1rem\;"> For the questions below\, when asked for 
+ a graph\, you may simply copy a relevant graph or use data to plot your ow
+ n graph.</span></p>\n<p>&nbsp\;</p>\n<p><span>&nbsp\;</span></p>\n<ol>\n<l
+ i><span>a) [20 points] Explain how CPI is measured in Ghana</span></li>\n<
+ /ol>\n<p><span>&nbsp\;</span></p>\n<ol>\n<li><span>b) [5 points] Present a
+  graph of CPI inflation for Ghana from 2010 to 2023 using annual data</spa
+ n></li>\n</ol>\n<p><span>&nbsp\;</span></p>\n<ol>\n<li><span>c) [25 points
+ ]</span></li>\n</ol>\n<p><span>(i) Identify the main categories of goods i
+ n the Ghana CPI basket</span></p>\n<p><span>(ii) Which components of Ghana
+ 's CPI basket appear to carry the most weight?</span></p>\n<p><span>(iii) 
+ Identify the top 2 categories in the CPI basket. Plot inflation for those 
+ categories from 2020-2023 using monthly or quarterly data depending on whi
+ ch data is available</span></p>\n<p><span>&nbsp\;</span></p>\n<p><span>&nb
+ sp\;</span></p>\n<p><span>(iv) Identify the biggest categories in the Ghan
+ a CPI that contain imported products.</span></p>\n<p><span>&nbsp\; (v) Plo
+ t inflation for the biggest category that contains imported goods from 202
+ 0-2023 using monthly or quarterly data depending on which is available</sp
+ an></p>\n<p><span>&nbsp\;</span></p>\n<p><strong><span>PART 2</span></stro
+ ng></p>\n<p><span>&nbsp\;Focus on Monthly data for Ghana from 2020 to 2023
+ . You may either copy an existing graph or plot new graphs.</span></p>\n<p
+ ><span>&nbsp\;</span></p>\n<p><span>(vi) [5 points] Plot “Core" inflatio
+ n (Inflation minus energy and food prices) from 2020 to 2023 using monthly
+  data</span></p>\n<p><span>(vii) [5 points] Plot the Data for "Headline in
+ flation" (or total inflation) from 2020 to 2023 using monthly data</span><
+ /p>\n<p><span>(viii) [5 points] Plot the data for food inflation from 2020
+  to 2023 using monthly data</span></p>\n<p><span>(ix) [5 points] Plot the 
+ data for energy price inflation from 2020 to 2023 using monthly data</span
+ ></p>\n<p><span>(ix) [5 points] Plot the data for transportation inflation
+  from 2020 to 2023 using monthly data</span></p>\n<p><span>&nbsp\;</span><
+ /p>\n<p><span>(x) [5 points] Plot Identify the main drivers of CPI inflati
+ on for Ghana from 2020 to 2023 using information from i-viii</span></p>\n<
+ ol start="2022">\n<li><span>x) [20 points] Plot Suppose the IMF claims tha
+ t COVID 19 was responsible for the significant inflation in Ghana between 
+ March 2022 and December 2022. Will you agree or disagree? Why? In particul
+ ar are imported goods the main cause of inflation in Ghana.</span></li>\n<
+ /ol>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240329T092000Z
+UID:event-assignment-42123
+DTSTART;VALUE=DATE;VALUE=DATE:20240408
+CLASS:PUBLIC
+DESCRIPTION:CPI in Practice: How does Ghana Statistical Service (GSS) measu
+ re inflation in Ghana\n\nGroup Work -ECON 100-ASHESI – 100 total points\
+ n\n \n\nVisit the Ghana Statistical Service Website and perform the follo
+ wing tasks.\n\n \n\nPART 1\n\nScan through the various pages on the GSS w
+ ebsite especially the Indices tab and choose CPI. Check out the monthly Bu
+ lletins and the Newsletters in April and March 2022 (example attached).\n\
+ n[Bulleting_CPI December 2022-1.pdf] (https://ashesi.instructure.com/cours
+ es/2235/files/539580?wrap=1)\n\n \n\nNote the components of the Ghana bas
+ ket (which is the highest rank of the hierarchy of goods) and named (Divis
+ ions).  There are 13 divisions. Familiarize yourself with how the basket 
+ is defined and how prices are obtained by the GSS and note the similaritie
+ s with what the BLS of the USA does which is what we learned in class. Che
+ ck out the periodic release of the CPI Newsletter as a PPT which discusses
+  how the Ghana CPI is computed\n\n[PRESS RELEASE_CPI_March_2022_prof.pptx]
+  (https://ashesi.instructure.com/courses/2235/files/539581?wrap=1) \n\n 
+ \n\n \n\nScan other documents including the Consumer Price Index Manual f
+ rom the UN (also attached) which served as the basis for Ghana's method fo
+ r CPI.\n\n[cpi-manual-concepts-and-methods-1.pdf] (https://ashesi.instruct
+ ure.com/courses/2235/files/539583?wrap=1)\n\nFor the questions below\, whe
+ n asked for a graph\, you may simply copy a relevant graph or use data to 
+ plot your own graph.\n\n \n\n* a) [20 points] Explain how CPI is measured
+  in Ghana\n\n \n\n* b) [5 points] Present a graph of CPI inflation for Gh
+ ana from 2010 to 2023 using annual data\n\n \n\n* c) [25 points]\n\n(i) I
+ dentify the main categories of goods in the Ghana CPI basket\n\n(ii) Which
+  components of Ghana's CPI basket appear to carry the most weight?\n\n(iii
+ ) Identify the top 2 categories in the CPI basket. Plot inflation for thos
+ e categories from 2020-2023 using monthly or quarterly data depending on w
+ hich data is available\n\n \n\n \n\n(iv) Identify the biggest categories
+  in the Ghana CPI that contain imported products.\n\n  (v) Plot inflation
+  for the biggest category that contains imported goods from 2020-2023 usin
+ g monthly or quarterly data depending on which is available\n\n \n\nPART 
+ 2\n\n Focus on Monthly data for Ghana from 2020 to 2023. You may either c
+ opy an existing graph or plot new graphs.\n\n \n\n(vi) [5 points] Plot 
+ “Core" inflation (Inflation minus energy and food prices) from 2020 to 2
+ 023 using monthly data\n\n(vii) [5 points] Plot the Data for "Headline inf
+ lation" (or total inflation) from 2020 to 2023 using monthly data\n\n(viii
+ ) [5 points] Plot the data for food inflation from 2020 to 2023 using mont
+ hly data\n\n(ix) [5 points] Plot the data for energy price inflation from 
+ 2020 to 2023 using monthly data\n\n(ix) [5 points] Plot the data for trans
+ portation inflation from 2020 to 2023 using monthly data\n\n \n\n(x) [5 p
+ oints] Plot Identify the main drivers of CPI inflation for Ghana from 2020
+  to 2023 using information from i-\n\n* ix [20 points] Suppose the IMF cl
+ aims that COVID 19 was responsible for the significant inflation in Ghana 
+ between March 2022 and December 2022. Will you agree or disagree? Why? In 
+ particular are imported goods the main cause of inflation in Ghana.
+SEQUENCE:0
+SUMMARY:Assignment 3 CPI In Practice) [23_SEM2_ECON100_E]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2235&month=04&year=2024#assignment_42123
+X-ALT-DESC;FMTTYPE=text/html:<p><strong><span>CPI in Practice: How does Gha
+ na Statistical Service (GSS) measure inflation in Ghana</span></strong></p
+ >\n<p><strong><span>Group Work -ECON 100-ASHESI – 100 total points</span
+ ></strong></p>\n<p><span>&nbsp\;</span></p>\n<p><span>Visit the Ghana Stat
+ istical Service Website and perform the following tasks.</span></p>\n<p><s
+ trong><span>&nbsp\;</span></strong></p>\n<p><strong><span>PART 1</span></s
+ trong></p>\n<p><span>Scan through the various pages on the GSS website esp
+ ecially the Indices tab and choose CPI. Check out the monthly Bulletins an
+ d the Newsletters in April and March 2022 (example attached).</span></p>\n
+ <p><span><a class="instructure_file_link instructure_scribd_file inline_di
+ sabled" title="Bulleting_CPI December 2022-1.pdf" href="https://ashesi.ins
+ tructure.com/courses/2235/files/539580?wrap=1" target="_blank" data-canvas
+ -previewable="false" data-api-endpoint="https://ashesi.instructure.com/api
+ /v1/courses/2235/files/539580" data-api-returntype="File">Bulleting_CPI De
+ cember 2022-1.pdf</a></span></p>\n<p>&nbsp\;</p>\n<p><span>Note the compon
+ ents of the Ghana basket (which is the highest rank of the hierarchy of go
+ ods) and named (Divisions).&nbsp\; There are 13 divisions. Familiarize you
+ rself with how the basket is defined and how prices are obtained by the GS
+ S and note the similarities with what the BLS of the USA does which is wha
+ t we learned in class. Check out the periodic release of the CPI Newslette
+ r as a PPT which discusses how the Ghana CPI is computed</span></p>\n<p><s
+ pan><a class="instructure_file_link instructure_scribd_file inline_disable
+ d" title="PRESS RELEASE_CPI_March_2022_prof.pptx" href="https://ashesi.ins
+ tructure.com/courses/2235/files/539581?wrap=1" target="_blank" data-canvas
+ -previewable="false" data-api-endpoint="https://ashesi.instructure.com/api
+ /v1/courses/2235/files/539581" data-api-returntype="File">PRESS RELEASE_CP
+ I_March_2022_prof.pptx</a>&nbsp\;</span></p>\n<p>&nbsp\;</p>\n<p>&nbsp\;</
+ p>\n<p><span> Scan other documents including the Consumer Price Index Manu
+ al from the UN (also attached) which served as the basis for Ghana's metho
+ d for CPI. </span></p>\n<p><span><a class="instructure_file_link instructu
+ re_scribd_file inline_disabled" title="cpi-manual-concepts-and-methods-1.p
+ df" href="https://ashesi.instructure.com/courses/2235/files/539583?wrap=1"
+  target="_blank" data-canvas-previewable="false" data-api-endpoint="https:
+ //ashesi.instructure.com/api/v1/courses/2235/files/539583" data-api-return
+ type="File">cpi-manual-concepts-and-methods-1.pdf</a></span></p>\n<p><span
+ >For the questions below\, when asked for a graph\, you may simply copy a 
+ relevant graph or use data to plot your own graph.</span></p>\n<p><span>&n
+ bsp\;</span></p>\n<ol>\n<li><span>a) [20 points] Explain how CPI is measur
+ ed in Ghana</span></li>\n</ol>\n<p><span>&nbsp\;</span></p>\n<ol>\n<li><sp
+ an>b) [5 points] Present a graph of CPI inflation for Ghana from 2010 to 2
+ 023 using annual data</span></li>\n</ol>\n<p><span>&nbsp\;</span></p>\n<ol
+ >\n<li><span>c) [25 points]</span></li>\n</ol>\n<p><span>(i) Identify the 
+ main categories of goods in the Ghana CPI basket</span></p>\n<p><span>(ii)
+  Which components of Ghana's CPI basket appear to carry the most weight?</
+ span></p>\n<p><span>(iii) Identify the top 2 categories in the CPI basket.
+  Plot inflation for those categories from 2020-2023 using monthly or quart
+ erly data depending on which data is available</span></p>\n<p><span>&nbsp\
+ ;</span></p>\n<p><span>&nbsp\;</span></p>\n<p><span>(iv) Identify the bigg
+ est categories in the Ghana CPI that contain imported products.</span></p>
+ \n<p><span>&nbsp\; (v) Plot inflation for the biggest category that contai
+ ns imported goods from 2020-2023 using monthly or quarterly data depending
+  on which is available</span></p>\n<p><span>&nbsp\;</span></p>\n<p><strong
+ ><span>PART 2</span></strong></p>\n<p><span>&nbsp\;Focus on Monthly data f
+ or Ghana from 2020 to 2023. You may either copy an existing graph or plot 
+ new graphs.</span></p>\n<p><span>&nbsp\;</span></p>\n<p><span>(vi) [5 poin
+ ts] Plot “Core" inflation (Inflation minus energy and food prices) from 
+ 2020 to 2023 using monthly data</span></p>\n<p><span>(vii) [5 points] Plot
+  the Data for "Headline inflation" (or total inflation) from 2020 to 2023 
+ using monthly data</span></p>\n<p><span>(viii) [5 points] Plot the data fo
+ r food inflation from 2020 to 2023 using monthly data</span></p>\n<p><span
+ >(ix) [5 points] Plot the data for energy price inflation from 2020 to 202
+ 3 using monthly data</span></p>\n<p><span>(ix) [5 points] Plot the data fo
+ r transportation inflation from 2020 to 2023 using monthly data</span></p>
+ \n<p><span>&nbsp\;</span></p>\n<p><span>(x) [5 points] Plot Identify the m
+ ain drivers of CPI inflation for Ghana from 2020 to 2023 using information
+  from i-</span></p>\n<ol>\n<li><span>ix [20 points] Suppose the&nbsp\;IMF 
+ claims that COVID 19 was responsible for the significant inflation in Ghan
+ a between March 2022 and December 2022. Will you agree or disagree? Why? I
+ n particular are imported goods the main cause of inflation in Ghana.</spa
+ n></li>\n</ol>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240325T203800Z
+UID:event-assignment-42030
+DTSTART;VALUE=DATE;VALUE=DATE:20240408
+CLASS:PUBLIC
+DESCRIPTION:*******************************************\nOperating Systems 
+ and System Administration\n*******************************************\n\n
+ Final Summative Group Project\n\nImplementation\, Testing and Presentation
+ \n\nSubmission Date: 8th of  April 2024\n\nThis is your final summative p
+ roject to demonstrate a masterpiece artefact within the domain of Operatin
+ g  Systems(OS). As you recall\, the OS course was designed to provide you
+  with skills of building machines that can utilise computing resources eff
+ iciently and increase user experience. These concepts can only be mastered
+  through research\, learning and implementation. This final summative proj
+ ect assignment is centered on assessing learners in their respective Group
+ s on all course learning outcomes\, namely:\n\n* Aptitude to demonstrate s
+ kills acquired during the previous sessions in both classroom and outside 
+ classroom environments.\n\n* Ability to build and simulate OS system progr
+ ams.\n\n* Capacity to implement low level systems that solve modern-day re
+ al-world problems using different methodologies and algorithms.\n\n* Techn
+ iques of testing system programs. \n\nSubmission: It is mandatory to subm
+ it a compressed file which will contain the following:\n\n* All relevant s
+ ource codes and files.\n\n* A readme file that explains your project and h
+ ow to host that application either on a local server\, local network\, wid
+ e area network or on the cloud. \n\n* A YouTube link to the video that ex
+ plains how your system or application works\, included in the README file.
+ \n\nNB:\n\n* All systems or applications should run on UNIX systems\, othe
+ rwise you will loose half of the points in this assessment.\n\n* C is the 
+ default programming language unless you were permitted by the instructor t
+ o use another programming language.\n\n* You will be required to answer so
+ me few questions of how you designed your system software.  
+SEQUENCE:0
+SUMMARY:Final Submission [23_SEM2_CS433_B]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2263&month=04&year=2024#assignment_42030
+X-ALT-DESC;FMTTYPE=text/html:<h1 style="text-align: center\;"><strong>Opera
+ ting Systems and System Administration</strong></h1>\n<p style="text-align
+ : center\;"><strong>Final Summative Group Project</strong></p>\n<p style="
+ text-align: center\;"><strong>Implementation\, Testing and Presentation</s
+ trong></p>\n<p style="text-align: center\;">Submission Date: 8th of&nbsp\;
+  April 2024</p>\n<p>This is your final summative project to demonstrate a 
+ masterpiece artefact within the domain of Operating&nbsp\; Systems(OS). As
+  you recall\, the OS course was designed to provide you with skills of bui
+ lding machines that can utilise computing resources efficiently and increa
+ se user experience. These concepts can only be mastered through research\,
+  learning and implementation. This final summative project assignment is c
+ entered on assessing learners in their respective Groups on all course lea
+ rning outcomes\, namely:</p>\n<ol>\n<li>Aptitude to demonstrate skills acq
+ uired during the previous sessions in both classroom and outside classroom
+  environments.</li>\n<li>Ability to build and simulate OS system programs.
+ </li>\n<li>Capacity to implement low level systems that solve modern-day r
+ eal-world problems using different methodologies and algorithms.</li>\n<li
+ >Techniques of testing system programs.&nbsp\;</li>\n</ol>\n<p><strong><sp
+ an style="font-size: 14pt\;">Submission: It is mandatory to submit a compr
+ essed file which will contain the following:</span></strong></p>\n<ul>\n<l
+ i><strong><span style="font-size: 14pt\;">All relevant source codes and fi
+ les.</span></strong></li>\n<li><strong><span style="font-size: 14pt\;">A r
+ eadme file that explains your project and how to host that application eit
+ her on a local server\, local network\, wide area network or on the cloud.
+ &nbsp\;</span></strong></li>\n<li>\n<strong><span style="font-size: 14pt\;
+ ">A YouTube link to the video that explains how your system or application
+  works\, included in the README file.</span></strong><strong></strong>\n</
+ li>\n</ul>\n<p><span style="font-size: 12pt\;"><span><strong>NB: </strong>
+ </span></span></p>\n<ul>\n<li><strong style="font-size: 12pt\; color: var(
+ --ic-brand-font-color-dark)\; font-family: inherit\;">All systems or appli
+ cations should run on UNIX systems\, otherwise you will loose half of the 
+ points in this assessment.</strong></li>\n<li><strong style="font-size: 12
+ pt\; color: var(--ic-brand-font-color-dark)\; font-family: inherit\;">C is
+  the default programming language unless you were permitted by the instruc
+ tor to use another programming language.</strong></li>\n<li><strong style=
+ "font-size: 12pt\; color: var(--ic-brand-font-color-dark)\; font-family: i
+ nherit\;">You will be required to answer some few questions of how you des
+ igned your system software.&nbsp\;&nbsp\;</strong></li>\n</ul>
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20240321T114300Z
+UID:event-assignment-41911
+DTSTART;VALUE=DATE;VALUE=DATE:20240415
+CLASS:PUBLIC
+DESCRIPTION:[CS 426 Cloud Computing Final Exam Project 2024-1.pdf] (https:/
+ /ashesi.instructure.com/courses/2256/files/535147?wrap=1)\n\n \n\nYou are
+  to submit\;\n\n* An ACM/ IEEE format technical report\n\n* An ACM COMPASS
+ . Here is an Example: https://compass.acm.org/calls/posters/\n\n* Link to 
+ Your fully deployed Cloud System
+SEQUENCE:0
+SUMMARY:FINAL PROJECT  [23_SEM2_CS462_A]
+URL;VALUE=URI:https://ashesi.instructure.com/calendar?include_contexts=cour
+ se_2256&month=04&year=2024#assignment_41911
+X-ALT-DESC;FMTTYPE=text/html:<p><a class="instructure_file_link instructure
+ _scribd_file inline_disabled" title="CS 426 Cloud Computing Final Exam Pro
+ ject 2024-1.pdf" href="https://ashesi.instructure.com/courses/2256/files/5
+ 35147?wrap=1" target="_blank" data-canvas-previewable="false" data-api-end
+ point="https://ashesi.instructure.com/api/v1/courses/2256/files/535147" da
+ ta-api-returntype="File">CS 426 Cloud Computing Final Exam Project 2024-1.
+ pdf</a></p>\n<p>&nbsp\;</p>\n<p>You are to submit\;</p>\n<ol style="list-s
+ tyle-type: decimal\;">\n<li>An ACM/ IEEE format technical report</li>\n<li
+ >An ACM COMPASS. Here is an Example: <a href="https://compass.acm.org/call
+ s/posters/" target="_blank">https://compass.acm.org/calls/posters/</a></li
+ >\n<li>Link to Your fully deployed Cloud System</li>\n</ol>
+END:VEVENT
+END:VCALENDAR
