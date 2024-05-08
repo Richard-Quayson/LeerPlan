@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
 from datetime import timedelta
 from .helper import profile_picture_upload_path
@@ -72,12 +72,12 @@ class CustomUserAccountManager(BaseUserManager):
         return self.create_user(email, password, **other_fields)
 
 
-class UserAccount(AbstractUser, PermissionsMixin):
+class UserAccount(AbstractBaseUser, PermissionsMixin):
     """
         custom user model class to handle user accounts
 
         Args:
-            AbstractUser ([class]): [AbstractUser class from django.contrib.auth.models]
+            AbstractBaseUser ([class]): [AbstractBaseUser class from django.contrib.auth.models]
             PermissionsMixin ([class]): [PermissionsMixin class from django.contrib.auth.models]
 
         Returns:
@@ -99,6 +99,10 @@ class UserAccount(AbstractUser, PermissionsMixin):
     major = models.CharField(max_length=100)
     profile_picture = models.ImageField(upload_to=profile_picture_upload_path, blank=True, null=True)
     date_joined = models.DateTimeField(default=timezone.now)
+
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
 
     # define the user manager
     objects = CustomUserAccountManager()
