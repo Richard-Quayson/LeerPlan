@@ -18,7 +18,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAccount
-        fields = ['firstname', 'lastname', 'email', 'major', 'password','confirm_password', 'date_joined']
+        fields = ['firstname', 'lastname', 'email', 'major', 'password','confirm_password', 'profile_picture', 'date_joined']
 
     def validate_firsname(self, value:str) -> str:
         """
@@ -70,6 +70,21 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
         
         return value
     
+    def validate(self, attrs:dict) -> dict:
+        """
+            method to validate the request body
+        """
+        # ensure profile picture is an image
+        if 'profile_picture' in attrs:
+            if not attrs['profile_picture'].name.endswith(('.jpg', '.jpeg', '.png')):
+                raise serializers.ValidationError("Profile picture must be an image!")
+            
+            # ensure profile picture does not already exist
+            if UserAccount.objects.filter(profile_picture=attrs['profile_picture']).exists():
+                raise serializers.ValidationError("Profile picture already exists!")
+            
+        return attrs
+    
     def create(self, validated_data:dict) -> object:
         """
             method to create a user account
@@ -105,7 +120,7 @@ class UserAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAccount
-        fields = ['id', 'firstname', 'lastname', 'email', 'major', 'date_joined']
+        fields = ['id', 'firstname', 'lastname', 'email', 'major', 'profile_picture', 'date_joined']
 
 
 class AccountLoginSerializer(TokenObtainPairSerializer):
