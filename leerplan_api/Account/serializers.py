@@ -20,7 +20,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
         model = UserAccount
         fields = ['firstname', 'lastname', 'email', 'password','confirm_password', 'profile_picture', 'date_joined']
 
-    def validate_firsname(self, value:str) -> str:
+    def validate_firstname(self, value:str) -> str:
         """
             method to validate the first name from request body
         """
@@ -56,7 +56,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
         """
 
         if not re.match(PASSWORD_REGEX, value):
-            raise serializers.ValidationError("Password must contain at least 2 uppercase letters, 2 lowercase letters, 2 digits and 2 special characters!")
+            raise serializers.ValidationError("Password must be at least 8 characters and contain at least 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character!")
 
         return value
     
@@ -66,7 +66,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
         """
 
         if not re.match(PASSWORD_REGEX, value):
-            raise serializers.ValidationError("Password must contain at least 2 uppercase letters, 2 lowercase letters, 2 digits and 2 special characters!")
+            raise serializers.ValidationError("Password must be at least 8 characters and contain at least 1 uppercase letter, 1 lowercase letter, 1 digit and 1 special character!")
         
         return value
     
@@ -240,7 +240,7 @@ class ChangePasswordSerializer(serializers.Serializer):
         
         user = self.context["request"].user
         if not user.check_password(value):
-            return serializers.ValidationError("Current password is incorrect!")
+            raise serializers.ValidationError("Current password is incorrect!")
         
         return value
     
@@ -248,13 +248,13 @@ class ChangePasswordSerializer(serializers.Serializer):
         if re.match(PASSWORD_REGEX, value):
             return value
         
-        return serializers.ValidationError("Invalid password format!")
+        raise serializers.ValidationError("Invalid password format!")
     
     def validate_confirm_password(self, value: str) -> str:
         if re.match(PASSWORD_REGEX, value):
             return value
         
-        return serializers.ValidationError("Invalid password format!")
+        raise serializers.ValidationError("Invalid password format!")
     
     def validate(self, attrs: dict) -> dict:
         current_password = attrs.get("current_password")
