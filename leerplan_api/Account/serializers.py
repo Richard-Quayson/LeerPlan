@@ -18,7 +18,7 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAccount
-        fields = ['firstname', 'lastname', 'email', 'major', 'password','confirm_password', 'profile_picture', 'date_joined']
+        fields = ['firstname', 'lastname', 'email', 'password','confirm_password', 'profile_picture', 'date_joined']
 
     def validate_firsname(self, value:str) -> str:
         """
@@ -103,7 +103,6 @@ class AccountRegistrationSerializer(serializers.ModelSerializer):
             firstname=self.validated_data['firstname'],
             lastname=self.validated_data['lastname'],
             email=self.validated_data['email'],
-            major=self.validated_data['major']
         )
 
         # ensure the password and confirm password match
@@ -120,7 +119,7 @@ class UserAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserAccount
-        fields = ['id', 'firstname', 'lastname', 'email', 'major', 'profile_picture', 'date_joined']
+        fields = ['id', 'firstname', 'lastname', 'email', 'profile_picture', 'date_joined']
 
 
 class AccountLoginSerializer(TokenObtainPairSerializer):
@@ -189,7 +188,7 @@ class AccountLoginSerializer(TokenObtainPairSerializer):
 class UpdateAccountSerializer(serializers.ModelSerializer):
 
     class Meta:
-        fields = ["firstname", "lastname", "major", "profile_picture"]
+        fields = ["firstname", "lastname", "profile_picture"]
         model = UserAccount
     
     def validate_firstname(self, value: str) -> str:
@@ -223,7 +222,6 @@ class UpdateAccountSerializer(serializers.ModelSerializer):
         
         instance.firstname = validated_data.get("firstname", instance.firstname)
         instance.lastname = validated_data.get("lastname", instance.lastname)
-        instance.major = validated_data.get("major", instance.major)
         instance.profile_picture = validated_data.get("profile_picture", instance.profile_picture)
         instance.save()
         return instance
