@@ -175,8 +175,7 @@ class AccountLoginSerializer(TokenObtainPairSerializer):
 
         # ensure account has not been disabled
         if not user.is_active:
-            return serializers.ValidationError(f"Sorry, the user account with email {email} has been disabled.
-                                               Please contact the admin to resolve it!")
+            return serializers.ValidationError(f"Sorry, the user account with email {email} has been disabled. Please contact the admin to resolve it!")
 
         # generate access and refresh tokens
         token = self.generate_token(user)
