@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 
-from .models import UserAccount
+from .models import UserAccount, University, UserUniversity
 from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
 
 
@@ -120,6 +120,18 @@ class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAccount
         fields = ['id', 'firstname', 'lastname', 'email', 'profile_picture', 'date_joined']
+
+    def to_representation(self, instance: UserAccount) -> dict:
+        """
+            method to serialize the user account data
+        """
+
+        user_data = super().to_representation(instance)
+        
+        # retrieve user's universities
+        universities = UserUniversity.objects.filter(user=instance)
+        user_data["universities"] = [university.university.name for university in universities]
+        return user_data
 
 
 class AccountLoginSerializer(TokenObtainPairSerializer):
@@ -282,3 +294,29 @@ class ChangePasswordSerializer(serializers.Serializer):
         instance.set_password(validated_data.get("new_password"))
         instance.save()
         return instance
+    
+
+class UniversitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = University
+        fields = ["id", "name", "location"]
+
+    def validate(self, attrs: dict) -> dict:
+        if University.objects.filter(name=attrs["name"], location=attrs["location"]).exists():
+            raise serializers.ValidationError("University already exists!")
+        
+        return attrs
+
+
+class UserUniversitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserUniversity
+        fields = ["id", "user", "university"]
+    
+    def validate(self, attrs: dict) -> dict:
+        if UserUniversity.objects.filter(user=attrs["user"], university=attrs["university"]).exists():
+            raise serializers.ValidationError("User is already associated with the university!")
+        
+        return attrs
