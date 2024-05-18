@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 
-from .models import UserAccount, University, UserUniversity
+from .models import UserAccount, University, UserUniversity, UserRoutine
 from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
 
 
@@ -303,6 +303,9 @@ class UniversitySerializer(serializers.ModelSerializer):
         fields = ["id", "name", "location"]
 
     def validate(self, attrs: dict) -> dict:
+        if not re.match(NAME_REGEX, attrs["name"]):
+            raise serializers.ValidationError("Invalid university name format!")
+        
         if University.objects.filter(name=attrs["name"], location=attrs["location"]).exists():
             raise serializers.ValidationError("University already exists!")
         
@@ -319,4 +322,27 @@ class UserUniversitySerializer(serializers.ModelSerializer):
         if UserUniversity.objects.filter(user=attrs["user"], university=attrs["university"]).exists():
             raise serializers.ValidationError("User is already associated with the university!")
         
+        return attrs
+    
+
+class UserRoutineSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserRoutine
+        fields = ["id", "user", "name", "type", "start_time", "end_time"]
+
+    def validate_name(self, value: str) -> str:
+        if re.match(NAME_REGEX, value):
+            return value
+        
+        raise serializers.ValidationError("Invalid routine name format!")
+    
+    def validate(self, attrs: dict) -> dict:
+        if UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
+            raise serializers.ValidationError("Routine already exists!")
+        
+        if attrs["start_time"] >= attrs["end_time"]:
+            raise serializers.ValidationError("Start time must be less than end time!")
+        
+        attrs["user"] = self.context["request"].user
         return attrs
