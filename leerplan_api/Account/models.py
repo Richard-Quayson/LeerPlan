@@ -199,3 +199,31 @@ class UserUniversity(models.Model):
 
     def __str__(self):
         return f"{self.user.firstname} {self.user.lastname} is at {self.university.name}"
+    
+
+class UserRoutine(models.Model):
+    """
+        model class to handle user routines
+
+        Args:
+            models ([class]): [models class from django]
+
+        Returns:
+            [class]: [UserRoutine class]
+
+        Attributes:
+            - user ([ForeignKey]): [user foreign key]
+            - name ([CharField]): [name of the routine]
+            - type ([CharField]): [type of the routine] e.g. 
+            - start_time ([TimeField]): [start time of the routine]
+            - end_time ([TimeField]): [end time of the routine]
+    """
+
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.user.firstname} {self.user.lastname} has {self.name} routine"
