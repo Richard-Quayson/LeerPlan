@@ -7,10 +7,11 @@ from rest_framework_simplejwt.tokens import RefreshToken, AccessToken, TokenErro
 from django.utils import timezone
 import os
 
-from .models import UserAccount, AccessTokenBlacklist, University, UserUniversity
-from .serializers import (AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
-                          UpdateAccountSerializer, ChangePasswordSerializer, UniversitySerializer,
-                          UserUniversitySerializer)
+from .models import UserAccount, AccessTokenBlacklist, University, UserUniversity, UserRoutine
+from .serializers import (
+    AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
+    UpdateAccountSerializer, ChangePasswordSerializer, UniversitySerializer,
+    UserUniversitySerializer, UserRoutineSerializer)
 from .permissions import IsAccessTokenBlacklisted
 
 
@@ -153,7 +154,11 @@ class AddUserUniversityView(APIView):
             university = University.objects.get(name=request.data["university"])
         except University.DoesNotExist:
             # create a new university if it does not exist
-            university = University.objects.create(name=request.data["university"])
+            university_serializer = UniversitySerializer(data=request.data)
+            if university_serializer.is_valid():
+                university = university_serializer.save()
+
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         # create request body with user and university id
         request.data["user"] = request.user
@@ -192,7 +197,81 @@ class RetrieveUserUniversitiesView(generics.ListAPIView):
     serializer_class = UserUniversitySerializer
     lookup_field = "user"
     lookup_url_kwarg = "user_id"
-    
+
     # filter the queryset based on the user id
     def get_queryset(self):
         return UserUniversity.objects.filter(user=self.kwargs["user_id"])
+    
+
+class AddUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def post(self, request):
+        serializer = UserRoutineSerializer(data=request.data, context={"request": request})
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class UpdateUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def patch(self, request, routine_id):
+        try:
+            user_routine = UserRoutine.objects.get(id=routine_id)
+        except UserRoutine.DoesNotExist:
+            return Response({"error": f"No user routine exist with the id {routine_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if user_routine.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = UserRoutineSerializer(user_routine, data=request.data, partial=True, context={"request": request})
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RetrieveUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request, routine_id):
+        try:
+            user_routine = UserRoutine.objects.get(id=routine_id)
+        except UserRoutine.DoesNotExist:
+            return Response({"error": f"No user routine exist with the id {routine_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if user_routine.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        
+        serializer = UserRoutineSerializer(user_routine)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class RetrieveUserRoutinesView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request):
+        user_routines = UserRoutine.objects.filter(user=request.user)
+        serializer = UserRoutineSerializer(user_routines, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class DeleteUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def delete(self, request, routine_id):
+        try:
+            user_routine = UserRoutine.objects.get(id=routine_id)
+        except UserRoutine.DoesNotExist:
+            return Response({"error": f"No user routine exist with the id {routine_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if user_routine.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        
+        user_routine.delete()
+        return Response({"message": "User routine removed successfully!"}, status=status.HTTP_200_OK)
