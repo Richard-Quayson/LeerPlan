@@ -7,9 +7,10 @@ from rest_framework_simplejwt.tokens import RefreshToken, AccessToken, TokenErro
 from django.utils import timezone
 import os
 
-from .models import UserAccount, AccessTokenBlacklist
+from .models import UserAccount, AccessTokenBlacklist, University, UserUniversity
 from .serializers import (AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
-                          UpdateAccountSerializer, ChangePasswordSerializer)
+                          UpdateAccountSerializer, ChangePasswordSerializer, UniversitySerializer,
+                          UserUniversitySerializer)
 from .permissions import IsAccessTokenBlacklisted
 
 
@@ -128,3 +129,70 @@ class AccountLogoutView(APIView):
         response.delete_cookie("refresh_token")
         response.delete_cookie("access_token")
         return response
+
+
+class RetrieveUniversitiesView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    queryset = University.objects.all()
+    serializer_class = UniversitySerializer
+
+
+class UpdateUniversityView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    queryset = University.objects.all()
+    serializer_class = UniversitySerializer
+    lookup_field = "id"
+
+
+class AddUserUniversityView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def post(self, request):
+        # check if the university exists
+        try:
+            university = University.objects.get(name=request.data["university"])
+        except University.DoesNotExist:
+            # create a new university if it does not exist
+            university = University.objects.create(name=request.data["university"])
+        
+        # create request body with user and university id
+        request.data["user"] = request.user
+        request.data["university"] = university
+        serializer = UserUniversitySerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class RemoveUserUniversityView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    # update implementation to only allow deleting when the user hasn't
+    # added any course for this particular university
+
+    # def delete(self, request, id):
+    #     try:
+    #         user_university = UserUniversity.objects.get(id=id)
+    #     except UserUniversity.DoesNotExist:
+    #         return Response({"error": f"No user university exist with the id {id}!"}, status=status.HTTP_404_NOT_FOUND)
+
+    #     if user_university.user != request.user:
+    #         return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        
+    #     user_university.delete()
+    #     return Response({"message": "User university removed successfully!"}, status=status.HTTP_200_OK)
+
+
+class RetrieveUserUniversitiesView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    queryset = UserUniversity.objects.all()
+    serializer_class = UserUniversitySerializer
+    lookup_field = "user"
+    lookup_url_kwarg = "user_id"
+    
+    # filter the queryset based on the user id
+    def get_queryset(self):
+        return UserUniversity.objects.filter(user=self.kwargs["user_id"])
