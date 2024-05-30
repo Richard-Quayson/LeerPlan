@@ -23,9 +23,9 @@ urlpatterns = [
 
     # UNIVERSITY ENDPOINTS
     path("universities/", RetrieveUniversitiesView.as_view(), name="retrieve-universities"),
-    path("university/update/", UpdateUniversityView.as_view(), name="update-university"),
+    path("university/update/<int:university_id>/", UpdateUniversityView.as_view(), name="update-university"),
     path("user/university/add/", AddUserUniversityView.as_view(), name="add-user-university"),
-    path("user/university/remove/", RemoveUserUniversityView.as_view(), name="remove-user-university"),
+    path("user/university/remove/<int:university_id>/", RemoveUserUniversityView.as_view(), name="remove-user-university"),
     path("user/universities/", RetrieveUserUniversitiesView.as_view(), name="retrieve-user-universities"),
 
     # ROUTINE ENDPOINTS
