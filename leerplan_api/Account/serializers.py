@@ -303,13 +303,23 @@ class UniversitySerializer(serializers.ModelSerializer):
         fields = ["id", "name", "location"]
 
     def validate(self, attrs: dict) -> dict:
-        if not re.match(NAME_REGEX, attrs["name"]):
+        if "name" in attrs and not re.match(NAME_REGEX, attrs["name"]):
             raise serializers.ValidationError("Invalid university name format!")
         
-        if University.objects.filter(name=attrs["name"], location=attrs["location"]).exists():
-            raise serializers.ValidationError("University already exists!")
+        if not "location" in attrs:
+            attrs["location"] = ""
+        
+        if "name" in attrs and "location" in attrs:
+            if University.objects.filter(name=attrs["name"], location=attrs["location"]).exists():
+                raise serializers.ValidationError("University already exists!")
         
         return attrs
+    
+    def update(self, instance: University, validated_data: dict) -> University:
+        instance.name = validated_data.get("name", instance.name)
+        instance.location = validated_data.get("location", instance.location)
+        instance.save()
+        return instance
 
 
 class UserUniversitySerializer(serializers.ModelSerializer):
