@@ -40,7 +40,7 @@ class AccountLoginView(TokenObtainPairView):
                 try:
                     user_account = UserAccount.objects.get(email=request.data["email"])
                 except UserAccount.DoesNotExist:
-                    return Response({"error": f"No user account exist with the email {request.data["email"]}!"})
+                    return Response({"error": f"No user account exist with the email {request.data['email']}!"})
                 
                 if not user_account.is_active:
                     return Response({"error": "Sorry this account has been disabled. Please contact admin to resolve it!"})
@@ -141,8 +141,18 @@ class RetrieveUniversitiesView(generics.ListAPIView):
 class UpdateUniversityView(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
     queryset = University.objects.all()
-    serializer_class = UniversitySerializer
-    lookup_field = "id"
+
+    def update(self, request, university_id, **kwargs):
+        try:
+            university = University.objects.get(id=university_id)
+        except University.DoesNotExist:
+            return Response({"error": f"No university exist with the id {university_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        partial = kwargs.pop("partial", False)
+        serializer = UniversitySerializer(university, data=request.data, partial=partial, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 class AddUserUniversityView(APIView):
@@ -151,18 +161,18 @@ class AddUserUniversityView(APIView):
     def post(self, request):
         # check if the university exists
         try:
-            university = University.objects.get(name=request.data["university"])
+            university = University.objects.get(name=request.data["name"])
         except University.DoesNotExist:
             # create a new university if it does not exist
             university_serializer = UniversitySerializer(data=request.data)
             if university_serializer.is_valid():
                 university = university_serializer.save()
 
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(university_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         # create request body with user and university id
-        request.data["user"] = request.user
-        request.data["university"] = university
+        request.data["user"] = request.user.id
+        request.data["university"] = university.id
         serializer = UserUniversitySerializer(data=request.data)
 
         if serializer.is_valid():
@@ -178,29 +188,26 @@ class RemoveUserUniversityView(APIView):
     # update implementation to only allow deleting when the user hasn't
     # added any course for this particular university
 
-    # def delete(self, request, id):
-    #     try:
-    #         user_university = UserUniversity.objects.get(id=id)
-    #     except UserUniversity.DoesNotExist:
-    #         return Response({"error": f"No user university exist with the id {id}!"}, status=status.HTTP_404_NOT_FOUND)
+    def delete(self, request, university_id):
+        try:
+            user_university = UserUniversity.objects.get(id=university_id)
+        except UserUniversity.DoesNotExist:
+            return Response({"error": f"No user university exist with the id {university_id}!"}, status=status.HTTP_404_NOT_FOUND)
 
-    #     if user_university.user != request.user:
-    #         return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        if user_university.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
         
-    #     user_university.delete()
-    #     return Response({"message": "User university removed successfully!"}, status=status.HTTP_200_OK)
+        user_university.delete()
+        return Response({"message": "User university removed successfully!"}, status=status.HTTP_200_OK)
 
 
-class RetrieveUserUniversitiesView(generics.ListAPIView):
+class RetrieveUserUniversitiesView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
-    queryset = UserUniversity.objects.all()
-    serializer_class = UserUniversitySerializer
-    lookup_field = "user"
-    lookup_url_kwarg = "user_id"
 
-    # filter the queryset based on the user id
-    def get_queryset(self):
-        return UserUniversity.objects.filter(user=self.kwargs["user_id"])
+    def get(self, request):
+        user_universities = UserUniversity.objects.filter(user=request.user)
+        serializer = UserUniversitySerializer(user_universities, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
 
 class AddUserRoutineView(APIView):
