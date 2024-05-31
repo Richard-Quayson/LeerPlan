@@ -4,7 +4,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 
-from .models import UserAccount
+from .models import UserAccount, University, UserUniversity, UserRoutine
 from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
 
 
@@ -120,6 +120,18 @@ class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAccount
         fields = ['id', 'firstname', 'lastname', 'email', 'profile_picture', 'date_joined']
+
+    def to_representation(self, instance: UserAccount) -> dict:
+        """
+            method to serialize the user account data
+        """
+
+        user_data = super().to_representation(instance)
+        
+        # retrieve user's universities
+        universities = UserUniversity.objects.filter(user=instance)
+        user_data["universities"] = [university.university.name for university in universities]
+        return user_data
 
 
 class AccountLoginSerializer(TokenObtainPairSerializer):
@@ -282,3 +294,71 @@ class ChangePasswordSerializer(serializers.Serializer):
         instance.set_password(validated_data.get("new_password"))
         instance.save()
         return instance
+    
+
+class UniversitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = University
+        fields = ["id", "name", "location"]
+
+    def validate(self, attrs: dict) -> dict:
+        if "name" in attrs and not re.match(NAME_REGEX, attrs["name"]):
+            raise serializers.ValidationError("Invalid university name format!")
+        
+        if not "location" in attrs:
+            attrs["location"] = ""
+        
+        if "name" in attrs and "location" in attrs:
+            if University.objects.filter(name=attrs["name"], location=attrs["location"]).exists():
+                raise serializers.ValidationError("University already exists!")
+        
+        return attrs
+    
+    def update(self, instance: University, validated_data: dict) -> University:
+        instance.name = validated_data.get("name", instance.name)
+        instance.location = validated_data.get("location", instance.location)
+        instance.save()
+        return instance
+
+
+class UserUniversitySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserUniversity
+        fields = ["id", "user", "university"]
+    
+    def validate(self, attrs: dict) -> dict:
+        if UserUniversity.objects.filter(user=attrs["user"], university=attrs["university"]).exists():
+            raise serializers.ValidationError("User is already associated with the university!")
+        
+        return attrs
+    
+
+class UserRoutineSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField("get_user")
+
+    class Meta:
+        model = UserRoutine
+        fields = ["id", "user", "name", "type", "start_time", "end_time"]
+
+    def get_user(self, obj: UserRoutine) -> dict:
+        return self.context["request"].user.id
+
+    def validate_name(self, value: str) -> str:
+        if re.match(NAME_REGEX, value):
+            return value
+        
+        raise serializers.ValidationError("Invalid routine name format!")
+    
+    def validate(self, attrs: dict) -> dict:
+        attrs["user"] = self.context["request"].user
+
+        if "name" in attrs and UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
+            raise serializers.ValidationError("Routine already exists!")
+        
+        if "start_time" in attrs and "end_time" in attrs:
+            if attrs["start_time"] > attrs["end_time"]:
+                raise serializers.ValidationError("Start time must be less than end time!")
+        
+        return attrs

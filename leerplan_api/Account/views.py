@@ -7,9 +7,11 @@ from rest_framework_simplejwt.tokens import RefreshToken, AccessToken, TokenErro
 from django.utils import timezone
 import os
 
-from .models import UserAccount, AccessTokenBlacklist
-from .serializers import (AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
-                          UpdateAccountSerializer, ChangePasswordSerializer)
+from .models import UserAccount, AccessTokenBlacklist, University, UserUniversity, UserRoutine
+from .serializers import (
+    AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
+    UpdateAccountSerializer, ChangePasswordSerializer, UniversitySerializer,
+    UserUniversitySerializer, UserRoutineSerializer)
 from .permissions import IsAccessTokenBlacklisted
 
 
@@ -38,7 +40,7 @@ class AccountLoginView(TokenObtainPairView):
                 try:
                     user_account = UserAccount.objects.get(email=request.data["email"])
                 except UserAccount.DoesNotExist:
-                    return Response({"error": f"No user account exist with the email {request.data["email"]}!"})
+                    return Response({"error": f"No user account exist with the email {request.data['email']}!"})
                 
                 if not user_account.is_active:
                     return Response({"error": "Sorry this account has been disabled. Please contact admin to resolve it!"})
@@ -128,3 +130,155 @@ class AccountLogoutView(APIView):
         response.delete_cookie("refresh_token")
         response.delete_cookie("access_token")
         return response
+
+
+class RetrieveUniversitiesView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    queryset = University.objects.all()
+    serializer_class = UniversitySerializer
+
+
+class UpdateUniversityView(generics.UpdateAPIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    queryset = University.objects.all()
+
+    def update(self, request, university_id, **kwargs):
+        try:
+            university = University.objects.get(id=university_id)
+        except University.DoesNotExist:
+            return Response({"error": f"No university exist with the id {university_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        partial = kwargs.pop("partial", False)
+        serializer = UniversitySerializer(university, data=request.data, partial=partial, context={"request": request})
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class AddUserUniversityView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def post(self, request):
+        # check if the university exists
+        try:
+            university = University.objects.get(name=request.data["name"])
+        except University.DoesNotExist:
+            # create a new university if it does not exist
+            university_serializer = UniversitySerializer(data=request.data)
+            if university_serializer.is_valid():
+                university = university_serializer.save()
+
+            return Response(university_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        # create request body with user and university id
+        request.data["user"] = request.user.id
+        request.data["university"] = university.id
+        serializer = UserUniversitySerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class RemoveUserUniversityView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    # update implementation to only allow deleting when the user hasn't
+    # added any course for this particular university
+
+    def delete(self, request, university_id):
+        try:
+            user_university = UserUniversity.objects.get(id=university_id)
+        except UserUniversity.DoesNotExist:
+            return Response({"error": f"No user university exist with the id {university_id}!"}, status=status.HTTP_404_NOT_FOUND)
+
+        if user_university.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        
+        user_university.delete()
+        return Response({"message": "User university removed successfully!"}, status=status.HTTP_200_OK)
+
+
+class RetrieveUserUniversitiesView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request):
+        user_universities = UserUniversity.objects.filter(user=request.user)
+        serializer = UserUniversitySerializer(user_universities, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class AddUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def post(self, request):
+        serializer = UserRoutineSerializer(data=request.data, context={"request": request})
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class UpdateUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def patch(self, request, routine_id):
+        try:
+            user_routine = UserRoutine.objects.get(id=routine_id)
+        except UserRoutine.DoesNotExist:
+            return Response({"error": f"No user routine exist with the id {routine_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if user_routine.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+
+        serializer = UserRoutineSerializer(user_routine, data=request.data, partial=True, context={"request": request})
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class RetrieveUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request, routine_id):
+        try:
+            user_routine = UserRoutine.objects.get(id=routine_id)
+        except UserRoutine.DoesNotExist:
+            return Response({"error": f"No user routine exist with the id {routine_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if user_routine.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        
+        serializer = UserRoutineSerializer(user_routine, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class RetrieveUserRoutinesView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request):
+        user_routines = UserRoutine.objects.filter(user=request.user)
+        serializer = UserRoutineSerializer(user_routines, many=True, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class DeleteUserRoutineView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def delete(self, request, routine_id):
+        try:
+            user_routine = UserRoutine.objects.get(id=routine_id)
+        except UserRoutine.DoesNotExist:
+            return Response({"error": f"No user routine exist with the id {routine_id}!"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if user_routine.user != request.user:
+            return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
+        
+        user_routine.delete()
+        return Response({"message": "User routine removed successfully!"}, status=status.HTTP_200_OK)

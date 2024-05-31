@@ -155,3 +155,75 @@ class AccessTokenBlacklist(models.Model):
     
     class Meta:
         ordering = ['-blacklisted_on']
+
+
+class University(models.Model):
+    """
+        model class to handle universities
+
+        Args:
+            models ([class]): [models class from django
+    
+        Returns:
+            [class]: [University class]
+
+        Attributes:
+            - name ([CharField]): [name of the university]
+            - location ([CharField]): [location of the university] 
+    """
+
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.name} in {self.location}"
+    
+
+class UserUniversity(models.Model):
+    """
+        model class to handle the relationship between users and universities
+
+        Args:
+            models ([class]): [models class from django]
+
+        Returns:
+            [class]: [UserUniversity class]
+
+        Attributes:
+            - user ([ForeignKey]): [user foreign key]
+            - university ([ForeignKey]): [university foreign key]
+    """
+
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.firstname} {self.user.lastname} is at {self.university.name}"
+    
+
+class UserRoutine(models.Model):
+    """
+        model class to handle user routines
+
+        Args:
+            models ([class]): [models class from django]
+
+        Returns:
+            [class]: [UserRoutine class]
+
+        Attributes:
+            - user ([ForeignKey]): [user foreign key]
+            - name ([CharField]): [name of the routine]
+            - type ([CharField]): [type of the routine] e.g. 
+            - start_time ([TimeField]): [start time of the routine]
+            - end_time ([TimeField]): [end time of the routine]
+    """
+
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=100, blank=True, null=True)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.user.firstname} {self.user.lastname} has {self.name} routine"
