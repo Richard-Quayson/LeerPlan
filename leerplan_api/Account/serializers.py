@@ -336,10 +336,14 @@ class UserUniversitySerializer(serializers.ModelSerializer):
     
 
 class UserRoutineSerializer(serializers.ModelSerializer):
+    user = serializers.SerializerMethodField("get_user")
 
     class Meta:
         model = UserRoutine
         fields = ["id", "user", "name", "type", "start_time", "end_time"]
+
+    def get_user(self, obj: UserRoutine) -> dict:
+        return self.context["request"].user.id
 
     def validate_name(self, value: str) -> str:
         if re.match(NAME_REGEX, value):
@@ -348,11 +352,13 @@ class UserRoutineSerializer(serializers.ModelSerializer):
         raise serializers.ValidationError("Invalid routine name format!")
     
     def validate(self, attrs: dict) -> dict:
-        if UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
+        attrs["user"] = self.context["request"].user
+
+        if "name" in attrs and UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
             raise serializers.ValidationError("Routine already exists!")
         
-        if attrs["start_time"] >= attrs["end_time"]:
-            raise serializers.ValidationError("Start time must be less than end time!")
+        if "start_time" in attrs and "end_time" in attrs:
+            if attrs["start_time"] > attrs["end_time"]:
+                raise serializers.ValidationError("Start time must be less than end time!")
         
-        attrs["user"] = self.context["request"].user
         return attrs
