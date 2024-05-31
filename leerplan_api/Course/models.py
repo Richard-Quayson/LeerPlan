@@ -102,3 +102,21 @@ class CourseInstructorOfficeHours(models.Model):
 
     def __str__(self):
         return f"{self.course_instructor.course.name} : {self.course_instructor.instructor.firstname} {self.course_instructor.instructor.lastname} ({self.day} {self.start_time} - {self.end_time})"
+    
+
+class CourseEvaluationCriteria(models.Model):
+    """
+    defines a course evaluation criteria model
+
+    Attributes:
+        - course: the course the evaluation criteria is for
+        - type: the type of evaluation criteria (e.g. exam, assignment)
+        - weight: the weight of the evaluation criteria
+    """
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    type = models.CharField(max_length=100)
+    weight = models.FloatField()
+
+    def __str__(self):
+        return f"{self.course.name} ({self.course.code}) : {self.type.capitalize()} ({self.weight})"
