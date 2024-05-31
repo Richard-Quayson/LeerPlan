@@ -40,3 +40,29 @@ class Instructor(models.Model):
 
     def __str__(self):
         return f"{self.firstname} {self.lastname} ({self.type.capitalize()}) : {self.email} ({self.phone})" 
+    
+
+class Course(models.Model):
+    """
+    defines a course model
+
+    Attributes:
+        - name: the name of the course
+        - code: the code of the course
+        - description: the description of the course
+        - university: the university offering the course
+        - semester: the semester the course is offered in
+        - date_created: the date the course was created
+        - date_updated: the date the course was last updated
+    """
+
+    name = models.CharField(max_length=255)
+    code = models.CharField(max_length=10)
+    description = models.TextField()
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.university.name} : {self.name} ({self.code})"
