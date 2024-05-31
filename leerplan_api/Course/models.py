@@ -66,3 +66,39 @@ class Course(models.Model):
 
     def __str__(self):
         return f"{self.university.name} : {self.name} ({self.code})"
+    
+
+class CourseInstructor(models.Model):
+    """
+    defines a course instructor model
+
+    Attributes:
+        - course: the course the instructor is assigned to
+        - instructor: the instructor assigned to the course
+    """
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.course.name} ({self.course.code}) : {self.instructor.firstname} {self.instructor.lastname} ({self.instructor.type.capitalize()})"
+    
+
+class CourseInstructorOfficeHours(models.Model):
+    """
+    defines a course instructor office hours model
+
+    Attributes:
+        - course_instructor: the course instructor the office hours are held for
+        - day: the day of the week the office hours are held
+        - start_time: the start time of the office hours
+        - end_time: the end time of the office hours
+    """
+
+    course_instructor = models.ForeignKey(CourseInstructor, on_delete=models.CASCADE)
+    day = models.CharField(max_length=10)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.course_instructor.course.name} : {self.course_instructor.instructor.firstname} {self.course_instructor.instructor.lastname} ({self.day} {self.start_time} - {self.end_time})"
