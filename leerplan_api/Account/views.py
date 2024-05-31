@@ -256,7 +256,7 @@ class RetrieveUserRoutineView(APIView):
         if user_routine.user != request.user:
             return Response({"error": "You are not allowed to perform this action!"}, status=status.HTTP_403_FORBIDDEN)
         
-        serializer = UserRoutineSerializer(user_routine)
+        serializer = UserRoutineSerializer(user_routine, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 class RetrieveUserRoutinesView(APIView):
@@ -264,7 +264,7 @@ class RetrieveUserRoutinesView(APIView):
 
     def get(self, request):
         user_routines = UserRoutine.objects.filter(user=request.user)
-        serializer = UserRoutineSerializer(user_routines, many=True)
+        serializer = UserRoutineSerializer(user_routines, many=True, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 
