@@ -221,7 +221,7 @@ class UserRoutine(models.Model):
 
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    type = models.CharField(max_length=100)
+    type = models.CharField(max_length=100, blank=True, null=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
 
