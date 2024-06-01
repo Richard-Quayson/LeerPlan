@@ -142,3 +142,21 @@ class CourseLectureDay(models.Model):
 
     def __str__(self):
         return f"{self.course.name} : {self.day} ({self.start_time} - {self.end_time}) @ {self.location}"
+    
+
+class CourseTextbook(models.Model):
+    """
+    defines a course textbook model
+
+    Attributes:
+        - course: the course the textbook is for
+        - title: the title of the textbook
+        - type: the type of the textbook (e.g. primary, secondary)
+    """
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    title = models.CharField(max_length=255)
+    type = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.course.name} ({self.course.code}) : {self.title} ({self.type.capitalize()})"
