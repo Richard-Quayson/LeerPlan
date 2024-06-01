@@ -1,5 +1,6 @@
 from django.db import models
 from Account.models import University
+from Account.models import UserAccount
 
 
 class Semester(models.Model):
@@ -236,3 +237,19 @@ class CourseWeeklyTopic(models.Model):
 
     def __str__(self):
         return f"{self.course_weekly_schedule.course.name} : {self.topic}"
+    
+
+class UserCourse(models.Model):
+    """
+    defines a user course model
+
+    Attributes:
+        - user: the user taking the course
+        - course: the course the user is taking
+    """
+
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.firstname} {self.user.lastname} : {self.course.name} ({self.course.code})"
