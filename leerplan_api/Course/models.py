@@ -26,21 +26,19 @@ class Instructor(models.Model):
     defines an instructor model
 
     Attributes:
-        - firstname: the first name of the instructor
-        - lastname: the last name of the instructor
+        - name: the name of the instructor
         - email: the email of the instructor
         - phone: the phone number of the instructor
         - type: the type of the instructor (e.g. lecturer, assistant)
     """
 
-    firstname = models.CharField(max_length=100)
-    lastname = models.CharField(max_length=100)
-    email = models.EmailField()
-    phone = models.CharField(max_length=15)
+    name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
     type = models.CharField(max_length=100)
 
     def __str__(self):
-        return f"{self.firstname} {self.lastname} ({self.type.capitalize()}) : {self.email} ({self.phone})" 
+        return f"{self.name} ({self.type.capitalize()}) : {self.email} ({self.phone})" 
     
 
 class Course(models.Model):
@@ -157,7 +155,7 @@ class CourseTextbook(models.Model):
 
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    type = models.CharField(max_length=100)
+    type = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : {self.title} ({self.type.capitalize()})"
@@ -178,8 +176,8 @@ class CourseWeeklySchedule(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     week_number = models.IntegerField()
     type = models.CharField(max_length=100)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : Week {self.week_number} ({self.type.capitalize()}) ({self.start_date} - {self.end_date})"
@@ -200,8 +198,8 @@ class CourseWeeklyAssessment(models.Model):
     course_weekly_schedule = models.ForeignKey(CourseWeeklySchedule, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=50)
-    weight = models.FloatField()
-    due_date = models.DateField()
+    weight = models.FloatField(null=True, blank=True)
+    due_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.course_weekly_schedule.course.name} : {self.name} ({self.type.capitalize()}) ({self.weight}) ({self.due_date})"
