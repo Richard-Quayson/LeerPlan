@@ -120,3 +120,25 @@ class CourseEvaluationCriteria(models.Model):
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : {self.type.capitalize()} ({self.weight})"
+    
+
+class CourseLectureDay(models.Model):
+    """
+    defines a course lecture day model
+
+    Attributes:
+        - course: the course the lecture day is for
+        - day: the day of the week the lecture is held
+        - location: the location of the lecture for that day
+        - start_time: the start time of the lecture
+        - end_time: the end time of the lecture
+    """
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    day = models.CharField(max_length=10)
+    location = models.CharField(max_length=255)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.course.name} : {self.day} ({self.start_time} - {self.end_time}) @ {self.location}"
