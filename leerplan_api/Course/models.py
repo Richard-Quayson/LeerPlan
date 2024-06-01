@@ -182,3 +182,25 @@ class CourseWeeklySchedule(models.Model):
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : Week {self.week_number} ({self.type.capitalize()}) ({self.start_date} - {self.end_date})"
+
+
+class CourseWeeklyAssessment(models.Model):
+    """
+    defines a course weekly assessment model
+
+    Attributes:
+        - course_weekly_schedule: the course weekly schedule the assessment is for
+        - name: the name of the assessment
+        - type: the type of the assessment (e.g. quiz, assignment, etc.)
+        - weight: the weight of the assessment
+        - due_date: the due date of the assessment
+    """
+
+    course_weekly_schedule = models.ForeignKey(CourseWeeklySchedule, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    type = models.CharField(max_length=50)
+    weight = models.FloatField()
+    due_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.course_weekly_schedule.course.name} : {self.name} ({self.type.capitalize()}) ({self.weight}) ({self.due_date})"
