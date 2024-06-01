@@ -204,3 +204,19 @@ class CourseWeeklyAssessment(models.Model):
 
     def __str__(self):
         return f"{self.course_weekly_schedule.course.name} : {self.name} ({self.type.capitalize()}) ({self.weight}) ({self.due_date})"
+    
+
+class CourseWeeklyReading(models.Model):
+    """
+    defines a course weekly reading model
+
+    Attributes:
+        - course_weekly_schedule: the course weekly schedule the reading is for
+        - chapter: the chapter of the reading
+    """
+
+    course_weekly_schedule = models.ForeignKey(CourseWeeklySchedule, on_delete=models.CASCADE)
+    chapter = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.course_weekly_schedule.course.name} : {self.chapter}"
