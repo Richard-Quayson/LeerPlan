@@ -160,3 +160,25 @@ class CourseTextbook(models.Model):
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : {self.title} ({self.type.capitalize()})"
+
+
+class CourseWeeklySchedule(models.Model):
+    """
+    defines a course weekly schedule model
+
+    Attributes:
+        - course: the course the weekly schedule is for
+        - week_number: the week number of the schedule
+        - type: the type of the schedule (e.g. regular, midsem_break, midsem_exam, revision, etc.)
+        - start_date: the start date of the weekly schedule
+        - end_date: the end date of the weekly schedule
+    """
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    week_number = models.IntegerField()
+    type = models.CharField(max_length=100)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return f"{self.course.name} ({self.course.code}) : Week {self.week_number} ({self.type.capitalize()}) ({self.start_date} - {self.end_date})"
