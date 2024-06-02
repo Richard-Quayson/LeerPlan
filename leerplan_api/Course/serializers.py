@@ -3,6 +3,7 @@ import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
     CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
+    CourseWeeklyAssessment,
 )
 from Account.models import University
 from Account.serializers import UniversitySerializer
@@ -461,4 +462,44 @@ class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
 
         if CourseWeeklySchedule.objects.filter(course=attrs['course'], week_number=attrs['week_number']).exists():
             raise serializers.ValidationError("Weekly schedule already exists!")
+        return attrs
+    
+
+class CourseWeeklyAssessmentSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseWeeklyAssessment
+        fields = ['id', 'course_weekly_schedule', 'name', 'type', 'weight', 'due_date']
+
+    def validate_course_weekly_schedule(self, value: int) -> int:
+        if not CourseWeeklySchedule.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course weekly schedule does not exist!")
+        return value
+    
+    def validate_name(self, value: str) -> str:
+        if len(value) > 100:
+            raise serializers.ValidationError("Assessment name too long!")
+        return value
+    
+    def validate_type(self, value: str) -> str:
+        if len(value) > 50:
+            raise serializers.ValidationError("Assessment type too long!")
+        return value
+    
+    def validate_weight(self, value: float) -> float:
+        if value < 0:
+            raise serializers.ValidationError("Invalid weight! Weight must be greater than 0.0")
+        return value
+    
+    def validate_due_date(self, value) -> str:
+        try:
+            value.strftime("%Y-%m-%d")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect date format, should be YYYY-MM-DD")
+        
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if CourseWeeklyAssessment.objects.filter(course_weekly_schedule=attrs['course_weekly_schedule'], name=attrs['name']).exists():
+            raise serializers.ValidationError("Weekly assessment already exists!")
         return attrs
