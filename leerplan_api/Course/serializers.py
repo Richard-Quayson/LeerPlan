@@ -83,6 +83,28 @@ class InstructorSerializer(serializers.ModelSerializer):
         
         return value
     
+    def to_representation(self, instance: Instructor) -> dict:
+        representation = super().to_representation(instance)
+        
+        # add instructor type details to the representation
+        representation['type'] = InstructorType(instance.type).label
+
+        # add instructor courses to the representation
+        representation['courses'] = []
+        courses = CourseInstructor.objects.filter(instructor=instance)
+        for course_taught in courses:
+            representation['courses'].append(
+                {
+                    'id': course_taught.course.id,
+                    'name': course_taught.course.name,
+                    'code': course_taught.course.code,
+                    'university': course_taught.course.university.id,
+                    'semester': course_taught.course.semester.id,
+                }
+            )
+        
+        return representation
+    
 
 class CourseSerializer(serializers.ModelSerializer):
 
