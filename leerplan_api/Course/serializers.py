@@ -210,6 +210,13 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseWeeklyScheduleSerializer(weekly_schedule).data
             representation['weekly_schedules'].append(data)
 
+        # add course weekly readings to the representation
+        representation['weekly_readings'] = []
+        weekly_readings = CourseWeeklyReading.objects.filter(course=instance)
+        for weekly_reading in weekly_readings:
+            data = CourseWeeklyReadingSerializer(weekly_reading).data
+            representation['weekly_readings'].append(data)
+
         return representation
     
 
