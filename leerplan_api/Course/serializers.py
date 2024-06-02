@@ -195,6 +195,13 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseLectureDaySerializer(lecture_day).data
             representation['lecture_days'].append(data)
 
+        # add course textbooks to the representation
+        representation['textbooks'] = []
+        textbooks = CourseTextbook.objects.filter(course=instance)
+        for textbook in textbooks:
+            data = CourseTextbookSerializer(textbook).data
+            representation['textbooks'].append(data)
+
         return representation
     
 
