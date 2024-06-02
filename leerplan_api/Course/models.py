@@ -11,14 +11,16 @@ class Semester(models.Model):
         - name: the name of the semester
         - year: the year of the semester
         - university: the university for the semester
+        - is_completed: whether the semester is completed or not
     """
 
     name = models.CharField(max_length=100)
     year = models.IntegerField()
     university = models.ForeignKey(University, on_delete=models.CASCADE)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.university.name} : {self.name} {self.year}"
+        return f"{self.university.name} : {self.name} {self.year} ({'Completed' if self.is_completed else 'In Progress'})"
 
 
 class InstructorType(models.TextChoices):
@@ -71,6 +73,7 @@ class Course(models.Model):
     semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.university.name} : {self.name} ({self.code})"
