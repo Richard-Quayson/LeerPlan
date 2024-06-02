@@ -4,6 +4,7 @@ from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor,
 )
 from Account.models import University
+from Account.serializers import UniversitySerializer
 from Account.helper import NAME_REGEX, EMAIL_REGEX
 
 
@@ -129,6 +130,18 @@ class CourseSerializer(serializers.ModelSerializer):
     
     def to_representation(self, instance: Course) -> dict:
         representation = super().to_representation(instance)
+
+        # add university details to the representation
+        university =  UniversitySerializer(University.objects.get(id=instance.university.id)).data
+        representation['university'] = university
+
+        # add add course instructors to the representation
+        representation['instructors'] = []
+        instructors = CourseInstructor.objects.filter(course=instance)
+        for instructor in instructors:
+            data = CourseInstructorSerializer(instructor).data
+            representation['instructors'].append(data)
+
         return representation
     
 
