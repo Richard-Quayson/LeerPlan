@@ -167,7 +167,16 @@ class CourseLectureDay(models.Model):
 
     def __str__(self):
         return f"{self.course.name} : {self.day} ({self.start_time} - {self.end_time}) @ {self.location}"
-    
+
+
+class TextbookType(models.TextChoices):
+    """
+    defines the textbook types
+    """
+
+    PRIMARY = 'primary', 'Primary'
+    SECONDARY = 'secondary', 'Secondary'
+
 
 class CourseTextbook(models.Model):
     """
@@ -181,7 +190,7 @@ class CourseTextbook(models.Model):
 
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    type = models.CharField(max_length=100, null=True, blank=True)
+    type = models.CharField(max_length=15, choices=TextbookType.choices, null=True, blank=True)
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : {self.title} ({self.type.capitalize()})"
