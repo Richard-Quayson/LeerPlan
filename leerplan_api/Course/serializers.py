@@ -1,13 +1,14 @@
 from rest_framework import serializers
 import re
 from .models import (
-    Semester, Instructor, InstructorType,
+    Semester, Instructor, InstructorType, Course,
 )
 from Account.models import University
 from Account.helper import NAME_REGEX, EMAIL_REGEX
 
 
 class SemesterSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Semester
         fields = ['id', 'name', 'year', 'university']
@@ -80,3 +81,52 @@ class InstructorSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Instructor type too long!")
         
         return value
+    
+
+class CourseSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Course
+        fields = ['id', 'name', 'code', 'description', 'university', 
+                  'semester', 'date_created', 'date_updated']
+        
+    def validate_name(self, value: str) -> str:
+        if len(value) > 255:
+            raise serializers.ValidationError("Course name too long!")
+        return value
+    
+    def validate_code(self, value: str) -> str:
+        if len(value) > 10:
+            raise serializers.ValidationError("Course code too long!")
+        return value
+    
+    def validate_university(self, value: int) -> int:
+        if not University.objects.filter(id=value).exists():
+            raise serializers.ValidationError("University does not exist!")
+        return value
+    
+    def validate_semester(self, value: int) -> int:
+        if not Semester.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Semester does not exist!")
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        # a course already exists if the course name, code, university, and semester are the same
+        if Course.objects.filter(name=attrs['name'], code=attrs['code'], university=attrs['university'], 
+                                 semester=attrs['semester']).exists():
+            raise serializers.ValidationError("Course already exists!")
+        
+        return attrs
+    
+    def update(self, instance: Course, validated_data: dict) -> Course:
+        instance.name = validated_data.get('name', instance.name)
+        instance.code = validated_data.get('code', instance.code)
+        instance.description = validated_data.get('description', instance.description)
+        instance.university = validated_data.get('university', instance.university)
+        instance.semester = validated_data.get('semester', instance.semester)
+        instance.save()
+        return instance
+    
+    def to_representation(self, instance: Course) -> dict:
+        representation = super().to_representation(instance)
+        return representation
