@@ -44,7 +44,7 @@ class Instructor(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15, unique=True, null=True, blank=True)
-    type = models.CharField(max_length=100, choices=InstructorType.choices)
+    type = models.CharField(max_length=25, choices=InstructorType.choices)
 
     def __str__(self):
         return f"{self.name} ({self.type.capitalize()}) : {self.email} ({self.phone})" 
