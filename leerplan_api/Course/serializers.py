@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import re
 from .models import (
-    Semester, Instructor, InstructorType, Course, CourseInstructor,
+    Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
 )
 from Account.models import University
 from Account.serializers import UniversitySerializer
@@ -206,4 +206,35 @@ class CourseInstructorSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if CourseInstructor.objects.filter(course=attrs['course'], instructor=attrs['instructor']).exists():
             raise serializers.ValidationError("Course instructor already exists!")
+        return attrs
+    
+
+class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseInstructorOfficeHour
+        fields = ['id', 'course_instructor', 'day', 'start_time', 'end_time']
+
+    def validate_course_instructor(self, value: int) -> int:
+        if not CourseInstructor.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course instructor does not exist!")
+        return value
+    
+    def validate_day(self, value: str) -> str:
+        if len(value) > 10:
+            raise serializers.ValidationError("Day too long!")
+        
+        if value not in Day.values:
+            raise serializers.ValidationError("Invalid day!")
+        
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if attrs['start_time'] >= attrs['end_time']:
+            raise serializers.ValidationError("Start time must be less than end time!")
+
+        if CourseInstructorOfficeHour.objects.filter(course_instructor=attrs['course_instructor'], day=attrs['day'],
+                                                    start_time=attrs['start_time'], end_time=attrs['end_time']).exists():
+            raise serializers.ValidationError("Course instructor office hour already exists!")
+        
         return attrs
