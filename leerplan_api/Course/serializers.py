@@ -1,7 +1,7 @@
 from rest_framework import serializers
 import re
 from .models import (
-    Semester, Instructor, InstructorType, Course,
+    Semester, Instructor, InstructorType, Course, CourseInstructor,
 )
 from Account.models import University
 from Account.helper import NAME_REGEX, EMAIL_REGEX
@@ -130,3 +130,25 @@ class CourseSerializer(serializers.ModelSerializer):
     def to_representation(self, instance: Course) -> dict:
         representation = super().to_representation(instance)
         return representation
+    
+
+class CourseInstructorSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseInstructor
+        fields = ['id', 'course', 'instructor']
+
+    def validate_course(self, value: int) -> int:
+        if not Course.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course does not exist!")
+        return value
+    
+    def validate_instructor(self, value: int) -> int:
+        if not Instructor.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Instructor does not exist!")
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if CourseInstructor.objects.filter(course=attrs['course'], instructor=attrs['instructor']).exists():
+            raise serializers.ValidationError("Course instructor already exists!")
+        return attrs
