@@ -2,7 +2,7 @@ from rest_framework import serializers
 import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
-    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType,
+    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
 )
 from Account.models import University
 from Account.serializers import UniversitySerializer
@@ -372,4 +372,54 @@ class CourseTextbookSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if CourseTextbook.objects.filter(course=attrs['course'], title=attrs['title']).exists():
             raise serializers.ValidationError("Textbook already exists!")
+        return attrs
+    
+
+class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseWeeklySchedule
+        fields = ['id', 'course', 'week_number', 'type', 'start_date', 'end_date']
+
+    def validate_course(self, value: int) -> int:
+        if not Course.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course does not exist!")
+        
+        if Course.objects.get(id=value).is_completed:
+            raise serializers.ValidationError("You cannot add weekly schedules to a completed course!")
+        
+        return value
+    
+    def validate_week_number(self, value: int) -> int:
+        if value < 1:
+            raise serializers.ValidationError("Invalid week number! Week number must be greater than 0")
+        return value
+    
+    def validate_type(self, value: str) -> str:
+        if len(value) > 100:
+            raise serializers.ValidationError("Weekly schedule type too long!")
+        return value
+    
+    def validate_start_date(self, value):
+        try:
+            value.strftime("%Y-%m-%d")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect date format, should be YYYY-MM-DD")
+        
+        return value
+    
+    def validate_end_date(self, value):
+        try:
+            value.strftime("%Y-%m-%d")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect date format, should be YYYY-MM-DD")
+        
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if attrs['start_date'] and attrs['end_date'] and attrs['start_date'] >= attrs['end_date']:
+            raise serializers.ValidationError("Start date must be less than end date!")
+
+        if CourseWeeklySchedule.objects.filter(course=attrs['course'], week_number=attrs['week_number']).exists():
+            raise serializers.ValidationError("Weekly schedule already exists!")
         return attrs
