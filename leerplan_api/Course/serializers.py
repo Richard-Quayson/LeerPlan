@@ -188,6 +188,13 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseEvaluationCriteriaSerializer(criteria).data
             representation['evaluation_criteria'].append(data)
 
+        # add course lecture days to the representation
+        representation['lecture_days'] = []
+        lecture_days = CourseLectureDay.objects.filter(course=instance)
+        for lecture_day in lecture_days:
+            data = CourseLectureDaySerializer(lecture_day).data
+            representation['lecture_days'].append(data)
+
         return representation
     
 
