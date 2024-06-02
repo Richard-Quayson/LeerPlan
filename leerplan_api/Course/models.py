@@ -93,7 +93,21 @@ class CourseInstructor(models.Model):
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : {self.instructor.firstname} {self.instructor.lastname} ({self.instructor.type.capitalize()})"
-    
+
+
+class Day(models.TextChoices):
+    """
+    defines the days of the week
+    """
+
+    MONDAY = 'monday', 'Monday'
+    TUESDAY = 'tuesday', 'Tuesday'
+    WEDNESDAY = 'wednesday', 'Wednesday'
+    THURSDAY = 'thursday', 'Thursday'
+    FRIDAY = 'friday', 'Friday'
+    SATURDAY = 'saturday', 'Saturday'
+    SUNDAY = 'sunday', 'Sunday'
+
 
 class CourseInstructorOfficeHour(models.Model):
     """
@@ -107,7 +121,7 @@ class CourseInstructorOfficeHour(models.Model):
     """
 
     course_instructor = models.ForeignKey(CourseInstructor, on_delete=models.CASCADE)
-    day = models.CharField(max_length=10)
+    day = models.CharField(max_length=10, choices=Day.choices)
     start_time = models.TimeField()
     end_time = models.TimeField()
 
