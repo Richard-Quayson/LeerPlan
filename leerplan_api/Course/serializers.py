@@ -208,6 +208,22 @@ class CourseInstructorSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Course instructor already exists!")
         return attrs
     
+    def to_representation(self, instance: CourseInstructor) -> dict:
+        representation = super().to_representation(instance)
+        
+        # add instructor details to the representation
+        instructor = InstructorSerializer(Instructor.objects.get(id=instance.instructor.id)).data
+        representation['instructor'] = instructor
+
+        # add course instructor office hours to the representation
+        representation['office_hours'] = []
+        office_hours = CourseInstructorOfficeHour.objects.filter(course_instructor=instance)
+        for office_hour in office_hours:
+            data = CourseInstructorOfficeHourSerializer(office_hour).data
+            representation['office_hours'].append(data)
+        
+        return representation
+    
 
 class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
 
