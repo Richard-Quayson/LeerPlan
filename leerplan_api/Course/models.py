@@ -95,7 +95,7 @@ class CourseInstructor(models.Model):
         return f"{self.course.name} ({self.course.code}) : {self.instructor.firstname} {self.instructor.lastname} ({self.instructor.type.capitalize()})"
     
 
-class CourseInstructorOfficeHours(models.Model):
+class CourseInstructorOfficeHour(models.Model):
     """
     defines a course instructor office hours model
 
