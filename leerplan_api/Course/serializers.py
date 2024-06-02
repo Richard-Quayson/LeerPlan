@@ -464,6 +464,18 @@ class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Weekly schedule already exists!")
         return attrs
     
+    def to_representation(self, instance: CourseWeeklySchedule) -> dict:
+        representation = super().to_representation(instance)
+
+        # add course weekly assessments to the representation
+        representation['weekly_assessments'] = []
+        weekly_assessments = CourseWeeklyAssessment.objects.filter(course_weekly_schedule=instance)
+        for weekly_assessment in weekly_assessments:
+            data = CourseWeeklyAssessmentSerializer(weekly_assessment).data
+            representation['weekly_assessments'].append(data)
+
+        return representation
+    
 
 class CourseWeeklyAssessmentSerializer(serializers.ModelSerializer):
 
