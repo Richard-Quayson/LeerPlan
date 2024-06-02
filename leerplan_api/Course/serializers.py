@@ -181,6 +181,13 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseInstructorSerializer(instructor).data
             representation['instructors'].append(data)
 
+        # add course evaluation criteria to the representation
+        representation['evaluation_criteria'] = []
+        evaluation_criteria = CourseEvaluationCriteria.objects.filter(course=instance)
+        for criteria in evaluation_criteria:
+            data = CourseEvaluationCriteriaSerializer(criteria).data
+            representation['evaluation_criteria'].append(data)
+
         return representation
     
 
