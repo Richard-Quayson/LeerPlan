@@ -12,7 +12,7 @@ class SemesterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Semester
-        fields = ['id', 'name', 'year', 'university']
+        fields = ['id', 'name', 'year', 'university', 'is_completed']
 
     def validate_name(self, value:  str) -> str:
         if len(value) > 100:
@@ -35,12 +35,19 @@ class SemesterSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if Semester.objects.filter(name=attrs['name'], year=attrs['year'], university=attrs['university']).exists():
             raise serializers.ValidationError("Semester already exists!")
+        
+        # a semester is not completed by default
+        # it is only completed if all courses running in the semester are completed
+        if 'is_completed' not in attrs:
+            attrs['is_completed'] = False
+
         return attrs
     
     def update(self, instance: Semester, validated_data: dict) -> Semester:
         instance.name = validated_data.get('name', instance.name)
         instance.year = validated_data.get('year', instance.year)
         instance.university = validated_data.get('university', instance.university)
+        instance.is_completed = validated_data.get('is_completed', False)
         instance.save()
         return instance
 
@@ -111,7 +118,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = ['id', 'name', 'code', 'description', 'university', 
-                  'semester', 'date_created', 'date_updated']
+                  'semester', 'date_created', 'date_updated', 'is_completed']
         
     def validate_name(self, value: str) -> str:
         if len(value) > 255:
@@ -131,6 +138,10 @@ class CourseSerializer(serializers.ModelSerializer):
     def validate_semester(self, value: int) -> int:
         if not Semester.objects.filter(id=value).exists():
             raise serializers.ValidationError("Semester does not exist!")
+        
+        if Semester.objects.get(id=value).is_completed:
+            raise serializers.ValidationError("You cannot add a course to a completed semester!")
+        
         return value
     
     def validate(self, attrs: dict) -> dict:
@@ -138,6 +149,11 @@ class CourseSerializer(serializers.ModelSerializer):
         if Course.objects.filter(name=attrs['name'], code=attrs['code'], university=attrs['university'], 
                                  semester=attrs['semester']).exists():
             raise serializers.ValidationError("Course already exists!")
+        
+        # a course is not completed by default
+        # it is only completed if the last week of the course is completed
+        if 'is_completed' not in attrs:
+            attrs['is_completed'] = False
         
         return attrs
     
@@ -176,6 +192,10 @@ class CourseInstructorSerializer(serializers.ModelSerializer):
     def validate_course(self, value: int) -> int:
         if not Course.objects.filter(id=value).exists():
             raise serializers.ValidationError("Course does not exist!")
+        
+        if Course.objects.get(id=value).is_completed:
+            raise serializers.ValidationError("You cannot assign an instructor to a completed course!")
+        
         return value
     
     def validate_instructor(self, value: int) -> int:
