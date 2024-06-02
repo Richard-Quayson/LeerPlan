@@ -267,6 +267,22 @@ class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
         
         return value
     
+    def validate_start_time(self, value) -> str:
+        try:
+            value.strftime("%H:%M:%S")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
+        
+        return value
+    
+    def validate_end_time(self, value) -> str:
+        try:
+            value.strftime("%H:%M:%S")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
+        
+        return value
+    
     def validate(self, attrs: dict) -> dict:
         if attrs['start_time'] >= attrs['end_time']:
             raise serializers.ValidationError("Start time must be less than end time!")
@@ -330,6 +346,22 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         
         if value not in Day.values:
             raise serializers.ValidationError("Invalid day!")
+        
+        return value
+    
+    def validate_start_time(self, value) -> str:
+        try:
+            value.strftime("%H:%M:%S")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
+        
+        return value
+    
+    def validate_end_time(self, value) -> str:
+        try:
+            value.strftime("%H:%M:%S")
+        except ValueError:
+            raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
         return value
     
