@@ -2,6 +2,7 @@ from rest_framework import serializers
 import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
+    CourseEvaluationCriteria,
 )
 from Account.models import University
 from Account.serializers import UniversitySerializer
@@ -253,4 +254,35 @@ class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
                                                     start_time=attrs['start_time'], end_time=attrs['end_time']).exists():
             raise serializers.ValidationError("Course instructor office hour already exists!")
         
+        return attrs
+
+
+class CourseEvaluationCriteriaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseEvaluationCriteria
+        fields = ['id', 'course', 'type', 'weight']
+
+    def validate_course(self, value: int) -> int:
+        if not Course.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course does not exist!")
+        
+        if Course.objects.get(id=value).is_completed:
+            raise serializers.ValidationError("You cannot add evaluation criteria to a completed course!")
+        
+        return value
+    
+    def validate_type(self, value: str) -> str:
+        if len(value) > 100:
+            raise serializers.ValidationError("Evaluation criteria type too long!")
+        return value
+    
+    def validate_weight(self, value: float) -> float:
+        if value < 0:
+            raise serializers.ValidationError("Invalid weight! Weight must be greater than 0.0")
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if CourseEvaluationCriteria.objects.filter(course=attrs['course'], type=attrs['type']).exists():
+            raise serializers.ValidationError("Evaluation criteria already exists!")
         return attrs
