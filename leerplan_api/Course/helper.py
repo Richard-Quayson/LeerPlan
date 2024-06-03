@@ -1,3 +1,5 @@
+LECTURER = "lecturer"
+FACULTY_INTERN = "faculty_intern"
 
 
 def course_file_upload_path(instance, filename: str) -> str:
