@@ -5,8 +5,8 @@ from .models import (
     CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, UserCourse,
 )
-from Account.models import University
-from Account.serializers import UniversitySerializer
+from Account.models import University, UserAccount
+from Account.serializers import UniversitySerializer, UserAccountSerializer
 from Account.helper import NAME_REGEX, EMAIL_REGEX
 
 
@@ -591,7 +591,7 @@ class UserCourseSerializer(serializers.ModelSerializer):
         return value
     
     def validate_user(self, value: int) -> int:
-        if not University.objects.filter(id=value).exists():
+        if not UserAccount.objects.filter(id=value).exists():
             raise serializers.ValidationError("User does not exist!")
         return value
     
@@ -599,3 +599,16 @@ class UserCourseSerializer(serializers.ModelSerializer):
         if UserCourse.objects.filter(course=attrs['course'], user=attrs['user']).exists():
             raise serializers.ValidationError("User course already exists!")
         return attrs
+    
+    def to_representation(self, instance: UserCourse) -> dict:
+        representation = super().to_representation(instance)
+        
+        # add user details to the representation
+        user = UserAccountSerializer(UserAccount.objects.get(id=instance.user.id)).data
+        representation['user'] = user
+
+        # add course details to the representation
+        course = CourseSerializer(Course.objects.get(id=instance.course.id)).data
+        representation['course'] = course
+        
+        return representation
