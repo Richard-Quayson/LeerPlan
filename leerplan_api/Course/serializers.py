@@ -6,7 +6,7 @@ from .models import (
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from Account.models import University, UserAccount
-from Account.serializers import UniversitySerializer, UserAccountSerializer
+from Account.serializers import UniversitySerializer, UserDetailsSerializer
 from Account.helper import NAME_REGEX, EMAIL_REGEX
 
 
@@ -626,11 +626,11 @@ class UserCourseSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         
         # add user details to the representation
-        user = UserAccountSerializer(UserAccount.objects.get(id=instance.user.id)).data
+        user = UserDetailsSerializer(UserAccount.objects.get(id=instance.user.id)).data
         representation['user'] = user
 
         # add course details to the representation
-        course = CourseSerializer(Course.objects.get(id=instance.course.id)).data
+        course = CourseSerializer(Course.objects.get(id=instance.course.id), context={'request': self.context.get('request')}).data
         representation['course'] = course
         
         return representation
