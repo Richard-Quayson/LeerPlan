@@ -102,6 +102,11 @@ class CreateCourseView(APIView):
         textbooks = CreateCourseView.create_course_textbooks(course_data['textbooks'], course)
         if isinstance(textbooks, Response):
             return textbooks
+        
+        # create course weekly schedule
+        weekly_schedule = CreateCourseView.create_course_weekly_schedule(course_data['weekly_schedule'], course)
+        if isinstance(weekly_schedule, Response):
+            return weekly_schedule
 
 
     @staticmethod
@@ -298,7 +303,6 @@ class CreateCourseView(APIView):
         return lecture_days
     
 
-
     @staticmethod
     def create_course_textbooks(textbooks_data: list, course: Course) -> list:
         """create course textbooks"""
@@ -324,3 +328,140 @@ class CreateCourseView(APIView):
             textbooks.append(textbook)
         
         return textbooks
+    
+
+    @staticmethod
+    def create_course_weekly_schedule(weekly_schedule_data: list, course: Course) -> list:
+        """create course weekly schedule"""
+
+        weekly_schedule = list()
+        for week_data in weekly_schedule_data:
+            # create weekly schedule
+            week = CreateCourseView.create_week(week_data, course)
+            if isinstance(week, Response):
+                return week
+            
+            weekly_schedule.append(week)
+        
+        return weekly_schedule
+    
+
+    @staticmethod
+    def create_week(week_data: dict, course: Course) -> CourseWeeklySchedule:
+        """create week for a course"""
+
+        try:
+            week = CourseWeeklySchedule.objects.get(
+                course=course,
+                week_number=week_data['week_number']
+            )
+        except CourseWeeklySchedule.DoesNotExist:
+            week_serializer = CourseWeeklyScheduleSerializer(data={
+                'course': course.id,
+                'week_number': week_data['week_number'],
+                'type': week_data['type'].capitalize(),
+                'start_date': week_data['start_date'] if 'start_date' in week_data else None,
+                'end_date': week_data['end_date'] if 'end_date' in week_data else None
+            })
+            if week_serializer.is_valid():
+                week = week_serializer.save()
+            else:
+                return Response(week_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        # create weekly assessments
+        assessments = CreateCourseView.create_assessments(week_data['assessments'], week)
+        if isinstance(assessments, Response):
+            return assessments
+        
+        # create weekly topics
+        topics = CreateCourseView.create_topics(week_data['topics'], week)
+        if isinstance(topics, Response):
+            return topics
+        
+        # create weekly readings
+        readings = CreateCourseView.create_readings(week_data['readings'], week)
+        if isinstance(readings, Response):
+            return readings
+        
+        return week
+    
+
+    @staticmethod
+    def create_assessments(assessments_data: list, week: CourseWeeklySchedule) -> list:
+        """create weekly assessments"""
+
+        assessments = list()
+        for assessment_data in assessments_data:
+            try:
+                assessment = CourseWeeklyAssessment.objects.get(
+                    week=week,
+                    name=assessment_data['name']
+                )
+            except CourseWeeklyAssessment.DoesNotExist:
+                assessment_serializer = CourseWeeklyAssessmentSerializer(data={
+                    'week': week.id,
+                    'name': assessment_data['name'],
+                    'type': assessment_data['type'],
+                    'weight': assessment_data['weight'] if 'weight' in assessment_data else None,
+                    'due_date': assessment_data['due_date'] if 'due_date' in assessment_data else None
+                })
+                if assessment_serializer.is_valid():
+                    assessment = assessment_serializer.save()
+                else:
+                    return Response(assessment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            assessments.append(assessment)
+        
+        return assessments
+    
+
+    @staticmethod
+    def create_topics(topics_data: list, week: CourseWeeklySchedule) -> list:
+        """create weekly topics"""
+
+        topics = list()
+        for topic_data in topics_data:
+            try:
+                topic = CourseWeeklyTopic.objects.get(
+                    week=week,
+                    title=topic_data['title']
+                )
+            except CourseWeeklyTopic.DoesNotExist:
+                topic_serializer = CourseWeeklyTopicSerializer(data={
+                    'week': week.id,
+                    'title': topic_data['title']
+                })
+                if topic_serializer.is_valid():
+                    topic = topic_serializer.save()
+                else:
+                    return Response(topic_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            topics.append(topic)
+        
+        return topics
+    
+
+    @staticmethod
+    def create_readings(readings_data: list, week: CourseWeeklySchedule) -> list:
+        """create weekly readings"""
+
+        readings = list()
+        for reading_data in readings_data:
+            try:
+                reading = CourseWeeklyReading.objects.get(
+                    week=week,
+                    chapter=reading_data['chapter']
+                )
+            except CourseWeeklyReading.DoesNotExist:
+                reading_serializer = CourseWeeklyReadingSerializer(data={
+                    'week': week.id,
+                    'chapter': reading_data['chapter']
+                })
+                if reading_serializer.is_valid():
+                    reading = reading_serializer.save()
+                else:
+                    return Response(reading_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            readings.append(reading)
+        
+        return readings
