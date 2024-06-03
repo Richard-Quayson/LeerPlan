@@ -210,20 +210,6 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseWeeklyScheduleSerializer(weekly_schedule).data
             representation['weekly_schedules'].append(data)
 
-        # add course weekly readings to the representation
-        representation['weekly_readings'] = []
-        weekly_readings = CourseWeeklyReading.objects.filter(course=instance)
-        for weekly_reading in weekly_readings:
-            data = CourseWeeklyReadingSerializer(weekly_reading).data
-            representation['weekly_readings'].append(data)
-
-        # add course weekly topics to the representation
-        representation['weekly_topics'] = []
-        weekly_topics = CourseWeeklyTopic.objects.filter(course=instance)
-        for weekly_topic in weekly_topics:
-            data = CourseWeeklyTopicSerializer(weekly_topic).data
-            representation['weekly_topics'].append(data)
-
         return representation
     
 
@@ -487,6 +473,20 @@ class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
         for weekly_assessment in weekly_assessments:
             data = CourseWeeklyAssessmentSerializer(weekly_assessment).data
             representation['weekly_assessments'].append(data)
+
+        # add course weekly readings to the representation
+        representation['weekly_readings'] = []
+        weekly_readings = CourseWeeklyReading.objects.filter(course_weekly_schedule=instance)
+        for weekly_reading in weekly_readings:
+            data = CourseWeeklyReadingSerializer(weekly_reading).data
+            representation['weekly_readings'].append(data)
+
+        # add course weekly topics to the representation
+        representation['weekly_topics'] = []
+        weekly_topics = CourseWeeklyTopic.objects.filter(course_weekly_schedule=instance)
+        for weekly_topic in weekly_topics:
+            data = CourseWeeklyTopicSerializer(weekly_topic).data
+            representation['weekly_topics'].append(data)
 
         return representation
     
