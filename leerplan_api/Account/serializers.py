@@ -121,26 +121,6 @@ class UserAccountSerializer(serializers.ModelSerializer):
         model = UserAccount
         fields = ['id', 'firstname', 'lastname', 'email', 'profile_picture', 'date_joined']
 
-    def to_representation(self, instance: UserAccount) -> dict:
-        """
-            method to serialize the user account data
-        """
-
-        user_data = super().to_representation(instance)
-        
-        # retrieve user's universities
-        universities = UserUniversity.objects.filter(user=instance)
-        user_data["universities"] = [university.university.name for university in universities]
-
-        # retrieve user's routines
-        user_data["routines"] = []
-        routines = UserRoutine.objects.filter(user=instance)
-        for routine in routines:
-            data = UserRoutineSerializer(routine).data
-            user_data["routines"].append(data)
-        
-        return user_data
-
 
 class AccountLoginSerializer(TokenObtainPairSerializer):
     """
@@ -370,3 +350,30 @@ class UserRoutineSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError("Start time must be less than end time!")
         
         return attrs
+    
+
+class UserDetailsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserAccount
+        fields = ["id", "firstname", "lastname", "email", "profile_picture", "date_joined"]
+
+    def to_representation(self, instance: UserAccount) -> dict:
+        """
+            method to serialize the user account data
+        """
+
+        user_data = super().to_representation(instance)
+        
+        # retrieve user's universities
+        universities = UserUniversity.objects.filter(user=instance)
+        user_data["universities"] = [university.university.name for university in universities]
+
+        # retrieve user's routines
+        user_data["routines"] = []
+        routines = UserRoutine.objects.filter(user=instance)
+        for routine in routines:
+            data = UserRoutineSerializer(routine, context={"request": self.context["request"]}).data
+            user_data["routines"].append(data)
+        
+        return user_data
