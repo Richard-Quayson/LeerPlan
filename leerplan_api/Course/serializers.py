@@ -19,9 +19,6 @@ class SemesterSerializer(serializers.ModelSerializer):
     def validate_name(self, value:  str) -> str:
         if len(value) > 100:
             raise serializers.ValidationError("Semester name too long! Maximum of 100 characters allowed.")
-        
-        if not re.match(NAME_REGEX, value):
-            raise serializers.ValidationError("Invalid university name!")
         return value
     
     def validate_year(self, value: int) -> int:
