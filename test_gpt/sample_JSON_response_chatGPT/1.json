@@ -171,7 +171,7 @@
               "title": "Syllabus & course overview, Reading histograms, Statistics student data collection, Intro to R, Generating histograms in R"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Homework 1",
@@ -190,7 +190,7 @@
               "title": "Measures of variability, Testing the empirical Rule using R, Simulating random samples in R, Introduction to statistics project datasets"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Homework 2",
@@ -214,7 +214,7 @@
               "title": "Probability activity: empirical probability, Association vs causation, Intro to codebooks & research questions, Probability practice"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": []
         },
         {
@@ -227,7 +227,7 @@
               "title": "Probability activity: conditional probability, What is primary source literature?, Using library databases, Install Zotero, Intro to Zotero citation management software"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Project Assignment 2",
@@ -246,7 +246,7 @@
               "title": "Probability activity: Discrete and Binomial probability distributions, Probability distributions in R"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Homework 3",
@@ -265,7 +265,7 @@
               "title": "GenderSort Activity, Continuous probability distributions, The normal distribution, research questions, variables & personal codebooks, Codebook construction"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": []
         },
         {
@@ -278,7 +278,7 @@
               "title": "Simulation: The Central Limit Theorem, Data Management for the project, Revision"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Mid-semester Exam",
@@ -297,7 +297,7 @@
               "title": "Point estimation and confidence interval estimation in R, Univariate and bivariate graphing for the project"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Homework 4",
@@ -321,7 +321,7 @@
               "title": "Hypothesis testing activity, Activity: sharing and interpreting bivariate graphs for the project"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Homework 5",
@@ -345,7 +345,7 @@
               "title": "What goes into an academic poster?, Academic Poster Peer Review"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": [
             {
               "name": "Project Assignment 5",
@@ -364,7 +364,7 @@
               "title": "Project consultation, Submission of Final Project Report"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": []
         },
         {
@@ -377,7 +377,7 @@
               "title": "Academic Poster Presentation"
             }
           ],
-          "reading": [],
+          "readings": [],
           "assessments": []
         }
       ]      

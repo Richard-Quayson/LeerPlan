@@ -141,7 +141,7 @@ class Assessment(BaseModel):
 
 class Week(BaseModel):
     """
-    defines the week number, start date, end date, type, topics, reading, and assessments for a course
+    defines the week number, start date, end date, type, topics, readings, and assessments for a course
 
     Attributes:
         - week_number (int): the week number of the course (e.g. 1, 2, 3)
@@ -149,7 +149,7 @@ class Week(BaseModel):
         - end_date (Optional[date]): the end date of the week (e.g. 2024-02-01, 2024-02-15)
         - type (str): the type of the week (e.g. revision, midsem, lecture)
         - topics (List[Topic]): the topics for the week (e.g. [Topic, Topic, ...])
-        - reading (List[Chapter]): the reading for the week (e.g. [Chapter, Chapter, ...])
+        - readings (List[Chapter]): the readings for the week (e.g. [Chapter, Chapter, ...])
         - assessments (Optional[List[Assessment]]): the assessments for the week (e.g. [Assessment, Assessment, ...])
     """
 
@@ -158,7 +158,7 @@ class Week(BaseModel):
     end_date: Optional[date]
     type: str
     topics: List[Topic]
-    reading: List[Chapter]
+    readings: List[Chapter]
     assessments: Optional[List[Assessment]]
 
 
