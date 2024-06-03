@@ -18,7 +18,7 @@ from .serializers import (
     CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
-from Account.models import University
+from Account.models import UserAccount
 from Account.permissions import IsAccessTokenBlacklisted
 
 
@@ -33,7 +33,7 @@ class CreateCourseView(APIView):
         for course_file in course_files:
             # read course data
             course_data = CreateCourseView.read_course_json(course_file)
-            
+
             # populate course data
             response = CreateCourseView.populate_course_data(course_data)
             # return response if error
@@ -44,6 +44,11 @@ class CreateCourseView(APIView):
             course_file = CreateCourseView.create_course_file(course_file, response['semester'], response['course'])
             if isinstance(course_file, Response):
                 return course_file
+            
+            # create user course object
+            user_course = CreateCourseView.create_user_course(request.user, response['course'])
+            if isinstance(user_course, Response):
+                return user_course
         
         return Response(status=status.HTTP_201_CREATED)
 
@@ -500,3 +505,22 @@ class CreateCourseView(APIView):
                 return Response(course_file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
         return course_file
+    
+
+    @staticmethod
+    def create_user_course(user:UserAccount, course: Course):
+        """create user course object"""
+
+        try:
+            user_course = UserCourse.objects.get(user=user, course=course)
+        except UserCourse.DoesNotExist:
+            user_course_serializer = UserCourseSerializer(data={
+                'user': user.id,
+                'course': course.id
+            })
+            if user_course_serializer.is_valid():
+                user_course = user_course_serializer.save()
+            else:
+                return Response(user_course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        return user_course
