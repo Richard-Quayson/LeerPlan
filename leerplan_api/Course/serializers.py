@@ -3,7 +3,7 @@ import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
     CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
-    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic,
+    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, UserCourse,
 )
 from Account.models import University
 from Account.serializers import UniversitySerializer
@@ -572,4 +572,30 @@ class CourseWeeklyTopicSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if CourseWeeklyTopic.objects.filter(course_weekly_schedule=attrs['course_weekly_schedule'], topic=attrs['topic']).exists():
             raise serializers.ValidationError("Weekly topic already exists!")
+        return attrs
+
+
+class UserCourseSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserCourse
+        fields = ['id', 'course', 'user']
+
+    def validate_course(self, value: int) -> int:
+        if not Course.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course does not exist!")
+        
+        if Course.objects.get(id=value).is_completed:
+            raise serializers.ValidationError("You cannot assign a user to a completed course!")
+        
+        return value
+    
+    def validate_user(self, value: int) -> int:
+        if not University.objects.filter(id=value).exists():
+            raise serializers.ValidationError("User does not exist!")
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if UserCourse.objects.filter(course=attrs['course'], user=attrs['user']).exists():
+            raise serializers.ValidationError("User course already exists!")
         return attrs
