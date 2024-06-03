@@ -21,24 +21,6 @@ class Semester(models.Model):
 
     def __str__(self):
         return f"{self.university.name} : {self.name} {self.year} ({'Completed' if self.is_completed else 'In Progress'})"
-    
-
-class CourseFile(models.Model):
-    """
-    defines a course file model
-
-    Attributes:
-        - semester: the semester the file is uploaded for
-        - file: the file to be uploaded
-        - date_uploaded: the date the file was uploaded
-    """
-
-    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
-    file = models.FileField(upload_to=course_file_upload_path)
-    date_uploaded = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.semester.name} {self.semester.year} : {self.file.name} ({self.date_uploaded})"
 
 
 class InstructorType(models.TextChoices):
@@ -288,6 +270,26 @@ class CourseWeeklyTopic(models.Model):
 
     def __str__(self):
         return f"{self.course_weekly_schedule.course.name} : {self.topic}"
+    
+
+class CourseFile(models.Model):
+    """
+    defines a course file model
+
+    Attributes:
+        - semester: the semester the file is uploaded for
+        - course: the course the file is uploaded for
+        - file: the file to be uploaded
+        - date_uploaded: the date the file was uploaded
+    """
+
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    file = models.FileField(upload_to=course_file_upload_path)
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.course.name} ({self.semester.year}) : {self.file.name} ({self.date_uploaded})"
     
 
 class UserCourse(models.Model):
