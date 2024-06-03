@@ -131,6 +131,14 @@ class UserAccountSerializer(serializers.ModelSerializer):
         # retrieve user's universities
         universities = UserUniversity.objects.filter(user=instance)
         user_data["universities"] = [university.university.name for university in universities]
+
+        # retrieve user's routines
+        user_data["routines"] = []
+        routines = UserRoutine.objects.filter(user=instance)
+        for routine in routines:
+            data = UserRoutineSerializer(routine).data
+            user_data["routines"].append(data)
+        
         return user_data
 
 
