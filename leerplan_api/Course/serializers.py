@@ -591,9 +591,10 @@ class CourseFileSerializer(serializers.ModelSerializer):
                 
         return value
     
+    # change to PDF after integrating AI
     def validate_file(self, value) -> str:
-        if not value.name.endswith('.pdf'):
-            raise serializers.ValidationError("Invalid file format! Only pdf files allowed.")
+        if not value.name.endswith('.json'):
+            raise serializers.ValidationError("Invalid file format! Only JSON files allowed.")
         return value
 
 
