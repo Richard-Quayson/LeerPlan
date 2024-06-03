@@ -36,7 +36,7 @@ class CreateCourseView(APIView):
             course_data = CreateCourseView.read_course_json(course_file)
 
             # populate course data
-            response = CreateCourseView.populate_course_data(course_data)
+            response = CreateCourseView.populate_course_data(course_data, request)
             # return response if error
             if isinstance(response, Response):
                 return response
@@ -75,7 +75,7 @@ class CreateCourseView(APIView):
         """populate course data across all course models"""
 
         # create semester
-        semester = CreateCourseView.create_semester(course_data['semester'])
+        semester = CreateCourseView.create_semester(course_data['semester'], request)
         if isinstance(semester, Response):
             return semester
         
@@ -130,7 +130,7 @@ class CreateCourseView(APIView):
 
 
     @staticmethod
-    def create_semester(semester_data: dict) -> Semester:
+    def create_semester(semester_data: dict, request: Request) -> Semester:
         """create semester if it does not exist"""
 
         try:
@@ -139,6 +139,7 @@ class CreateCourseView(APIView):
             semester_serializer = SemesterSerializer(data={
                 'name': semester_data['name'],
                 'year': semester_data['year'],
+                'university': request.data['university']
             })
             if semester_serializer.is_valid():
                 semester = semester_serializer.save()
