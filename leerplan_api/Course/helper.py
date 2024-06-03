@@ -1,7 +1,6 @@
-from .models import CourseFile
 
 
-def course_file_upload_path(instance: CourseFile, filename: str) -> str:
+def course_file_upload_path(instance, filename: str) -> str:
     """
     returns the file path for a course file
     """
