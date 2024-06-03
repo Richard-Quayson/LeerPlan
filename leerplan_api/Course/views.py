@@ -1,4 +1,4 @@
-from rest_framework import generics, status
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -7,15 +7,15 @@ from rest_framework.request import Request
 import json
 
 from .models import (
-    Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
-    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
-    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, UserCourse,
+    Semester, Instructor, Course, CourseInstructor, CourseInstructorOfficeHour,
+    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, CourseWeeklySchedule,
+    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from .serializers import (
     SemesterSerializer, InstructorSerializer, CourseSerializer, CourseInstructorSerializer,
     CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseLectureDaySerializer,
     CourseTextbookSerializer, CourseWeeklyScheduleSerializer, CourseWeeklyAssessmentSerializer,
-    CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, UserCourseSerializer,
+    CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
 from Account.models import University
@@ -31,16 +31,19 @@ class CreateCourseView(APIView):
 
         # create course for every course file
         for course_file in course_files:
-
             # read course data
             course_data = CreateCourseView.read_course_json(course_file)
-
+            
             # populate course data
             response = CreateCourseView.populate_course_data(course_data)
-
             # return response if error
             if isinstance(response, Response):
                 return response
+            
+            # create course file object
+            course_file = CreateCourseView.create_course_file(course_file, response['semester'], response['course'])
+            if isinstance(course_file, Response):
+                return course_file
         
         return Response(status=status.HTTP_201_CREATED)
 
@@ -57,6 +60,7 @@ class CreateCourseView(APIView):
             course_data = json.loads(course_data)
 
         return course_data
+
 
     @staticmethod
     def populate_course_data(course_data: dict, request: Request):
@@ -107,6 +111,14 @@ class CreateCourseView(APIView):
         weekly_schedule = CreateCourseView.create_course_weekly_schedule(course_data['weekly_schedule'], course)
         if isinstance(weekly_schedule, Response):
             return weekly_schedule
+        
+        # prepare dictionary for course file object
+        response = {
+            'semester': semester,
+            'course': course
+        }
+
+        return response
 
 
     @staticmethod
@@ -465,3 +477,26 @@ class CreateCourseView(APIView):
             readings.append(reading)
         
         return readings
+    
+
+    @staticmethod
+    def create_course_file(course_file: InMemoryUploadedFile, semester: Semester, course: Course):
+        """create course file object"""
+
+        try:
+            course_file = CourseFile.objects.get(
+                semester=semester,
+                course=course
+            )
+        except CourseFile.DoesNotExist:
+            course_file_serializer = CourseFileSerializer(data={
+                'semester': semester.id,
+                'course': course.id,
+                'file': course_file
+            })
+            if course_file_serializer.is_valid():
+                course_file = course_file_serializer.save()
+            else:
+                return Response(course_file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        return course_file
