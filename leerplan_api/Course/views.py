@@ -92,6 +92,11 @@ class CreateCourseView(APIView):
         evaluation_criteria = CreateCourseView.create_course_evaluation_criteria(course_data['evaluation_criteria'], course)
         if isinstance(evaluation_criteria, Response):
             return evaluation_criteria
+        
+        # create lecture days
+        lecture_days = CreateCourseView.create_lecture_days(course_data['lecture_days'], course)
+        if isinstance(lecture_days, Response):
+            return lecture_days
 
 
     @staticmethod
@@ -255,3 +260,34 @@ class CreateCourseView(APIView):
             course_evaluation_criteria.append(criteria)
         
         return course_evaluation_criteria
+    
+
+    @staticmethod
+    def create_lecture_days(lecture_days_data: list, course: Course) -> list:
+        """create lecture days"""
+
+        lecture_days = list()
+        for lecture_day_data in lecture_days_data:
+            try:
+                lecture_day = CourseLectureDay.objects.get(
+                    course=course,
+                    day=lecture_day_data['day'],
+                    start_time=lecture_day_data['time']['start_time'],
+                    end_time=lecture_day_data['time']['end_time']
+                )
+            except CourseLectureDay.DoesNotExist:
+                lecture_day_serializer = CourseLectureDaySerializer(data={
+                    'course': course.id,
+                    'day': lecture_day_data['day'],
+                    'location': lecture_day_data['location'],
+                    'start_time': lecture_day_data['time']['start_time'],
+                    'end_time': lecture_day_data['time']['end_time'],
+                })
+                if lecture_day_serializer.is_valid():
+                    lecture_day = lecture_day_serializer.save()
+                else:
+                    return Response(lecture_day_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            lecture_days.append(lecture_day)
+        
+        return lecture_days
