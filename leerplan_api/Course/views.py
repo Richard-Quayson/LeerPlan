@@ -87,6 +87,11 @@ class CreateCourseView(APIView):
         faculty_interns = CreateCourseView.create_instructors(course_data['faculty_interns'], course, FACULTY_INTERN)
         if isinstance(faculty_interns, Response):
             return faculty_interns
+        
+        # create course evaluation criteria
+        evaluation_criteria = CreateCourseView.create_course_evaluation_criteria(course_data['evaluation_criteria'], course)
+        if isinstance(evaluation_criteria, Response):
+            return evaluation_criteria
 
 
     @staticmethod
@@ -223,3 +228,30 @@ class CreateCourseView(APIView):
             course_instructor_office_hours.append(office_hour)
 
         return course_instructor_office_hours
+    
+
+    @staticmethod
+    def create_course_evaluation_criteria(evaluation_criteria_data: list, course: Course) -> list:
+        """create course evaluation criteria"""
+
+        course_evaluation_criteria = list()
+        for criteria_data in evaluation_criteria_data:
+            try:
+                criteria = CourseEvaluationCriteria.objects.get(
+                    course=course,
+                    type=criteria_data['type']
+                )
+            except CourseEvaluationCriteria.DoesNotExist:
+                criteria_serializer = CourseEvaluationCriteriaSerializer(data={
+                    'course': course.id,
+                    'type': criteria_data['type'],
+                    'weight': criteria_data['weight']
+                })
+                if criteria_serializer.is_valid():
+                    criteria = criteria_serializer.save()
+                else:
+                    return Response(criteria_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            course_evaluation_criteria.append(criteria)
+        
+        return course_evaluation_criteria
