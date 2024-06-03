@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from rest_framework.request import Request
 import json
-
 
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
@@ -17,6 +17,8 @@ from .serializers import (
     CourseTextbookSerializer, CourseWeeklyScheduleSerializer, CourseWeeklyAssessmentSerializer,
     CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, UserCourseSerializer,
 )
+from .helper import LECTURER, FACULTY_INTERN
+from Account.models import University
 from Account.permissions import IsAccessTokenBlacklisted
 
 
@@ -54,7 +56,7 @@ class CreateCourseView(APIView):
         return course_data
 
     @staticmethod
-    def populate_course_data(course_data: dict):
+    def populate_course_data(course_data: dict, request: Request):
         """populate course data across all course models"""
 
         # create semester
@@ -62,6 +64,16 @@ class CreateCourseView(APIView):
         if isinstance(semester, Response):
             return semester
         
+        # create course
+        course = CreateCourseView.create_course(
+            name=course_data['name'],
+            code=course_data['code'],
+            description=course_data['description'] if 'description' in course_data else None,
+            university=request.data['university'],
+            semester=semester
+        )
+        if isinstance(course, Response):
+            return course
 
 
     @staticmethod
@@ -77,6 +89,29 @@ class CreateCourseView(APIView):
             })
             if semester_serializer.is_valid():
                 semester = semester_serializer.save()
-                return semester
             else:
                 return Response(semester_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+        return semester
+
+
+    @staticmethod
+    def create_course(code: str, name: str, description: str, university: int, semester: Semester) -> Course:
+        """create course if it does not exist"""
+
+        try:
+            course = Course.objects.get(code=code, name=name, university=university, semester=semester)
+        except Course.DoesNotExist:
+            course_serializer = CourseSerializer(data={
+                'code': code,
+                'name': name,
+                'description': description,
+                'university': university,
+                'semester': semester
+            })
+            if course_serializer.is_valid():
+                course = course_serializer.save()
+            else:
+                return Response(course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        return course
