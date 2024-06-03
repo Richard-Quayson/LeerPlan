@@ -171,6 +171,10 @@ class CourseSerializer(serializers.ModelSerializer):
     def to_representation(self, instance: Course) -> dict:
         representation = super().to_representation(instance)
 
+        # add semester details to the representation
+        semester = SemesterSerializer(Semester.objects.get(id=instance.semester.id)).data
+        representation['semester'] = semester
+
         # add university details to the representation
         university =  UniversitySerializer(University.objects.get(id=instance.university.id)).data
         representation['university'] = university
