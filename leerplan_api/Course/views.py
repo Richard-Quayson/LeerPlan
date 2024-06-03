@@ -78,10 +78,15 @@ class CreateCourseView(APIView):
         if isinstance(course, Response):
             return course
         
-        # create instructors
-        instructors = CreateCourseView.create_instructors(course_data['instructors'], course)
+        # create instructors (lecturers)
+        instructors = CreateCourseView.create_instructors(course_data['instructors'], course, LECTURER)
         if isinstance(instructors, Response):
             return instructors
+        
+        # create instructors (faculty interns)
+        faculty_interns = CreateCourseView.create_instructors(course_data['faculty_interns'], course, FACULTY_INTERN)
+        if isinstance(faculty_interns, Response):
+            return faculty_interns
 
 
     @staticmethod
@@ -126,7 +131,7 @@ class CreateCourseView(APIView):
     
 
     @staticmethod
-    def create_instructors(instructors_data: list, course: Course) -> list:
+    def create_instructors(instructors_data: list, course: Course, instructor_type: str) -> list:
         """create instructors if they do not exist"""
 
         instructors = list()
@@ -134,7 +139,7 @@ class CreateCourseView(APIView):
             try:
                 instructor = Instructor.objects.get(email=instructor_data['email'])
             except Instructor.DoesNotExist:
-                instructor = CreateCourseView.create_instructor(instructor_data, LECTURER, course)
+                instructor = CreateCourseView.create_instructor(instructor_data, instructor_type, course)
                 if isinstance(instructor, Response):
                     return instructor
             
