@@ -1,6 +1,6 @@
 from django.db import models
-from Account.models import University
-from Account.models import UserAccount
+from .helper import course_file_upload_path
+from Account.models import University, UserAccount
 
 
 class Semester(models.Model):
@@ -21,6 +21,24 @@ class Semester(models.Model):
 
     def __str__(self):
         return f"{self.university.name} : {self.name} {self.year} ({'Completed' if self.is_completed else 'In Progress'})"
+    
+
+class CourseFile(models.Model):
+    """
+    defines a course file model
+
+    Attributes:
+        - semester: the semester the file is uploaded for
+        - file: the file to be uploaded
+        - date_uploaded: the date the file was uploaded
+    """
+
+    semester = models.ForeignKey(Semester, on_delete=models.CASCADE)
+    file = models.FileField(upload_to=course_file_upload_path)
+    date_uploaded = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.semester.name} {self.semester.year} : {self.file.name} ({self.date_uploaded})"
 
 
 class InstructorType(models.TextChoices):
