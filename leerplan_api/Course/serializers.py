@@ -3,7 +3,7 @@ import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
     CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
-    CourseWeeklyAssessment, CourseWeeklyReading,
+    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic,
 )
 from Account.models import University
 from Account.serializers import UniversitySerializer
@@ -543,4 +543,26 @@ class CourseWeeklyReadingSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if CourseWeeklyReading.objects.filter(course_weekly_schedule=attrs['course_weekly_schedule'], chapter=attrs['chapter']).exists():
             raise serializers.ValidationError("Weekly reading already exists!")
-        return attrs        
+        return attrs
+    
+
+class CourseWeeklyTopicSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseWeeklyTopic
+        fields = ['id', 'course_weekly_schedule', 'topic']
+    
+    def validate_course_weekly_schedule(self, value: int) -> int:
+        if not CourseWeeklySchedule.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course weekly schedule does not exist!")
+        return value
+    
+    def validate_topic(self, value: str) -> str:
+        if len(value) > 100:
+            raise serializers.ValidationError("Topic name too long!")
+        return value
+    
+    def validate(self, attrs: dict) -> dict:
+        if CourseWeeklyTopic.objects.filter(course_weekly_schedule=attrs['course_weekly_schedule'], topic=attrs['topic']).exists():
+            raise serializers.ValidationError("Weekly topic already exists!")
+        return attrs
