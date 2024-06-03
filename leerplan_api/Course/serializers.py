@@ -3,7 +3,7 @@ import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
     CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
-    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, UserCourse,
+    CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from Account.models import University, UserAccount
 from Account.serializers import UniversitySerializer, UserAccountSerializer
@@ -577,6 +577,24 @@ class CourseWeeklyTopicSerializer(serializers.ModelSerializer):
         if CourseWeeklyTopic.objects.filter(course_weekly_schedule=attrs['course_weekly_schedule'], topic=attrs['topic']).exists():
             raise serializers.ValidationError("Weekly topic already exists!")
         return attrs
+    
+
+class CourseFileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseFile
+        fields = ['id', 'course', 'file', 'date_uploaded']
+    
+    def validate_course(self, value: int) -> int:
+        if not Course.objects.filter(id=value).exists():
+            raise serializers.ValidationError("Course does not exist!")
+                
+        return value
+    
+    def validate_file(self, value) -> str:
+        if not value.name.endswith('.pdf'):
+            raise serializers.ValidationError("Invalid file format! Only pdf files allowed.")
+        return value
 
 
 class UserCourseSerializer(serializers.ModelSerializer):
