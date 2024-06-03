@@ -30,6 +30,7 @@ class CreateCourseView(APIView):
         course_files = request.FILES.getlist('course_files')
 
         # create course for every course file
+        user_courses = list()
         for course_file in course_files:
             # read course data
             course_data = CreateCourseView.read_course_json(course_file)
@@ -49,8 +50,10 @@ class CreateCourseView(APIView):
             user_course = CreateCourseView.create_user_course(request.user, response['course'])
             if isinstance(user_course, Response):
                 return user_course
+            
+            user_courses.append(user_course)
         
-        return Response(status=status.HTTP_201_CREATED)
+        return Response(UserCourseSerializer(user_courses, many=True).data, status=status.HTTP_201_CREATED)
 
 
     @staticmethod
