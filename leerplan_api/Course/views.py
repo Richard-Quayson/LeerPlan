@@ -93,10 +93,15 @@ class CreateCourseView(APIView):
         if isinstance(evaluation_criteria, Response):
             return evaluation_criteria
         
-        # create lecture days
+        # create course lecture days
         lecture_days = CreateCourseView.create_lecture_days(course_data['lecture_days'], course)
         if isinstance(lecture_days, Response):
             return lecture_days
+        
+        # create course textbooks
+        textbooks = CreateCourseView.create_course_textbooks(course_data['textbooks'], course)
+        if isinstance(textbooks, Response):
+            return textbooks
 
 
     @staticmethod
@@ -291,3 +296,31 @@ class CreateCourseView(APIView):
             lecture_days.append(lecture_day)
         
         return lecture_days
+    
+
+
+    @staticmethod
+    def create_course_textbooks(textbooks_data: list, course: Course) -> list:
+        """create course textbooks"""
+
+        textbooks = list()
+        for textbook_data in textbooks_data:
+            try:
+                textbook = CourseTextbook.objects.get(
+                    course=course,
+                    title=textbook_data['title']
+                )
+            except CourseTextbook.DoesNotExist:
+                textbook_serializer = CourseTextbookSerializer(data={
+                    'course': course.id,
+                    'title': textbook_data['title'],
+                    'type': textbook_data['type'].lower() if 'type' in textbook_data else None
+                })
+                if textbook_serializer.is_valid():
+                    textbook = textbook_serializer.save()
+                else:
+                    return Response(textbook_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            textbooks.append(textbook)
+        
+        return textbooks
