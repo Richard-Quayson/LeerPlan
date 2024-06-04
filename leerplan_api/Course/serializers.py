@@ -583,7 +583,7 @@ class CourseFileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseFile
-        fields = ['id', 'course', 'file', 'date_uploaded']
+        fields = ['id', 'semester', 'course', 'file', 'date_uploaded']
     
     def validate_course(self, value: Course) -> Course:
         if not Course.objects.filter(id=value.id).exists():
@@ -629,10 +629,6 @@ class UserCourseSerializer(serializers.ModelSerializer):
     
     def to_representation(self, instance: UserCourse) -> dict:
         representation = super().to_representation(instance)
-        
-        # add user details to the representation
-        user = UserDetailsSerializer(UserAccount.objects.get(id=instance.user.id)).data
-        representation['user'] = user
 
         # add course details to the representation
         course = CourseSerializer(Course.objects.get(id=instance.course.id), context={'request': self.context.get('request')}).data
