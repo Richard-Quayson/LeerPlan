@@ -381,8 +381,8 @@ class CreateCourseView(APIView):
                 'course': course.id,
                 'week_number': week_data['week_number'],
                 'type': week_data['type'].capitalize(),
-                'start_date': week_data['start_date'] if 'start_date' in week_data else None,
-                'end_date': week_data['end_date'] if 'end_date' in week_data else None
+                'start_date': week_data['start_date'] if 'start_date' in week_data else "",
+                'end_date': week_data['end_date'] if 'end_date' in week_data else ""
             })
             if week_serializer.is_valid():
                 week = week_serializer.save()
@@ -424,7 +424,7 @@ class CreateCourseView(APIView):
                     'name': assessment_data['name'],
                     'type': assessment_data['type'],
                     'weight': assessment_data['weight'] if 'weight' in assessment_data else 0.0,
-                    'due_date': assessment_data['due_date'] if 'due_date' in assessment_data else None
+                    'due_date': assessment_data['due_date'] if 'due_date' in assessment_data else ""
                 })
                 if assessment_serializer.is_valid():
                     assessment = assessment_serializer.save()
