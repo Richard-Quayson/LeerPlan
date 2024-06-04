@@ -173,7 +173,7 @@ class CreateCourseView(APIView):
                 'code': code,
                 'name': name,
                 'description': description,
-                'university': university.id,
+                'university': university,
                 'semester': semester.id
             })
             if course_serializer.is_valid():
@@ -541,3 +541,16 @@ class CreateCourseView(APIView):
                 return Response(user_course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         return user_course
+
+
+class DeleteCourseView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def delete(self, request, course_id):
+        try:
+            course = Course.objects.get(id=course_id)
+        except Course.DoesNotExist:
+            return Response({"error": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        
+        course.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
