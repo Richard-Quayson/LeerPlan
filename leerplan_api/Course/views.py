@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework.request import Request
+from io import BytesIO
 import json
 
 from .models import (
@@ -32,6 +33,10 @@ class CreateCourseView(APIView):
         # create course for every course file
         user_courses = list()
         for course_file in course_files:
+            course_file_name = course_file.name
+            course_file_content_type = course_file.content_type
+            course_file_size = course_file.size
+
             # read course data
             course_data = CreateCourseView.read_course_json(course_file)
 
@@ -42,7 +47,15 @@ class CreateCourseView(APIView):
                 return response
             
             # create course file object
-            course_file = CreateCourseView.create_course_file(course_file, response['semester'], response['course'])
+            in_memory_file = InMemoryUploadedFile(
+                file=BytesIO(course_data),
+                field_name='file',
+                name=course_file_name,
+                content_type=course_file_content_type,
+                size=course_file_size,
+                charset=None
+            )
+            course_file = CreateCourseView.create_course_file(in_memory_file, response['semester'], response['course'])
             if isinstance(course_file, Response):
                 return course_file
             
@@ -53,7 +66,7 @@ class CreateCourseView(APIView):
             
             user_courses.append(user_course)
         
-        return Response(UserCourseSerializer(user_courses, many=True).data, status=status.HTTP_201_CREATED)
+        return Response(UserCourseSerializer(user_courses, many=True, context={'request': request}).data, status=status.HTTP_201_CREATED)
 
 
     @staticmethod
@@ -64,8 +77,6 @@ class CreateCourseView(APIView):
         with course_file.open('r') as file:
             # read course data
             course_data = file.read()
-            course_file.close()
-            course_data = json.loads(course_data)
 
         return course_data
 
@@ -73,6 +84,8 @@ class CreateCourseView(APIView):
     @staticmethod
     def populate_course_data(course_data: dict, request: Request):
         """populate course data across all course models"""
+
+        course_data = json.loads(course_data)
 
         # create semester
         semester = CreateCourseView.create_semester(course_data['semester'], request)
