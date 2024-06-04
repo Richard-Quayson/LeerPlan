@@ -11,7 +11,7 @@ from .models import UserAccount, AccessTokenBlacklist, University, UserUniversit
 from .serializers import (
     AccountRegistrationSerializer, AccountLoginSerializer, UserAccountSerializer,
     UpdateAccountSerializer, ChangePasswordSerializer, UniversitySerializer,
-    UserUniversitySerializer, UserRoutineSerializer)
+    UserUniversitySerializer, UserRoutineSerializer, UserDetailsSerializer)
 from .permissions import IsAccessTokenBlacklisted
 
 
@@ -66,7 +66,7 @@ class AccountView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
     def get(self, request):
-        serializer = UserAccountSerializer(request.user, context={"request": request})
+        serializer = UserDetailsSerializer(request.user, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     
