@@ -250,7 +250,7 @@ class CourseWeeklyReading(models.Model):
     """
 
     course_weekly_schedule = models.ForeignKey(CourseWeeklySchedule, on_delete=models.CASCADE)
-    chapter = models.CharField(max_length=100)
+    chapter = models.CharField(max_length=255)
 
     def __str__(self):
         return f"{self.course_weekly_schedule.course.name} : {self.chapter}"
@@ -266,7 +266,7 @@ class CourseWeeklyTopic(models.Model):
     """
 
     course_weekly_schedule = models.ForeignKey(CourseWeeklySchedule, on_delete=models.CASCADE)
-    topic = models.CharField(max_length=100)
+    topic = models.CharField(max_length=255)
 
     def __str__(self):
         return f"{self.course_weekly_schedule.course.name} : {self.topic}"
