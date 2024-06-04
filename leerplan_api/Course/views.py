@@ -423,7 +423,7 @@ class CreateCourseView(APIView):
                     'course_weekly_schedule': week.id,
                     'name': assessment_data['name'],
                     'type': assessment_data['type'],
-                    'weight': assessment_data['weight'] if 'weight' in assessment_data else None,
+                    'weight': assessment_data['weight'] if 'weight' in assessment_data else 0.0,
                     'due_date': assessment_data['due_date'] if 'due_date' in assessment_data else None
                 })
                 if assessment_serializer.is_valid():
