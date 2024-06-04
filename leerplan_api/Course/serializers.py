@@ -443,7 +443,8 @@ class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
     
     def validate_start_date(self, value):
         try:
-            value.strftime("%Y-%m-%d")
+            if value:
+                value.strftime("%Y-%m-%d")
         except ValueError:
             raise serializers.ValidationError("Incorrect date format, should be YYYY-MM-DD")
         
@@ -451,7 +452,8 @@ class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
     
     def validate_end_date(self, value):
         try:
-            value.strftime("%Y-%m-%d")
+            if value:
+                value.strftime("%Y-%m-%d")
         except ValueError:
             raise serializers.ValidationError("Incorrect date format, should be YYYY-MM-DD")
         
@@ -520,7 +522,8 @@ class CourseWeeklyAssessmentSerializer(serializers.ModelSerializer):
     
     def validate_due_date(self, value) -> str:
         try:
-            value.strftime("%Y-%m-%d")
+            if value:
+                value.strftime("%Y-%m-%d")
         except ValueError:
             raise serializers.ValidationError("Incorrect date format, should be YYYY-MM-DD")
         
