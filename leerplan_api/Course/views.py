@@ -160,8 +160,8 @@ class CreateCourseView(APIView):
                 'code': code,
                 'name': name,
                 'description': description,
-                'university': university,
-                'semester': semester
+                'university': university.id,
+                'semester': semester.id
             })
             if course_serializer.is_valid():
                 course = course_serializer.save()
@@ -245,14 +245,14 @@ class CreateCourseView(APIView):
             try:
                 office_hour = CourseInstructorOfficeHour.objects.get(
                     course_instructor=course_instructor,
-                    day=office_hour_data['day'],
+                    day=office_hour_data['day'].lower(),
                     start_time=office_hour_data['time']['start_time'],
                     end_time=office_hour_data['time']['end_time']
                 )
             except CourseInstructorOfficeHour.DoesNotExist:
                 office_hour_serializer = CourseInstructorOfficeHourSerializer(data={
                     'course_instructor': course_instructor.id,
-                    'day': office_hour_data['day'],
+                    'day': office_hour_data['day'].lower(),
                     'start_time': office_hour_data['time']['start_time'],
                     'end_time': office_hour_data['time']['end_time'],
                 })
@@ -302,14 +302,14 @@ class CreateCourseView(APIView):
             try:
                 lecture_day = CourseLectureDay.objects.get(
                     course=course,
-                    day=lecture_day_data['day'],
+                    day=lecture_day_data['day'].lower(),
                     start_time=lecture_day_data['time']['start_time'],
                     end_time=lecture_day_data['time']['end_time']
                 )
             except CourseLectureDay.DoesNotExist:
                 lecture_day_serializer = CourseLectureDaySerializer(data={
                     'course': course.id,
-                    'day': lecture_day_data['day'],
+                    'day': lecture_day_data['day'].lower(),
                     'location': lecture_day_data['location'],
                     'start_time': lecture_day_data['time']['start_time'],
                     'end_time': lecture_day_data['time']['end_time'],
@@ -415,12 +415,12 @@ class CreateCourseView(APIView):
         for assessment_data in assessments_data:
             try:
                 assessment = CourseWeeklyAssessment.objects.get(
-                    week=week,
+                    course_weekly_schedule=week,
                     name=assessment_data['name']
                 )
             except CourseWeeklyAssessment.DoesNotExist:
                 assessment_serializer = CourseWeeklyAssessmentSerializer(data={
-                    'week': week.id,
+                    'course_weekly_schedule': week.id,
                     'name': assessment_data['name'],
                     'type': assessment_data['type'],
                     'weight': assessment_data['weight'] if 'weight' in assessment_data else None,
@@ -444,12 +444,12 @@ class CreateCourseView(APIView):
         for topic_data in topics_data:
             try:
                 topic = CourseWeeklyTopic.objects.get(
-                    week=week,
+                    course_weekly_schedule=week,
                     title=topic_data['title']
                 )
             except CourseWeeklyTopic.DoesNotExist:
                 topic_serializer = CourseWeeklyTopicSerializer(data={
-                    'week': week.id,
+                    'course_weekly_schedule': week.id,
                     'title': topic_data['title']
                 })
                 if topic_serializer.is_valid():
@@ -470,12 +470,12 @@ class CreateCourseView(APIView):
         for reading_data in readings_data:
             try:
                 reading = CourseWeeklyReading.objects.get(
-                    week=week,
+                    course_weekly_schedule=week,
                     chapter=reading_data['chapter']
                 )
             except CourseWeeklyReading.DoesNotExist:
                 reading_serializer = CourseWeeklyReadingSerializer(data={
-                    'week': week.id,
+                    'course_weekly_schedule': week.id,
                     'chapter': reading_data['chapter']
                 })
                 if reading_serializer.is_valid():
