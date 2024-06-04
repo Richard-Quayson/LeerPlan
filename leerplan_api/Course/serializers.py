@@ -588,7 +588,11 @@ class CourseFileSerializer(serializers.ModelSerializer):
     def validate_course(self, value: Course) -> Course:
         if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
-                
+        return value
+    
+    def validate_semester(self, value: Semester) -> Semester:
+        if not Semester.objects.filter(id=value.id).exists():
+            raise serializers.ValidationError("Semester does not exist!")
         return value
     
     # change to PDF after integrating AI
