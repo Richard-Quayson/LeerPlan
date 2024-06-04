@@ -544,7 +544,7 @@ class CourseWeeklyReadingSerializer(serializers.ModelSerializer):
         return value
     
     def validate_chapter(self, value: str) -> str:
-        if len(value) > 100:
+        if len(value) > 255:
             raise serializers.ValidationError("Chapter name too long!")
         return value
     
@@ -566,7 +566,7 @@ class CourseWeeklyTopicSerializer(serializers.ModelSerializer):
         return value
     
     def validate_topic(self, value: str) -> str:
-        if len(value) > 100:
+        if len(value) > 255:
             raise serializers.ValidationError("Topic name too long!")
         return value
     
