@@ -445,12 +445,12 @@ class CreateCourseView(APIView):
             try:
                 topic = CourseWeeklyTopic.objects.get(
                     course_weekly_schedule=week,
-                    title=topic_data['title']
+                    topic=topic_data['title']
                 )
             except CourseWeeklyTopic.DoesNotExist:
                 topic_serializer = CourseWeeklyTopicSerializer(data={
                     'course_weekly_schedule': week.id,
-                    'title': topic_data['title']
+                    'topic': topic_data['title']
                 })
                 if topic_serializer.is_valid():
                     topic = topic_serializer.save()
