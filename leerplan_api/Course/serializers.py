@@ -26,8 +26,8 @@ class SemesterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Invalid year!")
         return value
     
-    def validate_university(self, value: int) -> int:
-        if not University.objects.filter(id=value).exists():
+    def validate_university(self, value: University) -> University:
+        if not University.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("University does not exist!")
         return value
     
@@ -129,16 +129,16 @@ class CourseSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Course code too long!")
         return value
     
-    def validate_university(self, value: int) -> int:
-        if not University.objects.filter(id=value).exists():
+    def validate_university(self, value: University) -> University:
+        if not University.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("University does not exist!")
         return value
     
-    def validate_semester(self, value: int) -> int:
-        if not Semester.objects.filter(id=value).exists():
+    def validate_semester(self, value: Semester) -> Semester:
+        if not Semester.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Semester does not exist!")
         
-        if Semester.objects.get(id=value).is_completed:
+        if Semester.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot add a course to a completed semester!")
         
         return value
@@ -220,17 +220,17 @@ class CourseInstructorSerializer(serializers.ModelSerializer):
         model = CourseInstructor
         fields = ['id', 'course', 'instructor']
 
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
-        if Course.objects.get(id=value).is_completed:
+        if Course.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot assign an instructor to a completed course!")
         
         return value
     
-    def validate_instructor(self, value: int) -> int:
-        if not Instructor.objects.filter(id=value).exists():
+    def validate_instructor(self, value: Instructor) -> Instructor:
+        if not Instructor.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Instructor does not exist!")
         return value
     
@@ -262,8 +262,8 @@ class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
         model = CourseInstructorOfficeHour
         fields = ['id', 'course_instructor', 'day', 'start_time', 'end_time']
 
-    def validate_course_instructor(self, value: int) -> int:
-        if not CourseInstructor.objects.filter(id=value).exists():
+    def validate_course_instructor(self, value: CourseInstructor) -> CourseInstructor:
+        if not CourseInstructor.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course instructor does not exist!")
         return value
     
@@ -309,11 +309,11 @@ class CourseEvaluationCriteriaSerializer(serializers.ModelSerializer):
         model = CourseEvaluationCriteria
         fields = ['id', 'course', 'type', 'weight']
 
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
-        if Course.objects.get(id=value).is_completed:
+        if Course.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot add evaluation criteria to a completed course!")
         
         return value
@@ -340,11 +340,11 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         model = CourseLectureDay
         fields = ['id', 'course', 'day', 'location', 'start_time', 'end_time']
     
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
-        if Course.objects.get(id=value).is_completed:
+        if Course.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot add lecture days to a completed course!")
         
         return value
@@ -391,11 +391,11 @@ class CourseTextbookSerializer(serializers.ModelSerializer):
         model = CourseTextbook
         fields = ['id', 'course', 'title', 'type']
 
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
-        if Course.objects.get(id=value).is_completed:
+        if Course.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot add textbooks to a completed course!")
         
         return value
@@ -422,11 +422,11 @@ class CourseWeeklyScheduleSerializer(serializers.ModelSerializer):
         model = CourseWeeklySchedule
         fields = ['id', 'course', 'week_number', 'type', 'start_date', 'end_date']
 
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
-        if Course.objects.get(id=value).is_completed:
+        if Course.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot add weekly schedules to a completed course!")
         
         return value
@@ -498,8 +498,8 @@ class CourseWeeklyAssessmentSerializer(serializers.ModelSerializer):
         model = CourseWeeklyAssessment
         fields = ['id', 'course_weekly_schedule', 'name', 'type', 'weight', 'due_date']
 
-    def validate_course_weekly_schedule(self, value: int) -> int:
-        if not CourseWeeklySchedule.objects.filter(id=value).exists():
+    def validate_course_weekly_schedule(self, value: CourseWeeklySchedule) -> CourseWeeklySchedule:
+        if not CourseWeeklySchedule.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course weekly schedule does not exist!")
         return value
     
@@ -538,8 +538,8 @@ class CourseWeeklyReadingSerializer(serializers.ModelSerializer):
         model = CourseWeeklyReading
         fields = ['id', 'course_weekly_schedule', 'chapter']
     
-    def validate_course_weekly_schedule(self, value: int) -> int:
-        if not CourseWeeklySchedule.objects.filter(id=value).exists():
+    def validate_course_weekly_schedule(self, value: CourseWeeklySchedule) -> CourseWeeklySchedule:
+        if not CourseWeeklySchedule.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course weekly schedule does not exist!")
         return value
     
@@ -560,8 +560,8 @@ class CourseWeeklyTopicSerializer(serializers.ModelSerializer):
         model = CourseWeeklyTopic
         fields = ['id', 'course_weekly_schedule', 'topic']
     
-    def validate_course_weekly_schedule(self, value: int) -> int:
-        if not CourseWeeklySchedule.objects.filter(id=value).exists():
+    def validate_course_weekly_schedule(self, value: CourseWeeklySchedule) -> CourseWeeklySchedule:
+        if not CourseWeeklySchedule.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course weekly schedule does not exist!")
         return value
     
@@ -582,8 +582,8 @@ class CourseFileSerializer(serializers.ModelSerializer):
         model = CourseFile
         fields = ['id', 'course', 'file', 'date_uploaded']
     
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
                 
         return value
@@ -601,17 +601,17 @@ class UserCourseSerializer(serializers.ModelSerializer):
         model = UserCourse
         fields = ['id', 'course', 'user']
 
-    def validate_course(self, value: int) -> int:
-        if not Course.objects.filter(id=value).exists():
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
-        if Course.objects.get(id=value).is_completed:
+        if Course.objects.get(id=value.id).is_completed:
             raise serializers.ValidationError("You cannot assign a user to a completed course!")
         
         return value
     
-    def validate_user(self, value: int) -> int:
-        if not UserAccount.objects.filter(id=value).exists():
+    def validate_user(self, value: UserAccount) -> UserAccount:
+        if not UserAccount.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("User does not exist!")
         return value
     
