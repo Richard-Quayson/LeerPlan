@@ -1,8 +1,8 @@
-import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
-import { ACCESS_TOKEN, REFRESH_TOKEN } from './constants';
-import { GENERATE_ACCESS_TOKEN_URL } from './api_urls';
-import api from './api';
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from "./constants";
+import { GENERATE_ACCESS_TOKEN_URL } from "./api_urls";
+import api from "./api";
 
 export const isAuthenticated = async () => {
   const token = Cookies.get(ACCESS_TOKEN);
