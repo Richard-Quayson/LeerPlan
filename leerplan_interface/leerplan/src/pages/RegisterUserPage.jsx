@@ -71,10 +71,11 @@ const RegisterUserPage = () => {
 
       try {
         const response = await api.post(REGISTER_USER_URL, {
-          first_name: firstname,
-          last_name: lastname,
+          firstname: firstname,
+          lastname: lastname,
           email: email,
           password: password,
+          confirm_password: confirmPassword,
         });
 
         if (response.status === 201) {
@@ -92,8 +93,9 @@ const RegisterUserPage = () => {
           setMessageColor("text-red-500");
         }
       } catch (error) {
+        console.error(error);
         const errorMessage =
-          error.response?.data?.detail ||
+          "A " + error.response?.data?.email ||
           error.response?.data?.error ||
           error.response?.data?.non_field_errors ||
           "Registration failed";
@@ -140,11 +142,7 @@ const RegisterUserPage = () => {
             <form className="space-y-2" onSubmit={handleSubmit}>
               {/* FORM MESSAGES */}
               {message && (
-                <div
-                  className={`text-center font-semibold ${messageColor}`}
-                >
-                  {message}
-                </div>
+                <div className={`text-center ${messageColor}`}>{message}</div>
               )}
               {/* FIRSTNAME INPUT */}
               <div className="relative">
