@@ -217,7 +217,7 @@ function LoginPage() {
                 href={REGISTER_ACCOUNT_ROUTE}
                 className="text-yellow-800 font-semibold"
               >
-                Register
+                Register here
               </a>
             </p>
           </div>
