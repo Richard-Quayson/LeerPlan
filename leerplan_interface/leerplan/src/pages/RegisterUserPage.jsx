@@ -132,7 +132,7 @@ const RegisterUserPage = () => {
           </div>
           {registrationSuccess ? (
             <div className="text-center">
-              <img src={SuccessGif} alt="Success" className="mx-auto w-20" />
+              <img src={SuccessGif} alt="Success" className="mx-auto w-32" />
               <p className="text-green-500 font-semibold">
                 Account created successfully! Redirecting to login...
               </p>
