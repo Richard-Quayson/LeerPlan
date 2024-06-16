@@ -112,7 +112,7 @@ function LoginPage() {
       <div className="flex flex-col items-center justify-center min-h-screen bg-yellow-800 bg-opacity-20 p-4">
         <div className="bg-white bg-opacity-75 p-8 rounded-lg shadow-lg w-full max-w-md">
           {/* APP LOGO */}
-          <div className="text-center mb-2">
+          <div className="text-center">
             <img
               src={LeerPlanLogo}
               alt="LeerPlan Logo"
