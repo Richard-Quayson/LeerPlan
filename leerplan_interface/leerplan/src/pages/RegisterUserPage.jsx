@@ -93,7 +93,6 @@ const RegisterUserPage = () => {
           setMessageColor("text-red-500");
         }
       } catch (error) {
-        console.error(error);
         const errorMessage =
           "A " + error.response?.data?.email ||
           error.response?.data?.error ||
