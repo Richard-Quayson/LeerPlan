@@ -147,7 +147,7 @@ function LoginPage() {
                         ? "border-green-500"
                         : "border-red-500"
                       : "border-gray-300"
-                  } focus:outline-none focus:ring-2`}
+                  } focus:outline-none`}
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <img
@@ -179,7 +179,7 @@ function LoginPage() {
                         ? "border-green-500"
                         : "border-red-500"
                       : "border-gray-300"
-                  } focus:outline-none focus:ring-2`}
+                  } focus:outline-none`}
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <img
@@ -200,7 +200,7 @@ function LoginPage() {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className={`px-4 py-1 bg-white border-2 border-yellow-800 text-gray-700 font-semibold rounded-md shadow-sm hover:bg-yellow-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-800 focus:ring-offset-2 ${
+                className={`px-4 py-1 bg-white border-2 border-yellow-800 text-gray-700 font-semibold rounded-md shadow-sm hover:bg-yellow-800 hover:text-white focus:outline-none focus:ring-red-800 focus:ring-offset-2 ${
                   isLoading && "opacity-50 cursor-not-allowed"
                 }`} // disable button and add opacity when isLoading is true
                 disabled={isLoading} // disable button when isLoading is true
