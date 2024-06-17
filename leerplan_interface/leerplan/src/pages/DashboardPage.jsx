@@ -3,7 +3,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
 import { CURRENT_USER_ID } from "../utility/constants";
 import { USER_DETAILS_URL } from "../utility/api_urls";
-import api from "../utility/api"; 
+import api from "../utility/api";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
