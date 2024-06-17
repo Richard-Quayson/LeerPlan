@@ -1,0 +1,1 @@
+web: python manage.py migrate && gunicorn leerplan_api/learplan_api.wsgi
