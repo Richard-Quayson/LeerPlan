@@ -116,7 +116,7 @@ function LoginPage() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* FORM MESSAGES */}
             {message && (
-              <div className={`text-center mb-4 font-semibold ${messageColor}`}>
+              <div className={`text-center mb-4 ${messageColor}`}>
                 {message}
               </div>
             )}
