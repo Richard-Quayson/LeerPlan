@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import { Navigate } from "react-router-dom";
-import { NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX } from "../utility/constants";
+import Cookies from "js-cookie";
 import api from "../utility/api";
 import { REGISTER_USER_URL } from "../utility/api_urls";
 import { LOGIN_ROUTE } from "../utility/routes";
+import {
+  NAME_REGEX,
+  EMAIL_REGEX,
+  PASSWORD_REGEX,
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+} from "../utility/constants";
 import LeerPlanLogo from "../assets/images/leerplanlogo.png";
 import NameInputIcon from "../assets/icons/NameInput.png";
 import EmailInputIcon from "../assets/icons/EmailInput.png";
@@ -70,6 +77,11 @@ const RegisterUserPage = () => {
       setIsLoading(true);
 
       try {
+        // clear local storage and cookies
+        localStorage.clear();
+        Cookies.remove(ACCESS_TOKEN);
+        Cookies.remove(REFRESH_TOKEN);
+
         const response = await api.post(REGISTER_USER_URL, {
           firstname: firstname,
           lastname: lastname,
@@ -94,10 +106,11 @@ const RegisterUserPage = () => {
         }
       } catch (error) {
         const errorMessage =
-          "A " + error.response?.data?.email ||
+          `A ${error.response?.data?.email || ""}` ||
           error.response?.data?.error ||
           error.response?.data?.non_field_errors ||
           "Registration failed";
+
         setMessage(errorMessage);
         setMessageColor("text-red-500");
       }
