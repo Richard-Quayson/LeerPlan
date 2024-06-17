@@ -44,6 +44,11 @@ function LoginPage() {
       setIsLoading(true);
 
       try {
+        // clear local storage and cookies
+        localStorage.clear();
+        Cookies.remove(ACCESS_TOKEN);
+        Cookies.remove(REFRESH_TOKEN);
+        
         const response = await api.post(LOGIN_USER_URL, {
           email: email,
           password: password,
