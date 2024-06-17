@@ -322,6 +322,12 @@ class UserUniversitySerializer(serializers.ModelSerializer):
         
         return attrs
     
+    def to_representation(self, instance: UserUniversity) -> dict:
+        data = super().to_representation(instance)
+        data["user"] = instance.user.id
+        data["university"] = UniversitySerializer(instance.university).data
+        return data
+    
 
 class UserRoutineSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField("get_user")
