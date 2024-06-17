@@ -3,6 +3,7 @@ Django==5.0.5
 django-cors-headers==4.3.1
 djangorestframework==3.15.1
 djangorestframework-simplejwt==5.3.1
+gunicorn
 pillow==10.3.0
 PyJWT==2.8.0
 python-dotenv==1.0.1
