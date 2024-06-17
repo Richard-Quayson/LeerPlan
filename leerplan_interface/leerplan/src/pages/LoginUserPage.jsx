@@ -52,7 +52,7 @@ function LoginPage() {
         const data = response.data;
 
         if (response.status === 200) {
-          const { access, refresh, first_login } = data;
+          const { access, refresh } = data;
 
           // save JWT tokens to cookies with 1 week expiry
           const expireDate = new Date();
@@ -68,15 +68,9 @@ function LoginPage() {
           setMessage("Login successful");
           setMessageColor("text-green-500");
 
-          if (first_login) {
-            setTimeout(() => {
-              setRedirectToChangePassword(true);
-            }, 1000);
-          } else {
-            setTimeout(() => {
-              setRedirectToDashboard(true);
-            }, 1000);
-          }
+          setTimeout(() => {
+            setRedirectToDashboard(true);
+          }, 1000);
         } else {
           setMessage(data.detail || data.error || "Login failed");
           setMessageColor("text-red-500");
