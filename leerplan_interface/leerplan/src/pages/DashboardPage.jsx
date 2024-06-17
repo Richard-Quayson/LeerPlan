@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
 import { CURRENT_USER_ID } from "../utility/constants";
 import { USER_DETAILS_URL } from "../utility/api_urls";
+import { LOGIN_ROUTE } from "../utility/routes";
 import api from "../utility/api";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -31,7 +34,7 @@ const DashboardPage = () => {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    navigate(LOGIN_ROUTE);
   }
 
   console.log(user);
