@@ -37,8 +37,6 @@ const DashboardPage = () => {
     navigate(LOGIN_ROUTE);
   }
 
-  console.log(user);
-
   return (
     <ProtectedRoute>
       <div className="h-screen overflow-y-auto flex">
