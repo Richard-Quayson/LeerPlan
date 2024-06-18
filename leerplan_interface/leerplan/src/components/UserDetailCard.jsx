@@ -16,6 +16,17 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
     setUniversities(user.universities);
   }, [user]);
 
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   return (
     <div
       className={`fixed inset-0 z-50 flex transition-transform duration-300 ${
@@ -59,8 +70,8 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
               alt="Date Joined"
               className="w-6 h-6 mr-2"
             />
-            <div>
-              Joined on {new Date(user.date_joined).toLocaleDateString()}
+            <div className="text-sm">
+              Joined on {formatDate(user.date_joined)}
             </div>
           </div>
         </div>
