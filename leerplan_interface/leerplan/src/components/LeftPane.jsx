@@ -4,7 +4,7 @@ import UserProfileCard from "./UserProfileCard";
 
 const LeftPane = ({ user }) => {
   return (
-    <div className="flex flex-col items-start p-4">
+    <div className="left-pane">
       <img src={LeerPlanLogo} alt="LeerPlan Logo" className="w-16 h-16" />
       <hr className="border-gray-400 w-full mb-2" />
       <hr className="border-gray-400 w-full" />
