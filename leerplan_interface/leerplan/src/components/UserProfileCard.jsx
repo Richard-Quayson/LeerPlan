@@ -13,7 +13,6 @@ import ProfilePicture from "../assets/images/defaultprofile.png";
 const UserProfileCard = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddUniversityModalOpen, setIsAddUniversityModalOpen] = useState(false);
-  const [isAddExistingUniversityModalOpen, setIsAddExistingUniversityModalOpen] = useState(false);
   const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
 
@@ -23,15 +22,15 @@ const UserProfileCard = ({ user }) => {
         const response = await api.get(USER_UNIVERSITY_LIST_URL);
         setUniversities(response.data);
 
-        // check if preferred university name is set in local storage
+        // Check if preferred university name is set in local storage
         const preferredUniversityName = localStorage.getItem(PREFERRED_UNIVERSITY_NAME);
         const preferredUniversityId = localStorage.getItem(PREFERRED_UNIVERSITY_ID);
 
-        // if preferred university is set, use it
+        // If preferred university is set, use it
         if (preferredUniversityName && preferredUniversityId) {
           setSelectedUniversity(preferredUniversityName);
         } else {
-          // if user has universities and preferred university is not set, pre-select the first one
+          // If user has universities and preferred university is not set, pre-select the first one
           if (response.data.length > 0) {
             setSelectedUniversity(response.data[0].university.name);
             localStorage.setItem(PREFERRED_UNIVERSITY_NAME, response.data[0].university.name);
@@ -51,7 +50,7 @@ const UserProfileCard = ({ user }) => {
     const selectedUni = universities.find((uni) => uni.university.id === selectedId);
 
     if (selectedUni) {
-      setSelectedUniversity(selectedUni.name);
+      setSelectedUniversity(selectedUni.university.name);
       localStorage.setItem(PREFERRED_UNIVERSITY_NAME, selectedUni.university.name);
       localStorage.setItem(PREFERRED_UNIVERSITY_ID, selectedUni.university.id);
     } else {
@@ -63,8 +62,38 @@ const UserProfileCard = ({ user }) => {
 
   const handleUniversityAdded = () => {
     setIsAddUniversityModalOpen(false);
-    setIsAddExistingUniversityModalOpen(false);
-    fetchUniversities();
+    window.location.reload();
+  };
+
+  const renderUniversitySection = () => {
+    if (universities.length === 0) {
+      // First State: No universities added
+      return (
+        <div
+          className="text-blue-500 cursor-pointer"
+          onClick={() => setIsAddUniversityModalOpen(true)}
+        >
+          Add University
+        </div>
+      );
+    } else if (universities.length === 1) {
+      // Second State: One university added
+      return (
+        <div className="text-blue-500 cursor-default">
+          {universities[0].university.name}
+        </div>
+      );
+    } else {
+      // Third State: Two or more universities added
+      return (
+        <div
+          className="text-blue-500 cursor-pointer"
+          onClick={() => setIsModalOpen(true)}
+        >
+          {universities[0].university.name}
+        </div>
+      );
+    }
   };
 
   return (
@@ -78,12 +107,7 @@ const UserProfileCard = ({ user }) => {
         <div className="font-semibold text-gray-700">
           {user.firstname} {user.lastname}
         </div>
-        <div
-          className="text-blue-500 cursor-pointer"
-          onClick={() => setIsModalOpen(true)}
-        >
-          {selectedUniversity || (user.universities.length > 0 ? user.universities[0].name : "Add University")}
-        </div>
+        {renderUniversitySection()}
       </div>
 
       <SetUniversityModal
@@ -96,19 +120,7 @@ const UserProfileCard = ({ user }) => {
           setIsModalOpen(false);
           setIsAddUniversityModalOpen(true);
         }}
-        onAddExistingUniversityClick={() => {
-          setIsModalOpen(false);
-          setIsAddExistingUniversityModalOpen(true);
-        }}
       />
-
-      {user.universities.length === 0 && (
-        <AddExistingUniversityModal
-          isOpen={isAddExistingUniversityModalOpen}
-          onClose={() => setIsAddExistingUniversityModalOpen(false)}
-          onUniversityAdded={handleUniversityAdded}
-        />
-      )}
 
       <AddNewUniversityModal
         isOpen={isAddUniversityModalOpen}
