@@ -39,10 +39,10 @@ const UserProfileCard = ({ user }) => {
         );
 
         if (preferredUniversityName && preferredUniversityId) {
-          setSelectedUniversity(preferredUniversityName);
+          setSelectedUniversity(preferredUniversityId);
         } else {
           if (response.data.length > 0) {
-            setSelectedUniversity(response.data[0].university.name);
+            setSelectedUniversity(response.data[0].university.id.toString());
             localStorage.setItem(
               PREFERRED_UNIVERSITY_NAME,
               response.data[0].university.name
@@ -62,23 +62,7 @@ const UserProfileCard = ({ user }) => {
   }, []);
 
   const handleUniversityChange = (event) => {
-    const selectedId = parseInt(event.target.value);
-    const selectedUni = universities.find(
-      (uni) => uni.university.id === selectedId
-    );
-
-    if (selectedUni) {
-      setSelectedUniversity(selectedUni.university.name);
-      localStorage.setItem(
-        PREFERRED_UNIVERSITY_NAME,
-        selectedUni.university.name
-      );
-      localStorage.setItem(PREFERRED_UNIVERSITY_ID, selectedUni.university.id);
-    } else {
-      setSelectedUniversity("");
-      localStorage.removeItem(PREFERRED_UNIVERSITY_NAME);
-      localStorage.removeItem(PREFERRED_UNIVERSITY_ID);
-    }
+    setSelectedUniversity(event.target.value);
   };
 
   const handleUniversityAdded = () => {
@@ -121,16 +105,19 @@ const UserProfileCard = ({ user }) => {
     } else if (universities.length === 1) {
       return (
         <div className="text-blue-500 cursor-default">
-          {universities[0].university.name}
+          {universities[0] && universities[0].university.name}
         </div>
       );
     } else {
+      const selectedUni = universities.find(
+        (uni) => uni.university.id.toString() === selectedUniversity
+      );
       return (
         <div
           className="text-blue-500 cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
-          {universities[0].university.name}
+          {selectedUni && selectedUni.university.name}
         </div>
       );
     }
@@ -161,11 +148,11 @@ const UserProfileCard = ({ user }) => {
         onClose={() => setIsModalOpen(false)}
         universities={universities}
         selectedUniversity={selectedUniversity}
-        handleUniversityChange={handleUniversityChange}
-        onAddNewUniversityClick={() => {
+        handleSetUniversity={(selectedId) => {
+          setSelectedUniversity(selectedId.toString());
           setIsModalOpen(false);
-          setIsAddUniversityModalOpen(true);
         }}
+        handleUniversityChange={handleUniversityChange}
       />
 
       <AddNewUniversityModal
