@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import UniversityCard from "./UniversityCard";
 import ProfilePicture from "../assets/images/defaultprofile.png";
+import AddExistingUniversityModal from "./AddExistingUniversityModal";
 import EmailIcon from "../assets/icons/Email.png";
 import CalendarIcon from "../assets/icons/Calendar.png";
+import FilledPlusIcon from "../assets/icons/FilledPlus.png";
+import UnfilledPlusIcon from "../assets/icons/UnfilledPlus.png";
 
 const UserDetailCard = ({ user, isOpen, onClose }) => {
   const [universities, setUniversities] = useState(user.universities);
+  const [
+    isAddExistingUniversityModalOpen,
+    setIsAddExistingUniversityModalOpen,
+  ] = useState(false);
+  const [isPlusIconHovered, setIsPlusIconHovered] = useState(false);
 
   const handleDeleteUniversity = () => {
     // reload user data
@@ -41,7 +49,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         >
           &times;
         </button>
-        
+
         {/* USER PROFILE SECTION */}
         <div className="flex items-center mb-4">
           <img
@@ -82,9 +90,17 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
 
         {/* UNIVERSITY SECTION */}
         <div>
-          <h3 className="font-semibold mb-2">
-            University Affiliations
-          </h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold">University Affiliations</h3>
+            <img
+              src={isPlusIconHovered ? FilledPlusIcon : UnfilledPlusIcon}
+              alt="Add University"
+              className="w-6 h-6 cursor-pointer"
+              onClick={() => setIsAddExistingUniversityModalOpen(true)}
+              onMouseOver={() => setIsPlusIconHovered(true)}
+              onMouseOut={() => setIsPlusIconHovered(false)}
+            />
+          </div>
           {universities.map((university) => (
             <UniversityCard
               key={university.id}
@@ -100,6 +116,13 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         }`}
         onClick={onClose}
       ></div>
+
+      {/* Add Existing University Modal */}
+      <AddExistingUniversityModal
+        isOpen={isAddExistingUniversityModalOpen}
+        onClose={() => setIsAddExistingUniversityModalOpen(false)}
+        onUniversityAdded={handleDeleteUniversity}
+      />
     </div>
   );
 };
