@@ -3,16 +3,15 @@ import { Tooltip } from "react-tooltip";
 import ModalContainer from "./ModalContainer";
 import AddNewUniversityModal from "./AddNewUniversityModal";
 import api from "../utility/api";
-import { UNIVERSITY_LIST_URL } from "../utility/api_urls";
+import {
+  UNIVERSITY_LIST_URL,
+  ADD_USER_UNIVERSITY_URL,
+} from "../utility/api_urls";
 import SuccessGif from "../assets/gifs/Success.gif";
 import UnfilledPlusIcon from "../assets/icons/UnfilledPlus.png";
 import FilledPlusIcon from "../assets/icons/FilledPlus.png";
 
-const AddExistingUniversityModal = ({
-  isOpen,
-  onClose,
-  onUniversityAdded,
-}) => {
+const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
   const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -50,6 +49,11 @@ const AddExistingUniversityModal = ({
     setIsSubmitting(true);
 
     try {
+      const selectedUniName = universities.find(
+        (uni) => uni.id === parseInt(selectedUniversity)
+      ).name;
+      await api.post(ADD_USER_UNIVERSITY_URL, { name: selectedUniName });
+
       setIsSuccess(true);
       setTimeout(() => {
         onUniversityAdded();
