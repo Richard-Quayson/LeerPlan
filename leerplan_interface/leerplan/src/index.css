@@ -19,7 +19,7 @@
   transform: translateX(-50%);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1500px) {
   /* Large screens */
   .logout-container {
     bottom: 15vh;
