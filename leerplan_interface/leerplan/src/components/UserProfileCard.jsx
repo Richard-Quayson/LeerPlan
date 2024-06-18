@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SetUniversityModal from "./SetUniversityModal";
 import AddNewUniversityModal from "./AddNewUniversityModal";
-import AddExistingUniversityModal from "./AddExistingUniversityModal";
+import UserDetailCard from "./UserDetailCard";
 import { USER_UNIVERSITY_LIST_URL } from "../utility/api_urls";
 import {
   PREFERRED_UNIVERSITY_NAME,
@@ -12,9 +12,11 @@ import ProfilePicture from "../assets/images/defaultprofile.png";
 
 const UserProfileCard = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddUniversityModalOpen, setIsAddUniversityModalOpen] = useState(false);
+  const [isAddUniversityModalOpen, setIsAddUniversityModalOpen] =
+    useState(false);
   const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
 
   useEffect(() => {
     const fetchUniversities = async () => {
@@ -23,8 +25,12 @@ const UserProfileCard = ({ user }) => {
         setUniversities(response.data);
 
         // Check if preferred university name is set in local storage
-        const preferredUniversityName = localStorage.getItem(PREFERRED_UNIVERSITY_NAME);
-        const preferredUniversityId = localStorage.getItem(PREFERRED_UNIVERSITY_ID);
+        const preferredUniversityName = localStorage.getItem(
+          PREFERRED_UNIVERSITY_NAME
+        );
+        const preferredUniversityId = localStorage.getItem(
+          PREFERRED_UNIVERSITY_ID
+        );
 
         // If preferred university is set, use it
         if (preferredUniversityName && preferredUniversityId) {
@@ -33,8 +39,14 @@ const UserProfileCard = ({ user }) => {
           // If user has universities and preferred university is not set, pre-select the first one
           if (response.data.length > 0) {
             setSelectedUniversity(response.data[0].university.name);
-            localStorage.setItem(PREFERRED_UNIVERSITY_NAME, response.data[0].university.name);
-            localStorage.setItem(PREFERRED_UNIVERSITY_ID, response.data[0].university.id);
+            localStorage.setItem(
+              PREFERRED_UNIVERSITY_NAME,
+              response.data[0].university.name
+            );
+            localStorage.setItem(
+              PREFERRED_UNIVERSITY_ID,
+              response.data[0].university.id
+            );
           }
         }
       } catch (error) {
@@ -47,11 +59,16 @@ const UserProfileCard = ({ user }) => {
 
   const handleUniversityChange = (event) => {
     const selectedId = parseInt(event.target.value);
-    const selectedUni = universities.find((uni) => uni.university.id === selectedId);
+    const selectedUni = universities.find(
+      (uni) => uni.university.id === selectedId
+    );
 
     if (selectedUni) {
       setSelectedUniversity(selectedUni.university.name);
-      localStorage.setItem(PREFERRED_UNIVERSITY_NAME, selectedUni.university.name);
+      localStorage.setItem(
+        PREFERRED_UNIVERSITY_NAME,
+        selectedUni.university.name
+      );
       localStorage.setItem(PREFERRED_UNIVERSITY_ID, selectedUni.university.id);
     } else {
       setSelectedUniversity("");
@@ -97,17 +114,22 @@ const UserProfileCard = ({ user }) => {
   };
 
   return (
-    <div className="flex items-center p-4 bg-white shadow rounded-md">
-      <img
-        src={user.profile_picture || ProfilePicture}
-        alt="Profile"
-        className="w-16 h-16 rounded-lg mr-4"
-      />
-      <div>
-        <div className="font-semibold text-gray-700">
-          {user.firstname} {user.lastname}
+    <div>
+      <div
+        className="flex items-center p-4 bg-white shadow rounded-md cursor-pointer"
+        onClick={() => setIsUserDetailOpen(true)}
+      >
+        <img
+          src={user.profile_picture || ProfilePicture}
+          alt="Profile"
+          className="w-16 h-16 rounded-lg mr-4"
+        />
+        <div>
+          <div className="font-semibold text-gray-700">
+            {user.firstname} {user.lastname}
+          </div>
+          {renderUniversitySection()}
         </div>
-        {renderUniversitySection()}
       </div>
 
       <SetUniversityModal
@@ -126,6 +148,12 @@ const UserProfileCard = ({ user }) => {
         isOpen={isAddUniversityModalOpen}
         onClose={() => setIsAddUniversityModalOpen(false)}
         onUniversityAdded={handleUniversityAdded}
+      />
+
+      <UserDetailCard
+        user={user}
+        isOpen={isUserDetailOpen}
+        onClose={() => setIsUserDetailOpen(false)}
       />
     </div>
   );
