@@ -9,4 +9,19 @@
   padding: 1rem;
   min-height: 100vh;
   box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.logout-container {
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 1024px) {
+  /* Large screens */
+  .logout-container {
+    bottom: 15vh;
+  }
 }
