@@ -6,6 +6,7 @@ import { UNIVERSITY_LIST_URL } from "../utility/api_urls";
 import UnfilledPlusIcon from "../assets/icons/UnfilledPlus.png";
 import FilledPlusIcon from "../assets/icons/FilledPlus.png";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
+import AddNewUniversityModal from "./AddNewUniversityModal";
 
 const SetUniversityModal = ({
   isOpen,
@@ -18,6 +19,7 @@ const SetUniversityModal = ({
   const [existingUniversities, setExistingUniversities] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
   const [showAddExistingModal, setShowAddExistingModal] = useState(false);
+  const [showAddNewModal, setShowAddNewModal] = useState(false);
 
   useEffect(() => {
     const fetchExistingUniversities = async () => {
@@ -36,10 +38,11 @@ const SetUniversityModal = ({
 
   const handlePlusIconClick = () => {
     if (existingUniversities.length > 0) {
-      onClose(); // Close SetUniversityModal before opening AddExistingUniversityModal
+      onClose();
       setShowAddExistingModal(true);
     } else {
-      onAddNewUniversityClick(); // Open AddNewUniversityModal
+      onClose();
+      setShowAddNewModal(true);
     }
   };
 
@@ -57,8 +60,8 @@ const SetUniversityModal = ({
               Choose University
             </option>
             {universities.map((uni) => (
-              <option key={uni.id} value={uni.id}>
-                {uni.name}
+              <option key={uni.university.id} value={uni.university.id}>
+                {uni.university.name}
               </option>
             ))}
           </select>
@@ -84,10 +87,20 @@ const SetUniversityModal = ({
 
       {showAddExistingModal && (
         <AddExistingUniversityModal
-          isOpen={true} // Ensure the modal is open when showAddExistingModal is true
+          isOpen={true}
           onClose={() => setShowAddExistingModal(false)}
           onUniversityAdded={() => {
             setShowAddExistingModal(false);
+          }}
+        />
+      )}
+
+      {showAddNewModal && (
+        <AddNewUniversityModal
+          isOpen={true}
+          onClose={() => setShowAddNewModal(false)}
+          onUniversityAdded={() => {
+            setShowAddNewModal(false);
           }}
         />
       )}
