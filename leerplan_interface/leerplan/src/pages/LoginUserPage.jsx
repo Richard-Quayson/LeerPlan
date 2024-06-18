@@ -44,6 +44,11 @@ function LoginPage() {
       setIsLoading(true);
 
       try {
+        // clear local storage and cookies
+        localStorage.clear();
+        Cookies.remove(ACCESS_TOKEN);
+        Cookies.remove(REFRESH_TOKEN);
+        
         const response = await api.post(LOGIN_USER_URL, {
           email: email,
           password: password,
@@ -52,7 +57,7 @@ function LoginPage() {
         const data = response.data;
 
         if (response.status === 200) {
-          const { access, refresh, first_login } = data;
+          const { access, refresh } = data;
 
           // save JWT tokens to cookies with 1 week expiry
           const expireDate = new Date();
@@ -68,15 +73,9 @@ function LoginPage() {
           setMessage("Login successful");
           setMessageColor("text-green-500");
 
-          if (first_login) {
-            setTimeout(() => {
-              setRedirectToChangePassword(true);
-            }, 1000);
-          } else {
-            setTimeout(() => {
-              setRedirectToDashboard(true);
-            }, 1000);
-          }
+          setTimeout(() => {
+            setRedirectToDashboard(true);
+          }, 1000);
         } else {
           setMessage(data.detail || data.error || "Login failed");
           setMessageColor("text-red-500");
@@ -122,7 +121,7 @@ function LoginPage() {
           <form className="space-y-6" onSubmit={handleSubmit}>
             {/* FORM MESSAGES */}
             {message && (
-              <div className={`text-center mb-4 font-semibold ${messageColor}`}>
+              <div className={`text-center mb-4 ${messageColor}`}>
                 {message}
               </div>
             )}
@@ -200,7 +199,7 @@ function LoginPage() {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className={`px-4 py-1 bg-white border-2 border-yellow-800 text-gray-700 font-semibold rounded-md shadow-sm hover:bg-yellow-800 hover:text-white focus:outline-none focus:ring-red-800 focus:ring-offset-2 ${
+                className={`px-4 py-1 bg-white border-[1px] border-yellow-800 text-gray-700 font-semibold rounded-md shadow-sm hover:bg-yellow-800 hover:text-white focus:outline-none focus:ring-red-800 focus:ring-offset-2 ${
                   isLoading && "opacity-50 cursor-not-allowed"
                 }`} // disable button and add opacity when isLoading is true
                 disabled={isLoading} // disable button when isLoading is true

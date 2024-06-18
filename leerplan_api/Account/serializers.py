@@ -322,6 +322,12 @@ class UserUniversitySerializer(serializers.ModelSerializer):
         
         return attrs
     
+    def to_representation(self, instance: UserUniversity) -> dict:
+        data = super().to_representation(instance)
+        data["user"] = instance.user.id
+        data["university"] = UniversitySerializer(instance.university).data
+        return data
+    
 
 class UserRoutineSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField("get_user")
@@ -367,7 +373,7 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         
         # retrieve user's universities
         universities = UserUniversity.objects.filter(user=instance)
-        user_data["universities"] = [university.university.name for university in universities]
+        user_data["universities"] = [UniversitySerializer(university.university).data for university in universities]
 
         # retrieve user's routines
         user_data["routines"] = []

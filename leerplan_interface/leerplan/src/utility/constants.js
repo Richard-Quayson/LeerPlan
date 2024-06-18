@@ -11,3 +11,5 @@ export const PASSWORD_REGEX = /^(?=(.*[A-Z]){1,})(?=(.*[a-z]){1,})(?=(.*\d){1,})
 
 // user attribute constants
 export const CURRENT_USER_ID = "CURRENT_USER_ID";
+export const PREFERRED_UNIVERSITY_NAME = "PREFERRED_UNIVERSITY_NAME";
+export const PREFERRED_UNIVERSITY_ID = "PREFERRED_UNIVERSITY_ID";
