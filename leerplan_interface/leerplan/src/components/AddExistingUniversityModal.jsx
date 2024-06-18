@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 import ModalContainer from "./ModalContainer";
+import AddNewUniversityModal from "./AddNewUniversityModal";
 import api from "../utility/api";
 import { UNIVERSITY_LIST_URL } from "../utility/api_urls";
 import SuccessGif from "../assets/gifs/Success.gif";
 import UnfilledPlusIcon from "../assets/icons/UnfilledPlus.png";
 import FilledPlusIcon from "../assets/icons/FilledPlus.png";
-import { Tooltip } from "react-tooltip";
-import AddNewUniversityModal from "./AddNewUniversityModal";
 
-const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
+const AddExistingUniversityModal = ({
+  isOpen,
+  onClose,
+  onUniversityAdded,
+}) => {
   const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
-  const [showAddNewUniversityTooltip, setShowAddNewUniversityTooltip] = useState(false);
-  const [showAddNewUniversityModal, setShowAddNewUniversityModal] = useState(false);
+  const [showAddNewUniversityTooltip, setShowAddNewUniversityTooltip] =
+    useState(false);
+  const [showAddNewUniversityModal, setShowAddNewUniversityModal] =
+    useState(false);
 
   useEffect(() => {
     fetchUniversities();
@@ -44,8 +50,6 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
     setIsSubmitting(true);
 
     try {
-      // Perform action with selectedUniversity (e.g., save, update)
-      // Simulating a success response
       setIsSuccess(true);
       setTimeout(() => {
         onUniversityAdded();
@@ -62,20 +66,20 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
   };
 
   const handleAddNewUniversityClick = () => {
-    setShowAddNewUniversityModal(true); // Open AddNewUniversityModal
+    setShowAddNewUniversityModal(true);
   };
 
   return (
     <>
       <ModalContainer isOpen={isOpen} onClose={onClose}>
-        <h2 className="text-xl font-semibold mb-4 text-center">Add Existing University</h2>
+        <h2 className="text-xl font-semibold mb-4 text-center">
+          Add Existing University
+        </h2>
         <p className="text-center text-gray-500 mb-4">
           Please select a university from the list.
         </p>
         {message && (
-          <div className="text-center mb-4 text-red-500">
-            {message}
-          </div>
+          <div className="text-center mb-4 text-red-500">{message}</div>
         )}
         {isSuccess ? (
           <div className="text-center">
@@ -104,7 +108,7 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
             <div className="flex justify-center mt-4">
               <button
                 type="submit"
-                className="px-4 py-2 border-[1px] border-yellow-800 text-black rounded-md hover:bg-yellow-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                className="px-4 py-2 border-[1px] border-yellow-800 text-black rounded-md hover:bg-yellow-800 hover:text-white focus:outline-none"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Submitting..." : "Add University"}
@@ -116,7 +120,9 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
         {/* Plus icon for adding new university */}
         <div className="absolute bottom-4 right-4">
           <img
-            src={showAddNewUniversityTooltip ? FilledPlusIcon : UnfilledPlusIcon}
+            src={
+              showAddNewUniversityTooltip ? FilledPlusIcon : UnfilledPlusIcon
+            }
             alt="Add New University"
             className="w-8 h-8 cursor-pointer"
             onClick={handleAddNewUniversityClick}
@@ -136,13 +142,13 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
           onClose={() => {
             setShowAddNewUniversityModal(false);
             onUniversityAdded();
-            onClose(); // Call the onClose function to close AddExistingUniversityModal
+            onClose();
           }}
           onUniversityAdded={() => {
             setShowAddNewUniversityModal(false);
             onUniversityAdded();
           }}
-          onCloseExistingModal={onClose} // Pass the onClose function as the prop
+          onCloseExistingModal={onClose}
         />
       )}
     </>
