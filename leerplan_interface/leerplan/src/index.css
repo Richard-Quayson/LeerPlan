@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.left-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 1rem;
+  min-height: 100vh;
+  box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.5);
+}
