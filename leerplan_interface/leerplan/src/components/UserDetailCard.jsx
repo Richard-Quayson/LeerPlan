@@ -10,6 +10,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
   const handleDeleteUniversity = () => {
     // reload user data
     setUniversities(user.universities);
+    window.location.reload();
   };
 
   useEffect(() => {
