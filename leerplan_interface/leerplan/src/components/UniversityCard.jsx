@@ -41,7 +41,7 @@ const UniversityCard = ({ university, onDelete }) => {
   };
 
   return (
-    <div className="flex items-center p-4 border-[2px] bg-white shadow rounded-md mb-2">
+    <div className="flex items-center p-4 border-[2px] bg-white shadow rounded-md">
       <img src={UniversityIcon} alt="University" className="w-8 h-8 mr-4" />
       <div className="flex-grow">
         <div className="font-semibold">{university.university.name}</div>
