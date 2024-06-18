@@ -373,7 +373,10 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         
         # retrieve user's universities
         universities = UserUniversity.objects.filter(user=instance)
-        user_data["universities"] = [UserUniversitySerializer(university.university).data for university in universities]
+        user_data["universities"] = []
+        for university in universities:
+            data = UserUniversitySerializer(university).data
+            user_data["universities"].append(data)
 
         # retrieve user's routines
         user_data["routines"] = []
