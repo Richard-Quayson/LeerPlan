@@ -72,7 +72,7 @@ const UploadProfilePictureModal = ({ isOpen, onClose }) => {
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose}>
       <div className="text-center">
-        <h2 className="text-2xl mb-4 font-bold text-gray-500">
+        <h2 className="text-2xl mb-4 font-bold text-yellow-800">
           Upload Profile Picture
         </h2>
         <p className="text-gray-400 mb-6">
@@ -80,7 +80,7 @@ const UploadProfilePictureModal = ({ isOpen, onClose }) => {
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
           {message && <div className={`mb-4 ${messageColor}`}>{message}</div>}
-          <div className="relative bg-gray-200 border-2 border-slate-700 p-4 mb-6 rounded-lg w-64 h-40 flex items-center justify-center">
+          <div className="relative bg-gray-200 border-2 border-yellow-800 p-4 mb-6 rounded-lg w-64 h-40 flex items-center justify-center">
             {file ? (
               <img
                 src={URL.createObjectURL(file)}
@@ -101,7 +101,7 @@ const UploadProfilePictureModal = ({ isOpen, onClose }) => {
           {!profilePictureUploaded && (
             <button
               type="submit"
-              className={`px-4 py-1 border border-slate-700 bg-white font-semibold text-slate-700 rounded-lg shadow hover:bg-slate-700 hover:text-white ${
+              className={`px-4 py-1 border border-yellow-800 bg-white font-semibold text-yellow-800 rounded-lg shadow hover:bg-yellow-800 hover:text-white ${
                 isLoading && "opacity-50 cursor-not-allowed"
               }`}
               disabled={isLoading}
