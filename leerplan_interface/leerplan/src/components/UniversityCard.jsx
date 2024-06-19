@@ -55,7 +55,7 @@ const UniversityCard = ({ university, onDelete }) => {
         <img
           src={DeleteIcon}
           alt="Delete"
-          className="w-8 h-8 cursor-pointer"
+          className="w-6 h-6 cursor-pointer"
           onClick={handleDeleteClick}
         />
       )}
