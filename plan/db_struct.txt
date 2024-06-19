@@ -21,7 +21,6 @@ class AccountMetadata:
 class UserRoutine:
     - user
     - name (wake-up time, bed time, breakfast, lunch, dinner, me time)
-    - type
     - start_time
     - end_time
 
