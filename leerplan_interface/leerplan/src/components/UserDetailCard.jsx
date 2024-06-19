@@ -4,6 +4,7 @@ import ProfilePicture from "../assets/images/defaultprofile.png";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
 import UploadProfilePictureModal from "./UploadProfilePictureModal";
 import AddCameraIcon from "../assets/icons/AddCamera.png";
+import EditPencilIcon from "../assets/icons/EditPencil.png";
 import EmailIcon from "../assets/icons/Email.png";
 import CalendarIcon from "../assets/icons/Calendar.png";
 import FilledPlusIcon from "../assets/icons/FilledPlus.png";
@@ -78,6 +79,13 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
                 {user.preferred_university.name}
               </div>
             )}
+            <div className="absolute bottom-2 right-2 w-6 h-6 transform translate-x-1/2 translate-y-2/3">
+              <img
+                src={EditPencilIcon}
+                alt="Add Camera"
+                className="w-full h-full cursor-pointer"
+              />
+            </div>
           </div>
         </div>
         <div className="mb-6">
