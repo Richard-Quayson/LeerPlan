@@ -77,13 +77,12 @@ class UpdateAccountView(APIView):
         serializer = UpdateAccountSerializer(request.user, data=request.data, partial=True, context={"request": request})
 
         if serializer.is_valid():
-            account = serializer.save()
-
             # if the profile picture is updated, remove the previous profile picture
             if "profile_picture" in request.data and request.user.profile_picture:
                 if os.path.exists(request.user.profile_picture.path):
                     os.remove(request.user.profile_picture.path)
 
+            account = serializer.save()
             account = UserAccountSerializer(account)
             return Response(account.data, status=status.HTTP_200_OK)
 
