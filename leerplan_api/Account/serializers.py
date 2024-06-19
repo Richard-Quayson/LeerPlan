@@ -334,7 +334,7 @@ class UserRoutineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserRoutine
-        fields = ["id", "user", "name", "type", "start_time", "end_time"]
+        fields = ["id", "user", "name","start_time", "end_time"]
 
     def get_user(self, obj: UserRoutine) -> dict:
         return self.context["request"].user.id
