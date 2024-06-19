@@ -127,7 +127,8 @@ const UserProfileCard = ({ user }) => {
     <div>
       <div className="flex items-center p-4 bg-white shadow rounded-md cursor-pointer">
         <img
-          src={user.profile_picture || ProfilePicture}
+          // src={user.profile_picture || ProfilePicture}
+          src={ProfilePicture}
           alt="Profile"
           className="w-16 h-16 rounded-lg mr-4"
           onClick={() => setIsUserDetailOpen(true)}
