@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import UniversityCard from "./UniversityCard";
 import ProfilePicture from "../assets/images/defaultprofile.png";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
+import UploadProfilePictureModal from "./UploadProfilePictureModal";
+import AddCameraIcon from "../assets/icons/AddCamera.png";
 import EmailIcon from "../assets/icons/Email.png";
 import CalendarIcon from "../assets/icons/Calendar.png";
 import FilledPlusIcon from "../assets/icons/FilledPlus.png";
@@ -13,10 +15,11 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
     isAddExistingUniversityModalOpen,
     setIsAddExistingUniversityModalOpen,
   ] = useState(false);
+  const [isUploadProfilePictureModalOpen, setIsUploadProfilePictureModalOpen] =
+    useState(false);
   const [isPlusIconHovered, setIsPlusIconHovered] = useState(false);
 
   const handleDeleteUniversity = () => {
-    // reload user data
     setUniversities(user.universities);
     window.location.reload();
   };
@@ -51,12 +54,21 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         </button>
 
         {/* USER PROFILE SECTION */}
-        <div className="flex items-center mb-4">
-          <img
-            src={user.profile_picture || ProfilePicture}
-            alt="Profile"
-            className="w-16 h-16 rounded-lg mr-4"
-          />
+        <div className="flex items-center mb-6 relative">
+          <div className="relative">
+            <img
+              // src={user.profile_picture || ProfilePicture}
+              src={ProfilePicture}
+              alt="Profile"
+              className="w-16 h-16 rounded-lg mr-4"
+            />
+            <img
+              src={AddCameraIcon}
+              alt="Add Camera"
+              className="w-8 h-8 absolute bottom-2 right-4 transform translate-x-1/2 translate-y-2/3 cursor-pointer"
+              onClick={() => setIsUploadProfilePictureModalOpen(true)}
+            />
+          </div>
           <div>
             <div className="text-xl font-semibold">
               {user.firstname} {user.lastname}
@@ -122,6 +134,12 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         isOpen={isAddExistingUniversityModalOpen}
         onClose={() => setIsAddExistingUniversityModalOpen(false)}
         onUniversityAdded={handleDeleteUniversity}
+      />
+
+      {/* Upload Profile Picture Modal */}
+      <UploadProfilePictureModal
+        isOpen={isUploadProfilePictureModalOpen}
+        onClose={() => setIsUploadProfilePictureModalOpen(false)}
       />
     </div>
   );
