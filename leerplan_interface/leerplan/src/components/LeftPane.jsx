@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import UserProfileCard from "./UserProfileCard";
 import { LOGOUT_ROUTE } from "../utility/routes";
 import { CURRENT_USER_ID } from "../utility/constants";
 import LeerPlanLogo from "../assets/images/leerplanlogo.png";
-import LogoutIcon from "../assets/icons/Logout.png";
+import FilledLogoutIcon from "../assets/icons/FilledLogout.png";
+import UnfilledLogoutIcon from "../assets/icons/UnfilledLogout.png";
 
 const LeftPane = ({ user }) => {
   const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div className="left-pane">
@@ -24,7 +26,11 @@ const LeftPane = ({ user }) => {
       </div>
 
       {/* LOGOUT */}
-      <div className="logout-container">
+      <div
+        className="logout-container"
+        onMouseOver={() => setIsHovered(true)}
+        onMouseOut={() => setIsHovered(false)}
+      >
         <button
           onClick={() => {
             localStorage.removeItem(CURRENT_USER_ID);
@@ -32,7 +38,7 @@ const LeftPane = ({ user }) => {
           }}
         >
           <img
-            src={LogoutIcon}
+            src={isHovered ? FilledLogoutIcon : UnfilledLogoutIcon}
             alt="Logout Icon"
             className="w-12 h-12 inline-block"
             data-tooltip-id="logout"
