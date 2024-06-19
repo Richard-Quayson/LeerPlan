@@ -11,14 +11,17 @@ export const GENERATE_ACCESS_TOKEN_URL = "account/token/refresh/";              
 
 export const USER_DETAILS_URL = "account/user/";                                // GET URL to get user details
 
+// yet to integrate
 export const UPDATE_USER_DETAILS_URL = "account/update/";                       // PATCH URL to update user details
 
+// yet to integrate
 export const CHANGE_PASSWORD_URL = "account/password/change/";                  // PATCH URL to change user password
 
 
 // UNIVERSITY MODEL URLS
 export const UNIVERSITY_LIST_URL = "account/universities/";                     // GET URL to get list of universities
 
+// yet to integrate
 export const UPDATE_UNIVERSITY_URL = "account/university/update/";              // PATCH URL to update university details
 // export const UPDATE_UNIVERSITY_URL = "account/university/update/<int:university_id>/";  // PATCH URL to update university details
 
@@ -33,15 +36,20 @@ export const USER_UNIVERSITY_LIST_URL = "account/user/universities/";           
 
 
 // USER ROUTINE MODEL URLS
+// yet to integrate
 export const ADD_USER_ROUTINE_URL = "account/user/routine/add/";                // POST URL to add a routine to user's list
 
+// yet to integrate
 export const USER_ROUTINE_DETAILS_URL = "account/user/routine/";                // GET URL to get routine details of a user
 // export const USER_ROUTINE_DETAILS_URL = "account/user/routine/<int:routine_id>/";  // GET URL to get routine details of a user
 
+// yet to integrate
 export const USER_ROUTINE_LIST_URL = "account/user/routine/"                   // GET URL to get list of routines of a user
 
+// yet to integrate
 export const UPDATE_USER_ROUTINE_URL = "account/user/routine/update/";          // PATCH URL to update routine details of a user
 // export const UPDATE_USER_ROUTINE_URL = "account/user/routine/update/<int:routine_id>/";  // PATCH URL to update routine details of a user
 
+// yet to integrate
 export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/";          // DELETE URL to delete a routine of a user
 // export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/<int:routine_id>/";  // DELETE URL to delete a routine of a user
