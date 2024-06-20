@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import UniversityCard from "./UniversityCard";
+import RoutineCard from "./RoutineCard";
 import ProfilePicture from "../assets/images/defaultprofile.png";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
+import AddRoutineModal from "./AddRoutineModal";
 import UploadProfilePictureModal from "./UploadProfilePictureModal";
 import { UPDATE_USER_DETAILS_URL } from "../utility/api_urls";
 import api from "../utility/api";
@@ -17,13 +19,12 @@ import SuccessGif from "../assets/gifs/Success.gif";
 
 const UserDetailCard = ({ user, isOpen, onClose }) => {
   const [universities, setUniversities] = useState(user.universities);
-  const [
-    isAddExistingUniversityModalOpen,
-    setIsAddExistingUniversityModalOpen,
-  ] = useState(false);
-  const [isUploadProfilePictureModalOpen, setIsUploadProfilePictureModalOpen] =
-    useState(false);
-  const [isPlusIconHovered, setIsPlusIconHovered] = useState(false);
+  const [routines, setRoutines] = useState(user.routines);
+  const [isAddExistingUniversityModalOpen, setIsAddExistingUniversityModalOpen] = useState(false);
+  const [isAddingRoutineModalOpen, setIsAddingRoutineModalOpen] = useState(false);
+  const [isUploadProfilePictureModalOpen, setIsUploadProfilePictureModalOpen] = useState(false);
+  const [isAddUniversityHovered, setIsAddUniversityHovered] = useState(false);
+  const [isAddRoutineHovered, setIsAddRoutineHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [firstname, setFirstname] = useState(user.firstname);
   const [lastname, setLastname] = useState(user.lastname);
@@ -36,8 +37,13 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
     window.location.reload();
   };
 
+  const handleDeleteRoutine = (id) => {
+    setRoutines((prevRoutines) => prevRoutines.filter((routine) => routine.id !== id));
+  };
+
   useEffect(() => {
     setUniversities(user.universities);
+    setRoutines(user.routines);
   }, [user]);
 
   const formatDate = (dateString) => {
@@ -190,12 +196,12 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
           <div className="flex items-center justify-between mb-2">
             <h3 className="font-semibold">University Affiliations</h3>
             <img
-              src={isPlusIconHovered ? FilledPlusIcon : UnfilledPlusIcon}
+              src={isAddUniversityHovered ? FilledPlusIcon : UnfilledPlusIcon}
               alt="Add University"
               className="w-6 h-6 cursor-pointer"
               onClick={() => setIsAddExistingUniversityModalOpen(true)}
-              onMouseOver={() => setIsPlusIconHovered(true)}
-              onMouseOut={() => setIsPlusIconHovered(false)}
+              onMouseOver={() => setIsAddUniversityHovered(true)}
+              onMouseOut={() => setIsAddUniversityHovered(false)}
             />
           </div>
           {universities.length > 0 ? (
@@ -212,6 +218,37 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
             </div>
           )}
         </div>
+
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-400 w-full mt-8 mb-4" />
+
+        {/* ROUTINE SECTION */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold">Routines</h3>
+            <img
+              src={isAddRoutineHovered ? FilledPlusIcon : UnfilledPlusIcon}
+              alt="Add Routine"
+              className="w-6 h-6 cursor-pointer"
+              onClick={() => setIsAddingRoutineModalOpen(true)}
+              onMouseOver={() => setIsAddRoutineHovered(true)}
+              onMouseOut={() => setIsAddRoutineHovered(false)}
+            />
+          </div>
+          {routines.length > 0 ? (
+            routines.map((routine) => (
+              <RoutineCard
+                key={routine.id}
+                routine={routine}
+                onDelete={() => handleDeleteRoutine(routine.id)}
+              />
+            ))
+          ) : (
+            <div className="text-center text-gray-500 mt-4">
+              You have no routines added.
+            </div>
+          )}
+        </div>
       </div>
       <div
         className={`w-2/3 bg-black bg-opacity-50 transition-opacity duration-300 ${
@@ -225,6 +262,12 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         isOpen={isAddExistingUniversityModalOpen}
         onClose={() => setIsAddExistingUniversityModalOpen(false)}
         onUniversityAdded={handleDeleteUniversity}
+      />
+
+      {/* Add Routine Modal */}
+      <AddRoutineModal
+        isOpen={isAddingRoutineModalOpen}
+        onClose={() => setIsAddingRoutineModalOpen(false)}
       />
 
       {/* Upload Profile Picture Modal */}
