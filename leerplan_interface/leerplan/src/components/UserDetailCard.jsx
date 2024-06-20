@@ -67,7 +67,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
           setIsLoading(false);
           setTimeout(() => {
             window.location.reload();
-          }, 3000);
+          }, 5000);
         } else {
           setMessage(response.data.detail || "Failed to update profile.");
           setIsLoading(false);
@@ -136,28 +136,28 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
             ) : (
               <form onSubmit={handleEditSubmit} className="flex flex-col">
                 {message && <div className="mb-4 text-red-500">{message}</div>}
-                <div className="flex items-center ml-4">
+                <div className="flex items-center">
                   <div className="flex-grow">
                     <input
                       type="text"
                       value={firstname}
                       onChange={(e) => setFirstname(e.target.value)}
-                      className="mb-2 p-1 border border-gray-300 rounded focus:outline-none"
+                      className="mb-2 p-2 border border-gray-300 rounded"
                     />
                     <input
                       type="text"
                       value={lastname}
                       onChange={(e) => setLastname(e.target.value)}
-                      className="mb-2 p-1 border border-gray-300 rounded focus:outline-none"
+                      className="mb-2 p-2 border border-gray-300 rounded"
                     />
                   </div>
                   {isLoading ? (
-                    <img src={EllipsisIcon} alt="Loading" className="w-8 h-8 mr-4" />
+                    <img src={EllipsisIcon} alt="Loading" className="w-6 h-6" />
                   ) : isEditSuccessful ? (
-                    <img src={SuccessGif} alt="Success" className="w-10 h-10" />
+                    <img src={SuccessGif} alt="Success" className="w-6 h-6" />
                   ) : (
                     <button type="submit" className="p-0">
-                      <img src={SubmitIcon} alt="Submit" className="w-10 h-8 mr-4" />
+                      <img src={SubmitIcon} alt="Submit" className="w-6 h-6" />
                     </button>
                   )}
                 </div>
@@ -198,13 +198,19 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
               onMouseOut={() => setIsPlusIconHovered(false)}
             />
           </div>
-          {universities.map((university) => (
-            <UniversityCard
-              key={university.id}
-              university={university}
-              onDelete={handleDeleteUniversity}
-            />
-          ))}
+          {universities.length > 0 ? (
+            universities.map((university) => (
+              <UniversityCard
+                key={university.id}
+                university={university}
+                onDelete={handleDeleteUniversity}
+              />
+            ))
+          ) : (
+            <div className="text-center text-gray-500 mt-4">
+              You are not affiliated with any university.
+            </div>
+          )}
         </div>
       </div>
       <div
