@@ -4,7 +4,7 @@ import { REMOVE_USER_UNIVERSITY_URL } from "../utility/api_urls";
 import api from "../utility/api";
 import UniversityIcon from "../assets/icons/University.png";
 import DeleteIcon from "../assets/icons/Delete.png";
-import SuccessIcon from "../assets/gifs/Success.gif";
+import SuccessGif from "../assets/gifs/Success.gif";
 
 const UniversityCard = ({ university, onDelete }) => {
   const [isDeleting, setIsDeleting] = useState(false);
@@ -19,11 +19,14 @@ const UniversityCard = ({ university, onDelete }) => {
       setDeleteSuccess(true);
       setTimeout(() => {
         setDeleteSuccess(false);
-        onDelete();
+        onDelete(university.id);
       }, 3000);
     } catch (error) {
       setDeleteError("Failed to delete university.");
       setIsDeleting(false);
+      setTimeout(() => {
+        setDeleteError("");
+      }, 5000);
     }
   };
 
@@ -50,7 +53,7 @@ const UniversityCard = ({ university, onDelete }) => {
         )}
       </div>
       {deleteSuccess ? (
-        <img src={SuccessIcon} alt="Success" className="w-8 h-8" />
+        <img src={SuccessGif} alt="Success" className="w-8 h-8" />
       ) : (
         <img
           src={DeleteIcon}
