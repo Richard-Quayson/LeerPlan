@@ -3,12 +3,17 @@ import UniversityCard from "./UniversityCard";
 import ProfilePicture from "../assets/images/defaultprofile.png";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
 import UploadProfilePictureModal from "./UploadProfilePictureModal";
+import { UPDATE_USER_DETAILS_URL } from "../utility/api_urls";
+import api from "../utility/api";
 import AddCameraIcon from "../assets/icons/AddCamera.png";
 import EditPencilIcon from "../assets/icons/EditPencil.png";
+import EllipsisIcon from "../assets/icons/Ellipsis.png";
 import EmailIcon from "../assets/icons/Email.png";
 import CalendarIcon from "../assets/icons/Calendar.png";
 import FilledPlusIcon from "../assets/icons/FilledPlus.png";
 import UnfilledPlusIcon from "../assets/icons/UnfilledPlus.png";
+import SubmitIcon from "../assets/icons/Submit.png";
+import SuccessGif from "../assets/gifs/Success.gif";
 
 const UserDetailCard = ({ user, isOpen, onClose }) => {
   const [universities, setUniversities] = useState(user.universities);
@@ -19,6 +24,12 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
   const [isUploadProfilePictureModalOpen, setIsUploadProfilePictureModalOpen] =
     useState(false);
   const [isPlusIconHovered, setIsPlusIconHovered] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [firstname, setFirstname] = useState(user.firstname);
+  const [lastname, setLastname] = useState(user.lastname);
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isEditSuccessful, setIsEditSuccessful] = useState(false);
 
   const handleDeleteUniversity = () => {
     setUniversities(user.universities);
@@ -38,6 +49,38 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
       minute: "2-digit",
     };
     return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    setTimeout(async () => {
+      try {
+        const response = await api.patch(UPDATE_USER_DETAILS_URL, {
+          firstname,
+          lastname,
+        });
+
+        if (response.status === 200) {
+          setIsEditSuccessful(true);
+          setIsLoading(false);
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        } else {
+          setMessage(response.data.detail || "Failed to update profile.");
+          setIsLoading(false);
+        }
+      } catch (error) {
+        setMessage(error.response?.data?.detail || "Failed to update profile.");
+        setIsLoading(false);
+      }
+
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
+    }, 3000);
   };
 
   return (
@@ -70,22 +113,56 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
               onClick={() => setIsUploadProfilePictureModalOpen(true)}
             />
           </div>
-          <div>
-            <div className="text-xl font-semibold">
-              {user.firstname} {user.lastname}
-            </div>
-            {user.preferred_university && (
-              <div className="text-gray-500">
-                {user.preferred_university.name}
-              </div>
+          <div className="flex-1">
+            {!isEditing ? (
+              <>
+                <div className="text-xl font-semibold">
+                  {user.firstname} {user.lastname}
+                </div>
+                {user.preferred_university && (
+                  <div className="text-gray-500">
+                    {user.preferred_university.name}
+                  </div>
+                )}
+                <div className="absolute bottom-2 right-2 w-6 h-6 transform translate-x-1/2 translate-y-2/3">
+                  <img
+                    src={EditPencilIcon}
+                    alt="Edit"
+                    className="w-full h-full cursor-pointer"
+                    onClick={() => setIsEditing(true)}
+                  />
+                </div>
+              </>
+            ) : (
+              <form onSubmit={handleEditSubmit} className="flex flex-col">
+                {message && <div className="mb-4 text-red-500">{message}</div>}
+                <div className="flex items-center ml-4">
+                  <div className="flex-grow">
+                    <input
+                      type="text"
+                      value={firstname}
+                      onChange={(e) => setFirstname(e.target.value)}
+                      className="mb-2 p-1 border border-gray-300 rounded focus:outline-none"
+                    />
+                    <input
+                      type="text"
+                      value={lastname}
+                      onChange={(e) => setLastname(e.target.value)}
+                      className="mb-2 p-1 border border-gray-300 rounded focus:outline-none"
+                    />
+                  </div>
+                  {isLoading ? (
+                    <img src={EllipsisIcon} alt="Loading" className="w-8 h-8 mr-4" />
+                  ) : isEditSuccessful ? (
+                    <img src={SuccessGif} alt="Success" className="w-10 h-10" />
+                  ) : (
+                    <button type="submit" className="p-0">
+                      <img src={SubmitIcon} alt="Submit" className="w-10 h-8 mr-4" />
+                    </button>
+                  )}
+                </div>
+              </form>
             )}
-            <div className="absolute bottom-2 right-2 w-6 h-6 transform translate-x-1/2 translate-y-2/3">
-              <img
-                src={EditPencilIcon}
-                alt="Add Camera"
-                className="w-full h-full cursor-pointer"
-              />
-            </div>
           </div>
         </div>
         <div className="mb-6">
