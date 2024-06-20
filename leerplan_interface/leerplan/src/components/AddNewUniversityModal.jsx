@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ModalContainer from "./ModalContainer";
-import AddExistingUniversityModal from "./AddExistingUniversityModal";
 import api from "../utility/api";
 import { ADD_USER_UNIVERSITY_URL } from "../utility/api_urls";
 import { NAME_REGEX } from "../utility/constants";
