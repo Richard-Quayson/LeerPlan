@@ -79,9 +79,6 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
         <h2 className="text-xl font-semibold mb-4 text-center">
           Add Existing University
         </h2>
-        <p className="text-center text-gray-500 mb-4">
-          Please select a university from the list.
-        </p>
         {message && (
           <div className="text-center mb-4 text-red-500">{message}</div>
         )}
@@ -94,6 +91,9 @@ const AddExistingUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {
           </div>
         ) : (
           <form onSubmit={handleSubmit}>
+            <p className="text-center text-gray-500 mb-4">
+              Please select a university from the list.
+            </p>
             <select
               value={selectedUniversity}
               onChange={(e) => setSelectedUniversity(e.target.value)}
