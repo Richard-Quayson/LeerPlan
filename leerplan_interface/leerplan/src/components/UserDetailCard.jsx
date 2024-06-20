@@ -5,7 +5,7 @@ import ProfilePicture from "../assets/images/defaultprofile.png";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
 import AddRoutineModal from "./AddRoutineModal";
 import UploadProfilePictureModal from "./UploadProfilePictureModal";
-import { UPDATE_USER_DETAILS_URL } from "../utility/api_urls";
+import { UPDATE_USER_DETAILS_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import api from "../utility/api";
 import AddCameraIcon from "../assets/icons/AddCamera.png";
 import EditPencilIcon from "../assets/icons/EditPencil.png";
@@ -18,11 +18,17 @@ import SubmitIcon from "../assets/icons/Submit.png";
 import SuccessGif from "../assets/gifs/Success.gif";
 
 const UserDetailCard = ({ user, isOpen, onClose }) => {
-  const [universities, setUniversities] = useState(user.universities);
-  const [routines, setRoutines] = useState(user.routines);
-  const [isAddExistingUniversityModalOpen, setIsAddExistingUniversityModalOpen] = useState(false);
-  const [isAddingRoutineModalOpen, setIsAddingRoutineModalOpen] = useState(false);
-  const [isUploadProfilePictureModalOpen, setIsUploadProfilePictureModalOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [universities, setUniversities] = useState([]);
+  const [routines, setRoutines] = useState([]);
+  const [
+    isAddExistingUniversityModalOpen,
+    setIsAddExistingUniversityModalOpen,
+  ] = useState(false);
+  const [isAddingRoutineModalOpen, setIsAddingRoutineModalOpen] =
+    useState(false);
+  const [isUploadProfilePictureModalOpen, setIsUploadProfilePictureModalOpen] =
+    useState(false);
   const [isAddUniversityHovered, setIsAddUniversityHovered] = useState(false);
   const [isAddRoutineHovered, setIsAddRoutineHovered] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -32,19 +38,39 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
   const [message, setMessage] = useState("");
   const [isEditSuccessful, setIsEditSuccessful] = useState(false);
 
-  const handleDeleteUniversity = () => {
-    setUniversities(user.universities);
-    window.location.reload();
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await api.get(USER_DETAILS_URL);
+        const data = response.data;
+        setUserData(data);
+        setUniversities(data.universities);
+        setRoutines(data.routines);
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  const handleDeleteUniversity = (id) => {
+    setUniversities((prevUniversities) =>
+      prevUniversities.filter((university) => university.id !== id)
+    );
   };
 
   const handleDeleteRoutine = (id) => {
-    setRoutines((prevRoutines) => prevRoutines.filter((routine) => routine.id !== id));
+    setRoutines((prevRoutines) =>
+      prevRoutines.filter((routine) => routine.id !== id)
+    );
   };
 
-  useEffect(() => {
-    setUniversities(user.universities);
-    setRoutines(user.routines);
-  }, [user]);
+  const handleUniversityAdded = async () => {
+    const response = await api.get(GET_USER_DETAILS_URL);
+    const data = response.data;
+    setUserData(data);
+    setUniversities(data.universities);
+  };
 
   const formatDate = (dateString) => {
     const options = {
@@ -123,11 +149,11 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
             {!isEditing ? (
               <>
                 <div className="text-xl font-semibold">
-                  {user.firstname} {user.lastname}
+                  {userData?.firstname} {userData?.lastname}
                 </div>
-                {user.preferred_university && (
+                {userData?.preferred_university && (
                   <div className="text-gray-500">
-                    {user.preferred_university.name}
+                    {userData.preferred_university.name}
                   </div>
                 )}
                 <div className="absolute bottom-2 right-2 w-6 h-6 transform translate-x-1/2 translate-y-2/3">
@@ -174,7 +200,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         <div className="mb-6">
           <div className="flex items-center">
             <img src={EmailIcon} alt="Email" className="w-6 h-6 mr-2" />
-            <div>{user.email}</div>
+            <div>{userData?.email}</div>
           </div>
           <div className="flex items-center mt-2 text-gray-500">
             <img
@@ -183,11 +209,10 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
               className="w-6 h-6 mr-2"
             />
             <div className="text-sm">
-              Joined on {formatDate(user.date_joined)}
+              Joined on {formatDate(userData?.date_joined)}
             </div>
           </div>
         </div>
-
         {/* LINE SEPARATOR */}
         <hr className="border-gray-400 w-full my-4" />
 
@@ -261,7 +286,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
       <AddExistingUniversityModal
         isOpen={isAddExistingUniversityModalOpen}
         onClose={() => setIsAddExistingUniversityModalOpen(false)}
-        onUniversityAdded={handleDeleteUniversity}
+        onUniversityAdded={handleUniversityAdded}
       />
 
       {/* Add Routine Modal */}
@@ -278,5 +303,4 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
     </div>
   );
 };
-
 export default UserDetailCard;
