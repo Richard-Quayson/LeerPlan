@@ -13,8 +13,7 @@ const SetUniversityModal = ({
   onClose,
   universities,
   selectedUniversity,
-  handleUniversityChange,
-  onAddNewUniversityClick,
+  handleSetUniversity,
 }) => {
   const [existingUniversities, setExistingUniversities] = useState([]);
   const [isHovered, setIsHovered] = useState(false);
@@ -34,77 +33,93 @@ const SetUniversityModal = ({
     fetchExistingUniversities();
   }, []);
 
-  const tooltipContent = existingUniversities.length > 0 ? "Add Existing University" : "Add New University";
+  const tooltipContent =
+    existingUniversities.length > 0
+      ? "Add Existing University"
+      : "Add New University";
 
   const handlePlusIconClick = () => {
     if (existingUniversities.length > 0) {
-      onClose();
       setShowAddExistingModal(true);
     } else {
-      onClose();
       setShowAddNewModal(true);
     }
   };
 
+  const handleSelectChange = (event) => {
+    const selectedId = parseInt(event.target.value);
+    const selectedUni = universities.find(
+      (uni) => uni.university.id === selectedId
+    );
+
+    if (selectedUni) {
+      handleSetUniversity(selectedUni.university.id);
+      onClose();
+    }
+  };
+
   return (
-    <>
-      <ModalContainer isOpen={isOpen} onClose={onClose}>
-        <h2 className="text-xl font-semibold mb-4 text-center">Set University</h2>
-        {universities.length > 0 ? (
+    <ModalContainer isOpen={isOpen} onClose={onClose}>
+      <h2 className="text-xl font-semibold mb-4 text-center">Set University</h2>
+      {universities.length > 0 ? (
+        <>
           <select
             value={selectedUniversity}
-            onChange={handleUniversityChange}
+            onChange={handleSelectChange}
             className="w-full p-2 border rounded-md"
           >
-            <option value="" disabled>
-              Choose University
-            </option>
             {universities.map((uni) => (
               <option key={uni.university.id} value={uni.university.id}>
                 {uni.university.name}
               </option>
             ))}
           </select>
-        ) : (
-          <div className="text-center text-gray-500 my-4">
-            You have not added any university to your account. Please add one.
+          <div className="flex justify-center mt-4">
+            <img
+              src={
+                isHovered && existingUniversities.length > 0
+                  ? FilledPlusIcon
+                  : UnfilledPlusIcon
+              }
+              alt="Add University"
+              className="w-8 h-8 cursor-pointer"
+              onClick={handlePlusIconClick}
+              data-tooltip-id="add-icon-tooltip"
+              data-tooltip-content={tooltipContent}
+              onMouseOver={() => setIsHovered(true)}
+              onMouseOut={() => setIsHovered(false)}
+            />
           </div>
-        )}
-        <div className="flex justify-end mt-4">
-          <img
-            src={isHovered && existingUniversities.length > 0 ? FilledPlusIcon : UnfilledPlusIcon}
-            alt="Add University"
-            className="w-8 h-8 cursor-pointer"
-            onClick={handlePlusIconClick}
-            data-tooltip-id="add-icon-tooltip"
-            data-tooltip-content={tooltipContent}
-            onMouseOver={() => setIsHovered(true)}
-            onMouseOut={() => setIsHovered(false)}
-          />
+        </>
+      ) : (
+        <div className="text-center text-gray-500 my-4">
+          You have not added any university to your account. Please add one.
         </div>
-        <Tooltip id="add-icon-tooltip" place="left" />
-      </ModalContainer>
+      )}
+      <Tooltip id="add-icon-tooltip" place="left" />
 
       {showAddExistingModal && (
         <AddExistingUniversityModal
           isOpen={true}
-          onClose={() => setShowAddExistingModal(false)}
-          onUniversityAdded={() => {
+          onClose={() => {
             setShowAddExistingModal(false);
+            onClose();
           }}
+          onUniversityAdded={onClose}
         />
       )}
 
       {showAddNewModal && (
         <AddNewUniversityModal
           isOpen={true}
-          onClose={() => setShowAddNewModal(false)}
-          onUniversityAdded={() => {
+          onClose={() => {
             setShowAddNewModal(false);
+            onClose();
           }}
+          onUniversityAdded={onClose}
         />
       )}
-    </>
+    </ModalContainer>
   );
 };
 

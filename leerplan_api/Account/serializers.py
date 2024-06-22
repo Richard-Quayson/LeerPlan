@@ -334,7 +334,7 @@ class UserRoutineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserRoutine
-        fields = ["id", "user", "name", "type", "start_time", "end_time"]
+        fields = ["id", "user", "name","start_time", "end_time"]
 
     def get_user(self, obj: UserRoutine) -> dict:
         return self.context["request"].user.id
@@ -373,7 +373,10 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         
         # retrieve user's universities
         universities = UserUniversity.objects.filter(user=instance)
-        user_data["universities"] = [UniversitySerializer(university.university).data for university in universities]
+        user_data["universities"] = []
+        for university in universities:
+            data = UserUniversitySerializer(university).data
+            user_data["universities"].append(data)
 
         # retrieve user's routines
         user_data["routines"] = []

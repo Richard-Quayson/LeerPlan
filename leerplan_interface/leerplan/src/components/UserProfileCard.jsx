@@ -2,7 +2,11 @@ import React, { useState, useEffect } from "react";
 import SetUniversityModal from "./SetUniversityModal";
 import AddNewUniversityModal from "./AddNewUniversityModal";
 import AddExistingUniversityModal from "./AddExistingUniversityModal";
-import { USER_UNIVERSITY_LIST_URL } from "../utility/api_urls";
+import UserDetailCard from "./UserDetailCard";
+import {
+  USER_UNIVERSITY_LIST_URL,
+  UNIVERSITY_LIST_URL,
+} from "../utility/api_urls";
 import {
   PREFERRED_UNIVERSITY_NAME,
   PREFERRED_UNIVERSITY_ID,
@@ -12,9 +16,14 @@ import ProfilePicture from "../assets/images/defaultprofile.png";
 
 const UserProfileCard = ({ user }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddUniversityModalOpen, setIsAddUniversityModalOpen] = useState(false);
+  const [isAddUniversityModalOpen, setIsAddUniversityModalOpen] =
+    useState(false);
   const [universities, setUniversities] = useState([]);
   const [selectedUniversity, setSelectedUniversity] = useState("");
+  const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
+  const [showAddExistingUniversityModal, setShowAddExistingUniversityModal] =
+    useState(false);
+  const [existingUniversities, setExistingUniversities] = useState([]);
 
   useEffect(() => {
     const fetchUniversities = async () => {
@@ -22,19 +31,26 @@ const UserProfileCard = ({ user }) => {
         const response = await api.get(USER_UNIVERSITY_LIST_URL);
         setUniversities(response.data);
 
-        // Check if preferred university name is set in local storage
-        const preferredUniversityName = localStorage.getItem(PREFERRED_UNIVERSITY_NAME);
-        const preferredUniversityId = localStorage.getItem(PREFERRED_UNIVERSITY_ID);
+        const preferredUniversityName = localStorage.getItem(
+          PREFERRED_UNIVERSITY_NAME
+        );
+        const preferredUniversityId = localStorage.getItem(
+          PREFERRED_UNIVERSITY_ID
+        );
 
-        // If preferred university is set, use it
         if (preferredUniversityName && preferredUniversityId) {
-          setSelectedUniversity(preferredUniversityName);
+          setSelectedUniversity(preferredUniversityId);
         } else {
-          // If user has universities and preferred university is not set, pre-select the first one
           if (response.data.length > 0) {
-            setSelectedUniversity(response.data[0].university.name);
-            localStorage.setItem(PREFERRED_UNIVERSITY_NAME, response.data[0].university.name);
-            localStorage.setItem(PREFERRED_UNIVERSITY_ID, response.data[0].university.id);
+            setSelectedUniversity(response.data[0].university.id.toString());
+            localStorage.setItem(
+              PREFERRED_UNIVERSITY_NAME,
+              response.data[0].university.name
+            );
+            localStorage.setItem(
+              PREFERRED_UNIVERSITY_ID,
+              response.data[0].university.id
+            );
           }
         }
       } catch (error) {
@@ -46,68 +62,86 @@ const UserProfileCard = ({ user }) => {
   }, []);
 
   const handleUniversityChange = (event) => {
-    const selectedId = parseInt(event.target.value);
-    const selectedUni = universities.find((uni) => uni.university.id === selectedId);
-
-    if (selectedUni) {
-      setSelectedUniversity(selectedUni.university.name);
-      localStorage.setItem(PREFERRED_UNIVERSITY_NAME, selectedUni.university.name);
-      localStorage.setItem(PREFERRED_UNIVERSITY_ID, selectedUni.university.id);
-    } else {
-      setSelectedUniversity("");
-      localStorage.removeItem(PREFERRED_UNIVERSITY_NAME);
-      localStorage.removeItem(PREFERRED_UNIVERSITY_ID);
-    }
+    setSelectedUniversity(event.target.value);
   };
 
   const handleUniversityAdded = () => {
     setIsAddUniversityModalOpen(false);
+    setShowAddExistingUniversityModal(false);
     window.location.reload();
+  };
+
+  const fetchExistingUniversities = async () => {
+    try {
+      const response = await api.get(UNIVERSITY_LIST_URL);
+      setExistingUniversities(response.data);
+    } catch (error) {
+      console.error("Failed to fetch existing universities", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchExistingUniversities();
+  }, []);
+
+  const handleAddUniversityClick = async () => {
+    if (existingUniversities && existingUniversities.length > 0) {
+      setShowAddExistingUniversityModal(true);
+    } else {
+      setIsAddUniversityModalOpen(true);
+    }
   };
 
   const renderUniversitySection = () => {
     if (universities.length === 0) {
-      // First State: No universities added
       return (
         <div
           className="text-blue-500 cursor-pointer"
-          onClick={() => setIsAddUniversityModalOpen(true)}
+          onClick={handleAddUniversityClick}
         >
           Add University
         </div>
       );
     } else if (universities.length === 1) {
-      // Second State: One university added
       return (
         <div className="text-blue-500 cursor-default">
-          {universities[0].university.name}
+          {universities[0] && universities[0].university.name}
         </div>
       );
     } else {
-      // Third State: Two or more universities added
+      const selectedUni = universities.find(
+        (uni) => uni.university.id.toString() === selectedUniversity
+      );
       return (
         <div
           className="text-blue-500 cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
-          {universities[0].university.name}
+          {selectedUni && selectedUni.university.name}
         </div>
       );
     }
   };
 
   return (
-    <div className="flex items-center p-4 bg-white shadow rounded-md">
-      <img
-        src={user.profile_picture || ProfilePicture}
-        alt="Profile"
-        className="w-16 h-16 rounded-lg mr-4"
-      />
-      <div>
-        <div className="font-semibold text-gray-700">
-          {user.firstname} {user.lastname}
+    <div>
+      <div className="flex items-center p-4 bg-white shadow rounded-md cursor-pointer">
+        <img
+          // src={user.profile_picture || ProfilePicture}
+          src={ProfilePicture}
+          alt="Profile"
+          className="w-16 h-16 rounded-lg mr-4"
+          onClick={() => setIsUserDetailOpen(true)}
+        />
+        <div>
+          <div
+            className="font-semibold text-gray-700 mb-1"
+            onClick={() => setIsUserDetailOpen(true)}
+          >
+            {user.firstname} {user.lastname}
+          </div>
+          {renderUniversitySection()}
         </div>
-        {renderUniversitySection()}
       </div>
 
       <SetUniversityModal
@@ -115,17 +149,29 @@ const UserProfileCard = ({ user }) => {
         onClose={() => setIsModalOpen(false)}
         universities={universities}
         selectedUniversity={selectedUniversity}
-        handleUniversityChange={handleUniversityChange}
-        onAddNewUniversityClick={() => {
+        handleSetUniversity={(selectedId) => {
+          setSelectedUniversity(selectedId.toString());
           setIsModalOpen(false);
-          setIsAddUniversityModalOpen(true);
         }}
+        handleUniversityChange={handleUniversityChange}
       />
 
       <AddNewUniversityModal
         isOpen={isAddUniversityModalOpen}
         onClose={() => setIsAddUniversityModalOpen(false)}
         onUniversityAdded={handleUniversityAdded}
+      />
+
+      <AddExistingUniversityModal
+        isOpen={showAddExistingUniversityModal}
+        onClose={() => setShowAddExistingUniversityModal(false)}
+        onUniversityAdded={handleUniversityAdded}
+      />
+
+      <UserDetailCard
+        user={user}
+        isOpen={isUserDetailOpen}
+        onClose={() => setIsUserDetailOpen(false)}
       />
     </div>
   );

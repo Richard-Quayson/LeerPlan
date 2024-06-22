@@ -42,19 +42,6 @@ const DashboardPage = () => {
       <div className="h-screen overflow-y-auto flex">
         <div className="w-1/4">
           <LeftPane user={user} />
-
-          {/* LOGOUT */}
-          <div className="text-center mt-4">
-            <button
-              onClick={() => {
-                localStorage.removeItem(CURRENT_USER_ID);
-                navigate(LOGIN_ROUTE);
-              }}
-              className="bg-red-500 text-white px-4 py-2 rounded-md"
-            >
-              Logout
-            </button>
-          </div>
         </div>
 
         <div className="w-3/4 pr-4"></div>

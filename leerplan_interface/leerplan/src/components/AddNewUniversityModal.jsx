@@ -3,7 +3,7 @@ import ModalContainer from "./ModalContainer";
 import api from "../utility/api";
 import { ADD_USER_UNIVERSITY_URL } from "../utility/api_urls";
 import { NAME_REGEX } from "../utility/constants";
-import UniversityIcon from "../assets/icons/University.png";
+import UniversityIcon from "../assets/icons/UniversityInput.png";
 import SuccessGif from "../assets/gifs/Success.gif";
 
 const AddNewUniversityModal = ({ isOpen, onClose, onUniversityAdded }) => {

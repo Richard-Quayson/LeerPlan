@@ -214,14 +214,12 @@ class UserRoutine(models.Model):
         Attributes:
             - user ([ForeignKey]): [user foreign key]
             - name ([CharField]): [name of the routine]
-            - type ([CharField]): [type of the routine] e.g. 
             - start_time ([TimeField]): [start time of the routine]
             - end_time ([TimeField]): [end time of the routine]
     """
 
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    type = models.CharField(max_length=100, blank=True, null=True)
     start_time = models.TimeField()
     end_time = models.TimeField()
 
