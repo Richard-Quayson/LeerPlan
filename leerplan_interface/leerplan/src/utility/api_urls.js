@@ -50,3 +50,10 @@ export const UPDATE_USER_ROUTINE_URL = "account/user/routine/update/";          
 
 export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/";          // DELETE URL to delete a routine of a user
 // export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/<int:routine_id>/";  // DELETE URL to delete a routine of a user
+
+
+
+// COURSE APP MODELS
+
+// COURSE MODELS
+export const CREATE_COURSE_URL = "course/create/";                             // POST URL to create a new course
