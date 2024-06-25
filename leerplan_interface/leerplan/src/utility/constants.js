@@ -1,6 +1,6 @@
 // access and refresh token keys
-export const ACCESS_TOKEN = "leerplan_access";
-export const REFRESH_TOKEN = "leerplan_refresh";
+export const ACCESS_TOKEN = "leerplan:ACCESS_TOKEN";
+export const REFRESH_TOKEN = "leerplan:REFRESH_TOKEN";
 
 
 // name, email and password regex
@@ -10,6 +10,8 @@ export const PASSWORD_REGEX = /^(?=(.*[A-Z]){1,})(?=(.*[a-z]){1,})(?=(.*\d){1,})
 
 
 // user attribute constants
-export const CURRENT_USER_ID = "CURRENT_USER_ID";
-export const PREFERRED_UNIVERSITY_NAME = "PREFERRED_UNIVERSITY_NAME";
-export const PREFERRED_UNIVERSITY_ID = "PREFERRED_UNIVERSITY_ID";
+export const CURRENT_USER_ID = "leerplan:CURRENT_USER_ID";
+export const PREFERRED_UNIVERSITY_NAME = "leerplan:PREFERRED_UNIVERSITY_NAME";
+export const PREFERRED_UNIVERSITY_ID = "leerplan:PREFERRED_UNIVERSITY_ID";
+export const EXTENDED_COURSE_LIST = "leerplan:EXTENDED_COURSE_LIST";
+export const EXTENDED_ROUTINE_LIST = "leerplan:EXTENDED_ROUTINE_LIST";
