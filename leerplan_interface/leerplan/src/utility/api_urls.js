@@ -57,3 +57,8 @@ export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/";          
 
 // COURSE MODELS
 export const CREATE_COURSE_URL = "course/create/";                             // POST URL to create a new course
+
+export const USER_COURSE_LIST_URL = "course/user/";                             // GET URL to get list of courses of a user
+
+export const DELETE_USER_COURSE_URL = "course/delete/";                         // DELETE URL to delete a course of a user
+// export const DELETE_USER_COURSE_URL = "course/delete/<int:user_course_id>/";       // DELETE URL to delete a course of a user
