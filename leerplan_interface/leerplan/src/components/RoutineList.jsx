@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import RoutineCard from "./RoutineCard";
 import AddRoutineModal from "./AddRoutineModal";
-import { EXTENDED_ROUTINE_LIST_DISPLAY } from "../utility/constants";
+import {
+  EXTENDED_ROUTINE_LIST_DISPLAY,
+  COURSE_ROUTINE_COLOURS,
+} from "../utility/constants";
 import RightIcon from "../assets/icons/ChevronRight.png";
 import DownIcon from "../assets/icons/ChevronDown.png";
 import FolderIcon from "../assets/icons/Folder.png";
@@ -73,14 +76,22 @@ const RoutineList = ({ routines }) => {
           {routines.length === 0 ? (
             <p className="text-gray-500">No routines have been added</p>
           ) : (
-            routines.map((routine) => (
-              <RoutineCard
-                key={routine.id}
-                routine={routine}
-                summary={true}
-                onDelete={() => handleRoutineDelete(routine.id)}
-              />
-            ))
+            routines.map((routine, index) => {
+              const colorIndex =
+                Object.keys(COURSE_ROUTINE_COLOURS).length -
+                1 -
+                (index % Object.keys(COURSE_ROUTINE_COLOURS).length);
+              const color = Object.values(COURSE_ROUTINE_COLOURS)[colorIndex];
+              return (
+                <RoutineCard
+                  key={routine.id}
+                  routine={routine}
+                  summary={true}
+                  color={color}
+                  onDelete={() => handleRoutineDelete(routine.id)}
+                />
+              );
+            })
           )}
         </div>
       )}
