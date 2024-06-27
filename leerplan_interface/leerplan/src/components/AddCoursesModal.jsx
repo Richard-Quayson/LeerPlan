@@ -154,7 +154,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
                       alt="Upload"
                       className="w-6 h-6 inline-block mr-2"
                     />
-                    Choose Files
+                    Select Files
                   </div>
                   <input
                     id="file-upload"
