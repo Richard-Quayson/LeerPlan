@@ -20,13 +20,13 @@ export const COURSE_ROUTINE_COLOURS = {
     deep: "#dc2626",
     light: "#fca5a5",
   },
-  slate: {
-    deep: "#475569",
-    light: "#cbd5e1",
-  },
   orange: {
     deep: "#ea580c",
     light: "#fdba74",
+  },
+  slate: {
+    deep: "#475569",
+    light: "#cbd5e1",
   },
   amber: {
     deep: "#d97706",
@@ -36,25 +36,25 @@ export const COURSE_ROUTINE_COLOURS = {
     deep: "#65a30d",
     light: "#bef264",
   },
-  green: {
-    deep: "#16a34a",
-    light: "#86efac",
-  },
   teal: {
     deep: "#0d9488",
     light: "#5eead4",
   },
-  blue: {
-    deep: "#2563eb",
-    light: "#93c5fd",
+  pink: {
+    deep: "#db2777",
+    light: "#f9a8d4",
+  },
+  green: {
+    deep: "#16a34a",
+    light: "#86efac",
   },
   purple: {
     deep: "#9333ea",
     light: "#d8b4fe",
   },
-  pink: {
-    deep: "#db2777",
-    light: "#f9a8d4",
+  blue: {
+    deep: "#2563eb",
+    light: "#93c5fd",
   },
   rose: {
     deep: "#e11d48",
