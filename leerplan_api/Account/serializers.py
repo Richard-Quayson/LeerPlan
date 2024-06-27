@@ -3,6 +3,7 @@ from contextvars import Token
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
+from datetime import time
 
 from .models import UserAccount, University, UserUniversity, UserRoutine
 from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
@@ -352,9 +353,16 @@ class UserRoutineSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Routine already exists!")
         
         if "start_time" in attrs and "end_time" in attrs:
-            if attrs["start_time"] > attrs["end_time"]:
-                raise serializers.ValidationError("Start time must be less than end time!")
-        
+            start_time = attrs["start_time"]
+            end_time = attrs["end_time"]
+            
+            # handle case where end time is 00:00
+            if end_time == time(0, 0):
+                end_time = time(23, 59)
+
+            if start_time >= end_time:
+                raise serializers.ValidationError("Start time must be before end time!")
+
         return attrs
     
 

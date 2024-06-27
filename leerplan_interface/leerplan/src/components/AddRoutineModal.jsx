@@ -43,7 +43,11 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
         }, 3000);
       }
     } catch (error) {
-      setMessage(error.response?.data?.detail || "Failed to add routine.");
+      setMessage(
+        error.response?.data?.detail ||
+          error.response?.data?.non_field_errors ||
+          "Failed to add routine."
+      );
       setTimeout(() => {
         setMessage("");
       }, 5000);

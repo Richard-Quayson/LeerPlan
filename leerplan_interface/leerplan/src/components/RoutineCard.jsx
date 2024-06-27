@@ -5,7 +5,7 @@ import api from "../utility/api";
 import DeleteIcon from "../assets/icons/Delete.png";
 import SuccessGif from "../assets/gifs/Success.gif";
 
-const RoutineCard = ({ routine, onDelete }) => {
+const RoutineCard = ({ routine, onDelete, summary, color }) => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
   const [deleteError, setDeleteError] = useState("");
@@ -52,16 +52,14 @@ const RoutineCard = ({ routine, onDelete }) => {
   };
 
   return (
-    <div className="flex items-center p-4 border-[2px] bg-white shadow rounded-md">
+    <div className="flex items-center px-4 py-1 border-[2px] shadow rounded-md relative">
       <div className="flex-grow">
         <div className="font-semibold">{routine.name}</div>
         <div className="text-gray-500">
           {formatTime(routine.start_time)} - {formatTime(routine.end_time)}
         </div>
       </div>
-      {deleteSuccess ? (
-        <img src={SuccessGif} alt="Success" className="w-8 h-8" />
-      ) : (
+      {!summary && !deleteSuccess && (
         <img
           src={DeleteIcon}
           alt="Delete"
@@ -69,12 +67,21 @@ const RoutineCard = ({ routine, onDelete }) => {
           onClick={handleDeleteClick}
         />
       )}
+      {deleteSuccess && (
+        <img src={SuccessGif} alt="Success" className="w-8 h-8" />
+      )}
       {deleteError && <div className="text-red-500 mt-2">{deleteError}</div>}
       {isPromptOpen && (
         <YesNoPrompt
           question="Are you sure you want to delete this routine?"
           onYes={handleYes}
           onNo={handleNo}
+        />
+      )}
+      {color && (
+        <div
+          style={{ backgroundColor: color.light }}
+          className="absolute top-0 right-0 h-full w-1.5 rounded-tr-md rounded-br-md"
         />
       )}
     </div>
