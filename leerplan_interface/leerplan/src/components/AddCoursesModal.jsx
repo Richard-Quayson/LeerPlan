@@ -5,6 +5,7 @@ import api from "../utility/api";
 import { PREFERRED_UNIVERSITY_ID } from "../utility/constants";
 import SuccessGif from "../assets/gifs/Success.gif";
 import FileIcon from "../assets/icons/File.png";
+import UploadIcon from "../assets/icons/Upload.png";
 
 const AddCoursesModal = ({ isOpen, onClose }) => {
   const [files, setFiles] = useState([]);
@@ -114,7 +115,9 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
         {uploadSuccess ? (
           <div className="mt-4">
             <img src={SuccessGif} alt="Success" className="w-32 h-32 mx-auto" />
-            <p className="text-green-500 mt-2">Courses uploaded successfully.</p>
+            <p className="text-green-500 mt-2">
+              Courses uploaded successfully.
+            </p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} encType="multipart/form-data">
@@ -143,9 +146,16 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
               <div className="flex justify-between">
                 <label
                   htmlFor="file-upload"
-                  className="ml-4 cursor-pointer bg-white px-4 py-1 rounded-lg border border-yellow-800 hover:bg-yellow-800 hover:text-white mr-2"
+                  className="ml-4 cursor-pointer bg-white px-4 rounded-3xl border border-yellow-800 mr-2"
                 >
-                  Choose Files
+                  <div className="flex items-center py-1">
+                    <img
+                      src={UploadIcon}
+                      alt="Upload"
+                      className="w-6 h-6 inline-block mr-2"
+                    />
+                    Choose Files
+                  </div>
                   <input
                     id="file-upload"
                     type="file"
@@ -157,7 +167,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
                 </label>
                 <button
                   type="submit"
-                  className={`px-4 py-1 border border-yellow-800 bg-white font-semibold text-yellow-800 rounded-lg shadow hover:bg-yellow-800 hover:text-white ${
+                  className={`px-4 border border-yellow-800 bg-white font-semibold text-yellow-800 rounded-lg shadow hover:bg-yellow-800 hover:text-white ${
                     isLoading && "opacity-50 cursor-not-allowed"
                   }`}
                   disabled={isLoading}
