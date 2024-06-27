@@ -24,3 +24,14 @@
     bottom: 15vh;
   }
 }
+
+.course-summary-card {
+  display: flex;
+  align-items: center;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.color-bar {
+  height: 100%;
+}
