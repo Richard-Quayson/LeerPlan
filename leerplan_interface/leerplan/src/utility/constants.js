@@ -14,8 +14,8 @@ export const PREFERRED_UNIVERSITY_ID = "leerplan:PREFERRED_UNIVERSITY_ID";
 export const EXTENDED_COURSE_LIST_DISPLAY = "leerplan:EXTENDED_COURSE_LIST_DISPLAY";
 export const EXTENDED_ROUTINE_LIST_DISPLAY = "leerplan:EXTENDED_ROUTINE_LIST_DISPLAY";
 
-// course colour list (list of dictionary objects)
-export const COURSE_COLOURS = {
+// course and routine colour list (list of dictionary objects)
+export const COURSE_ROUTINE_COLOURS = {
   red: {
     deep: "#dc2626",
     light: "#fca5a5",
