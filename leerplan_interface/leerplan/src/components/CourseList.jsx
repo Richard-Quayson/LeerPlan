@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CourseSummaryCard from "./CourseSummaryCard";
+import AddCoursesModal from "./AddCoursesModal";
 import {
   EXTENDED_COURSE_LIST_DISPLAY,
   COURSE_ROUTINE_COLOURS,
@@ -11,6 +12,7 @@ import PlusIcon from "../assets/icons/UnroundedPlus.png";
 
 const CourseList = ({ courses }) => {
   const [extendedDisplay, setExtendedDisplay] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const storedDisplayState = localStorage.getItem(
@@ -30,6 +32,14 @@ const CourseList = ({ courses }) => {
       EXTENDED_COURSE_LIST_DISPLAY,
       newDisplayState.toString()
     );
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -52,7 +62,10 @@ const CourseList = ({ courses }) => {
             <span className="text-gray-500 ml-2 text-lg">Courses</span>
           </div>
         </div>
-        <div className="flex items-center text-blue-500 pr-4">
+        <div
+          className="flex items-center text-blue-500 pr-4 cursor-pointer"
+          onClick={openModal}
+        >
           <img src={PlusIcon} alt="Add New Course" className="mr-2 w-4 h-4" />
           <span className="text-sm">Add New</span>
         </div>
@@ -61,7 +74,9 @@ const CourseList = ({ courses }) => {
       {extendedDisplay && (
         <div className="course-cards mt-4 ml-6">
           {courses.length === 0 ? (
-            <p className="text-gray-400 text-center">No courses have been added</p>
+            <p className="text-gray-400 text-center">
+              No courses have been added
+            </p>
           ) : (
             courses.map((course, index) => (
               <CourseSummaryCard
@@ -78,6 +93,8 @@ const CourseList = ({ courses }) => {
           )}
         </div>
       )}
+
+      <AddCoursesModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
