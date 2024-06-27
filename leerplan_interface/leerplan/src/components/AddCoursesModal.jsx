@@ -91,7 +91,8 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
         <form onSubmit={handleSubmit}>
           {message && <div className="mb-4 text-red-500">{message}</div>}
           <p className="text-gray-500 mb-2">
-            Upload multiple course syllabus to create an academic schedule.
+            Upload all your course syllabus for the semester here to create a
+            custom academic calendar.
           </p>
           <div className="ml-8 my-4 flex flex-col">
             {files.map((file, index) => (
