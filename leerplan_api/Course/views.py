@@ -542,6 +542,14 @@ class CreateCourseView(APIView):
         
         return user_course
 
+    
+class RetrieveUserCoursesView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def get(self, request):
+        user_courses = UserCourse.objects.filter(user=request.user)
+        return Response(UserCourseSerializer(user_courses, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
+
 
 class DeleteCourseView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
