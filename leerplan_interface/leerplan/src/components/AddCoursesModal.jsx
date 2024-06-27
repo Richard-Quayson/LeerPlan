@@ -46,8 +46,27 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
     event.preventDefault();
 
     if (files.length === 0) {
-      setMessage("Please select at least one file.");
+      setMessage("Please select at least one course syllabus.");
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
       return;
+    }
+
+    // check file types
+    const allowedTypes = [".pdf", ".json"];
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const fileType = file.name
+        .substring(file.name.lastIndexOf("."))
+        .toLowerCase();
+      if (!allowedTypes.includes(fileType)) {
+        setMessage("Please upload files with .pdf or .json extensions.");
+        setTimeout(() => {
+          setMessage("");
+        }, 5000);
+        return;
+      }
     }
 
     setIsLoading(true);
@@ -62,9 +81,13 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
         localStorage.getItem(PREFERRED_UNIVERSITY_ID)
       );
 
-      const response = await api.post(CREATE_COURSES_URL, formData);
+      const response = await api.post(CREATE_COURSES_URL, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         setUploadSuccess(true);
       } else {
         setMessage(response.data.detail || "Failed to upload courses.");
@@ -88,7 +111,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
         <h2 className="text-2xl mb-4 font-bold text-yellow-800">
           Upload Course Syllabus
         </h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} encType="multipart/form-data">
           {message && <div className="mb-4 text-red-500">{message}</div>}
           <p className="text-gray-500 mb-2">
             Upload all your course syllabus for the semester here to create a
@@ -120,7 +143,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
                 <input
                   id="file-upload"
                   type="file"
-                  accept=".pdf,.doc,.docx"
+                  accept=".pdf,.json"
                   onChange={handleFileChange}
                   multiple
                   className="hidden"
