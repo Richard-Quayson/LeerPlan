@@ -64,6 +64,9 @@ const LeftPane = ({ user }) => {
         <RoutineList routines={user.routines} />
       </div>
 
+      {/* LINE SEPARATOR */}
+      <hr className="border-gray-200 w-full mt-4" />
+
       {/* LOGOUT */}
       <div
         className="logout-container"
