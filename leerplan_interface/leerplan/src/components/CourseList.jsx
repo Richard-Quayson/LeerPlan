@@ -45,8 +45,8 @@ const CourseList = ({ courses }) => {
           <div className="flex justify-center">
             <img
               src={FolderIcon}
-              alt="Toggle Display"
-              className="cursor-pointer w-6 h-6 ml-4"
+              alt="Folder Icon"
+              className="w-6 h-6 ml-4"
               onClick={toggleDisplay}
             />
             <span className="text-gray-500 ml-2 text-lg">Courses</span>
@@ -60,18 +60,22 @@ const CourseList = ({ courses }) => {
 
       {extendedDisplay && (
         <div className="course-cards mt-4 ml-6">
-          {courses.map((course, index) => (
-            <CourseSummaryCard
-              key={course.id}
-              code={course.course.code}
-              title={course.course.name}
-              color={
-                Object.values(COURSE_COLOURS)[
-                  index % Object.keys(COURSE_COLOURS).length
-                ]
-              }
-            />
-          ))}
+          {courses.length === 0 ? (
+            <p className="text-gray-400 text-center">No courses have been added</p>
+          ) : (
+            courses.map((course, index) => (
+              <CourseSummaryCard
+                key={course.id}
+                code={course.course.code}
+                title={course.course.name}
+                color={
+                  Object.values(COURSE_COLOURS)[
+                    index % Object.keys(COURSE_COLOURS).length
+                  ]
+                }
+              />
+            ))
+          )}
         </div>
       )}
     </div>
