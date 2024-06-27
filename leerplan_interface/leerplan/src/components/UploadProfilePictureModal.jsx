@@ -75,7 +75,7 @@ const UploadProfilePictureModal = ({ isOpen, onClose }) => {
         <h2 className="text-2xl mb-4 font-bold text-yellow-800">
           Upload Profile Picture
         </h2>
-        <p className="text-gray-400 mb-6">
+        <p className="text-gray-500 mb-6">
           Choose a profile picture from your device.
         </p>
         <form onSubmit={handleSubmit} className="flex flex-col items-center">
