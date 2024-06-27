@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import UserProfileCard from "./UserProfileCard";
 import CourseList from "./CourseList";
+import RoutineList from "./RoutineList";
 import { LOGOUT_ROUTE } from "../utility/routes";
 import { CURRENT_USER_ID } from "../utility/constants";
 import { USER_COURSE_LIST_URL } from "../utility/api_urls";
@@ -53,6 +54,14 @@ const LeftPane = ({ user }) => {
       {/* COURSE DIRECTORY */}
       <div className="w-full">
         <CourseList courses={userCourses} />
+      </div>
+
+      {/* LINE SEPARATOR */}
+      <hr className="border-gray-200 w-full mt-4" />
+
+      {/* ROUTINE DIRECTORY */}
+      <div className="w-full">
+        <RoutineList routines={user.routines} />
       </div>
 
       {/* LOGOUT */}
