@@ -53,7 +53,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
       return;
     }
 
-    // check file types
+    // Check file types
     const allowedTypes = [".pdf", ".json"];
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
@@ -111,45 +111,50 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
         <h2 className="text-2xl mb-4 font-bold text-yellow-800">
           Upload Course Syllabus
         </h2>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          {message && <div className="mb-4 text-red-500">{message}</div>}
-          <p className="text-gray-500 mb-2">
-            Upload all your course syllabus for the semester here to create a
-            custom academic calendar.
-          </p>
-          <div className="ml-8 my-4 flex flex-col">
-            {files.map((file, index) => (
-              <div key={index} className="flex mb-2">
-                <div className="flex items-center">
-                  <img src={FileIcon} alt="File" className="w-8 h-8 mr-2" />
-                  <span>{file.name}</span>
-                  <span
-                    className="ml-2 text-red-500 cursor-pointer text-2xl"
-                    onClick={() => handleRemoveFile(index)}
-                  >
-                    &times;
-                  </span>
-                </div>
-              </div>
-            ))}
+        {uploadSuccess ? (
+          <div className="mt-4">
+            <img src={SuccessGif} alt="Success" className="w-32 h-32 mx-auto" />
+            <p className="text-green-500 mt-2">Courses uploaded successfully.</p>
           </div>
-          <div className="mb-2">
-            <div className="flex justify-between">
-              <label
-                htmlFor="file-upload"
-                className="ml-4 cursor-pointer bg-white px-4 py-1 rounded-lg border border-yellow-800 hover:bg-yellow-800 hover:text-white mr-2"
-              >
-                Choose Files
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept=".pdf,.json"
-                  onChange={handleFileChange}
-                  multiple
-                  className="hidden"
-                />
-              </label>
-              {!uploadSuccess && (
+        ) : (
+          <form onSubmit={handleSubmit} encType="multipart/form-data">
+            {message && <div className="mb-4 text-red-500">{message}</div>}
+            <p className="text-gray-500 mb-2">
+              Upload all your course syllabus for the semester here to create a
+              custom academic calendar.
+            </p>
+            <div className="ml-8 my-4 flex flex-col">
+              {files.map((file, index) => (
+                <div key={index} className="flex mb-2">
+                  <div className="flex items-center">
+                    <img src={FileIcon} alt="File" className="w-8 h-8 mr-2" />
+                    <span>{file.name}</span>
+                    <span
+                      className="ml-2 text-red-500 cursor-pointer text-2xl"
+                      onClick={() => handleRemoveFile(index)}
+                    >
+                      &times;
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mb-2">
+              <div className="flex justify-between">
+                <label
+                  htmlFor="file-upload"
+                  className="ml-4 cursor-pointer bg-white px-4 py-1 rounded-lg border border-yellow-800 hover:bg-yellow-800 hover:text-white mr-2"
+                >
+                  Choose Files
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept=".pdf,.json"
+                    onChange={handleFileChange}
+                    multiple
+                    className="hidden"
+                  />
+                </label>
                 <button
                   type="submit"
                   className={`px-4 py-1 border border-yellow-800 bg-white font-semibold text-yellow-800 rounded-lg shadow hover:bg-yellow-800 hover:text-white ${
@@ -159,22 +164,10 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
                 >
                   {isLoading ? "Uploading..." : "Upload"}
                 </button>
-              )}
+              </div>
             </div>
-          </div>
-          {uploadSuccess && (
-            <div className="mt-4">
-              <img
-                src={SuccessGif}
-                alt="Success"
-                className="w-32 h-32 mx-auto"
-              />
-              <p className="text-green-500 mt-2">
-                Courses uploaded successfully.
-              </p>
-            </div>
-          )}
-        </form>
+          </form>
+        )}
       </div>
     </ModalContainer>
   );
