@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CourseSummaryCard from "./CourseSummaryCard";
 import {
   EXTENDED_COURSE_LIST_DISPLAY,
-  COURSE_COLOURS,
+  COURSE_ROUTINE_COLOURS,
 } from "../utility/constants";
 import RightIcon from "../assets/icons/ChevronRight.png";
 import DownIcon from "../assets/icons/ChevronDown.png";
@@ -69,8 +69,8 @@ const CourseList = ({ courses }) => {
                 code={course.course.code}
                 title={course.course.name}
                 color={
-                  Object.values(COURSE_COLOURS)[
-                    index % Object.keys(COURSE_COLOURS).length
+                  Object.values(COURSE_ROUTINE_COLOURS)[
+                    index % Object.keys(COURSE_ROUTINE_COLOURS).length
                   ]
                 }
               />
