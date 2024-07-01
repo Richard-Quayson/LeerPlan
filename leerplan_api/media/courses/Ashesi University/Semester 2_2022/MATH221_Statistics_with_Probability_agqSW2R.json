@@ -1,9 +1,9 @@
 {
-    "code": "CS111",
-    "name": "Introduction to Computing",
+    "code": "MATH221",
+    "name": "Statistics with Probability",
     "description": "What influences consumer choice? What life-style changes lead to better health and longevity? What factors influence Africans’ views on social and political issues? Are you interested in understanding how climate change is impacting communities in your home country? How can the vast amount of data collected and stored online be used to improve our quality of life? The discipline of statistics seeks to turn data into useful information that can help answer these and many other questions that may pique your interest.",
     "semester": {
-      "name": "Semester 1",
+      "name": "Semester 2",
       "year": 2022
     },
     "instructors": [
