@@ -2,8 +2,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
-from django.core.files.uploadedfile import InMemoryUploadedFile
 from rest_framework.request import Request
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
 import json
 
@@ -27,12 +27,10 @@ class CreateCourseView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
     def post(self, request):
-        # course files
-        course_files = request.FILES.getlist('course_files')
-
         # create course for every course file
         user_courses = list()
-        for course_file in course_files:
+
+        for _, course_file in request.FILES.items():
             course_file_name = course_file.name
             course_file_content_type = course_file.content_type
             course_file_size = course_file.size
