@@ -13,11 +13,11 @@ const CourseSummaryCard = ({ code, title, color }) => {
 
   return (
     <div
-      className="relative flex items-center mt-4"
+      className="relative flex items-center mt-3 rounded-l-md overflow-hidden"
       style={{ backgroundColor: color.light }}
     >
       <div
-        className="absolute left-0 top-0 bottom-0 w-[7px]"
+        className="absolute left-0 top-0 bottom-0 w-[5px]"
         style={{ backgroundColor: color.deep }}
       ></div>
       <div className="content p-2 pl-4 flex-1">
