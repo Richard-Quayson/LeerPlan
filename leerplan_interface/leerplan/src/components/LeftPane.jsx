@@ -89,7 +89,7 @@ const LeftPane = ({ user }) => {
         </button>
       </div>
 
-      <Tooltip id="logout" place="bottom" />
+      <Tooltip id="logout" place="right" />
     </div>
   );
 };
