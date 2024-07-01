@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
+import RightPane from "../components/RightPane";
+import api from "../utility/api";
+import { USER_COURSE_LIST_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
 import { USER_DETAILS_URL } from "../utility/api_urls";
 import { LOGIN_ROUTE } from "../utility/routes";
-import api from "../utility/api";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
+  const [userCourses, setUserCourses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -29,6 +32,19 @@ const DashboardPage = () => {
     fetchUserDetails();
   }, []);
 
+  useEffect(() => {
+    const fetchUserCourses = async () => {
+      try {
+        const response = await api.get(USER_COURSE_LIST_URL);
+        setUserCourses(response.data);
+      } catch (error) {
+        setUserCourses([]);
+      }
+    };
+
+    fetchUserCourses();
+  }, []);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -41,10 +57,14 @@ const DashboardPage = () => {
     <ProtectedRoute>
       <div className="h-screen overflow-y-auto flex">
         <div className="w-1/4">
-          <LeftPane user={user} />
+          {user && userCourses && (
+            <LeftPane user={user} userCourses={userCourses} />
+          )}
         </div>
 
-        <div className="w-3/4 pr-4"></div>
+        <div className="w-3/4 pr-4">
+          {userCourses && <RightPane courses={userCourses} />}
+        </div>
       </div>
     </ProtectedRoute>
   );
