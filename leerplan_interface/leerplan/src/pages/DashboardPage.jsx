@@ -62,7 +62,7 @@ const DashboardPage = () => {
           )}
         </div>
 
-        <div className="w-3/4 pr-4">
+        <div className="w-3/4">
           {userCourses && <RightPane courses={userCourses} />}
         </div>
       </div>
