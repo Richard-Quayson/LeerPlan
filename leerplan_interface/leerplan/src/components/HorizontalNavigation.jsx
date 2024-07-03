@@ -7,7 +7,7 @@ import {
 import SearchIcon from "../assets/icons/Search.png";
 import ExportIcon from "../assets/icons/Export.png";
 
-const HorizontalNavigation = ({ title }) => {
+const HorizontalNavigation = ({ title, handleSubmit }) => {
   const [extendedDisplay, setExtendedDisplay] = useState(false);
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
@@ -35,8 +35,12 @@ const HorizontalNavigation = ({ title }) => {
   }, []);
 
   const handleSearchClick = () => {
-    setExtendedDisplay(true);
-    localStorage.setItem(EXTENDED_CALENDAR_FILTER_DISPLAY, "true");
+    if (!extendedDisplay) {
+      setExtendedDisplay(true);
+      localStorage.setItem(EXTENDED_CALENDAR_FILTER_DISPLAY, "true");
+    } else {
+      applyFilter();
+    }
   };
 
   const handleCloseClick = () => {
@@ -89,6 +93,12 @@ const HorizontalNavigation = ({ title }) => {
                 placeholder="Enter Course Code"
               />
             ) : null}
+            <img
+              src={SearchIcon}
+              alt="Search"
+              className="w-6 h-6 cursor-pointer"
+              onClick={handleSearchClick}
+            />
             <button
               onClick={handleCloseClick}
               className="text-2xl font-bold text-gray-400 hover:text-gray-600"
