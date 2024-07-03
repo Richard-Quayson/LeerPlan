@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { COURSE_ROUTINE_COLOURS } from "../utility/constants";
+import LocationIcon from "../assets/icons/Location.png";
+import NotificationIcon from "../assets/icons/Notification.png";
+import HashTagIcon from "../assets/icons/HashTag.png";
+import AssessmentIcon from "../assets/icons/Assessment.png";
+import TopicIcon from "../assets/icons/Topic.png";
+import ReadingIcon from "../assets/icons/Reading.png";
 
 const localizer = momentLocalizer(moment);
-
-const getCourseScheduleRange = (course) => {
-  const startDate = moment(course.weekly_schedules[0].start_date).toDate();
-  const endDate = moment(
-    course.weekly_schedules[course.weekly_schedules.length - 1].end_date
-  ).toDate();
-  return { startDate, endDate };
-};
 
 const getColorForEvent = (index) => {
   const colors = Object.values(COURSE_ROUTINE_COLOURS);
@@ -62,7 +60,25 @@ const generateEvents = (course, courseIndex) => {
 const CustomCalendar = ({ courses }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [modalPosition, setModalPosition] = useState({ top: 0, left: 0 });
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        closeModal();
+      }
+    };
+
+    if (modalIsOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalIsOpen]);
 
   const events = courses.flatMap((courseObj, courseIndex) =>
     generateEvents(courseObj.course, courseIndex)
@@ -99,11 +115,7 @@ const CustomCalendar = ({ courses }) => {
   };
 
   const handleEventClick = (event, e) => {
-    const rect = e.target.getBoundingClientRect();
-    setModalPosition({
-      top: rect.top + window.scrollY,
-      left: rect.left + window.scrollX,
-    });
+    e.stopPropagation();
     setSelectedEvent(event);
     setModalIsOpen(true);
   };
@@ -146,78 +158,151 @@ const CustomCalendar = ({ courses }) => {
 
       {modalIsOpen && selectedEvent && (
         <div
-          className="absolute bg-white shadow-lg rounded p-4"
-          style={{
-            top: modalPosition.top,
-            left: modalPosition.left - 225,
-            zIndex: 1000,
-            width: "350px",
-          }}
+          className="absolute fit-content top-[200px] right-0 shadow-lg left-1/4 bottom-0 z-50 max-w-[500px] h-auto"
+          onClick={(e) => e.stopPropagation()}
+          ref={modalRef}
         >
-          <button
-            onClick={closeModal}
-            className="absolute top-2 right-2 text-xl font-bold text-gray-400 hover:text-gray-600"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-          <h2 className="text-lg">{selectedEvent.title}</h2>
-          <p>
-            <strong>Start:</strong>{" "}
-            {moment(selectedEvent.start).format("MMMM Do YYYY, h:mm a")}
-          </p>
-          <p>
-            <strong>End:</strong>{" "}
-            {moment(selectedEvent.end).format("MMMM Do YYYY, h:mm a")}
-          </p>
-          <p>
-            <strong>Location:</strong> {selectedEvent.location}
-          </p>
-          {(() => {
-            const weeklySchedule = filterWeeklySchedule(
-              selectedEvent.courseCode,
-              selectedEvent.courseTitle,
-              selectedEvent.start
-            );
-            if (weeklySchedule) {
-              return (
-                <div>
-                  <p>
-                    <strong>Week:</strong> {weeklySchedule.weekNumber}
-                  </p>
-                  <p>
-                    <strong>Date Range:</strong> {weeklySchedule.weekRange}
-                  </p>
-                  <p>
-                    <strong>Type:</strong> {weeklySchedule.type}
-                  </p>
-                  {weeklySchedule.assessments.length > 0 && (
-                    <div>
-                      <strong>Assessments:</strong>
-                      <ul>
-                        {weeklySchedule.assessments.map((assessment, index) => (
-                          <li key={index}>
-                            {assessment.name} (Due: {assessment.due_date})
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {weeklySchedule.topics.length > 0 && (
-                    <div>
-                      <strong>Topics:</strong>
-                      <ul>
-                        {weeklySchedule.topics.map((topic, index) => (
-                          <li key={index}>{topic.topic}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
+          <div className="bg-white shadow-2xl rounded-lg p-6 w-full max-h-[600px] overflow-y-auto">
+            <div className="flex justify-between items-center mb-1">
+              <div className="flex items-center">
+                <div
+                  className="w-4 h-4 rounded-sm mr-3"
+                  style={{ backgroundColor: selectedEvent.color }}
+                ></div>
+                <h2 className="text-lg font-bold">{selectedEvent.title}</h2>
+              </div>
+              <button
+                onClick={closeModal}
+                className="text-2xl font-bold text-gray-400 hover:text-gray-600"
+                aria-label="Close"
+              >
+                &times;
+              </button>
+            </div>
+            <div className="ml-6">
+              <p className="mb-3">
+                {moment(selectedEvent.start).format("dddd, MMMM DD, YYYY")}
+                <span className="mx-2">|</span>
+                {moment(selectedEvent.start).format("h:mm a")} -{" "}
+                {moment(selectedEvent.end).format("h:mm a")}
+              </p>
+              <div className="flex items-center mb-2">
+                <img
+                  src={LocationIcon}
+                  alt="Location"
+                  className="w-5 h-5 mr-2"
+                />
+                <span>{selectedEvent.location}</span>
+              </div>
+              <div className="flex items-center mb-4">
+                <img
+                  src={NotificationIcon}
+                  alt="Notification"
+                  className="w-5 h-5 mr-2"
+                />
+                <span>15 minutes before</span>
+              </div>
+            </div>
+            <hr className="my-4 border-gray-300" />
+            {(() => {
+              const weeklySchedule = filterWeeklySchedule(
+                selectedEvent.courseCode,
+                selectedEvent.courseTitle,
+                selectedEvent.start
               );
-            }
-            return <p>No weekly schedule information available.</p>;
-          })()}
+              if (weeklySchedule) {
+                return (
+                  <div>
+                    <div className="flex items-center mb-3">
+                      <img
+                        src={HashTagIcon}
+                        alt="Week"
+                        className="w-5 h-5 mr-2"
+                      />
+                      <div className="flex items-center">
+                        <span className="border border-gray-300 rounded px-2 py-1 mr-2">
+                          Week {weeklySchedule.weekNumber}
+                        </span>
+                        <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                          {weeklySchedule.type}
+                        </span>
+                      </div>
+                    </div>
+                    {weeklySchedule.assessments.length > 0 && (
+                      <div className="mb-3">
+                        <div className="flex items-center mb-2">
+                          <img
+                            src={AssessmentIcon}
+                            alt="Assessments"
+                            className="w-5 h-5 mr-2"
+                          />
+                          <strong>Assessments</strong>
+                        </div>
+                        <div className="pl-8">
+                          {weeklySchedule.assessments.map(
+                            (assessment, index) => (
+                              <div
+                                key={index}
+                                className="flex justify-between mb-1"
+                              >
+                                <span className="mr-2">{assessment.name}</span>
+                                <span className="font-semibold">
+                                  Due:{" "}
+                                  <span className="text-red-600">
+                                    {assessment.due_date
+                                      ? moment(assessment.due_date).format(
+                                          "MMMM DD"
+                                        )
+                                      : "No specified date"}
+                                  </span>
+                                </span>
+                              </div>
+                            )
+                          )}
+                        </div>
+                      </div>
+                    )}
+                    {weeklySchedule.topics.length > 0 && (
+                      <div className="mb-3">
+                        <div className="flex items-center mb-2">
+                          <img
+                            src={TopicIcon}
+                            alt="Topics"
+                            className="w-5 h-5 mr-2"
+                          />
+                          <strong>Topics</strong>
+                        </div>
+                        <ul className="list-none pl-8">
+                          {weeklySchedule.topics.map((topic, index) => (
+                            <li key={index}>{topic.topic}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {weeklySchedule.readings &&
+                      weeklySchedule.readings.length > 0 && (
+                        <div className="mb-3">
+                          <div className="flex items-center mb-2">
+                            <img
+                              src={ReadingIcon}
+                              alt="Readings"
+                              className="w-5 h-5 mr-2"
+                            />
+                            <strong>Readings</strong>
+                          </div>
+                          <ul className="list-none pl-8">
+                            {weeklySchedule.readings.map((reading, index) => (
+                              <li key={index}>{reading.title}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                  </div>
+                );
+              }
+              return <p>No weekly schedule information available.</p>;
+            })()}
+          </div>
         </div>
       )}
     </div>
