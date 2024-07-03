@@ -132,7 +132,7 @@ const CustomCalendar = ({ courses }) => {
       color: "white",
       border: "0px",
       display: "block",
-      fontSize: "14px",
+      fontSize: "12px",
       fontWeight: "bold",
       fontFamily: "sans-serif",
     };
@@ -223,7 +223,7 @@ const CustomCalendar = ({ courses }) => {
                         <span className="border border-gray-300 rounded px-2 py-1 mr-2">
                           Week {weeklySchedule.weekNumber}
                         </span>
-                        <span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded">
+                        <span className="bg-yellow-100 font-semibold text-yellow-800 px-2 py-1 rounded">
                           {weeklySchedule.type}
                         </span>
                       </div>
@@ -300,7 +300,11 @@ const CustomCalendar = ({ courses }) => {
                   </div>
                 );
               }
-              return <p>No weekly schedule information available.</p>;
+              return (
+                <p className="text-center text-gray-500">
+                  No weekly schedule information available.
+                </p>
+              );
             })()}
           </div>
         </div>
