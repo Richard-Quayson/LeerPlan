@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
 import HorizontalNavigation from "../components/HorizontalNavigation";
+import GoBack from "../components/GoBack";
 import api from "../utility/api";
 import { USER_COURSE_LIST_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
@@ -80,6 +81,8 @@ const CoursePage = () => {
               <HorizontalNavigation
                 title={course.course.code + " " + course.course.name}
               />
+
+              <GoBack />
             </div>
           ) : (
             <div className="h-full flex items-center justify-center">
