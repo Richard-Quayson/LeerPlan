@@ -4,14 +4,15 @@ import {
   CALENDAR_FILTER_TYPE,
   CALENDAR_FILTER_VALUE,
 } from "../utility/constants";
+import FilterIcon from "../assets/icons/Filter.png";
 import SearchIcon from "../assets/icons/Search.png";
+import CloseIcon from "../assets/icons/Close.png";
 import ExportIcon from "../assets/icons/Export.png";
 
 const HorizontalNavigation = ({ title, handleSubmit }) => {
   const [extendedDisplay, setExtendedDisplay] = useState(false);
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
-  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
     const storedExtendedDisplay = localStorage.getItem(
@@ -30,8 +31,6 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
     if (storedFilterValue) {
       setFilterValue(storedFilterValue);
     }
-
-    setInitialLoad(false);
   }, []);
 
   const handleSearchClick = () => {
@@ -39,7 +38,7 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
       setExtendedDisplay(true);
       localStorage.setItem(EXTENDED_CALENDAR_FILTER_DISPLAY, "true");
     } else {
-      applyFilter();
+      handleSubmit(filterType, filterValue);
     }
   };
 
@@ -99,19 +98,20 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
               className="w-6 h-6 cursor-pointer"
               onClick={handleSearchClick}
             />
-            <button
+            <img
+              src={CloseIcon}
+              alt="Close"
+              className="w-5 h-5 cursor-pointer"
               onClick={handleCloseClick}
-              className="text-2xl font-bold text-gray-400 hover:text-gray-600"
-              aria-label="Close"
-            >
-              &times;
-            </button>
+            />
+            <span></span>
+            <span></span>
           </>
         ) : (
           <img
-            src={SearchIcon}
+            src={FilterIcon}
             alt="Search"
-            className="w-6 h-6 cursor-pointer"
+            className="w-5 h-5 cursor-pointer"
             onClick={handleSearchClick}
           />
         )}
