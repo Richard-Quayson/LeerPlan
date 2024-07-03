@@ -11,3 +11,5 @@ export const LOGIN_ROUTE = '/login';                            // Route to logi
 export const LOGOUT_ROUTE = '/logout';                          // Route to logout page
 
 export const DASHBOARD_ROUTE = '/dashboard';                    // Route to dashboard page
+
+export const COURSE_ROUTE = '/course';                          // Route to course page
