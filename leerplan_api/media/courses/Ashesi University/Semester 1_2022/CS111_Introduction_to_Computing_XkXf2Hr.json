@@ -1,0 +1,384 @@
+{
+    "code": "CS111",
+    "name": "Introduction to Computing",
+    "description": "What influences consumer choice? What life-style changes lead to better health and longevity? What factors influence Africans’ views on social and political issues? Are you interested in understanding how climate change is impacting communities in your home country? How can the vast amount of data collected and stored online be used to improve our quality of life? The discipline of statistics seeks to turn data into useful information that can help answer these and many other questions that may pique your interest.",
+    "semester": {
+      "name": "Semester 1",
+      "year": 2022
+    },
+    "instructors": [
+    {
+        "name": "Eric Ocran",
+        "email": "eocran@ashesi.edu.gh",
+        "office_hours": [
+        {
+            "day": "Wednesday",
+            "time": {
+            "start_time": "10:00:00",
+            "end_time": "14:00:00"
+            }
+        }
+        ],
+        "phone": null
+    },
+    {
+        "name": "Enock Opoku",
+        "email": "eopoku@ashesi.edu.gh",
+        "office_hours": [
+        {
+            "day": "Monday",
+            "time": {
+            "start_time": "13:00:00",
+            "end_time": "17:00:00"
+            }
+        }
+        ],
+        "phone": null
+    },
+    {
+        "name": "Joseph Mensah",
+        "email": "jamensah@ashesi.edu.gh",
+        "office_hours": [],
+        "phone": null
+    }
+    ],
+    "faculty_interns": [
+    {
+        "name": "Edmund Fosu Agyemang",
+        "email": "efagyemang@ashesi.edu.gh",
+        "office_hours": [],
+        "phone": "+233276622588"
+    },
+    {
+        "name": "Allotei Pappoe",
+        "email": "allotei.pappoe@ashesi.edu.gh",
+        "office_hours": [
+        {
+            "day": "Wednesday",
+            "time": {
+            "start_time": "08:00:00",
+            "end_time": "15:00:00"
+            }
+        }
+        ],
+        "phone": "0557335284"
+    },
+    {
+        "name": "Florence Ofori",
+        "email": "florence.ofori@ashesi.edu.gh",
+        "office_hours": [
+        {
+            "day": "Thursday",
+            "time": {
+            "start_time": "12:00:00",
+            "end_time": "14:00:00"
+            }
+        }
+        ],
+        "phone": "0503577361"
+    }
+    ],
+    "textbooks": [
+      {
+        "title": "Carnegie Melon University’s Open Learning Initiative (OLI) Probability and Statistics course",
+        "type": "primary"
+      },
+      {
+        "title": "Ware, W. B., Ferron, J. M., & Miller, B. M. (2013). Introductory Statistics: A Conceptual Approach Using R. London: Routledge.",
+        "type": "secondary"
+      },
+      {
+        "title": "Grolemund, G., & Wickham, H. (2017). R for Data Science. O’Reilly Media, Inc.",
+        "type": "secondary"
+      },
+      {
+        "title": "Malhotra, N., & Birks, D. (2006). Marketing Research: An Applied Approach. Pearson Education Ltd.",
+        "type": "secondary"
+      }
+    ],
+    "evaluation_criteria": [
+      {
+        "type": "OLI Content, Activities & Checkpoints",
+        "weight": 15.0
+      },
+      {
+        "type": "Homework Assignments",
+        "weight": 15.0
+      },
+      {
+        "type": "Mid-semester Exam",
+        "weight": 20.0
+      },
+      {
+        "type": "Project Assignments",
+        "weight": 10.0
+      },
+      {
+        "type": "Final Assessment (Statistics Poster Presentation and Report)",
+        "weight": 40.0
+      }
+    ],
+    "lecture_days": [
+      {
+        "day": "Tuesday",
+        "time": {
+          "start_time": "08:00:00",
+          "end_time": "09:30:00"
+        },
+        "location": "D & B Jackson Hall 116"
+      },
+      {
+        "day": "Tuesday",
+        "time": {
+          "start_time": "09:45:00",
+          "end_time": "11:15:00"
+        },
+        "location": "D & B Jackson Hall 116"
+      },
+      {
+        "day": "Tuesday",
+        "time": {
+          "start_time": "11:30:00",
+          "end_time": "13:00:00"
+        },
+        "location": "D & B Jackson Hall 116"
+      },
+      {
+        "day": "Tuesday",
+        "time": {
+          "start_time": "13:15:00",
+          "end_time": "14:45:00"
+        },
+        "location": "D & B Jackson Hall 116"
+      },
+      {
+        "day": "Tuesday",
+        "time": {
+          "start_time": "15:00:00",
+          "end_time": "16:30:00"
+        },
+        "location": "D & B Jackson Hall 116"
+      }
+    ],
+    "weekly_schedule": [
+        {
+          "week_number": 1,
+          "start_date": "2022-01-17",
+          "end_date": "2022-01-21",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Syllabus & course overview, Reading histograms, Statistics student data collection, Intro to R, Generating histograms in R"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 1",
+              "type": "homework",
+              "due_date": "2022-01-27"
+            }
+          ]
+        },
+        {
+          "week_number": 2,
+          "start_date": "2022-01-24",
+          "end_date": "2022-01-28",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Measures of variability, Testing the empirical Rule using R, Simulating random samples in R, Introduction to statistics project datasets"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 2",
+              "type": "homework",
+              "due_date": "2022-02-03"
+            },
+            {
+              "name": "Project Assignment 1",
+              "type": "project",
+              "due_date": "2022-02-06"
+            }
+          ]
+        },
+        {
+          "week_number": 3,
+          "start_date": "2022-01-31",
+          "end_date": "2022-02-04",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Probability activity: empirical probability, Association vs causation, Intro to codebooks & research questions, Probability practice"
+            }
+          ],
+          "readings": [],
+          "assessments": []
+        },
+        {
+          "week_number": 4,
+          "start_date": "2022-02-07",
+          "end_date": "2022-02-11",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Probability activity: conditional probability, What is primary source literature?, Using library databases, Install Zotero, Intro to Zotero citation management software"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Project Assignment 2",
+              "type": "project",
+              "due_date": "2022-02-27"
+            }
+          ]
+        },
+        {
+          "week_number": 5,
+          "start_date": "2022-02-14",
+          "end_date": "2022-02-18",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Probability activity: Discrete and Binomial probability distributions, Probability distributions in R"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 3",
+              "type": "homework",
+              "due_date": "2022-02-17"
+            }
+          ]
+        },
+        {
+          "week_number": 6,
+          "start_date": "2022-02-21",
+          "end_date": "2022-02-25",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "GenderSort Activity, Continuous probability distributions, The normal distribution, research questions, variables & personal codebooks, Codebook construction"
+            }
+          ],
+          "readings": [],
+          "assessments": []
+        },
+        {
+          "week_number": 7,
+          "start_date": "2022-02-28",
+          "end_date": "2022-03-04",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Simulation: The Central Limit Theorem, Data Management for the project, Revision"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Mid-semester Exam",
+              "type": "exam",
+              "due_date": null
+            }
+          ]
+        },
+        {
+          "week_number": 9,
+          "start_date": "2022-03-14",
+          "end_date": "2022-03-18",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Point estimation and confidence interval estimation in R, Univariate and bivariate graphing for the project"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 4",
+              "type": "homework",
+              "due_date": "2022-03-24"
+            },
+            {
+              "name": "Project Assignment 3",
+              "type": "project",
+              "due_date": "2022-03-20"
+            }
+          ]
+        },
+        {
+          "week_number": 10,
+          "start_date": "2022-03-21",
+          "end_date": "2022-03-25",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Hypothesis testing activity, Activity: sharing and interpreting bivariate graphs for the project"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 5",
+              "type": "homework",
+              "due_date": "2022-04-14"
+            },
+            {
+              "name": "Project Assignment 4",
+              "type": "project",
+              "due_date": "2022-04-03"
+            }
+          ]
+        },
+        {
+          "week_number": 13,
+          "start_date": "2022-04-11",
+          "end_date": "2022-04-15",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "What goes into an academic poster?, Academic Poster Peer Review"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Project Assignment 5",
+              "type": "project",
+              "due_date": "2022-04-24"
+            }
+          ]
+        },
+        {
+          "week_number": 14,
+          "start_date": "2022-04-18",
+          "end_date": "2022-04-22",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Project consultation, Submission of Final Project Report"
+            }
+          ],
+          "readings": [],
+          "assessments": []
+        },
+        {
+          "week_number": 15,
+          "start_date": "2022-04-25",
+          "end_date": "2022-04-29",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Academic Poster Presentation"
+            }
+          ],
+          "readings": [],
+          "assessments": []
+        }
+      ]      
+  }
