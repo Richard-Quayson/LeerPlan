@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import UserProfileCard from "./UserProfileCard";
@@ -6,29 +6,13 @@ import CourseList from "./CourseList";
 import RoutineList from "./RoutineList";
 import { LOGOUT_ROUTE } from "../utility/routes";
 import { CURRENT_USER_ID } from "../utility/constants";
-import { USER_COURSE_LIST_URL } from "../utility/api_urls";
-import api from "../utility/api";
 import LeerPlanLogo from "../assets/images/leerplanlogo.png";
 import FilledLogoutIcon from "../assets/icons/FilledLogout.png";
 import UnfilledLogoutIcon from "../assets/icons/UnfilledLogout.png";
 
-const LeftPane = ({ user }) => {
-  const [userCourses, setUserCourses] = useState([]);
+const LeftPane = ({ user, userCourses }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    const fetchUserCourses = async () => {
-      try {
-        const response = await api.get(USER_COURSE_LIST_URL);
-        setUserCourses(response.data);
-      } catch (error) {
-        setUserCourses([]);
-      }
-    };
-
-    fetchUserCourses();
-  }, []);
 
   return (
     <div className="left-pane">
@@ -89,7 +73,7 @@ const LeftPane = ({ user }) => {
         </button>
       </div>
 
-      <Tooltip id="logout" place="bottom" />
+      <Tooltip id="logout" place="right" />
     </div>
   );
 };
