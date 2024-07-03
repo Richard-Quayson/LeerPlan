@@ -57,32 +57,44 @@ const generateEvents = (course, courseIndex) => {
   return events;
 };
 
-const CustomCalendar = ({ courses }) => {
+const CustomCalendar = ({
+  courses,
+  filterType,
+  filterValue,
+  applyFilter,
+  resetFilter,
+}) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const modalRef = useRef(null);
+  const [defaultDate, setDefaultDate] = useState(new Date());
+  const [defaultView, setDefaultView] = useState("week");
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        closeModal();
+    if (applyFilter && filterType && filterValue) {
+      if (filterType === "date") {
+        const selectedDate = moment(filterValue).toDate();
+        setDefaultDate(selectedDate);
+        setDefaultView("day");
+      } else if (filterType === "courseCode") {
+        const course = courses.find(
+          (courseObj) => courseObj.course.code === filterValue
+        );
+        if (
+          course &&
+          course.course.weekly_schedules &&
+          course.course.weekly_schedules.length > 0
+        ) {
+          const firstWeekStartDate = moment(
+            course.course.weekly_schedules[0].start_date
+          ).toDate();
+          setDefaultDate(firstWeekStartDate);
+          setDefaultView("week");
+        }
       }
-    };
-
-    if (modalIsOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      resetFilter();
     }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [modalIsOpen]);
-
-  const events = courses.flatMap((courseObj, courseIndex) =>
-    generateEvents(courseObj.course, courseIndex)
-  );
+  }, [applyFilter, filterType, filterValue, courses, resetFilter]);
 
   const getWeeklySchedule = (course, date) => {
     return course.weekly_schedules.find((schedule) =>
@@ -108,6 +120,7 @@ const CustomCalendar = ({ courses }) => {
           type: weeklySchedule.type,
           assessments: weeklySchedule.weekly_assessments,
           topics: weeklySchedule.weekly_topics,
+          readings: weeklySchedule.readings,
         };
       }
     }
@@ -145,15 +158,18 @@ const CustomCalendar = ({ courses }) => {
     <div className="h-full sans-serif text-sm relative">
       <Calendar
         localizer={localizer}
-        events={events}
+        events={courses.flatMap((courseObj, courseIndex) =>
+          generateEvents(courseObj.course, courseIndex)
+        )}
         startAccessor="start"
         endAccessor="end"
         views={["month", "week", "day"]}
-        defaultView="week"
+        defaultView={defaultView}
         style={{ height: "calc(100vh - 80px)" }}
         eventPropGetter={eventStyleGetter}
         onSelectEvent={handleEventClick}
-        defaultDate={new Date()}
+        date={defaultDate}
+        onNavigate={(date) => setDefaultDate(date)}
       />
 
       {modalIsOpen && selectedEvent && (
