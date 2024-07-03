@@ -5,8 +5,9 @@ import api from './utility/api';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from './utility/constants';
 import { LOGOUT_USER_URL } from './utility/api_urls';
 import { 
-  HOME_ROUTE, UNDEFINED_ROUTE, REGISTER_ACCOUNT_ROUTE, LOGIN_ROUTE, LOGOUT_ROUTE, 
-  DASHBOARD_ROUTE,
+  HOME_ROUTE, UNDEFINED_ROUTE, 
+  REGISTER_ACCOUNT_ROUTE, LOGIN_ROUTE, LOGOUT_ROUTE, 
+  DASHBOARD_ROUTE, COURSE_ROUTE,
 } from './utility/routes';
 
 import ProtectedRoute from './components/ProtectedRoute';
@@ -14,6 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import RegisterUserPage from './pages/RegisterUserPage';
 import LoginUserPage from './pages/LoginUserPage';
 import DashboardPage from './pages/DashboardPage';
+import CoursePage from './pages/CoursePage';
 
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -48,6 +50,15 @@ const App = () => {
           element={
             <ProtectedRoute>
               <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path={COURSE_ROUTE}
+          element={
+            <ProtectedRoute>
+              <CoursePage />
             </ProtectedRoute>
           }
         />
