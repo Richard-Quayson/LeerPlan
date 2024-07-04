@@ -4,6 +4,7 @@ import moment from "moment";
 import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
 import HorizontalNavigation from "../components/HorizontalNavigation";
+import CourseInstructorCard from "../components/CourseInstructorCard";
 import api from "../utility/api";
 import { USER_COURSE_LIST_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
@@ -13,6 +14,8 @@ const CoursePage = () => {
   const [user, setUser] = useState(null);
   const [userCourses, setUserCourses] = useState([]);
   const [course, setCourse] = useState(null);
+  const [lecturers, setLecturers] = useState([]);
+  const [facultyInterns, setFacultyInterns] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -57,6 +60,21 @@ const CoursePage = () => {
     }
   }, [userCourses, courseCode]);
 
+  // filter instructors based on type
+  useEffect(() => {
+    if (course) {
+      const lecturers = course.course.instructors.filter(
+        (instructor) => instructor.instructor.type === "Lecturer"
+      );
+      setLecturers(lecturers);
+
+      const facultyInterns = course.course.instructors.filter(
+        (instructor) => instructor.instructor.type === "Faculty Intern"
+      );
+      setFacultyInterns(facultyInterns);
+    }
+  }, [course]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -64,8 +82,6 @@ const CoursePage = () => {
   if (error) {
     navigate(LOGIN_ROUTE);
   }
-
-  console.log(course);
 
   return (
     <ProtectedRoute>
@@ -102,6 +118,26 @@ const CoursePage = () => {
                 </div>
                 <div className="ml-4 text-[15px] text-justify leading-[1.4] text-gray-500">
                   {course.course.description}
+                </div>
+              </div>
+
+              {/* COURSE INSTRUCTORS */}
+              <div className="mx-4 my-2">
+                <div className="text-[18px] font-semibold text-yellow-800 mb-2">
+                  Course Instructors:
+                </div>
+                {/* LECTURERS */}
+                <div className="flex flex-wrap ml-4 h-auto text-[15px] text-gray-500">
+                  {lecturers.map((instructor) => (
+                    <CourseInstructorCard key={instructor.id} instructor={instructor} />
+                  ))}
+                </div>
+
+                {/* FACULTY INTERNS */}
+                <div className="flex flex-wrap ml-4 h-auto text-[15px] text-gray-500">
+                  {facultyInterns.map((instructor) => (
+                    <CourseInstructorCard key={instructor.id} instructor={instructor} />
+                  ))}
                 </div>
               </div>
             </div>
