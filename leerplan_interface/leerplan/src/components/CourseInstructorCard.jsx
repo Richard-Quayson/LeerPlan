@@ -8,7 +8,6 @@ import CoursesIcon from "../assets/icons/Courses.png";
 const CourseInstructorCard = ({ instructor }) => {
   const { name, email, phone, type, courses } = instructor.instructor;
   const officeHours = instructor.office_hours;
-  console.log(instructor);
 
   const borderColor =
     type === "Lecturer" ? "border-yellow-600" : "border-yellow-800";
