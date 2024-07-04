@@ -10,6 +10,7 @@ import { USER_COURSE_LIST_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
 import { LOGIN_ROUTE } from "../utility/routes";
 import LocationIcon from "../assets/icons/Location.png";
+import BookIcon from "../assets/icons/Book.png";
 
 const CoursePage = () => {
   const [user, setUser] = useState(null);
@@ -218,6 +219,55 @@ const CoursePage = () => {
                       ))}
                     </tbody>
                   </table>
+                </div>
+              </div>
+
+              {/* TEXTBOOKS */}
+              <div className="mx-4 my-2 text-gray-500">
+                <div className="text-[18px] font-semibold text-yellow-800 mb-2">
+                  Textbooks:
+                </div>
+
+                {/* Primary Textbooks */}
+                <div className="ml-4 text-[15px]">
+                  <div className="text-[16px] font-semibold text-yellow-800 mb-1">
+                    Primary Textbooks
+                  </div>
+                  <ul className="list-disc list-inside">
+                    {course.course.textbooks
+                      .filter((book) => book.type === "primary")
+                      .map((book) => (
+                        <li key={book.id} className="flex items-center mb-1">
+                          <img
+                            src={BookIcon}
+                            alt="Book"
+                            className="w-4 h-4 mr-2"
+                          />
+                          <span>{book.title}</span>
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+
+                {/* Secondary Textbooks */}
+                <div className="ml-4 text-[15px]">
+                  <div className="text-[16px] font-semibold text-yellow-800 mb-1">
+                    Secondary Textbooks
+                  </div>
+                  <ul className="list-disc list-inside">
+                    {course.course.textbooks
+                      .filter((book) => book.type === "secondary")
+                      .map((book) => (
+                        <li key={book.id} className="flex items-center mb-1">
+                          <img
+                            src={BookIcon}
+                            alt="Book"
+                            className="w-4 h-4 mr-2"
+                          />
+                          <span>{book.title}</span>
+                        </li>
+                      ))}
+                  </ul>
                 </div>
               </div>
             </div>
