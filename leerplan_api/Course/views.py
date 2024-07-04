@@ -190,6 +190,7 @@ class CreateCourseView(APIView):
         for instructor_data in instructors_data:
             try:
                 instructor = Instructor.objects.get(email=instructor_data['email'])
+                instructor = CourseInstructor.objects.create(course=course, instructor=instructor)
             except Instructor.DoesNotExist:
                 instructor = CreateCourseView.create_instructor(instructor_data, instructor_type, course)
                 if isinstance(instructor, Response):
