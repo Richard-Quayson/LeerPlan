@@ -88,13 +88,13 @@ const CoursePage = () => {
 
   return (
     <ProtectedRoute>
-      <div className="h-screen overflow-y-auto flex">
-        <div className="w-1/4">
+      <div className="flex min-h-screen">
+        <div className="w-1/4 flex-shrink-0">
           {user && userCourses && (
             <LeftPane user={user} userCourses={userCourses} />
           )}
         </div>
-        <div className="w-3/4">
+        <div className="w-3/4 flex-grow overflow-y-auto">
           {course ? (
             <div className="flex flex-col h-full">
               {/* HORIZONTAL NAVIGATION */}
