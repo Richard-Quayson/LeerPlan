@@ -12,14 +12,14 @@ const CourseInstructorCard = ({ instructor }) => {
 
   const borderColor =
     type === "Lecturer" ? "border-yellow-600" : "border-yellow-800";
-  const backgroundColor = type === "Lecturer" ? "bg-yellow-100" : "bg-white";
+  const nameColor = type === "Lecturer" ? "text-yellow-600" : "text-yellow-800";
 
   return (
     <div
-      className={`border ${borderColor} rounded-lg p-4 ${backgroundColor} mb-4 mr-8 max-w-[300px]`}
+      className={`border ${borderColor} rounded-lg p-4 mb-4 mr-8 max-w-[300px]`}
     >
       {/* NAME */}
-      <div className="text-lg font-semibold text-yellow-800">{name}</div>
+      <div className={`text-lg font-semibold ${nameColor}`}>{name}</div>
       {/* EMAIL */}
       <div className="text-gray-500 flex items-center mt-2">
         <img src={EmailIcon} alt="Email" className="w-4 h-4 mr-2" />
