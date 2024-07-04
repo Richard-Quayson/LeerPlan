@@ -17,6 +17,12 @@ export const EXTENDED_CALENDAR_FILTER_DISPLAY = "leerplan:EXTENDED_CALENDAR_FILT
 export const CALENDAR_FILTER_TYPE = "leerplan:CALENDAR_FILTER_TYPE";
 export const CALENDAR_FILTER_VALUE = "leerplan:CALENDAR_FILTER_VALUE";
 
+// instructor types
+export const INSTRUCTOR_TYPES = {
+  Lecturer: "Lecturer",
+  "Faculty Intern": "Faculty Intern / Teaching Assistant",
+}
+
 // course and routine colour list (list of dictionary objects)
 export const COURSE_ROUTINE_COLOURS = {
   red: {
