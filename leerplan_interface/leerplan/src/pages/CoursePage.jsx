@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import moment from "moment";
 import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
 import HorizontalNavigation from "../components/HorizontalNavigation";
@@ -77,13 +78,38 @@ const CoursePage = () => {
         <div className="w-3/4">
           {course ? (
             <div className="flex flex-col h-full">
+              {/* HORIZONTAL NAVIGATION */}
               <HorizontalNavigation
                 title={course.course.code + " " + course.course.name}
               />
+
+              {/* COURSE SEMESTER */}
+              <div className="flex items-center justify-between mx-4 my-2">
+                <div className="text-sm text-yellow-800">
+                  Offered by {course.course.university.name} in{" "}
+                  {course.course.semester.name}, {course.course.semester.year}.
+                </div>
+                <div className="text-sm text-gray-400">
+                  Created on{" "}
+                  {moment(course.course.date_created).format("MMMM DD, YYYY")}.
+                </div>
+              </div>
+
+              {/* COURSE DESCRIPTION */}
+              <div className="mx-4 my-2">
+                <div className="text-[18px] font-semibold text-yellow-800 mb-1">
+                  Course Description:
+                </div>
+                <div className="ml-4 text-[15px] text-justify leading-[1.4] text-gray-500">
+                  {course.course.description}
+                </div>
+              </div>
             </div>
           ) : (
             <div className="h-full flex items-center justify-center">
-              <h1 className="text-2xl text-gray-400">Course not found</h1>
+              <h1 className="text-xl text-gray-400">
+                No course exists with code {courseCode}
+              </h1>
             </div>
           )}
         </div>
