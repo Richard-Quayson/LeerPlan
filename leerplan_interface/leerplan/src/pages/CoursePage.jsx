@@ -9,6 +9,7 @@ import api from "../utility/api";
 import { USER_COURSE_LIST_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
 import { LOGIN_ROUTE } from "../utility/routes";
+import LocationIcon from "../assets/icons/Location.png";
 
 const CoursePage = () => {
   const [user, setUser] = useState(null);
@@ -129,15 +130,92 @@ const CoursePage = () => {
                 {/* LECTURERS */}
                 <div className="flex flex-wrap ml-4 h-auto text-[15px] text-gray-500">
                   {lecturers.map((instructor) => (
-                    <CourseInstructorCard key={instructor.id} instructor={instructor} />
+                    <CourseInstructorCard
+                      key={instructor.id}
+                      instructor={instructor}
+                    />
                   ))}
                 </div>
 
                 {/* FACULTY INTERNS */}
                 <div className="flex flex-wrap ml-4 h-auto text-[15px] text-gray-500">
                   {facultyInterns.map((instructor) => (
-                    <CourseInstructorCard key={instructor.id} instructor={instructor} />
+                    <CourseInstructorCard
+                      key={instructor.id}
+                      instructor={instructor}
+                    />
                   ))}
+                </div>
+              </div>
+
+              {/* LECTURE DAYS AND EVALUATION CRITERIA */}
+              <div className="flex">
+                {/* LECTURE DAYS */}
+                <div className="w-2/5 mx-4 my-2">
+                  <div className="text-[18px] font-semibold text-yellow-800 mb-2">
+                    Lecture Days:
+                  </div>
+                  <div className="ml-4 text-[15px] text-gray-500">
+                    {course.course.lecture_days.map((lecture_day, index) => (
+                      <div key={lecture_day.id} className="mb-2">
+                        <div className="flex items-center">
+                          {lecture_day.day.charAt(0).toUpperCase() +
+                            lecture_day.day.slice(1)}
+                          , From{" "}
+                          {moment(lecture_day.start_time, "HH:mm:ss").format(
+                            "HH:mm"
+                          )}{" "}
+                          to{" "}
+                          {moment(lecture_day.end_time, "HH:mm:ss").format(
+                            "HH:mm"
+                          )}
+                        </div>
+                        <div className="flex items-center">
+                          <img
+                            src={LocationIcon}
+                            alt="Location"
+                            className="w-4 h-4 ml-2"
+                          />
+                          <span className="ml-2">{lecture_day.location}</span>
+                        </div>
+
+                        {/* Line separator */}
+                        <hr className="my-2 border-t border-gray-300 w-[200px]" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* EVALUATION CRITERIA */}
+                <div className="w-3/5 mx-4 my-2">
+                  <div className="text-[18px] font-semibold text-yellow-800 mb-2">
+                    Evaluation Criteria:
+                  </div>
+                  <table className="min-w-full bg-yellow-100">
+                    <thead>
+                      <tr className="bg-yellow-600">
+                        <th className="py-2 px-4 text-left text-white">Type</th>
+                        <th className="py-2 px-4 text-left text-white">
+                          Weight (%)
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {course.course.evaluation_criteria.map((criteria) => (
+                        <tr
+                          key={criteria.id}
+                          className="border-b border-yellow-300"
+                        >
+                          <td className="py-2 px-4 text-yellow-800">
+                            {criteria.type}
+                          </td>
+                          <td className="py-2 px-4 text-yellow-800">
+                            {criteria.weight}%
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
