@@ -113,11 +113,11 @@ const CustomCalendar = ({
         const weekEnd = moment(weeklySchedule.end_date).format("MMMM Do YYYY");
         return {
           weekRange: `${weekStart} to ${weekEnd}`,
-          weekNumber: weeklySchedule.week_number,
+          week_number: weeklySchedule.week_number,
           type: weeklySchedule.type,
-          assessments: weeklySchedule.weekly_assessments,
-          topics: weeklySchedule.weekly_topics,
-          readings: weeklySchedule.readings,
+          weekly_assessments: weeklySchedule.weekly_assessments,
+          weekly_topics: weeklySchedule.weekly_topics,
+          weekly_readings: weeklySchedule.weekly_readings,
         };
       }
     }
