@@ -13,7 +13,7 @@ const GoBack = () => {
   return (
     <div
       onClick={handleClick}
-      className="flex items-center ml-4 mt-2 cursor-pointer group"
+      className="flex items-center ml-4 mt-2 cursor-pointer group w-16"
     >
       <div className="relative">
         <img
@@ -27,7 +27,7 @@ const GoBack = () => {
           className="w-6 h-6 transition-opacity duration-200 absolute top-0 left-0 opacity-0 group-hover:opacity-100"
         />
       </div>
-      <span className="ml-1 text-gray-500 transition-colors duration-200 group-hover:text-yellow-700 hover:font-semibold">
+      <span className="ml-1 text-gray-500 transition-colors duration-300 group-hover:text-yellow-700 hover:font-semibold">
         Back
       </span>
     </div>
