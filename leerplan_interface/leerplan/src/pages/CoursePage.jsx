@@ -5,6 +5,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import LeftPane from "../components/LeftPane";
 import HorizontalNavigation from "../components/HorizontalNavigation";
 import CourseInstructorCard from "../components/CourseInstructorCard";
+import WeeklySchedule from "../components/WeeklySchedule";
 import api from "../utility/api";
 import { USER_COURSE_LIST_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
@@ -268,6 +269,22 @@ const CoursePage = () => {
                         </li>
                       ))}
                   </ul>
+                </div>
+              </div>
+
+              {/* WEEKLY SCHEDULE */}
+              <div className="mx-4 my-2">
+                <div className="text-[18px] font-semibold text-yellow-800 mb-2">
+                  Weekly Schedule:
+                </div>
+                <div className="flex flex-wrap ml-4">
+                  {course.course.weekly_schedules.map((schedule) => (
+                    <div key={schedule.id} className="w-[425px] p-2 flex">
+                      <div className="border border-yellow-800 text-gray-500 p-4 rounded-lg shadow-md flex flex-col flex-grow">
+                        <WeeklySchedule weeklySchedule={schedule} />
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
