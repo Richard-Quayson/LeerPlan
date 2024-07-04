@@ -156,9 +156,12 @@ const CoursePage = () => {
                     Lecture Days:
                   </div>
                   <div className="ml-4 text-[15px] text-gray-500">
-                    {course.course.lecture_days.map((lecture_day, index) => (
-                      <div key={lecture_day.id} className="mb-2">
-                        <div className="flex items-center">
+                    {course.course.lecture_days.map((lecture_day) => (
+                      <div
+                        key={lecture_day.id}
+                        className="mb-2 p-2 border border-yellow-800"
+                      >
+                        <div className="flex items-center mb-2">
                           {lecture_day.day.charAt(0).toUpperCase() +
                             lecture_day.day.slice(1)}
                           , From{" "}
@@ -178,9 +181,6 @@ const CoursePage = () => {
                           />
                           <span className="ml-2">{lecture_day.location}</span>
                         </div>
-
-                        {/* Line separator */}
-                        <hr className="my-2 border-t border-gray-300 w-[200px]" />
                       </div>
                     ))}
                   </div>
@@ -191,11 +191,13 @@ const CoursePage = () => {
                   <div className="text-[18px] font-semibold text-yellow-800 mb-2">
                     Evaluation Criteria:
                   </div>
-                  <table className="min-w-full bg-yellow-100">
+                  <table className="min-w-full border border-yellow-800">
                     <thead>
-                      <tr className="bg-yellow-600">
-                        <th className="py-2 px-4 text-left text-white">Type</th>
-                        <th className="py-2 px-4 text-left text-white">
+                      <tr className="border-b border-yellow-800">
+                        <th className="py-2 px-4 text-center text-yellow-700 border-r border-yellow-800">
+                          Type
+                        </th>
+                        <th className="py-2 px-4 text-center text-yellow-700">
                           Weight (%)
                         </th>
                       </tr>
@@ -204,9 +206,9 @@ const CoursePage = () => {
                       {course.course.evaluation_criteria.map((criteria) => (
                         <tr
                           key={criteria.id}
-                          className="border-b border-yellow-300"
+                          className="border-b border-yellow-800"
                         >
-                          <td className="py-2 px-4 text-yellow-800">
+                          <td className="py-2 px-4 text-yellow-800 border-r border-yellow-800">
                             {criteria.type}
                           </td>
                           <td className="py-2 px-4 text-yellow-800">
