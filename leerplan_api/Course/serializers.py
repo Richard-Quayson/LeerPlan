@@ -2,11 +2,11 @@ from rest_framework import serializers
 import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
-    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
+    CourseEvaluationCriteria, CourseCohort, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from Account.models import University, UserAccount
-from Account.serializers import UniversitySerializer, UserDetailsSerializer
+from Account.serializers import UniversitySerializer
 from Account.helper import NAME_REGEX, EMAIL_REGEX
 
 
@@ -190,12 +190,16 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseEvaluationCriteriaSerializer(criteria).data
             representation['evaluation_criteria'].append(data)
 
-        # add course lecture days to the representation
-        representation['lecture_days'] = []
-        lecture_days = CourseLectureDay.objects.filter(course=instance)
-        for lecture_day in lecture_days:
-            data = CourseLectureDaySerializer(lecture_day).data
-            representation['lecture_days'].append(data)
+        # add course cohort lecture days to the representation
+        representation['cohorts'] = []
+        cohorts = CourseCohort.objects.filter(course=instance)
+        for cohort in cohorts:
+            data = CourseCohortSerializer(cohort).data
+            data['lecture_days'] = []            
+            lecture_days = CourseLectureDay.objects.filter(course_cohort=cohort)
+            for lecture_day in lecture_days:
+                data = CourseLectureDaySerializer(lecture_day).data
+                representation['lecture_days'].append(data)
 
         # add course textbooks to the representation
         representation['textbooks'] = []
@@ -332,6 +336,27 @@ class CourseEvaluationCriteriaSerializer(serializers.ModelSerializer):
         if CourseEvaluationCriteria.objects.filter(course=attrs['course'], type=attrs['type']).exists():
             raise serializers.ValidationError("Evaluation criteria already exists!")
         return attrs
+    
+
+class CourseCohortSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseCohort
+        fields = ['id', 'course', 'name']
+
+    def validate_course(self, value: Course) -> Course:
+        if not Course.objects.filter(id=value.id).exists():
+            raise serializers.ValidationError("Course does not exist!")
+        
+        if Course.objects.get(id=value.id).is_completed:
+            raise serializers.ValidationError("You cannot add cohorts to a completed course!")
+        
+        return value
+    
+    def validate_name(self, value: str) -> str:
+        if len(value) > 50:
+            raise serializers.ValidationError("Cohort name too long!")
+        return value
     
 
 class CourseLectureDaySerializer(serializers.ModelSerializer):
