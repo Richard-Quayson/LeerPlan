@@ -588,6 +588,25 @@ class RetrieveUserCoursesView(APIView):
         return Response(UserCourseSerializer(user_courses, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
 
 
+class SpecifyCourseCohortView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def patch(self, request):
+        try:
+            user_course = UserCourse.objects.get(id=request.data['user_course'])
+        except UserCourse.DoesNotExist:
+            return Response({"error": "User course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            course_cohort = CourseCohort.objects.get(id=request.data['course_cohort'])
+        except CourseCohort.DoesNotExist:
+            return Response({"error": "Course cohort does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        
+        user_course.cohort = course_cohort
+        user_course.save()
+        return Response(UserCourseSerializer(user_course, context={'request': request}).data, status=status.HTTP_200_OK)
+
+
 class DeleteCourseView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
