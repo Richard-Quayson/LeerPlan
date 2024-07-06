@@ -210,6 +210,8 @@ class Cohort(BaseModel):
             "location": "Room 101"
         }
     ]
+
+    if cohort not specified, assume cohort_name = "A"
     """
 
     cohort_name: str
