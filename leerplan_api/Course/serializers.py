@@ -363,15 +363,11 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CourseLectureDay
-        fields = ['id', 'course', 'day', 'location', 'start_time', 'end_time']
+        fields = ['id', 'course_cohort', 'day', 'location', 'start_time', 'end_time']
     
-    def validate_course(self, value: Course) -> Course:
-        if not Course.objects.filter(id=value.id).exists():
-            raise serializers.ValidationError("Course does not exist!")
-        
-        if Course.objects.get(id=value.id).is_completed:
-            raise serializers.ValidationError("You cannot add lecture days to a completed course!")
-        
+    def validate_course_cohort(self, value: CourseCohort) -> CourseCohort:
+        if not CourseCohort.objects.filter(id=value.id).exists():
+            raise serializers.ValidationError("Course cohort does not exist!")
         return value
     
     def validate_day(self, value: str) -> str:
@@ -403,7 +399,7 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         if attrs['start_time'] >= attrs['end_time']:
             raise serializers.ValidationError("Start time must be less than end time!")
 
-        if CourseLectureDay.objects.filter(course=attrs['course'], day=attrs['day'],
+        if CourseLectureDay.objects.filter(course_cohort=attrs['course_cohort'], day=attrs['day'],
                                            start_time=attrs['start_time'], end_time=attrs['end_time']).exists():
             raise serializers.ValidationError("Course lecture day already exists!")
         
