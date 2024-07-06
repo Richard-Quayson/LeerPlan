@@ -162,6 +162,40 @@ class Week(BaseModel):
     assessments: Optional[List[Assessment]]
 
 
+class Cohort(BaseModel):
+    """
+    defines the cohort_name and lecture_days for the cohort of a course
+    
+    Attributes:
+        - cohort_name (str): the name of the cohort (e.g. Cohort 1, Cohort 2)
+        - lecture_days (List[LectureDay]): the lecture days for the cohort (e.g. [LectureDay, LectureDay, ...])
+    
+    Eg. MATH 221 A - T/TH 8:00 - 9:30:
+    cohort_name = "A"
+    lecture_days = [
+        {
+            "day": "Tuesday",
+            "time": {
+                "start_time": "08:00:00",
+                "end_time": "09:30:00"
+            },
+            "location": "Room 101"
+        },
+        {
+            "day": "Thursday",
+            "time": {
+                "start_time": "08:00:00",
+                "end_time": "09:30:00"
+            },
+            "location": "Room 101"
+        }
+    ]
+    """
+
+    cohort_name: str
+    lecture_days: List[LectureDay]
+
+
 class Course(BaseModel):
     """
     defines details of a course
@@ -175,7 +209,7 @@ class Course(BaseModel):
         - faculty_interns (List[Instructor]): the faculty intern of the course (e.g. [Instructor, Instructor, ...])
         - textbooks (List[Textbook]): the textbooks for the course (e.g. [Textbook, Textbook, ...])
         - evaluation_criteria (List[EvaluationCriteria]): the evaluation criteria for the course (e.g. [EvaluationCriteria, EvaluationCriteria, ...])
-        - lecture_days (List[LectureDay]): the lecture days for the course (e.g. [LectureDay, LectureDay, ...])
+        - cohorts (List[Cohort]): the cohorts for the course (e.g. [Cohort, Cohort, ...])
         - weekly_schedule (List[Week]): the weekly schedule for the course (e.g. [Week, Week, ...])
     """
 
@@ -187,5 +221,5 @@ class Course(BaseModel):
     faculty_interns: List[Instructor]
     textbooks: List[Textbook]
     evaluation_criteria: List[EvaluationCriteria]
-    lecture_days: List[LectureDay]
+    cohorts: List[Cohort]
     weekly_schedule: List[Week]
