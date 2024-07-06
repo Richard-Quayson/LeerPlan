@@ -315,10 +315,12 @@ class UserCourse(models.Model):
     Attributes:
         - user: the user taking the course
         - course: the course the user is taking
+        - cohort: the cohort the user is in
     """
 
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    cohort = models.ForeignKey(CourseCohort, default=None, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.firstname} {self.user.lastname} : {self.course.name} ({self.course.code})"
+        return f"{self.user.firstname} {self.user.lastname} : {self.course.name} ({self.course.code}) - Cohort {self.cohort.name if self.cohort else 'Not Specified'}"
