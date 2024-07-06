@@ -9,14 +9,15 @@ import json
 
 from .models import (
     Semester, Instructor, Course, CourseInstructor, CourseInstructorOfficeHour,
-    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, CourseWeeklySchedule,
+    CourseEvaluationCriteria, CourseCohort, CourseLectureDay, CourseTextbook, CourseWeeklySchedule,
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from .serializers import (
     SemesterSerializer, InstructorSerializer, CourseSerializer, CourseInstructorSerializer,
-    CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseLectureDaySerializer,
-    CourseTextbookSerializer, CourseWeeklyScheduleSerializer, CourseWeeklyAssessmentSerializer,
-    CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, CourseFileSerializer, UserCourseSerializer,
+    CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseCohortSerializer, 
+    CourseLectureDaySerializer, CourseTextbookSerializer, CourseWeeklyScheduleSerializer, 
+    CourseWeeklyAssessmentSerializer, CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, 
+    CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
 from Account.models import UserAccount
@@ -116,8 +117,8 @@ class CreateCourseView(APIView):
         if isinstance(evaluation_criteria, Response):
             return evaluation_criteria
         
-        # create course lecture days
-        lecture_days = CreateCourseView.create_lecture_days(course_data['lecture_days'], course)
+        # create course cohorts and cohort lecture days
+        lecture_days = CreateCourseView.create_course_cohorts(course_data['lecture_days'], course)
         if isinstance(lecture_days, Response):
             return lecture_days
         
@@ -311,21 +312,53 @@ class CreateCourseView(APIView):
     
 
     @staticmethod
-    def create_lecture_days(lecture_days_data: list, course: Course) -> list:
+    def create_course_cohorts(cohorts_data: list, course: Course) -> list:
+        """create course cohorts"""
+
+        cohorts = list()
+        for cohort in cohorts_data:
+            try:
+                cohort = CourseCohort.objects.get(
+                    course=course,
+                    name=cohort['cohort_name']
+                )
+            except CourseCohort.DoesNotExist:
+                cohort_serializer = CourseCohortSerializer(data={
+                    'course': course.id,
+                    'name': cohort['cohort_name']
+                })
+                if cohort_serializer.is_valid():
+                    cohort = cohort_serializer.save()
+                else:
+                    return Response(cohort_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            cohorts.append(cohort)
+
+            # create course cohort lecture days
+            for lecture_day in cohort['lecture_days']:
+                lecture_day = CreateCourseView.create_lecture_days(lecture_day, cohort)
+                if isinstance(lecture_day, Response):
+                    return lecture_day
+            
+        return cohorts
+
+
+    @staticmethod
+    def create_lecture_days(lecture_days_data: list, cohort: CourseCohort) -> list:
         """create lecture days"""
 
         lecture_days = list()
         for lecture_day_data in lecture_days_data:
             try:
                 lecture_day = CourseLectureDay.objects.get(
-                    course=course,
+                    course_cohort=cohort,
                     day=lecture_day_data['day'].lower(),
                     start_time=lecture_day_data['time']['start_time'],
                     end_time=lecture_day_data['time']['end_time']
                 )
             except CourseLectureDay.DoesNotExist:
                 lecture_day_serializer = CourseLectureDaySerializer(data={
-                    'course': course.id,
+                    'course_cohort': cohort.id,
                     'day': lecture_day_data['day'].lower(),
                     'location': lecture_day_data['location'],
                     'start_time': lecture_day_data['time']['start_time'],
