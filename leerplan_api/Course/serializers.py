@@ -627,7 +627,7 @@ class UserCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserCourse
-        fields = ['id', 'course', 'user']
+        fields = ['id', 'course', 'user', 'cohort']
 
     def validate_course(self, value: Course) -> Course:
         if not Course.objects.filter(id=value.id).exists():
@@ -654,5 +654,9 @@ class UserCourseSerializer(serializers.ModelSerializer):
         # add course details to the representation
         course = CourseSerializer(Course.objects.get(id=instance.course.id), context={'request': self.context.get('request')}).data
         representation['course'] = course
+
+        # add cohort details to the representation
+        cohort = CourseCohortSerializer(CourseCohort.objects.get(id=instance.cohort.id)).data
+        representation['cohort'] = cohort
         
         return representation
