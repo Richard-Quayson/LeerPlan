@@ -55,14 +55,14 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
     }
 
     // Check file types
-    const allowedTypes = [".pdf", ".json"];
+    const allowedTypes = [".pdf"];
     for (let i = 0; i < files.length; i++) {
       const file = files[i];
       const fileType = file.name
         .substring(file.name.lastIndexOf("."))
         .toLowerCase();
       if (!allowedTypes.includes(fileType)) {
-        setMessage("Please upload files with .pdf or .json extensions.");
+        setMessage("Please upload files with .pdf extension.");
         setTimeout(() => {
           setMessage("");
         }, 5000);
@@ -159,7 +159,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
                   <input
                     id="file-upload"
                     type="file"
-                    accept=".pdf,.json"
+                    accept=".pdf"
                     onChange={handleFileChange}
                     multiple
                     className="hidden"
