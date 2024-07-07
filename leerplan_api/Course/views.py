@@ -22,6 +22,8 @@ from .serializers import (
 from .helper import LECTURER, FACULTY_INTERN
 from Account.models import UserAccount
 from Account.permissions import IsAccessTokenBlacklisted
+from DataSynthesis.extract import extract_text_from_pdf
+from DataSynthesis.synthesise import gemini_synthesise
 
 
 class CreateCourseView(APIView):
@@ -36,8 +38,14 @@ class CreateCourseView(APIView):
             course_file_content_type = course_file.content_type
             course_file_size = course_file.size
 
+            # extract text from course file
+            extracted_course_data = extract_text_from_pdf(course_file)
+
+            # synthesise course data
+            synthesised_course_file = gemini_synthesise(course_file_name, extracted_course_data)
+
             # read course data
-            course_data = CreateCourseView.read_course_json(course_file)
+            course_data = CreateCourseView.read_course_json(synthesised_course_file)
 
             # populate course data
             response = CreateCourseView.populate_course_data(course_data, request)
