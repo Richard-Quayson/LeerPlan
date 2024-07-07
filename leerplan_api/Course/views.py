@@ -6,7 +6,8 @@ from rest_framework.request import Request
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import transaction
 from io import BytesIO
-import json, os
+import json
+import os
 
 from .models import (
     Semester, Instructor, Course, CourseInstructor, CourseInstructorOfficeHour,
@@ -15,9 +16,9 @@ from .models import (
 )
 from .serializers import (
     SemesterSerializer, InstructorSerializer, CourseSerializer, CourseInstructorSerializer,
-    CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseCohortSerializer, 
-    CourseLectureDaySerializer, CourseTextbookSerializer, CourseWeeklyScheduleSerializer, 
-    CourseWeeklyAssessmentSerializer, CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, 
+    CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseCohortSerializer,
+    CourseLectureDaySerializer, CourseTextbookSerializer, CourseWeeklyScheduleSerializer,
+    CourseWeeklyAssessmentSerializer, CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer,
     CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
@@ -43,21 +44,24 @@ class CreateCourseView(APIView):
             extracted_course_data = extract_text_from_pdf(course_file)
 
             # synthesise course data
-            synthesised_course_file = gemini_synthesise(course_file_name, extracted_course_data)
+            synthesised_course_file = gemini_synthesise(
+                course_file_name, extracted_course_data)
 
             # read course data
-            course_data = CreateCourseView.read_course_json(synthesised_course_file)
+            course_data = CreateCourseView.read_course_json(
+                synthesised_course_file)
 
             # populate course data
-            response = CreateCourseView.populate_course_data(course_data, request)
+            response = CreateCourseView.populate_course_data(
+                course_data, request)
             # return response if error
             if isinstance(response, Response):
                 return response
-            
+
             # convert course_data back to JSON string and then to bytes
             course_data_json = json.dumps(course_data)
             course_data_bytes = course_data_json.encode('utf-8')
-            
+
             # create course file object
             in_memory_file = InMemoryUploadedFile(
                 file=BytesIO(course_data_bytes),
@@ -67,19 +71,20 @@ class CreateCourseView(APIView):
                 size=course_file_size,
                 charset=None
             )
-            course_file = CreateCourseView.create_course_file(in_memory_file, response['semester'], response['course'])
+            course_file = CreateCourseView.create_course_file(
+                in_memory_file, response['semester'], response['course'])
             if isinstance(course_file, Response):
                 return course_file
-            
+
             # create user course object
-            user_course = CreateCourseView.create_user_course(request.user, response['course'])
+            user_course = CreateCourseView.create_user_course(
+                request.user, response['course'])
             if isinstance(user_course, Response):
                 return user_course
-            
-            user_courses.append(user_course)
-        
-        return Response(UserCourseSerializer(user_courses, many=True, context={'request': request}).data, status=status.HTTP_201_CREATED)
 
+            user_courses.append(user_course)
+
+        return Response(UserCourseSerializer(user_courses, many=True, context={'request': request}).data, status=status.HTTP_201_CREATED)
 
     @staticmethod
     def read_course_json(course_file_path: str) -> dict:
@@ -91,12 +96,13 @@ class CreateCourseView(APIView):
                 # read and parse the JSON data
                 course_data = json.load(file)
         except json.JSONDecodeError:
-            raise ValueError(f"The file {course_file_path} is not a valid JSON file.")
+            raise ValueError(
+                f"The file {course_file_path} is not a valid JSON file.")
         except Exception as e:
-            raise IOError(f"An error occurred while reading the file: {str(e)}")
+            raise IOError(
+                f"An error occurred while reading the file: {str(e)}")
 
         return course_data
-
 
     @staticmethod
     def populate_course_data(course_data: dict, request: Request):
@@ -109,10 +115,11 @@ class CreateCourseView(APIView):
                 raise ValueError("Invalid JSON data provided") from e
 
         # create semester
-        semester = CreateCourseView.create_semester(course_data['semester'], request)
+        semester = CreateCourseView.create_semester(
+            course_data['semester'], request)
         if isinstance(semester, Response):
             return semester
-        
+
         # create course
         course = CreateCourseView.create_course(
             name=course_data['name'],
@@ -123,37 +130,53 @@ class CreateCourseView(APIView):
         )
         if isinstance(course, Response):
             return course
-        
+
         # create instructors (lecturers)
-        instructors = CreateCourseView.create_instructors(course_data['instructors'], course, LECTURER)
+        instructors = CreateCourseView.create_instructors(
+            course_data['instructors'], course, LECTURER)
         if isinstance(instructors, Response):
-            return instructors
-        
+            # not critical, continue with other data
+            pass
+            # return instructors
+
         # create instructors (faculty interns)
-        faculty_interns = CreateCourseView.create_instructors(course_data['faculty_interns'], course, FACULTY_INTERN)
+        faculty_interns = CreateCourseView.create_instructors(
+            course_data['faculty_interns'], course, FACULTY_INTERN)
         if isinstance(faculty_interns, Response):
-            return faculty_interns
-        
+            # not critical, continue with other data
+            pass
+            # return faculty_interns
+
         # create course evaluation criteria
-        evaluation_criteria = CreateCourseView.create_course_evaluation_criteria(course_data['evaluation_criteria'], course)
+        evaluation_criteria = CreateCourseView.create_course_evaluation_criteria(
+            course_data['evaluation_criteria'], course)
         if isinstance(evaluation_criteria, Response):
-            return evaluation_criteria
-        
+            # not critical, continue with other data
+            pass
+            # return evaluation_criteria
+
         # create course cohorts and cohort lecture days
-        lecture_days = CreateCourseView.create_course_cohorts(course_data['cohorts'], course)
+        lecture_days = CreateCourseView.create_course_cohorts(
+            course_data['cohorts'], course)
         if isinstance(lecture_days, Response):
             return lecture_days
-        
+
         # create course textbooks
-        textbooks = CreateCourseView.create_course_textbooks(course_data['textbooks'], course)
+        textbooks = CreateCourseView.create_course_textbooks(
+            course_data['textbooks'], course)
         if isinstance(textbooks, Response):
-            return textbooks
-        
+            # not critical, continue with other data
+            pass
+            # return textbooks
+
         # create course weekly schedule
-        weekly_schedule = CreateCourseView.create_course_weekly_schedule(course_data['weekly_schedule'], course)
+        weekly_schedule = CreateCourseView.create_course_weekly_schedule(
+            course_data['weekly_schedule'], course)
         if isinstance(weekly_schedule, Response):
-            return weekly_schedule
-        
+            # not critical, continue with other data
+            pass
+            # return weekly_schedule
+
         # prepare dictionary for course file object
         response = {
             'semester': semester,
@@ -162,13 +185,13 @@ class CreateCourseView(APIView):
 
         return response
 
-
     @staticmethod
     def create_semester(semester_data: dict, request: Request) -> Semester:
         """create semester if it does not exist"""
 
         try:
-            semester = Semester.objects.get(name=semester_data['name'], year=semester_data['year'])
+            semester = Semester.objects.get(
+                name=semester_data['name'], year=semester_data['year'])
         except Semester.DoesNotExist:
             semester_serializer = SemesterSerializer(data={
                 'name': semester_data['name'],
@@ -179,16 +202,16 @@ class CreateCourseView(APIView):
                 semester = semester_serializer.save()
             else:
                 return Response(semester_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
-        return semester
 
+        return semester
 
     @staticmethod
     def create_course(code: str, name: str, description: str, university: int, semester: Semester) -> Course:
         """create course if it does not exist"""
 
         try:
-            course = Course.objects.get(code=code, name=name, university=university, semester=semester)
+            course = Course.objects.get(
+                code=code, name=name, university=university, semester=semester)
         except Course.DoesNotExist:
             course_serializer = CourseSerializer(data={
                 'code': code,
@@ -201,9 +224,8 @@ class CreateCourseView(APIView):
                 course = course_serializer.save()
             else:
                 return Response(course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
         return course
-    
 
     @staticmethod
     def create_instructors(instructors_data: list, course: Course, instructor_type: str) -> list:
@@ -212,22 +234,25 @@ class CreateCourseView(APIView):
         instructors = list()
         for instructor_data in instructors_data:
             try:
-                instructor = Instructor.objects.get(email=instructor_data['email'])
-                instructor = CourseInstructor.objects.create(course=course, instructor=instructor)
+                instructor = Instructor.objects.get(
+                    email=instructor_data['email'])
+                instructor = CourseInstructor.objects.create(
+                    course=course, instructor=instructor)
 
                 # create office hours
-                office_hours = CreateCourseView.create_office_hours(instructor_data['office_hours'], instructor)
+                office_hours = CreateCourseView.create_office_hours(
+                    instructor_data['office_hours'], instructor)
                 if isinstance(office_hours, Response):
                     return office_hours
             except Instructor.DoesNotExist:
-                instructor = CreateCourseView.create_instructor(instructor_data, instructor_type, course)
+                instructor = CreateCourseView.create_instructor(
+                    instructor_data, instructor_type, course)
                 if isinstance(instructor, Response):
                     return instructor
-            
+
             instructors.append(instructor)
-        
+
         return instructors
-    
 
     @staticmethod
     def create_instructor(instructor_data: dict, type: str, course: Course) -> Instructor:
@@ -237,35 +262,37 @@ class CreateCourseView(APIView):
             instructor = Instructor.objects.get(email=instructor_data['email'])
         except Instructor.DoesNotExist:
             instructor_serializer = InstructorSerializer(data={
-            'name': instructor_data['name'],
-            'email': instructor_data['email'],
-            'type': type,
-            'phone': instructor_data['phone'] if 'phone' in instructor_data else None,
-        })
+                'name': instructor_data['name'],
+                'email': instructor_data['email'],
+                'type': type,
+                'phone': instructor_data['phone'] if 'phone' in instructor_data else None,
+            })
         if instructor_serializer.is_valid():
             instructor = instructor_serializer.save()
         else:
             return Response(instructor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
         # create course instructor
-        course_instructor = CreateCourseView.create_course_instructor(course, instructor)
+        course_instructor = CreateCourseView.create_course_instructor(
+            course, instructor)
         if isinstance(course_instructor, Response):
             return course_instructor
-        
+
         # create office hours
-        office_hours = CreateCourseView.create_office_hours(instructor_data['office_hours'], course_instructor)
+        office_hours = CreateCourseView.create_office_hours(
+            instructor_data['office_hours'], course_instructor)
         if isinstance(office_hours, Response):
             return office_hours
-        
+
         return instructor
 
-    
     @staticmethod
     def create_course_instructor(course: Course, instructor: Instructor) -> CourseInstructor:
         """create course instructor"""
 
         try:
-            course_instructor = CourseInstructor.objects.get(course=course, instructor=instructor)
+            course_instructor = CourseInstructor.objects.get(
+                course=course, instructor=instructor)
         except CourseInstructor.DoesNotExist:
             course_instructor_serializer = CourseInstructorSerializer(data={
                 'course': course.id,
@@ -275,9 +302,8 @@ class CreateCourseView(APIView):
                 course_instructor = course_instructor_serializer.save()
             else:
                 return Response(course_instructor_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
-        return course_instructor
 
+        return course_instructor
 
     @staticmethod
     def create_office_hours(office_hours_data: list, course_instructor: CourseInstructor) -> list:
@@ -287,7 +313,8 @@ class CreateCourseView(APIView):
         for office_hour_data in office_hours_data:
             day = office_hour_data.get('day', '').lower()
             time_data = office_hour_data.get('time', None)
-            start_time = time_data.get('start_time', None) if time_data else None
+            start_time = time_data.get(
+                'start_time', None) if time_data else None
             end_time = time_data.get('end_time', None) if time_data else None
 
             try:
@@ -308,12 +335,10 @@ class CreateCourseView(APIView):
                     office_hour = office_hour_serializer.save()
                 else:
                     return Response(office_hour_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             course_instructor_office_hours.append(office_hour)
 
         return course_instructor_office_hours
-
-    
 
     @staticmethod
     def create_course_evaluation_criteria(evaluation_criteria_data: list, course: Course) -> list:
@@ -336,11 +361,10 @@ class CreateCourseView(APIView):
                     criteria = criteria_serializer.save()
                 else:
                     return Response(criteria_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             course_evaluation_criteria.append(criteria)
-        
+
         return course_evaluation_criteria
-    
 
     @staticmethod
     def create_course_cohorts(cohorts_data: list, course: Course) -> list:
@@ -362,16 +386,16 @@ class CreateCourseView(APIView):
                     course_cohort = cohort_serializer.save()
                 else:
                     return Response(cohort_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             cohorts.append(course_cohort)
 
             # create course cohort lecture days
-            lecture_days = CreateCourseView.create_lecture_days(cohort['lecture_days'], course_cohort)
+            lecture_days = CreateCourseView.create_lecture_days(
+                cohort['lecture_days'], course_cohort)
             if isinstance(lecture_days, Response):
                 return lecture_days
-            
-        return cohorts
 
+        return cohorts
 
     @staticmethod
     def create_lecture_days(lecture_days_data: list, cohort: CourseCohort) -> list:
@@ -398,11 +422,10 @@ class CreateCourseView(APIView):
                     lecture_day = lecture_day_serializer.save()
                 else:
                     return Response(lecture_day_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             lecture_days.append(lecture_day)
-        
+
         return lecture_days
-    
 
     @staticmethod
     def create_course_textbooks(textbooks_data: list, course: Course) -> list:
@@ -432,11 +455,10 @@ class CreateCourseView(APIView):
                     textbook = textbook_serializer.save()
                 else:
                     return Response(textbook_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             textbooks.append(textbook)
-        
+
         return textbooks
-    
 
     @staticmethod
     def create_course_weekly_schedule(weekly_schedule_data: list, course: Course) -> list:
@@ -448,11 +470,10 @@ class CreateCourseView(APIView):
             week = CreateCourseView.create_week(week_data, course)
             if isinstance(week, Response):
                 return week
-            
+
             weekly_schedule.append(week)
-        
+
         return weekly_schedule
-    
 
     @staticmethod
     def create_week(week_data: dict, course: Course) -> CourseWeeklySchedule:
@@ -475,24 +496,25 @@ class CreateCourseView(APIView):
                 week = week_serializer.save()
             else:
                 return Response(week_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
         # create weekly assessments
-        assessments = CreateCourseView.create_assessments(week_data['assessments'], week)
+        assessments = CreateCourseView.create_assessments(
+            week_data['assessments'], week)
         if isinstance(assessments, Response):
             return assessments
-        
+
         # create weekly topics
         topics = CreateCourseView.create_topics(week_data['topics'], week)
         if isinstance(topics, Response):
             return topics
-        
+
         # create weekly readings
-        readings = CreateCourseView.create_readings(week_data['readings'], week)
+        readings = CreateCourseView.create_readings(
+            week_data['readings'], week)
         if isinstance(readings, Response):
             return readings
-        
+
         return week
-    
 
     @staticmethod
     def create_assessments(assessments_data: list, week: CourseWeeklySchedule) -> list:
@@ -523,11 +545,10 @@ class CreateCourseView(APIView):
                     assessment = assessment_serializer.save()
                 else:
                     return Response(assessment_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             assessments.append(assessment)
-        
+
         return assessments
-    
 
     @staticmethod
     def create_topics(topics_data: list, week: CourseWeeklySchedule) -> list:
@@ -549,11 +570,10 @@ class CreateCourseView(APIView):
                     topic = topic_serializer.save()
                 else:
                     return Response(topic_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             topics.append(topic)
-        
+
         return topics
-    
 
     @staticmethod
     def create_readings(readings_data: list, week: CourseWeeklySchedule) -> list:
@@ -575,11 +595,10 @@ class CreateCourseView(APIView):
                     reading = reading_serializer.save()
                 else:
                     return Response(reading_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
             readings.append(reading)
-        
+
         return readings
-    
 
     @staticmethod
     def create_course_file(course_file: InMemoryUploadedFile, semester: Semester, course: Course):
@@ -600,12 +619,11 @@ class CreateCourseView(APIView):
                 course_file = course_file_serializer.save()
             else:
                 return Response(course_file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-            
+
         return course_file
-    
 
     @staticmethod
-    def create_user_course(user:UserAccount, course: Course):
+    def create_user_course(user: UserAccount, course: Course):
         """create user course object"""
 
         try:
@@ -619,10 +637,10 @@ class CreateCourseView(APIView):
                 user_course = user_course_serializer.save()
             else:
                 return Response(user_course_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
         return user_course
 
-    
+
 class RetrieveUserCoursesView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
@@ -636,15 +654,17 @@ class SpecifyCourseCohortView(APIView):
 
     def patch(self, request):
         try:
-            user_course = UserCourse.objects.get(id=request.data['user_course'])
+            user_course = UserCourse.objects.get(
+                id=request.data['user_course'])
         except UserCourse.DoesNotExist:
             return Response({"error": "User course does not exist"}, status=status.HTTP_404_NOT_FOUND)
-        
+
         try:
-            course_cohort = CourseCohort.objects.get(id=request.data['course_cohort'])
+            course_cohort = CourseCohort.objects.get(
+                id=request.data['course_cohort'])
         except CourseCohort.DoesNotExist:
             return Response({"error": "Course cohort does not exist"}, status=status.HTTP_404_NOT_FOUND)
-        
+
         user_course.cohort = course_cohort
         user_course.save()
         return Response(UserCourseSerializer(user_course, context={'request': request}).data, status=status.HTTP_200_OK)
@@ -665,12 +685,16 @@ class DeleteCourseView(APIView):
         CourseCohort.objects.filter(course=course).delete()
         CourseLectureDay.objects.filter(course_cohort__course=course).delete()
         CourseWeeklySchedule.objects.filter(course=course).delete()
-        CourseInstructorOfficeHour.objects.filter(course_instructor__course=course).delete()
+        CourseInstructorOfficeHour.objects.filter(
+            course_instructor__course=course).delete()
         CourseEvaluationCriteria.objects.filter(course=course).delete()
         CourseTextbook.objects.filter(course=course).delete()
-        CourseWeeklyAssessment.objects.filter(course_weekly_schedule__course=course).delete()
-        CourseWeeklyReading.objects.filter(course_weekly_schedule__course=course).delete()
-        CourseWeeklyTopic.objects.filter(course_weekly_schedule__course=course).delete()
+        CourseWeeklyAssessment.objects.filter(
+            course_weekly_schedule__course=course).delete()
+        CourseWeeklyReading.objects.filter(
+            course_weekly_schedule__course=course).delete()
+        CourseWeeklyTopic.objects.filter(
+            course_weekly_schedule__course=course).delete()
         UserCourse.objects.filter(course=course).delete()
 
         # Delete course file from filesystem and database
