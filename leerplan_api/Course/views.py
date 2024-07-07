@@ -118,7 +118,7 @@ class CreateCourseView(APIView):
             return evaluation_criteria
         
         # create course cohorts and cohort lecture days
-        lecture_days = CreateCourseView.create_course_cohorts(course_data['lecture_days'], course)
+        lecture_days = CreateCourseView.create_course_cohorts(course_data['cohorts'], course)
         if isinstance(lecture_days, Response):
             return lecture_days
         
@@ -211,7 +211,10 @@ class CreateCourseView(APIView):
     def create_instructor(instructor_data: dict, type: str, course: Course) -> Instructor:
         """create instructor and associated office hours"""
 
-        instructor_serializer = InstructorSerializer(data={
+        try:
+            instructor = Instructor.objects.get(email=instructor_data['email'])
+        except Instructor.DoesNotExist:
+            instructor_serializer = InstructorSerializer(data={
             'name': instructor_data['name'],
             'email': instructor_data['email'],
             'type': type,
@@ -318,7 +321,7 @@ class CreateCourseView(APIView):
         cohorts = list()
         for cohort in cohorts_data:
             try:
-                cohort = CourseCohort.objects.get(
+                course_cohort = CourseCohort.objects.get(
                     course=course,
                     name=cohort['cohort_name']
                 )
@@ -328,17 +331,16 @@ class CreateCourseView(APIView):
                     'name': cohort['cohort_name']
                 })
                 if cohort_serializer.is_valid():
-                    cohort = cohort_serializer.save()
+                    course_cohort = cohort_serializer.save()
                 else:
                     return Response(cohort_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             
-            cohorts.append(cohort)
+            cohorts.append(course_cohort)
 
             # create course cohort lecture days
-            for lecture_day in cohort['lecture_days']:
-                lecture_day = CreateCourseView.create_lecture_days(lecture_day, cohort)
-                if isinstance(lecture_day, Response):
-                    return lecture_day
+            lecture_days = CreateCourseView.create_lecture_days(cohort['lecture_days'], course_cohort)
+            if isinstance(lecture_days, Response):
+                return lecture_days
             
         return cohorts
 
@@ -386,10 +388,17 @@ class CreateCourseView(APIView):
                     title=textbook_data['title']
                 )
             except CourseTextbook.DoesNotExist:
+                textbook_type = textbook_data.get('type')
+
+                if textbook_type is not None:
+                    textbook_type = textbook_type.lower()
+                else:
+                    textbook_type = 'secondary'
+
                 textbook_serializer = CourseTextbookSerializer(data={
                     'course': course.id,
                     'title': textbook_data['title'],
-                    'type': textbook_data['type'].lower() if 'type' in textbook_data else None
+                    'type': textbook_type
                 })
                 if textbook_serializer.is_valid():
                     textbook = textbook_serializer.save()
@@ -469,11 +478,17 @@ class CreateCourseView(APIView):
                     name=assessment_data['name']
                 )
             except CourseWeeklyAssessment.DoesNotExist:
+                weight = assessment_data['weight']
+                if weight is not None:
+                    weight = float(weight)
+                else:
+                    weight = 0.0
+
                 assessment_serializer = CourseWeeklyAssessmentSerializer(data={
                     'course_weekly_schedule': week.id,
                     'name': assessment_data['name'],
                     'type': assessment_data['type'],
-                    'weight': assessment_data['weight'] if 'weight' in assessment_data else 0.0,
+                    'weight': weight,
                     'due_date': assessment_data['due_date'] if 'due_date' in assessment_data else ""
                 })
                 if assessment_serializer.is_valid():
