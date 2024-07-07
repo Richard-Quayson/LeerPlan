@@ -4,8 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.db import transaction
 from io import BytesIO
-import json
+import json, os
 
 from .models import (
     Semester, Instructor, Course, CourseInstructor, CourseInstructorOfficeHour,
@@ -284,19 +285,24 @@ class CreateCourseView(APIView):
 
         course_instructor_office_hours = list()
         for office_hour_data in office_hours_data:
+            day = office_hour_data.get('day', '').lower()
+            time_data = office_hour_data.get('time', None)
+            start_time = time_data.get('start_time', None) if time_data else None
+            end_time = time_data.get('end_time', None) if time_data else None
+
             try:
                 office_hour = CourseInstructorOfficeHour.objects.get(
                     course_instructor=course_instructor,
-                    day=office_hour_data['day'].lower(),
-                    start_time=office_hour_data['time']['start_time'],
-                    end_time=office_hour_data['time']['end_time']
+                    day=day,
+                    start_time=start_time,
+                    end_time=end_time
                 )
             except CourseInstructorOfficeHour.DoesNotExist:
                 office_hour_serializer = CourseInstructorOfficeHourSerializer(data={
                     'course_instructor': course_instructor.id,
-                    'day': office_hour_data['day'].lower(),
-                    'start_time': office_hour_data['time']['start_time'],
-                    'end_time': office_hour_data['time']['end_time'],
+                    'day': day,
+                    'start_time': start_time,
+                    'end_time': end_time,
                 })
                 if office_hour_serializer.is_valid():
                     office_hour = office_hour_serializer.save()
@@ -306,6 +312,7 @@ class CreateCourseView(APIView):
             course_instructor_office_hours.append(office_hour)
 
         return course_instructor_office_hours
+
     
 
     @staticmethod
@@ -644,13 +651,38 @@ class SpecifyCourseCohortView(APIView):
 
 
 class DeleteCourseView(APIView):
-    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+    permission_classes = [IsAuthenticated]
 
+    @transaction.atomic
     def delete(self, request, course_id):
         try:
             course = Course.objects.get(id=course_id)
         except Course.DoesNotExist:
             return Response({"error": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
-        
+
+        # Delete all related data
+        CourseInstructor.objects.filter(course=course).delete()
+        CourseCohort.objects.filter(course=course).delete()
+        CourseLectureDay.objects.filter(course_cohort__course=course).delete()
+        CourseWeeklySchedule.objects.filter(course=course).delete()
+        CourseInstructorOfficeHour.objects.filter(course_instructor__course=course).delete()
+        CourseEvaluationCriteria.objects.filter(course=course).delete()
+        CourseTextbook.objects.filter(course=course).delete()
+        CourseWeeklyAssessment.objects.filter(course_weekly_schedule__course=course).delete()
+        CourseWeeklyReading.objects.filter(course_weekly_schedule__course=course).delete()
+        CourseWeeklyTopic.objects.filter(course_weekly_schedule__course=course).delete()
+        UserCourse.objects.filter(course=course).delete()
+
+        # Delete course file from filesystem and database
+        course_file = CourseFile.objects.filter(course=course).first()
+
+        # remove file from filesystem
+        if course_file.file != "":
+            if os.path.exists(course_file.file.path):
+                os.remove(course_file.file.path)
+        course_file.delete()
+
+        # Delete the course
         course.delete()
+
         return Response(status=status.HTTP_204_NO_CONTENT)
