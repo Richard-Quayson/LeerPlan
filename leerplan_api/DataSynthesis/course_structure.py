@@ -211,7 +211,7 @@ class Cohort(BaseModel):
         }
     ]
 
-    if cohort not specified, assume cohort_name = "A"
+    if cohort not specified, assume cohort_name = "Default"
     """
 
     cohort_name: str
