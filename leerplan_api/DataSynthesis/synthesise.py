@@ -2,7 +2,8 @@ import google.generativeai as genai
 from dotenv import load_dotenv
 import os
 
-PYDANTIC_CLASSES_FILE = "course_structure.py"
+current_dir = os.path.dirname(os.path.abspath(__file__))
+PYDANTIC_CLASSES_FILE = os.path.join(current_dir, "course_structure.py")
 OUTPUT_DIR = "media/synthesis/"
 
 # Load environment variables
