@@ -43,8 +43,8 @@ const RightPane = ({ courses }) => {
       });
       if (response.status === 200) {
         setSubmitSuccess(true);
-        setSpecifyCohort(false);
         setTimeout(() => {
+          setSpecifyCohort(false);
           window.location.reload();
         }, 3000);
       }
