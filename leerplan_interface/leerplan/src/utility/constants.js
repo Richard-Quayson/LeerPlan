@@ -26,47 +26,43 @@ export const INSTRUCTOR_TYPES = {
 // course and routine colour list (list of dictionary objects)
 export const COURSE_ROUTINE_COLOURS = {
   red: {
-    deep: "#dc2626",
+    deep: "#ef4444",
     light: "#fca5a5",
   },
   orange: {
-    deep: "#ea580c",
+    deep: "#f97316",
     light: "#fdba74",
   },
   slate: {
     deep: "#475569",
     light: "#cbd5e1",
   },
-  amber: {
-    deep: "#d97706",
-    light: "#fcd34d",
+  purple: {
+    deep: "#a855f7",
+    light: "#d8b4fe",
   },
   lime: {
-    deep: "#65a30d",
+    deep: "#84cc16",
     light: "#bef264",
   },
-  teal: {
-    deep: "#0d9488",
-    light: "#5eead4",
+  cyan: {
+    deep: "#06b6d4",
+    light: "#67e8f9",
   },
   pink: {
-    deep: "#db2777",
+    deep: "#ec4899",
     light: "#f9a8d4",
   },
   green: {
-    deep: "#16a34a",
+    deep: "#22c55e",
     light: "#86efac",
   },
-  purple: {
-    deep: "#9333ea",
-    light: "#d8b4fe",
+  amber: {
+    deep: "#f59e0b",
+    light: "#fcd34d",
   },
   blue: {
-    deep: "#2563eb",
+    deep: "#3b82f6",
     light: "#93c5fd",
-  },
-  rose: {
-    deep: "#e11d48",
-    light: "#fda4af",
-  },
+  }
 };
