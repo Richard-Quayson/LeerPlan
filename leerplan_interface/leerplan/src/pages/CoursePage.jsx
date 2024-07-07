@@ -9,7 +9,7 @@ import WeeklySchedule from "../components/WeeklySchedule";
 import api from "../utility/api";
 import { USER_COURSE_LIST_URL, USER_DETAILS_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID } from "../utility/constants";
-import { LOGIN_ROUTE } from "../utility/routes";
+import { LOGIN_ROUTE, DASHBOARD_ROUTE } from "../utility/routes";
 import LocationIcon from "../assets/icons/Location.png";
 import BookIcon from "../assets/icons/Book.png";
 
@@ -59,6 +59,12 @@ const CoursePage = () => {
       const course = userCourses.find(
         (course) => course.course.code === courseCode
       );
+      
+      // if course code is empty, navigate to dashboard
+      if (!course.cohort) {
+        navigate(DASHBOARD_ROUTE);
+      }
+
       setCourse(course);
     }
   }, [userCourses, courseCode]);
