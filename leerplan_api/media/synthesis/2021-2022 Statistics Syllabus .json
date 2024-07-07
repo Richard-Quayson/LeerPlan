@@ -1,7 +1,7 @@
 {
   "code": "MATH221",
   "name": "Statistics with Probability",
-  "description": "What influences consumer choice? What life-style changes lead to better health and longevity? What factors influence Africans’ views on social and political issues? Are you interested in understanding how climate change is impacting communities in your home country? How can the vast amount of data collected and stored online be used to improve our quality of life? The discipline of statistics seeks to turn data into useful information that can help answer these and many other questions that may pique your interest.  \n\nIn this course, learning statistics will be motivated by using real data to answer questions that YOU are passionate about. Each student will: (1) generate a testable hypothesis based on secondary data; (2) understand how large datasets are structured; (3) format and manage data; (4) conduct descriptive and inferential statistical analysis; and (5) communicate the results of their research to expert and novice audiences. The process of converting data into useful information draws on the following set of introductory statistical skills taught in the course: \n• Producing data \n• Exploratory data analysis \n• Probability \n• Inference \nStatistical computing software is the essential tool that ties the quantitative research process together. In this course, you will use R and R Studio to manage data, describe data, analyse data and display data – all in the service of answering your own interesting research question!",
+  "description": "What influences consumer choice? What life-style changes lead to better health \nand longevity? What factors influence Africans’ views on social and political \nissues? Are you interested in understanding how climate change is impacting \ncommunities in your home country? How can the vast amount of data collected \nand stored online be used to improve our quality of life? The discipline of \nstatistics seeks to turn data into useful information that can help answer these \nand many other questions that may pique your interest.  \n\nIn this course, learning statistics will be motivated by using real data to answer \nquestions that YOU are passionate about. Each student will: (1) generate a \ntestable hypothesis based on secondary data; (2) understand how large \ndatasets are structured; (3) format and manage data; (4) conduct descriptive \nand inferential statistical analysis; and (5) communicate the results of their \nresearch to expert and novice audiences. The process of converting data into \nuseful information draws on the following set of introductory statistical skills \ntaught in the course: \n• Producing data \n• Exploratory data analysis \n• Probability \n• Inference \nStatistical computing software is the essential tool that ties the quantitative \nresearch process together. In this course, you will use R and R Studio to \nmanage data, describe data, analyse data and display data – all in the service \nof answering your own interesting research question! ",
   "semester": {
     "name": "Semester 2",
     "year": 2022
@@ -80,11 +80,11 @@
   ],
   "textbooks": [
     {
-      "title": "Carnegie Melon University’s Open Learning Initiative (OLI) Probability and Statistics course",
+      "title": "Carnegie Melon University’s Open Learning Initiative (OLI) Probability and \nStatistics course",
       "type": "primary"
     },
     {
-      "title": "Ware, W. B., Ferron, J. M., & Miller, B. M. (2013). Introductory Statistics: A Conceptual Approach Using R. London: Routledge.",
+      "title": "Ware, W. B., Ferron, J. M., & Miller, B. M. (2013). Introductory Statistics: A \nConceptual Approach Using R. London: Routledge.",
       "type": null
     },
     {
@@ -92,7 +92,7 @@
       "type": null
     },
     {
-      "title": "Malhotra, N., & Birks, D. (2006). Marketing Research: An Applied Approach. Pearson Education Ltd.",
+      "title": "Malhotra, N., & Birks, D. (2006). Marketing Research: An Applied Approach. \nPearson Education Ltd.",
       "type": null
     }
   ],
@@ -272,7 +272,7 @@
         },
         {
           "name": "Project Assignment 1",
-          "type": "project assignment",
+          "type": "project",
           "due_date": "2022-02-06",
           "weight": null
         }
@@ -301,7 +301,7 @@
         },
         {
           "name": "Project Assignment 1",
-          "type": "project assignment",
+          "type": "project",
           "due_date": "2022-02-06",
           "weight": null
         }
@@ -317,7 +317,7 @@
           "title": "Probability activity: conditional probability"
         },
         {
-          "title": "What is primary source literature? Using library databases to find primary source literature for your project, Install Zotero, Intro to Zotero citation management software"
+          "title": "What is primary source literature?, Using library databases to find primary source literature for your project, Install Zotero, Intro to Zotero citation management software"
         }
       ],
       "readings": [],
@@ -330,7 +330,7 @@
         },
         {
           "name": "Project Assignment 2",
-          "type": "project assignment",
+          "type": "project",
           "due_date": null,
           "weight": null
         }
@@ -363,14 +363,17 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "GenderSort Activity, Continuous probability distributions, The normal distribution research questions, variables & personal codebooks, Codebook construction"
+          "title": "GenderSort Activity, Continuous probability distributions"
+        },
+        {
+          "title": "The normal distribution research questions, variables & personal codebooks, Codebook construction"
         }
       ],
       "readings": [],
       "assessments": [
         {
           "name": "Project Assignment 2",
-          "type": "project assignment",
+          "type": "project",
           "due_date": "2022-02-27",
           "weight": null
         }
@@ -383,7 +386,10 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Simulation: The Central Limit Theorem, Data Management for the project, Revision"
+          "title": "Simulation: The Central Limit Theorem"
+        },
+        {
+          "title": "Data Management for the project, Revision"
         }
       ],
       "readings": [],
@@ -396,7 +402,7 @@
         },
         {
           "name": "Project Assignment 3",
-          "type": "project assignment",
+          "type": "project",
           "due_date": null,
           "weight": null
         }
@@ -418,14 +424,17 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Point estimation and confidence interval estimation in R (application: political polls), Univariate and bivariate graphing for the project, Generating univariate graphs for the project"
+          "title": "Point estimation and confidence interval estimation in R (application: political polls), Univariate and bivariate graphing for the project"
+        },
+        {
+          "title": "Generating univariate graphs for the project"
         }
       ],
       "readings": [],
       "assessments": [
         {
           "name": "Project Assignment 3",
-          "type": "project assignment",
+          "type": "project",
           "due_date": "2022-03-20",
           "weight": null
         },
@@ -437,7 +446,7 @@
         },
         {
           "name": "Project Assignment 4",
-          "type": "project assignment",
+          "type": "project",
           "due_date": null,
           "weight": null
         }
@@ -450,7 +459,10 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Hypothesis testing activity, Activity: sharing and interpreting bivariate graphs for the project, Generating bivariate graphs for the project"
+          "title": "Hypothesis testing activity"
+        },
+        {
+          "title": "Activity: sharing and interpreting bivariate graphs for the project, Generating bivariate graphs for the project"
         }
       ],
       "readings": [],
@@ -476,14 +488,17 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "C→Q inference activity, C→C inference activity, Q→Q Inference activity, Exam revision"
+          "title": "C→Q inference activity"
+        },
+        {
+          "title": "C→C inference activity, Q→Q Inference activity, Exam revision"
         }
       ],
       "readings": [],
       "assessments": [
         {
           "name": "Project Assignment 4",
-          "type": "project assignment",
+          "type": "project",
           "due_date": "2022-04-03",
           "weight": null
         }
@@ -496,7 +511,10 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Bivariate Inference and moderation, Communicating the results of statistical inference, What goes into the academic poster?, Project consultation"
+          "title": "Bivariate Inference and moderation"
+        },
+        {
+          "title": "Communicating the results of statistical inference, What goes into the academic poster?, Project consultation"
         }
       ],
       "readings": [],
@@ -509,7 +527,7 @@
         },
         {
           "name": "Project Assignment 5",
-          "type": "project assignment",
+          "type": "project",
           "due_date": null,
           "weight": null
         }
@@ -529,7 +547,7 @@
       "assessments": [
         {
           "name": "Project Assignment 5",
-          "type": "project assignment",
+          "type": "project",
           "due_date": "2022-04-24",
           "weight": null
         }
@@ -572,3 +590,4 @@
     }
   ]
 }
+

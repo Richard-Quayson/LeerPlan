@@ -1,0 +1,360 @@
+{
+  "code": "ECON 100",
+  "name": "Principles of Economics",
+  "description": "Welcome to Principles of Economics. This course is an exciting introduction to the field of economics, with application to the local African and Ghanaian context. Economics has two main divisions: microeconomics and macroeconomics.  We will first tackle the microeconomics topics and then move on to the macroeconomics topics, but both set of topics are equally pertinent.  After a general introduction to the field of economics and explaining the difference between microeconomics and macroeconomics, the course will start by delving into microeconomic theory before finishing up with macroeconomics theory. Traditional microeconomic topics that will be treated include the concept of the invisible hand and the role of incentives in the market; supply and demand; international trade; demand and supply, elasticity; taxation, and the implications of government policy for individual firms. For the section on macroeconomics, we will discuss simple models of goods and services, assets, capital, and labour markets which can be usefully applied to generate realistic predictions regarding the behaviour of such macroeconomic variables as: output and growth; employment; inflation; the current account; as well as interest and exchange rates. The course will teach students to use these models to understand and interpret current and historical macroeconomic developments. Macroeconomic developments such as the effects of the COVID 19 pandemic, global inflation related to rising oil prices and the geopolitical conflict between Russia and Ukraine and possible impacts of national debt and corruption on macroeconomic stability and performance of African countries like Ghana will be discussed. The role of the IMF in helping countries to manage economic challenges will be assessed.  Finally, currency crises periodically plaguing Anglophone African countries such as Ghana and Nigeria that are not part of any monetary union will be discussed.",
+  "semester": {
+    "name": "Spring semester",
+    "year": 2024
+  },
+  "instructors": [
+    {
+      "name": "Stephen Armah",
+      "email": "searmah@ashesi.edu.gh",
+      "office_hours": [
+        {
+          "day": "Tues",
+          "time": {
+            "start_time": "09:00:00",
+            "end_time": "10:00:00"
+          }
+        }
+      ],
+      "phone": null
+    }
+  ],
+  "faculty_interns": [
+    {
+      "name": "TBA",
+      "email": null,
+      "office_hours": [
+        {
+          "day": "TBA",
+          "time": null
+        }
+      ],
+      "phone": "TBA"
+    }
+  ],
+  "textbooks": [
+    {
+      "title": "Principles of Economics (9th Edition)",
+      "type": "Required Textbook"
+    },
+    {
+      "title": "Applied Economics for Africa",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Principles of Macroenomics (9th Edition)",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Principles of Microeconomics (9th Edition)",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Principles of Microeconomics",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Macroeconomics",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Foundations of Macroeconomics, 7th Edition",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "The Economy",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "The Ghanaian Economy: The First 25 Years Since Independence",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Development Economics in Action: A Study of Economic Policies in Ghana. 2nd Edition",
+      "type": "Supplementary Textbooks"
+    },
+    {
+      "title": "Specialization and Trade: A Re-introduction to Economics",
+      "type": "Supplementary Textbooks"
+    }
+  ],
+  "evaluation_criteria": [
+    {
+      "type": "Mid-Semester Exam",
+      "weight": 15.0
+    },
+    {
+      "type": "Problem Sets",
+      "weight": 10.0
+    },
+    {
+      "type": "Quizes",
+      "weight": 20.0
+    },
+    {
+      "type": "Review of Academic Article",
+      "weight": 10.0
+    },
+    {
+      "type": "Class Participation",
+      "weight": 5.0
+    },
+    {
+      "type": "Final Exam",
+      "weight": 40.0
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_name": "E, 2025 CS/MIS",
+      "lecture_days": [
+        {
+          "day": "T/TH",
+          "time": {
+            "start_time": "15:00:00",
+            "end_time": "16:30:00"
+          },
+          "location": "Nutor Hall 100"
+        },
+        {
+          "day": "Friday",
+          "time": {
+            "start_time": "09:10:00",
+            "end_time": "10:10:00"
+          },
+          "location": "Nana Araba Apt 217"
+        }
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Ten Principles of Economics"
+        },
+        {
+          "title": "Economic Thinking"
+        },
+        {
+          "title": "Argument for trade"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Ch 1-3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 1",
+          "type": "quiz",
+          "due_date": "2024-01-22",
+          "weight": null
+        },
+        {
+          "name": "Homework 1",
+          "type": "homework",
+          "due_date": "2024-01-30",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Demand and Supply"
+        },
+        {
+          "title": "Elasticity"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Ch 4-5"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 2",
+          "type": "quiz",
+          "due_date": "2024-02-15",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Taxation and Government Policy"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Ch 6"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 3",
+          "type": "quiz",
+          "due_date": "2024-02-27",
+          "weight": null
+        },
+        {
+          "name": "Homework 2",
+          "type": "homework",
+          "due_date": "2024-02-27",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "start_date": null,
+      "end_date": null,
+      "type": "midsem",
+      "topics": [
+        {
+          "title": "Mid-Semester Exam and Break"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 8,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Measuring a Nation’s Income, I & II and the Cost of Living"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "CH 10 and 11"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 4",
+          "type": "quiz",
+          "due_date": "2024-03-14",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 9,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Production and Growth I & II"
+        },
+        {
+          "title": "The Monetary System"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "CH 12, 13, 16"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "HW 2",
+          "type": "homework",
+          "due_date": "2024-03-21",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Money, Growth, Inflation and Unemployment"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Ch 17"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Draft of Rev of Academic Article",
+          "type": "draft",
+          "due_date": "2024-03-26",
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Aggregate Demand and Supply I"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Ch 20"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "HW 3 – National Debt Debate",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 13,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Final Exam"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Review of Academic Article Write up",
+          "type": "report",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    }
+  ]
+}

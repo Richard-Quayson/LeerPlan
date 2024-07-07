@@ -1,0 +1,294 @@
+{
+  "code": "SOAN251",
+  "name": "Africa in the International Setting: Africa Beyond Aid",
+  "description": "Across the continent, many Africans want to do away with decades of aid dependency, striving instead for a more assertive Africa on the international scene. This online course encourages informed debate and a varied assessment of how overseas development assistance has evolved over the years and how it can be made more relevant to the lived realities of Africans. In so doing, it will enhance the students’ analytical skills in ways that will be instrumental for future research projects, internships and professional experiences.    \n   \nThe course aims to locate the current ‘Beyond Aid’ debate in a theoretical, historical and regional perspective. The students will explore case-studies from individual African countries by hearing directly from the accounts of aid-practitioners, who are either African or work in Africa, in sectors such as humanitarian aid in conflict and post-conflict countries as well as healthcare, whose importance has become even more elevated in this age of Covid-19.    \n   \nThe belief that aid can create and promote African development has been critiqued and ridiculed. Yet there is often little notion of how overseas development assistance (ODA) actually works, as well as its modalities, histories, potentials, and limitations. And beneath the critique loom larger questions of what kind of development is actually warranted, and what types of African futures are possible, as societies on the continent are confronted with historical, geopolitical and economic circumstances that are often not conducive to the well-being of ordinary Africans.  Formulating answers to these questions is crucial for students as they strive towards becoming ethical leaders in compelling an African renaissance.  \n   \nThis class is a “community of learners” that will build on the contextual knowledge of the students.\" The instructor brings theoretical and professional knowledge to this class, and the students bring contextual insights and lived histories from multiple African countries.  Together we aim to create novel and helpful insights of what aid means for Africa in the twenty-first century. There will be three principal methods of generating this knowledge:    \n   \n1) Writing, which helps us to slow down, deeply think and formulate our own views about the opposing theories and multifaceted topics at hand;    \n     \n2) Debates, which will help students to explore the different dimensions of controversial and multifaceted stances on aid.",
+  "semester": {
+    "name": "Fall",
+    "year": 2021
+  },
+  "instructors": [],
+  "faculty_interns": [
+    {
+      "name": "Aurelia Ayisi",
+      "email": "aayisi@ashesi.edu.gh",
+      "office_hours": [
+        {
+          "day": "Monday",
+          "time": null
+        }
+      ],
+      "phone": null
+    },
+    {
+      "name": "David Asiamah Boateng",
+      "email": "asiamah.boateng@ashesi.edu.gh",
+      "office_hours": [
+        {
+          "day": "Monday",
+          "time": null
+        }
+      ],
+      "phone": null
+    }
+  ],
+  "textbooks": [],
+  "evaluation_criteria": [
+    {
+      "type": "Participation",
+      "weight": 10.0
+    },
+    {
+      "type": "Class presentation",
+      "weight": 15.0
+    },
+    {
+      "type": "In- class or homework assignment",
+      "weight": 20.0
+    },
+    {
+      "type": "short paper",
+      "weight": 15.0
+    },
+    {
+      "type": "Final paper",
+      "weight": 40.0
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_name": "Default",
+      "lecture_days": [
+        {
+          "day": "Tuesday",
+          "time": {
+            "start_time": "13:15:00",
+            "end_time": "14:45:00"
+          },
+          "location": "Class Link – On Canvas"
+        },
+        {
+          "day": "Thursday",
+          "time": {
+            "start_time": "13:15:00",
+            "end_time": "14:45:00"
+          },
+          "location": "Class Link – On Canvas"
+        },
+        {
+          "day": "Friday",
+          "time": {
+            "start_time": "10:20:00",
+            "end_time": "11:20:00"
+          },
+          "location": "Class Link – On Canvas"
+        }
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Introduction  & History of Aid"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Chapter 2 A Brief History of Aid"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 2,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Aid Systems and Theories"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Chapter 8: The International Aid System"
+        },
+        {
+          "chapter": "Chapter 1: Understanding Development"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 3,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Aid Systems and Theories"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 4,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Developmental Aid and Political Interference"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 5,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Gaining Aid Independence"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Chapter 3: Strategies for a Smooth Transition from Aid Dependence in Africa"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 6,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Private aid organisations and images of Africa(ns)"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 7,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "A Future of Africa Without Aid?  Role of Civil Society"
+        },
+        {
+          "title": "Civil society and community mobilisation: the promise of people power"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Chapter 6&9"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 8,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Alternative Vehicles for Resource Mobilization:  Internal resource Mobilization:  Resource Mobilization Through the Budget"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 9,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Alternative Vehicles for Resource Mobilization: Resource Mobilization Through the Domestic Capital Market"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 10,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Alternative Vehicles for Resource Mobilization: Resource Mobilization Through Remittances"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 11,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Alternative Vehicles for Resource Mobilization: Resource Mobilization Through Diaspora Bonds"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 12,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Student Report Presentations"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 13,
+      "start_date": null,
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Student Report Presentations"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 14,
+      "start_date": null,
+      "end_date": null,
+      "type": "revision",
+      "topics": [
+        {
+          "title": "Revision week"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    }
+  ]
+}
