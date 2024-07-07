@@ -53,9 +53,13 @@ class CreateCourseView(APIView):
             if isinstance(response, Response):
                 return response
             
+            # convert course_data back to JSON string and then to bytes
+            course_data_json = json.dumps(course_data)
+            course_data_bytes = course_data_json.encode('utf-8')
+            
             # create course file object
             in_memory_file = InMemoryUploadedFile(
-                file=BytesIO(course_data),
+                file=BytesIO(course_data_bytes),
                 field_name='file',
                 name=course_file_name,
                 content_type=course_file_content_type,
@@ -77,13 +81,18 @@ class CreateCourseView(APIView):
 
 
     @staticmethod
-    def read_course_json(course_file: InMemoryUploadedFile) -> dict:
-        """read course json file and return course data"""
+    def read_course_json(course_file_path: str) -> dict:
+        """Read course JSON file and return course data"""
 
-        # open course file
-        with course_file.open('r') as file:
-            # read course data
-            course_data = file.read()
+        # open and read the course file
+        try:
+            with open(course_file_path, 'r', encoding='utf-8') as file:
+                # read and parse the JSON data
+                course_data = json.load(file)
+        except json.JSONDecodeError:
+            raise ValueError(f"The file {course_file_path} is not a valid JSON file.")
+        except Exception as e:
+            raise IOError(f"An error occurred while reading the file: {str(e)}")
 
         return course_data
 
@@ -92,7 +101,11 @@ class CreateCourseView(APIView):
     def populate_course_data(course_data: dict, request: Request):
         """populate course data across all course models"""
 
-        course_data = json.loads(course_data)
+        if isinstance(course_data, str):
+            try:
+                course_data = json.loads(course_data)
+            except json.JSONDecodeError as e:
+                raise ValueError("Invalid JSON data provided") from e
 
         # create semester
         semester = CreateCourseView.create_semester(course_data['semester'], request)
