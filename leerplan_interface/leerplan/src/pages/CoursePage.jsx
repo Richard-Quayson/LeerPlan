@@ -158,7 +158,7 @@ const CoursePage = () => {
                     Lecture Days:
                   </div>
                   <div className="ml-4 text-[15px] text-gray-500">
-                    {course.course.lecture_days.map((lecture_day) => (
+                    {course.cohort.lecture_days.map((lecture_day) => (
                       <div
                         key={lecture_day.id}
                         className="mb-2 p-2 border border-yellow-800"
