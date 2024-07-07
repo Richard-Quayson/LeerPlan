@@ -99,7 +99,7 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
       }
     } catch (error) {
       console.log(error);
-      setMessage(error.response?.data?.detail || "Failed to upload courses.");
+      setMessage(error.response?.data[0] || "Failed to upload courses.");
       setTimeout(() => {
         setMessage("");
       }, 5000);
