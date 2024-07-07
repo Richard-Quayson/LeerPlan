@@ -111,11 +111,13 @@ const RightPane = ({ courses }) => {
 
   return (
     <div className="flex flex-col h-full">
-      <HorizontalNavigation
-        title="Dashboard"
-        handleSubmit={handleFilterSubmit}
-      />
-      <div className="flex-grow pl-8 bg-white">
+      <div className="flex-shrink-0">
+        <HorizontalNavigation
+          title="Dashboard"
+          handleSubmit={handleFilterSubmit}
+        />
+      </div>
+      <div className="flex-grow overflow-y-auto">
         {courseWithoutCohort === null && specifyCohort === null ? (
           <div className="h-full flex items-center justify-center">
             <h1 className="text-xl text-gray-400">Loading courses...</h1>
