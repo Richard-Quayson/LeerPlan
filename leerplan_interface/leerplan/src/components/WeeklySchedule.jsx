@@ -76,7 +76,7 @@ const WeeklySchedule = ({ weeklySchedule }) => {
             </div>
             <ul className="list-none pl-8">
               {weeklySchedule.weekly_readings.map((reading, index) => (
-                <li key={index}>{reading.title}</li>
+                <li key={index}>{reading.chapter}</li>
               ))}
             </ul>
           </div>

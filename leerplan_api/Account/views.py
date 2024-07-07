@@ -166,8 +166,8 @@ class AddUserUniversityView(APIView):
             university_serializer = UniversitySerializer(data=request.data)
             if university_serializer.is_valid():
                 university = university_serializer.save()
-
-            return Response(university_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response(university_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         # create request body with user and university id
         request.data["user"] = request.user.id

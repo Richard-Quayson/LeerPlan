@@ -2,11 +2,11 @@ from rest_framework import serializers
 import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
-    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
+    CourseEvaluationCriteria, CourseCohort, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from Account.models import University, UserAccount
-from Account.serializers import UniversitySerializer, UserDetailsSerializer
+from Account.serializers import UniversitySerializer
 from Account.helper import NAME_REGEX, EMAIL_REGEX
 
 
@@ -190,12 +190,12 @@ class CourseSerializer(serializers.ModelSerializer):
             data = CourseEvaluationCriteriaSerializer(criteria).data
             representation['evaluation_criteria'].append(data)
 
-        # add course lecture days to the representation
-        representation['lecture_days'] = []
-        lecture_days = CourseLectureDay.objects.filter(course=instance)
-        for lecture_day in lecture_days:
-            data = CourseLectureDaySerializer(lecture_day).data
-            representation['lecture_days'].append(data)
+        # add course cohort lecture days to the representation
+        representation['cohorts'] = []
+        cohorts = CourseCohort.objects.filter(course=instance)
+        for cohort in cohorts:
+            data = CourseCohortSerializer(cohort).data
+            representation['cohorts'].append(data)
 
         # add course textbooks to the representation
         representation['textbooks'] = []
@@ -334,19 +334,49 @@ class CourseEvaluationCriteriaSerializer(serializers.ModelSerializer):
         return attrs
     
 
-class CourseLectureDaySerializer(serializers.ModelSerializer):
+class CourseCohortSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = CourseLectureDay
-        fields = ['id', 'course', 'day', 'location', 'start_time', 'end_time']
-    
+        model = CourseCohort
+        fields = ['id', 'course', 'name']
+
     def validate_course(self, value: Course) -> Course:
         if not Course.objects.filter(id=value.id).exists():
             raise serializers.ValidationError("Course does not exist!")
         
         if Course.objects.get(id=value.id).is_completed:
-            raise serializers.ValidationError("You cannot add lecture days to a completed course!")
+            raise serializers.ValidationError("You cannot add cohorts to a completed course!")
         
+        return value
+    
+    def validate_name(self, value: str) -> str:
+        if len(value) > 50:
+            raise serializers.ValidationError("Cohort name too long!")
+        return value
+    
+    def to_representation(self, instance: CourseCohort) -> dict:
+        representation = super().to_representation(instance)
+        representation['course'] = instance.course.id
+
+        # add course cohort lecture days to the representation
+        representation['lecture_days'] = []
+        lecture_days = CourseLectureDay.objects.filter(course_cohort=instance)
+        for lecture_day in lecture_days:
+            data = CourseLectureDaySerializer(lecture_day).data
+            representation['lecture_days'].append(data)
+        
+        return representation
+    
+
+class CourseLectureDaySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CourseLectureDay
+        fields = ['id', 'course_cohort', 'day', 'location', 'start_time', 'end_time']
+    
+    def validate_course_cohort(self, value: CourseCohort) -> CourseCohort:
+        if not CourseCohort.objects.filter(id=value.id).exists():
+            raise serializers.ValidationError("Course cohort does not exist!")
         return value
     
     def validate_day(self, value: str) -> str:
@@ -378,7 +408,7 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         if attrs['start_time'] >= attrs['end_time']:
             raise serializers.ValidationError("Start time must be less than end time!")
 
-        if CourseLectureDay.objects.filter(course=attrs['course'], day=attrs['day'],
+        if CourseLectureDay.objects.filter(course_cohort=attrs['course_cohort'], day=attrs['day'],
                                            start_time=attrs['start_time'], end_time=attrs['end_time']).exists():
             raise serializers.ValidationError("Course lecture day already exists!")
         
@@ -597,8 +627,8 @@ class CourseFileSerializer(serializers.ModelSerializer):
     
     # change to PDF after integrating AI
     def validate_file(self, value) -> str:
-        if not value.name.endswith('.json'):
-            raise serializers.ValidationError("Invalid file format! Only JSON files allowed.")
+        if not value.name.endswith('.pdf'):
+            raise serializers.ValidationError("Invalid file format! Only PDF files allowed.")
         return value
 
 
@@ -606,7 +636,7 @@ class UserCourseSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserCourse
-        fields = ['id', 'course', 'user']
+        fields = ['id', 'course', 'user', 'cohort']
 
     def validate_course(self, value: Course) -> Course:
         if not Course.objects.filter(id=value.id).exists():
@@ -625,6 +655,10 @@ class UserCourseSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if UserCourse.objects.filter(course=attrs['course'], user=attrs['user']).exists():
             raise serializers.ValidationError("User course already exists!")
+        
+        if 'cohort' in attrs:
+            if UserCourse.objects.filter(course=attrs['course'], cohort=attrs['cohort']).exists():
+                raise serializers.ValidationError("User course with cohort already exists!")
         return attrs
     
     def to_representation(self, instance: UserCourse) -> dict:
@@ -633,5 +667,9 @@ class UserCourseSerializer(serializers.ModelSerializer):
         # add course details to the representation
         course = CourseSerializer(Course.objects.get(id=instance.course.id), context={'request': self.context.get('request')}).data
         representation['course'] = course
-        
+
+        # add cohort details to the representation
+        if instance.cohort:
+            cohort = CourseCohortSerializer(CourseCohort.objects.get(id=instance.cohort.id)).data
+            representation['cohort'] = cohort
         return representation

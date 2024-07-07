@@ -151,6 +151,26 @@ class Week(BaseModel):
         - topics (List[Topic]): the topics for the week (e.g. [Topic, Topic, ...])
         - readings (List[Chapter]): the readings for the week (e.g. [Chapter, Chapter, ...])
         - assessments (Optional[List[Assessment]]): the assessments for the week (e.g. [Assessment, Assessment, ...])
+    
+    Eg. {
+          "week_number": 1,
+          "start_date": "2022-01-17",
+          "end_date": "2022-01-21",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Syllabus & course overview, Reading histograms, Statistics student data collection, Intro to R, Generating histograms in R"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 1",
+              "type": "homework",
+              "due_date": "2022-01-27"
+            }
+          ]
+        }
     """
 
     week_number: int
@@ -190,6 +210,8 @@ class Cohort(BaseModel):
             "location": "Room 101"
         }
     ]
+
+    if cohort not specified, assume cohort_name = "A"
     """
 
     cohort_name: str

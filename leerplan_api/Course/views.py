@@ -9,18 +9,21 @@ import json
 
 from .models import (
     Semester, Instructor, Course, CourseInstructor, CourseInstructorOfficeHour,
-    CourseEvaluationCriteria, CourseLectureDay, CourseTextbook, CourseWeeklySchedule,
+    CourseEvaluationCriteria, CourseCohort, CourseLectureDay, CourseTextbook, CourseWeeklySchedule,
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from .serializers import (
     SemesterSerializer, InstructorSerializer, CourseSerializer, CourseInstructorSerializer,
-    CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseLectureDaySerializer,
-    CourseTextbookSerializer, CourseWeeklyScheduleSerializer, CourseWeeklyAssessmentSerializer,
-    CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, CourseFileSerializer, UserCourseSerializer,
+    CourseInstructorOfficeHourSerializer, CourseEvaluationCriteriaSerializer, CourseCohortSerializer, 
+    CourseLectureDaySerializer, CourseTextbookSerializer, CourseWeeklyScheduleSerializer, 
+    CourseWeeklyAssessmentSerializer, CourseWeeklyReadingSerializer, CourseWeeklyTopicSerializer, 
+    CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
 from Account.models import UserAccount
 from Account.permissions import IsAccessTokenBlacklisted
+from DataSynthesis.extract import extract_text_from_pdf
+from DataSynthesis.synthesise import gemini_synthesise
 
 
 class CreateCourseView(APIView):
@@ -35,8 +38,14 @@ class CreateCourseView(APIView):
             course_file_content_type = course_file.content_type
             course_file_size = course_file.size
 
+            # extract text from course file
+            extracted_course_data = extract_text_from_pdf(course_file)
+
+            # synthesise course data
+            synthesised_course_file = gemini_synthesise(course_file_name, extracted_course_data)
+
             # read course data
-            course_data = CreateCourseView.read_course_json(course_file)
+            course_data = CreateCourseView.read_course_json(synthesised_course_file)
 
             # populate course data
             response = CreateCourseView.populate_course_data(course_data, request)
@@ -44,9 +53,13 @@ class CreateCourseView(APIView):
             if isinstance(response, Response):
                 return response
             
+            # convert course_data back to JSON string and then to bytes
+            course_data_json = json.dumps(course_data)
+            course_data_bytes = course_data_json.encode('utf-8')
+            
             # create course file object
             in_memory_file = InMemoryUploadedFile(
-                file=BytesIO(course_data),
+                file=BytesIO(course_data_bytes),
                 field_name='file',
                 name=course_file_name,
                 content_type=course_file_content_type,
@@ -68,13 +81,18 @@ class CreateCourseView(APIView):
 
 
     @staticmethod
-    def read_course_json(course_file: InMemoryUploadedFile) -> dict:
-        """read course json file and return course data"""
+    def read_course_json(course_file_path: str) -> dict:
+        """Read course JSON file and return course data"""
 
-        # open course file
-        with course_file.open('r') as file:
-            # read course data
-            course_data = file.read()
+        # open and read the course file
+        try:
+            with open(course_file_path, 'r', encoding='utf-8') as file:
+                # read and parse the JSON data
+                course_data = json.load(file)
+        except json.JSONDecodeError:
+            raise ValueError(f"The file {course_file_path} is not a valid JSON file.")
+        except Exception as e:
+            raise IOError(f"An error occurred while reading the file: {str(e)}")
 
         return course_data
 
@@ -83,7 +101,11 @@ class CreateCourseView(APIView):
     def populate_course_data(course_data: dict, request: Request):
         """populate course data across all course models"""
 
-        course_data = json.loads(course_data)
+        if isinstance(course_data, str):
+            try:
+                course_data = json.loads(course_data)
+            except json.JSONDecodeError as e:
+                raise ValueError("Invalid JSON data provided") from e
 
         # create semester
         semester = CreateCourseView.create_semester(course_data['semester'], request)
@@ -116,8 +138,8 @@ class CreateCourseView(APIView):
         if isinstance(evaluation_criteria, Response):
             return evaluation_criteria
         
-        # create course lecture days
-        lecture_days = CreateCourseView.create_lecture_days(course_data['lecture_days'], course)
+        # create course cohorts and cohort lecture days
+        lecture_days = CreateCourseView.create_course_cohorts(course_data['cohorts'], course)
         if isinstance(lecture_days, Response):
             return lecture_days
         
@@ -210,7 +232,10 @@ class CreateCourseView(APIView):
     def create_instructor(instructor_data: dict, type: str, course: Course) -> Instructor:
         """create instructor and associated office hours"""
 
-        instructor_serializer = InstructorSerializer(data={
+        try:
+            instructor = Instructor.objects.get(email=instructor_data['email'])
+        except Instructor.DoesNotExist:
+            instructor_serializer = InstructorSerializer(data={
             'name': instructor_data['name'],
             'email': instructor_data['email'],
             'type': type,
@@ -311,21 +336,52 @@ class CreateCourseView(APIView):
     
 
     @staticmethod
-    def create_lecture_days(lecture_days_data: list, course: Course) -> list:
+    def create_course_cohorts(cohorts_data: list, course: Course) -> list:
+        """create course cohorts"""
+
+        cohorts = list()
+        for cohort in cohorts_data:
+            try:
+                course_cohort = CourseCohort.objects.get(
+                    course=course,
+                    name=cohort['cohort_name']
+                )
+            except CourseCohort.DoesNotExist:
+                cohort_serializer = CourseCohortSerializer(data={
+                    'course': course.id,
+                    'name': cohort['cohort_name']
+                })
+                if cohort_serializer.is_valid():
+                    course_cohort = cohort_serializer.save()
+                else:
+                    return Response(cohort_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            cohorts.append(course_cohort)
+
+            # create course cohort lecture days
+            lecture_days = CreateCourseView.create_lecture_days(cohort['lecture_days'], course_cohort)
+            if isinstance(lecture_days, Response):
+                return lecture_days
+            
+        return cohorts
+
+
+    @staticmethod
+    def create_lecture_days(lecture_days_data: list, cohort: CourseCohort) -> list:
         """create lecture days"""
 
         lecture_days = list()
         for lecture_day_data in lecture_days_data:
             try:
                 lecture_day = CourseLectureDay.objects.get(
-                    course=course,
+                    course_cohort=cohort,
                     day=lecture_day_data['day'].lower(),
                     start_time=lecture_day_data['time']['start_time'],
                     end_time=lecture_day_data['time']['end_time']
                 )
             except CourseLectureDay.DoesNotExist:
                 lecture_day_serializer = CourseLectureDaySerializer(data={
-                    'course': course.id,
+                    'course_cohort': cohort.id,
                     'day': lecture_day_data['day'].lower(),
                     'location': lecture_day_data['location'],
                     'start_time': lecture_day_data['time']['start_time'],
@@ -353,10 +409,17 @@ class CreateCourseView(APIView):
                     title=textbook_data['title']
                 )
             except CourseTextbook.DoesNotExist:
+                textbook_type = textbook_data.get('type')
+
+                if textbook_type is not None:
+                    textbook_type = textbook_type.lower()
+                else:
+                    textbook_type = 'secondary'
+
                 textbook_serializer = CourseTextbookSerializer(data={
                     'course': course.id,
                     'title': textbook_data['title'],
-                    'type': textbook_data['type'].lower() if 'type' in textbook_data else None
+                    'type': textbook_type
                 })
                 if textbook_serializer.is_valid():
                     textbook = textbook_serializer.save()
@@ -436,11 +499,17 @@ class CreateCourseView(APIView):
                     name=assessment_data['name']
                 )
             except CourseWeeklyAssessment.DoesNotExist:
+                weight = assessment_data['weight']
+                if weight is not None:
+                    weight = float(weight)
+                else:
+                    weight = 0.0
+
                 assessment_serializer = CourseWeeklyAssessmentSerializer(data={
                     'course_weekly_schedule': week.id,
                     'name': assessment_data['name'],
                     'type': assessment_data['type'],
-                    'weight': assessment_data['weight'] if 'weight' in assessment_data else 0.0,
+                    'weight': weight,
                     'due_date': assessment_data['due_date'] if 'due_date' in assessment_data else ""
                 })
                 if assessment_serializer.is_valid():
@@ -553,6 +622,25 @@ class RetrieveUserCoursesView(APIView):
     def get(self, request):
         user_courses = UserCourse.objects.filter(user=request.user)
         return Response(UserCourseSerializer(user_courses, many=True, context={'request': request}).data, status=status.HTTP_200_OK)
+
+
+class SpecifyCourseCohortView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def patch(self, request):
+        try:
+            user_course = UserCourse.objects.get(id=request.data['user_course'])
+        except UserCourse.DoesNotExist:
+            return Response({"error": "User course does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        
+        try:
+            course_cohort = CourseCohort.objects.get(id=request.data['course_cohort'])
+        except CourseCohort.DoesNotExist:
+            return Response({"error": "Course cohort does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        
+        user_course.cohort = course_cohort
+        user_course.save()
+        return Response(UserCourseSerializer(user_course, context={'request': request}).data, status=status.HTTP_200_OK)
 
 
 class DeleteCourseView(APIView):

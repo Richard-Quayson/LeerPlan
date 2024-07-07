@@ -147,26 +147,42 @@ class CourseEvaluationCriteria(models.Model):
         return f"{self.course.name} ({self.course.code}) : {self.type.capitalize()} ({self.weight})"
     
 
+class CourseCohort(models.Model):
+    """
+    defines a course cohort model
+
+    Attributes:
+        - course: the course the cohort is for
+        - name: the name of the cohort
+    """
+
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.course.name} ({self.course.code}) : Cohort {self.name}"
+    
+
 class CourseLectureDay(models.Model):
     """
     defines a course lecture day model
 
     Attributes:
-        - course: the course the lecture day is for
+        - course_cohort: the course cohort the lecture day is for
         - day: the day of the week the lecture is held
         - location: the location of the lecture for that day
         - start_time: the start time of the lecture
         - end_time: the end time of the lecture
     """
 
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_cohort = models.ForeignKey(CourseCohort, on_delete=models.CASCADE)
     day = models.CharField(max_length=10)
     location = models.CharField(max_length=255)
     start_time = models.TimeField()
     end_time = models.TimeField()
 
     def __str__(self):
-        return f"{self.course.name} : {self.day} ({self.start_time} - {self.end_time}) @ {self.location}"
+        return f"{self.course_cohort.course.name} : Cohort {self.course_cohort.name} ({self.day} {self.start_time} - {self.end_time}) ({self.location})"
 
 
 class TextbookType(models.TextChoices):
@@ -299,10 +315,12 @@ class UserCourse(models.Model):
     Attributes:
         - user: the user taking the course
         - course: the course the user is taking
+        - cohort: the cohort the user is in
     """
 
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    cohort = models.ForeignKey(CourseCohort, default=None, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.firstname} {self.user.lastname} : {self.course.name} ({self.course.code})"
+        return f"{self.user.firstname} {self.user.lastname} : {self.course.name} ({self.course.code}) - Cohort {self.cohort.name if self.cohort else 'Not Specified'}"

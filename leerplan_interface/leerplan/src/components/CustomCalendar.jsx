@@ -14,7 +14,7 @@ const getColorForEvent = (index) => {
   return colors[index % colors.length].light;
 };
 
-const generateEvents = (course, courseIndex) => {
+const generateEvents = (course, courseIndex, cohort) => {
   const events = [];
   const weeklySchedules = course.weekly_schedules;
 
@@ -23,7 +23,7 @@ const generateEvents = (course, courseIndex) => {
   const startDate = moment(weeklySchedules[0].start_date);
   const endDate = moment(weeklySchedules[weeklySchedules.length - 1].end_date);
 
-  course.lecture_days.forEach((lecture) => {
+  cohort.lecture_days.forEach((lecture) => {
     let current = moment(startDate).startOf("week");
     while (current.isSameOrBefore(endDate)) {
       if (current.format("dddd").toLowerCase() === lecture.day) {
@@ -156,7 +156,7 @@ const CustomCalendar = ({
       <Calendar
         localizer={localizer}
         events={courses.flatMap((courseObj, courseIndex) =>
-          generateEvents(courseObj.course, courseIndex)
+          generateEvents(courseObj.course, courseIndex, courseObj.cohort)
         )}
         startAccessor="start"
         endAccessor="end"
