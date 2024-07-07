@@ -11,6 +11,7 @@ const RightPane = ({ courses }) => {
   const [applyFilter, setApplyFilter] = useState(false);
   const [courseWithoutCohort, setCourseWithoutCohort] = useState(null);
   const [selectedCohort, setSelectedCohort] = useState("");
+  const [specifyCohort, setSpecifyCohort] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -18,9 +19,11 @@ const RightPane = ({ courses }) => {
   useEffect(() => {
     if (courses && courses.length > 0) {
       const courseNeedingCohort = courses.find((course) => !course.cohort);
-      setCourseWithoutCohort(courseNeedingCohort || false);
+      setCourseWithoutCohort(courseNeedingCohort);
+      setSpecifyCohort(courseNeedingCohort !== undefined);
     } else {
-      setCourseWithoutCohort(false);
+      setCourseWithoutCohort(null);
+      setSpecifyCohort(null);
     }
   }, [courses]);
 
@@ -40,6 +43,7 @@ const RightPane = ({ courses }) => {
       });
       if (response.status === 200) {
         setSubmitSuccess(true);
+        setSpecifyCohort(false);
         setTimeout(() => {
           window.location.reload();
         }, 3000);
@@ -112,11 +116,11 @@ const RightPane = ({ courses }) => {
         handleSubmit={handleFilterSubmit}
       />
       <div className="flex-grow pl-8 bg-white">
-        {courseWithoutCohort === null ? (
+        {courseWithoutCohort === null && specifyCohort === null ? (
           <div className="h-full flex items-center justify-center">
             <h1 className="text-xl text-gray-400">Loading courses...</h1>
           </div>
-        ) : courseWithoutCohort ? (
+        ) : specifyCohort ? (
           submitSuccess ? (
             <div className="flex flex-col items-center justify-center h-full">
               <img src={SuccessGif} alt="Success" className="w-32 h-32" />
@@ -127,7 +131,7 @@ const RightPane = ({ courses }) => {
           ) : (
             renderCohortForm()
           )
-        ) : courseWithoutCohort != null && courses && courses.length > 0 ? (
+        ) : courses && courses.length > 0 ? (
           <CustomCalendar
             courses={courses}
             filterType={filterType}
