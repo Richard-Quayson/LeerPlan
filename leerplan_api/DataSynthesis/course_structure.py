@@ -39,7 +39,7 @@ class OfficeHour(BaseModel):
     """
 
     day: str
-    time: TimeRange
+    time: Optional[TimeRange]
 
 
 class Instructor(BaseModel):
