@@ -11,7 +11,7 @@ const localizer = momentLocalizer(moment);
 
 const getColorForEvent = (index) => {
   const colors = Object.values(COURSE_ROUTINE_COLOURS);
-  return colors[index % colors.length].light;
+  return colors[index % colors.length].deep;
 };
 
 const generateEvents = (course, courseIndex, cohort) => {
