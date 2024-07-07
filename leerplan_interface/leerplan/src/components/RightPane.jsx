@@ -14,13 +14,11 @@ const RightPane = ({ courses }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (courses && courses.length > 0) {
       const courseNeedingCohort = courses.find((course) => !course.cohort);
       setCourseWithoutCohort(courseNeedingCohort || false);
-      setIsLoading(false);
     }
   }, [courses]);
 
@@ -105,20 +103,6 @@ const RightPane = ({ courses }) => {
     </div>
   );
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col h-full">
-        <HorizontalNavigation
-          title="Dashboard"
-          handleSubmit={handleFilterSubmit}
-        />
-        <div className="flex-grow pl-8 bg-white flex items-center justify-center">
-          <p>Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col h-full">
       <HorizontalNavigation
@@ -147,7 +131,7 @@ const RightPane = ({ courses }) => {
           />
         ) : (
           <div className="h-full flex items-center justify-center">
-            <h1 className="text-2xl text-gray-400">No courses found</h1>
+            <h1 className="text-xl text-gray-400">No courses found</h1>
           </div>
         )}
       </div>
