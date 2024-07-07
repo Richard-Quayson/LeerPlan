@@ -1,9 +1,12 @@
-import fitz         # PyMuPDF
+import fitz  # PyMuPDF
+import io
 
-
-def extract_text_from_pdf(pdf_path):
-    # open the pdf file
-    doc = fitz.open(pdf_path)
+def extract_text_from_pdf(pdf_file):
+    # Create a bytes stream from the InMemoryUploadedFile
+    pdf_stream = io.BytesIO(pdf_file.read())
+    
+    # Open the PDF from the bytes stream
+    doc = fitz.open(stream=pdf_stream, filetype="pdf")
     
     full_text = ""
     
