@@ -195,11 +195,7 @@ class CourseSerializer(serializers.ModelSerializer):
         cohorts = CourseCohort.objects.filter(course=instance)
         for cohort in cohorts:
             data = CourseCohortSerializer(cohort).data
-            data['lecture_days'] = []            
-            lecture_days = CourseLectureDay.objects.filter(course_cohort=cohort)
-            for lecture_day in lecture_days:
-                data = CourseLectureDaySerializer(lecture_day).data
-                representation['lecture_days'].append(data)
+            representation['cohorts'].append(data)
 
         # add course textbooks to the representation
         representation['textbooks'] = []
@@ -357,6 +353,19 @@ class CourseCohortSerializer(serializers.ModelSerializer):
         if len(value) > 50:
             raise serializers.ValidationError("Cohort name too long!")
         return value
+    
+    def to_representation(self, instance: CourseCohort) -> dict:
+        representation = super().to_representation(instance)
+        representation['course'] = instance.course.id
+
+        # add course cohort lecture days to the representation
+        representation['lecture_days'] = []
+        lecture_days = CourseLectureDay.objects.filter(course_cohort=instance)
+        for lecture_day in lecture_days:
+            data = CourseLectureDaySerializer(lecture_day).data
+            representation['lecture_days'].append(data)
+        
+        return representation
     
 
 class CourseLectureDaySerializer(serializers.ModelSerializer):
@@ -646,6 +655,10 @@ class UserCourseSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         if UserCourse.objects.filter(course=attrs['course'], user=attrs['user']).exists():
             raise serializers.ValidationError("User course already exists!")
+        
+        if 'cohort' in attrs:
+            if UserCourse.objects.filter(course=attrs['course'], cohort=attrs['cohort']).exists():
+                raise serializers.ValidationError("User course with cohort already exists!")
         return attrs
     
     def to_representation(self, instance: UserCourse) -> dict:
@@ -656,7 +669,7 @@ class UserCourseSerializer(serializers.ModelSerializer):
         representation['course'] = course
 
         # add cohort details to the representation
-        cohort = CourseCohortSerializer(CourseCohort.objects.get(id=instance.cohort.id)).data
-        representation['cohort'] = cohort
-        
+        if instance.cohort:
+            cohort = CourseCohortSerializer(CourseCohort.objects.get(id=instance.cohort.id)).data
+            representation['cohort'] = cohort
         return representation
