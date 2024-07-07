@@ -15,37 +15,40 @@ const LeftPane = ({ user, userCourses }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="left-pane">
-      {/* LOGO */}
-      <img
-        src={LeerPlanLogo}
-        alt="LeerPlan Logo"
-        className="w-16 h-16 mx-2 my-1"
-      />
+    <div className="left-pane h-full flex flex-col">
+      <div className="flex-shrink-0 w-full">
+        {/* LOGO */}
+        <img
+          src={LeerPlanLogo}
+          alt="LeerPlan Logo"
+          className="w-16 h-16 mx-2 my-1"
+        />
 
-      {/* LINE SEPARATORS */}
-      <hr className="border-gray-400 w-full mb-1" />
-      <hr className="border-gray-400 w-full" />
+        {/* LINE SEPARATORS */}
+        <hr className="border-gray-400 w-full mb-1" />
+        <hr className="border-gray-400 w-full" />
 
-      {/* USER PROFILE CARD */}
-      <div className="w-full">
-        <UserProfileCard user={user} />
+        {/* USER PROFILE CARD */}
+        <div className="w-full">
+          <UserProfileCard user={user} />
+        </div>
+
+        <hr className="border-gray-200 w-full" />
       </div>
 
-      {/* LINE SEPARATOR */}
-      <hr className="border-gray-200 w-full" />
+      <div className="flex-grow overflow-y-auto w-full">
+        {/* COURSE DIRECTORY */}
+        <div>
+          <CourseList courses={userCourses} />
+        </div>
 
-      {/* COURSE DIRECTORY */}
-      <div className="w-full">
-        <CourseList courses={userCourses} />
-      </div>
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-200 w-full mt-4" />
 
-      {/* LINE SEPARATOR */}
-      <hr className="border-gray-200 w-full mt-4" />
-
-      {/* ROUTINE DIRECTORY */}
-      <div className="w-full">
-        <RoutineList routines={user.routines} />
+        {/* ROUTINE DIRECTORY */}
+        <div>
+          <RoutineList routines={user.routines} />
+        </div>
       </div>
 
       {/* LINE SEPARATOR */}
