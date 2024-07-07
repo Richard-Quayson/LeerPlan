@@ -182,7 +182,7 @@ class CourseLectureDay(models.Model):
     end_time = models.TimeField()
 
     def __str__(self):
-        return f"{self.course.name} : {self.day} ({self.start_time} - {self.end_time}) @ {self.location}"
+        return f"{self.course_cohort.course.name} : Cohort {self.course_cohort.name} ({self.day} {self.start_time} - {self.end_time}) ({self.location})"
 
 
 class TextbookType(models.TextChoices):
