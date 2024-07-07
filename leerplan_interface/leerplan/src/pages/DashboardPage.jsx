@@ -55,14 +55,13 @@ const DashboardPage = () => {
 
   return (
     <ProtectedRoute>
-      <div className="h-screen overflow-y-auto flex">
-        <div className="w-1/4">
+      <div className="h-screen flex">
+        <div className="w-1/4 overflow-y-auto">
           {user && userCourses && (
             <LeftPane user={user} userCourses={userCourses} />
           )}
         </div>
-
-        <div className="w-3/4">
+        <div className="w-3/4 overflow-y-auto">
           {userCourses && <RightPane courses={userCourses} />}
         </div>
       </div>
