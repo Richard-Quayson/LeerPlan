@@ -19,6 +19,8 @@ const RightPane = ({ courses }) => {
     if (courses && courses.length > 0) {
       const courseNeedingCohort = courses.find((course) => !course.cohort);
       setCourseWithoutCohort(courseNeedingCohort || false);
+    } else {
+      setCourseWithoutCohort(false);
     }
   }, [courses]);
 
@@ -74,7 +76,7 @@ const RightPane = ({ courses }) => {
             </label>
             <select
               id="cohort"
-              className="w-full p-2 border border-yellow-800 rounded focus:outline-none focus:ring-2 focus:ring-yellow-800 focus:border-transparent"
+              className="w-full p-2 border border-yellow-800 rounded focus:outline-none focus:ring-yellow-800"
               value={selectedCohort}
               onChange={(e) => setSelectedCohort(e.target.value)}
               required
@@ -110,7 +112,11 @@ const RightPane = ({ courses }) => {
         handleSubmit={handleFilterSubmit}
       />
       <div className="flex-grow pl-8 bg-white">
-        {courseWithoutCohort ? (
+        {courseWithoutCohort === null ? (
+          <div className="h-full flex items-center justify-center">
+            <h1 className="text-xl text-gray-400">Loading courses...</h1>
+          </div>
+        ) : courseWithoutCohort ? (
           submitSuccess ? (
             <div className="flex flex-col items-center justify-center h-full">
               <img src={SuccessGif} alt="Success" className="w-32 h-32" />
@@ -121,7 +127,7 @@ const RightPane = ({ courses }) => {
           ) : (
             renderCohortForm()
           )
-        ) : courses && courses.length > 0 ? (
+        ) : courseWithoutCohort != null && courses && courses.length > 0 ? (
           <CustomCalendar
             courses={courses}
             filterType={filterType}
