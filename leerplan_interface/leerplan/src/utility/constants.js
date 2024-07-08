@@ -6,6 +6,9 @@ export const REFRESH_TOKEN = "leerplan:REFRESH_TOKEN";
 export const NAME_REGEX = /^[a-zA-Z\- ]{2,}$/;
 export const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const PASSWORD_REGEX = /^(?=(.*[A-Z]){1,})(?=(.*[a-z]){1,})(?=(.*\d){1,})(?=(.*[!#$%&()*+,-.:;<=>?@_~]){1,}).{8,}$/;
+export const TIME_REGEX = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+export const EXTENDED_TIME_REGEX = /^([01]?[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/;
+export const STUDY_TIME_REGEX = /^\d+(\.\d+)?$/;
 
 // user preferences
 export const CURRENT_USER_ID = "leerplan:CURRENT_USER_ID";
