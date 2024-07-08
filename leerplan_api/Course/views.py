@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import transaction
+from datetime import datetime
 from io import BytesIO
 import json
 import os
@@ -22,7 +23,8 @@ from .serializers import (
     CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
-from Account.models import UserAccount
+from Account.models import UserAccount, UserMetaData
+from Account.serializers import UserMetaDataSerializer
 from Account.permissions import IsAccessTokenBlacklisted
 from DataSynthesis.extract import extract_text_from_pdf
 from DataSynthesis.synthesise import gemini_synthesise
@@ -710,3 +712,65 @@ class DeleteCourseView(APIView):
         course.delete()
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class DetermineTimeChunksView(APIView):
+    permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
+
+    def post(self, request):
+        courses = request.data['courses']
+
+        # Retrieve all lecture days for the courses
+        user_courses = UserCourse.objects.filter(course__id__in=courses, user=request.user)
+        user_courses = UserCourseSerializer(user_courses, many=True).data
+        lecture_days = []
+        for user_course in user_courses:
+            lecture_days.extend(user_course['cohort']['lecture_days'])
+            
+        # Retrieve user's metadata
+        user_metadata = UserMetaData.objects.get(user=request.user)
+        user_metadata = UserMetaDataSerializer(user_metadata).data
+
+        # Process the data to create free time slots
+        free_slots = self.generate_free_slots(lecture_days, user_metadata)
+
+        return Response(free_slots, status=status.HTTP_200_OK)
+
+    def generate_free_slots(self, lecture_days, user_metadata):
+        days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+        free_slots = {day: [] for day in days}
+        wake_time = datetime.strptime(user_metadata['wake_time'], "%H:%M:%S").time()
+        sleep_time = datetime.strptime(user_metadata['sleep_time'], "%H:%M:%S").time()
+
+        for day in days:
+            day_lectures = [lecture for lecture in lecture_days if lecture['day'].lower() == day]
+            
+            if not day_lectures:
+                # If there are no lectures on this day, add the entire day as a free slot
+                free_slots[day].append({
+                    "start_time": wake_time.strftime("%H:%M:%S"),
+                    "end_time": sleep_time.strftime("%H:%M:%S")
+                })
+            else:
+                day_lectures.sort(key=lambda x: x['start_time'])
+                current_time = wake_time
+
+                for lecture in day_lectures:
+                    lecture_start = datetime.strptime(lecture['start_time'], "%H:%M:%S").time()
+                    lecture_end = datetime.strptime(lecture['end_time'], "%H:%M:%S").time()
+
+                    if current_time < lecture_start:
+                        free_slots[day].append({
+                            "start_time": current_time.strftime("%H:%M:%S"),
+                            "end_time": lecture_start.strftime("%H:%M:%S")
+                        })
+                    current_time = lecture_end
+
+                # Add the final free slot from the end of the last lecture to sleep time
+                if current_time < sleep_time:
+                    free_slots[day].append({
+                        "start_time": current_time.strftime("%H:%M:%S"),
+                        "end_time": sleep_time.strftime("%H:%M:%S")
+                    })
+
+        return free_slots
