@@ -16,7 +16,7 @@ class CustomUserAccountManager(BaseUserManager):
             [class]: [CustomUserAccountManager class]
     """
 
-    def create_user(self, email:str, password:str, **other_fields:dict) -> object:
+    def create_user(self, email: str, password: str, **other_fields: dict) -> object:
         """
             method to create a regular user account
 
@@ -30,12 +30,12 @@ class CustomUserAccountManager(BaseUserManager):
 
         if not email:
             raise ValueError("Email is required!")
-        
+
         # set the default values for the other fields
         other_fields.setdefault('is_active', True)
         other_fields.setdefault('is_staff', False)
         other_fields.setdefault('is_superuser', False)
-        
+
         # create the user
         email = self.normalize_email(email)
         user = self.model(email=email, **other_fields)
@@ -44,7 +44,7 @@ class CustomUserAccountManager(BaseUserManager):
 
         return user
 
-    def create_superuser(self, email:str, password:str, **other_fields:dict) -> object:
+    def create_superuser(self, email: str, password: str, **other_fields: dict) -> object:
         """
             method to create a super user account
 
@@ -64,7 +64,7 @@ class CustomUserAccountManager(BaseUserManager):
         # ensure the user is a superuser and staff
         if other_fields.get('is_staff') is not True:
             raise ValueError('Superuser must have is_staff=True.')
-        
+
         if other_fields.get('is_superuser') is not True:
             raise ValueError('Superuser must have is_superuser=True.')
 
@@ -90,12 +90,13 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
             - profile_picture ([ImageField]): [profile picture of the user]
             - date_joined ([DateTimeField]): [date the user joined]
     """
-    
+
     # define the fields of the user model
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    profile_picture = models.ImageField(upload_to=profile_picture_upload_path, blank=True, null=True)
+    profile_picture = models.ImageField(
+        upload_to=profile_picture_upload_path, blank=True, null=True)
     date_joined = models.DateTimeField(default=timezone.now)
 
     is_staff = models.BooleanField(default=False)
@@ -111,7 +112,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.firstname} {self.lastname}: {self.email}"
-    
+
 
 class AccessTokenBlacklist(models.Model):
     """
@@ -119,7 +120,7 @@ class AccessTokenBlacklist(models.Model):
 
         Args:
             models ([class]): [models class from django.db]
-        
+
         Returns:
             [class]: [AccessTokenBlacklist class]
 
@@ -133,7 +134,7 @@ class AccessTokenBlacklist(models.Model):
 
     def __str__(self):
         return self.token
-    
+
     @classmethod
     def add(cls, token):
         """
@@ -151,8 +152,9 @@ class AccessTokenBlacklist(models.Model):
             method to remove all the blacklisted tokens that are older than 24 hours
         """
 
-        cls.objects.filter(blacklisted_on__lt=timezone.now() - timedelta(days=1)).delete()
-    
+        cls.objects.filter(blacklisted_on__lt=timezone.now() -
+                           timedelta(days=1)).delete()
+
     class Meta:
         ordering = ['-blacklisted_on']
 
@@ -163,7 +165,7 @@ class University(models.Model):
 
         Args:
             models ([class]): [models class from django
-    
+
         Returns:
             [class]: [University class]
 
@@ -177,7 +179,7 @@ class University(models.Model):
 
     def __str__(self):
         return f"{self.name} in {self.location}"
-    
+
 
 class UserUniversity(models.Model):
     """
@@ -199,7 +201,7 @@ class UserUniversity(models.Model):
 
     def __str__(self):
         return f"{self.user.firstname} {self.user.lastname} is at {self.university.name}"
-    
+
 
 class UserRoutine(models.Model):
     """
@@ -225,3 +227,25 @@ class UserRoutine(models.Model):
 
     def __str__(self):
         return f"{self.user.firstname} {self.user.lastname} has {self.name} routine"
+
+
+class UserMetaData(models.Model):
+    """
+    define the user metadata model
+
+    Attributes:
+        - user ([ForeignKey]): [user foreign key]
+        - min_study_time ([IntegerField]): [minimum study time]
+        - max_study_time ([IntegerField]): [maximum study time]
+        - sleep_time ([TimeField]): [time the user sleeps]
+        - wake_time ([TimeField]): [time the user wakes up]
+    """
+
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
+    min_study_time = models.IntegerField()
+    max_study_time = models.IntegerField()
+    sleep_time = models.TimeField()
+    wake_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.user.firstname} {self.user.lastname} wake up at {self.wake_time} and sleep at {self.sleep_time} and studies for {self.min_study_time} to {self.max_study_time} hours"
