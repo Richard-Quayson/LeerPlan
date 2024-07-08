@@ -5,7 +5,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 from datetime import time
 
-from .models import UserAccount, University, UserUniversity, UserRoutine
+from .models import UserAccount, University, UserUniversity, UserRoutine, UserMetaData
 from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
 
 
@@ -394,3 +394,25 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             user_data["routines"].append(data)
         
         return user_data
+    
+
+class UserMetaDataSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = UserMetaData
+        fields = ["id", "user", "min_study_time", "max_study_time", "sleep_time", "wake_time"]
+
+    def validate(self, attrs: dict) -> dict:
+        user = self.context["request"].user
+        if UserMetaData.objects.filter(user=user).exists():
+            raise serializers.ValidationError("User metadata already exists!")
+        
+        return attrs
+    
+    def update(self, instance: UserMetaData, validated_data: dict) -> UserMetaData:
+        instance.min_study_time = validated_data.get("min_study_time", instance.min_study_time)
+        instance.max_study_time = validated_data.get("max_study_time", instance.max_study_time)
+        instance.sleep_time = validated_data.get("sleep_time", instance.sleep_time)
+        instance.wake_time = validated_data.get("wake_time", instance.wake_time)
+        instance.save()
+        return instance
