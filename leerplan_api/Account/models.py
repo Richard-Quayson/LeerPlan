@@ -235,15 +235,15 @@ class UserMetaData(models.Model):
 
     Attributes:
         - user ([ForeignKey]): [user foreign key]
-        - min_study_time ([IntegerField]): [minimum study time]
-        - max_study_time ([IntegerField]): [maximum study time]
+        - min_study_time ([FloatField]): [minimum study time]
+        - max_study_time ([FloatField]): [maximum study time]
         - sleep_time ([TimeField]): [time the user sleeps]
         - wake_time ([TimeField]): [time the user wakes up]
     """
 
-    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
-    min_study_time = models.IntegerField()
-    max_study_time = models.IntegerField()
+    user = models.OneToOneField(UserAccount, on_delete=models.CASCADE)
+    min_study_time = models.FloatField()
+    max_study_time = models.FloatField()
     sleep_time = models.TimeField()
     wake_time = models.TimeField()
 

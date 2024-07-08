@@ -39,5 +39,5 @@ urlpatterns = [
 
     # METADATA ENDPOINTS
     path("user/metadata/add/", AddUserMetaDataView.as_view(), name="add-user-metadata"),
-    path("user/metadata/update/", UpdateUserMetaDataView.as_view(), name="update-user-metadata"),
+    path("user/metadata/update/<int:metadata_id>/", UpdateUserMetaDataView.as_view(), name="update-user-metadata"),
 ]

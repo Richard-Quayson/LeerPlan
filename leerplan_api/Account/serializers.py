@@ -403,17 +403,15 @@ class UserDetailsSerializer(serializers.ModelSerializer):
     
 
 class UserMetaDataSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
 
     class Meta:
         model = UserMetaData
         fields = ["id", "user", "min_study_time", "max_study_time", "sleep_time", "wake_time"]
 
-    def validate(self, attrs: dict) -> dict:
-        user = self.context["request"].user
-        if UserMetaData.objects.filter(user=user).exists():
-            raise serializers.ValidationError("User metadata already exists!")
-        
-        return attrs
+    def create(self, validated_data: dict) -> UserMetaData:
+        validated_data["user"] = self.context["request"].user
+        return super().create(validated_data)
     
     def update(self, instance: UserMetaData, validated_data: dict) -> UserMetaData:
         instance.min_study_time = validated_data.get("min_study_time", instance.min_study_time)
