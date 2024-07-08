@@ -62,7 +62,7 @@
       "type": "secondary"
     },
     {
-      "title": "Introduction to Java programming and data structures.",
+      "title": "Introduction to Java programming and data structures",
       "type": "secondary"
     },
     {
@@ -182,7 +182,7 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Course Outline and Housekeeping issues."
+          "title": "Course Outline and Housekeeping issues"
         },
         {
           "title": "Virtual meet and greet session"
@@ -194,7 +194,7 @@
           "title": "Course Outline walk through"
         },
         {
-          "title": "E-learning and course resources accessibility orientation"
+          "title": "E-learning and course resources accessibility orientation."
         },
         {
           "title": "Java programming Fundamentals, classes & Objects"
@@ -211,9 +211,23 @@
           "type": "assignment",
           "due_date": null,
           "weight": null
-        },
+        }
+      ]
+    },
+    {
+      "week_number": 1,
+      "start_date": "2022-01-21",
+      "end_date": "2022-01-21",
+      "type": "lab",
+      "topics": [
         {
-          "name": "Lab 1: Getting started with Java",
+          "title": "Getting started with Java"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Lab 1",
           "type": "lab",
           "due_date": null,
           "weight": null
@@ -241,9 +255,22 @@
           "chapter": "3.1"
         }
       ],
+      "assessments": []
+    },
+    {
+      "week_number": 2,
+      "start_date": "2022-01-26",
+      "end_date": "2022-01-26",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Working with Arrays"
+        }
+      ],
+      "readings": [],
       "assessments": [
         {
-          "name": "Lab 2: Working with Arrays",
+          "name": "Lab 2",
           "type": "lab",
           "due_date": null,
           "weight": null
@@ -283,7 +310,21 @@
           "type": "quiz",
           "due_date": null,
           "weight": null
-        },
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "start_date": "2022-02-04",
+      "end_date": "2022-02-04",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Inheritance"
+        }
+      ],
+      "readings": [],
+      "assessments": [
         {
           "name": "Lab 3",
           "type": "lab",
@@ -328,6 +369,19 @@
           "chapter": "7.2"
         }
       ],
+      "assessments": []
+    },
+    {
+      "week_number": 4,
+      "start_date": "2022-02-11",
+      "end_date": "2022-02-11",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Generics in Java, array-based lists"
+        }
+      ],
+      "readings": [],
       "assessments": [
         {
           "name": "Lab 4",
@@ -365,7 +419,7 @@
         {
           "name": "Assign 1",
           "type": "assignment",
-          "due_date": "2022-02-16",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -398,7 +452,7 @@
         {
           "name": "Assign 2",
           "type": "assignment",
-          "due_date": "2022-02-23",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -457,7 +511,7 @@
         {
           "name": "Project Proposals",
           "type": "assignment",
-          "due_date": "2022-03-14",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -484,7 +538,7 @@
         {
           "name": "Quiz 2",
           "type": "quiz",
-          "due_date": "2022-03-23",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -517,7 +571,7 @@
         {
           "name": "Quiz 3",
           "type": "quiz",
-          "due_date": "2022-03-28",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -547,7 +601,7 @@
         {
           "name": "Test 2",
           "type": "test",
-          "due_date": "2022-04-06",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -574,7 +628,7 @@
         {
           "name": "Assign 3",
           "type": "assignment",
-          "due_date": "2022-04-13",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -604,7 +658,7 @@
         {
           "name": "Quiz 4",
           "type": "quiz",
-          "due_date": "2022-04-19",
+          "due_date": null,
           "weight": null
         }
       ]
@@ -627,7 +681,7 @@
         {
           "name": "Project",
           "type": "assignment",
-          "due_date": "2022-04-25",
+          "due_date": null,
           "weight": null
         }
       ]

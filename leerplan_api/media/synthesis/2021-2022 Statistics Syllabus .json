@@ -88,7 +88,7 @@
       "type": null
     },
     {
-      "title": "Grolemund, G., & Wickham, H. (2017). R for Data Science. O’Reilly Media, Inc.",
+      "title": "Grolemund, G., & Wickham, H. (2017). R for Data Science. O’Reilly Media, Inc. \nhttps://r4ds.had.co.nz/.",
       "type": null
     },
     {
@@ -233,10 +233,38 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Syllabus & course overview, Reading histograms, Statistics student data collection, Intro to R, Generating histograms in R"
+          "title": "Syllabus & course overview"
+        },
+        {
+          "title": "Reading histograms"
+        },
+        {
+          "title": "Statistics student data collection"
+        },
+        {
+          "title": "Intro to R"
+        },
+        {
+          "title": "Generating histograms in R"
+        },
+        {
+          "title": "Statistics pre-survey"
+        },
+        {
+          "title": "Intro to RMarkdown"
+        },
+        {
+          "title": "OLI Q&A"
         }
       ],
-      "readings": [],
+      "readings": [
+        {
+          "chapter": "Module 4: Examining Distributions"
+        },
+        {
+          "chapter": "Module 5: Examining Relationships"
+        }
+      ],
       "assessments": [
         {
           "name": "Homework 1",
@@ -253,21 +281,37 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Measures of variability, Testing the empirical Rule using R, Simulating random samples in R, Introduction to statistics project datasets, Homework tips"
+          "title": "Measures of variability"
+        },
+        {
+          "title": "Testing the empirical Rule using R"
+        },
+        {
+          "title": "Simulating random samples in R"
+        },
+        {
+          "title": "Introduction to statistics project datasets"
+        },
+        {
+          "title": "Homework tips"
+        },
+        {
+          "title": "OLI Q&A"
         }
       ],
-      "readings": [],
-      "assessments": [
+      "readings": [
         {
-          "name": "Homework 1",
-          "type": "homework",
-          "due_date": "2022-01-27",
-          "weight": null
+          "chapter": "Module 6: Sampling"
         },
+        {
+          "chapter": "Module 7: Designing Studies"
+        }
+      ],
+      "assessments": [
         {
           "name": "Homework 2",
           "type": "homework",
-          "due_date": null,
+          "due_date": "2022-02-03",
           "weight": null
         },
         {
@@ -288,21 +332,31 @@
           "title": "Probability activity: empirical probability"
         },
         {
-          "title": "Association vs causation, Intro to codebooks & research questions, Probability practice"
-        }
-      ],
-      "readings": [],
-      "assessments": [
-        {
-          "name": "Homework 2",
-          "type": "homework",
-          "due_date": "2022-02-03",
-          "weight": null
+          "title": "Association vs causation"
         },
         {
-          "name": "Project Assignment 1",
-          "type": "project",
-          "due_date": "2022-02-06",
+          "title": "Intro to codebooks & research questions"
+        },
+        {
+          "title": "Probability practice"
+        },
+        {
+          "title": "OLI Q & A"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Module 8: Introduction to Probability"
+        },
+        {
+          "chapter": "Module 9: Finding the Probability of Events"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Homework 3",
+          "type": "homework",
+          "due_date": "2022-02-17",
           "weight": null
         }
       ]
@@ -317,21 +371,31 @@
           "title": "Probability activity: conditional probability"
         },
         {
-          "title": "What is primary source literature?, Using library databases to find primary source literature for your project, Install Zotero, Intro to Zotero citation management software"
+          "title": "What is primary source literature?"
+        },
+        {
+          "title": "Using library databases to find primary source literature for your project"
+        },
+        {
+          "title": "Install Zotero"
+        },
+        {
+          "title": "Intro to Zotero citation management software"
+        },
+        {
+          "title": "OLI Q & A"
         }
       ],
-      "readings": [],
-      "assessments": [
+      "readings": [
         {
-          "name": "Homework 3",
-          "type": "homework",
-          "due_date": null,
-          "weight": null
-        },
+          "chapter": "Module 10: Conditional Probability and Independence"
+        }
+      ],
+      "assessments": [
         {
           "name": "Project Assignment 2",
           "type": "project",
-          "due_date": null,
+          "due_date": "2022-02-27",
           "weight": null
         }
       ]
@@ -343,18 +407,27 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Probability activity: Discrete probability distributions, Probability activity: Binomial probability distributions Worksheet, Homework tips, Probability distributions in R"
+          "title": "Probability activity: Discrete probability distributions"
+        },
+        {
+          "title": "Probability activity: Binomial probability distributions Worksheet"
+        },
+        {
+          "title": "Homework tips"
+        },
+        {
+          "title": "Probability distributions in R"
+        },
+        {
+          "title": "OLI Q & A"
         }
       ],
-      "readings": [],
-      "assessments": [
+      "readings": [
         {
-          "name": "Homework 3",
-          "type": "homework",
-          "due_date": "2022-02-17",
-          "weight": null
+          "chapter": "Module 11: Random Variables"
         }
-      ]
+      ],
+      "assessments": []
     },
     {
       "week_number": 6,
@@ -363,21 +436,33 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "GenderSort Activity, Continuous probability distributions"
+          "title": "GenderSort Activity"
         },
         {
-          "title": "The normal distribution research questions, variables & personal codebooks, Codebook construction"
+          "title": "Continuous probability distributions"
+        },
+        {
+          "title": "The normal distribution"
+        },
+        {
+          "title": "research questions, variables & personal codebooks"
+        },
+        {
+          "title": "Codebook construction"
+        },
+        {
+          "title": "OLI Q & A"
         }
       ],
-      "readings": [],
-      "assessments": [
+      "readings": [
         {
-          "name": "Project Assignment 2",
-          "type": "project",
-          "due_date": "2022-02-27",
-          "weight": null
+          "chapter": "Module 11: Random Variables"
+        },
+        {
+          "chapter": "Module 12: Sampling Distributions"
         }
-      ]
+      ],
+      "assessments": []
     },
     {
       "week_number": 7,
@@ -389,20 +474,24 @@
           "title": "Simulation: The Central Limit Theorem"
         },
         {
-          "title": "Data Management for the project, Revision"
+          "title": "Data Management for the project"
+        },
+        {
+          "title": "Revision"
         }
       ],
-      "readings": [],
+      "readings": [
+        {
+          "chapter": "Module 13: Introduction to Inference"
+        },
+        {
+          "chapter": "Module 14: Estimation"
+        }
+      ],
       "assessments": [
         {
           "name": "Mid-semester Exam",
           "type": "midsem",
-          "due_date": null,
-          "weight": null
-        },
-        {
-          "name": "Project Assignment 3",
-          "type": "project",
           "due_date": null,
           "weight": null
         }
@@ -424,13 +513,23 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Point estimation and confidence interval estimation in R (application: political polls), Univariate and bivariate graphing for the project"
+          "title": "Point estimation and confidence interval estimation in R (application: political polls)"
+        },
+        {
+          "title": "Univariate and bivariate graphing for the project"
         },
         {
           "title": "Generating univariate graphs for the project"
+        },
+        {
+          "title": "OLI Q & A"
         }
       ],
-      "readings": [],
+      "readings": [
+        {
+          "chapter": "Module 15: Hypothesis Testing"
+        }
+      ],
       "assessments": [
         {
           "name": "Project Assignment 3",
@@ -441,13 +540,7 @@
         {
           "name": "Homework 4",
           "type": "homework",
-          "due_date": null,
-          "weight": null
-        },
-        {
-          "name": "Project Assignment 4",
-          "type": "project",
-          "due_date": null,
+          "due_date": "2022-03-24",
           "weight": null
         }
       ]
@@ -462,21 +555,25 @@
           "title": "Hypothesis testing activity"
         },
         {
-          "title": "Activity: sharing and interpreting bivariate graphs for the project, Generating bivariate graphs for the project"
+          "title": "Activity: sharing and interpreting bivariate graphs for the project"
+        },
+        {
+          "title": "Generating bivariate graphs for the project"
+        },
+        {
+          "title": "OLI Q & A"
         }
       ],
-      "readings": [],
-      "assessments": [
+      "readings": [
         {
-          "name": "Homework 4",
-          "type": "homework",
-          "due_date": "2022-03-24",
-          "weight": null
-        },
+          "chapter": "Module 16: Inference for Relationships"
+        }
+      ],
+      "assessments": [
         {
           "name": "Homework 5",
           "type": "homework",
-          "due_date": null,
+          "due_date": "2022-04-14",
           "weight": null
         }
       ]
@@ -491,10 +588,20 @@
           "title": "C→Q inference activity"
         },
         {
-          "title": "C→C inference activity, Q→Q Inference activity, Exam revision"
+          "title": "C→C inference activity"
+        },
+        {
+          "title": "Q→Q Inference activity"
+        },
+        {
+          "title": "Exam revision"
         }
       ],
-      "readings": [],
+      "readings": [
+        {
+          "chapter": "Module 17: Inference for Relationships"
+        }
+      ],
       "assessments": [
         {
           "name": "Project Assignment 4",
@@ -514,24 +621,17 @@
           "title": "Bivariate Inference and moderation"
         },
         {
-          "title": "Communicating the results of statistical inference, What goes into the academic poster?, Project consultation"
+          "title": "Communicating the results of statistical inference"
+        },
+        {
+          "title": "What goes into the academic poster?"
+        },
+        {
+          "title": "Project consultation"
         }
       ],
       "readings": [],
-      "assessments": [
-        {
-          "name": "Homework 5",
-          "type": "homework",
-          "due_date": "2022-04-14",
-          "weight": null
-        },
-        {
-          "name": "Project Assignment 5",
-          "type": "project",
-          "due_date": null,
-          "weight": null
-        }
-      ]
+      "assessments": []
     },
     {
       "week_number": 13,
@@ -540,7 +640,10 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "What goes into an academic poster?, Academic Poster Peer Review"
+          "title": "What goes into an academic poster?"
+        },
+        {
+          "title": "Academic Poster Peer Review"
         }
       ],
       "readings": [],
@@ -560,7 +663,10 @@
       "type": "lecture",
       "topics": [
         {
-          "title": "Project consultation, Submission of Final Project Report"
+          "title": "Project consultation"
+        },
+        {
+          "title": "Submission of Final Project Report"
         }
       ],
       "readings": [],
@@ -590,4 +696,3 @@
     }
   ]
 }
-

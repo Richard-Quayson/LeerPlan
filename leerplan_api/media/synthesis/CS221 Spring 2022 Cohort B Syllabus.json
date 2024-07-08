@@ -31,10 +31,6 @@
     {
       "title": "Discrete Mathematics and its Applications",
       "type": null
-    },
-    {
-      "title": "Kenneth Rosen",
-      "type": null
     }
   ],
   "evaluation_criteria": [
@@ -61,7 +57,7 @@
   ],
   "cohorts": [
     {
-      "cohort_name": "A",
+      "cohort_name": "Default",
       "lecture_days": [
         {
           "day": "Monday",
@@ -308,7 +304,7 @@
       "week_number": 7,
       "start_date": "2022-02-28",
       "end_date": null,
-      "type": "midterm exam",
+      "type": "midterm",
       "topics": [
         {
           "title": "Revision"
@@ -325,7 +321,11 @@
       "start_date": "2022-03-07",
       "end_date": null,
       "type": "break",
-      "topics": [],
+      "topics": [
+        {
+          "title": "We have been working hard. Time for a break"
+        }
+      ],
       "readings": [],
       "assessments": []
     },
@@ -630,7 +630,11 @@
       "start_date": "2022-05-10",
       "end_date": "2022-05-17",
       "type": "final exam",
-      "topics": [],
+      "topics": [
+        {
+          "title": "Final Exam Period"
+        }
+      ],
       "readings": [],
       "assessments": []
     }
