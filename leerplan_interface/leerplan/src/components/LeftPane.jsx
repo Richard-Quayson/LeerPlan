@@ -79,7 +79,7 @@ const LeftPane = ({ user, userCourses }) => {
         <div className="mt-8 flex justify-center">
           <button
             onClick={handleGenerateSchedule}
-            className="w-[200px] py-2 border border-yellow-800 text-yellow-800 rounded-lg"
+            className="w-[200px] py-2 border border-yellow-700 text-yellow-700 rounded-lg"
           >
             <img
               src={AutomateIcon}
