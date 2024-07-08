@@ -392,6 +392,12 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         for routine in routines:
             data = UserRoutineSerializer(routine, context={"request": self.context["request"]}).data
             user_data["routines"].append(data)
+
+        # retrieve user's metadata
+        if UserMetaData.objects.filter(user=instance).exists():
+            user_data["metadata"] = UserMetaDataSerializer(UserMetaData.objects.get(user=instance)).data
+        else:
+            user_data["metadata"] = None
         
         return user_data
     
