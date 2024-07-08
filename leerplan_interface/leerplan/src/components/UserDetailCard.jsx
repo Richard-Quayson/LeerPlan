@@ -281,7 +281,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
 
         {/* METADATA SECTION */}
         <div className="mt-8">
-          {userData && <UserMetaData metadata={userData.metadata} />}
+          {userData.metadata && <UserMetaData metadata={userData.metadata} />}
         </div>
       </div>
 
