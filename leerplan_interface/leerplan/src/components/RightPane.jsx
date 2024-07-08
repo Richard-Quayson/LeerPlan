@@ -109,6 +109,14 @@ const RightPane = ({ courses }) => {
     </div>
   );
 
+  if (courses.length === 0) {
+    return (
+      <div className="h-full flex items-center justify-center">
+        <h1 className="text-xl text-gray-400">No courses found</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col h-full">
       <div className="flex-shrink-0">
@@ -141,11 +149,7 @@ const RightPane = ({ courses }) => {
             applyFilter={applyFilter}
             resetFilter={() => setApplyFilter(false)}
           />
-        ) : (
-          <div className="h-full flex items-center justify-center">
-            <h1 className="text-xl text-gray-400">No courses found</h1>
-          </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
