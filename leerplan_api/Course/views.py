@@ -726,9 +726,13 @@ class DetermineTimeChunksView(APIView):
         lecture_days = []
         for user_course in user_courses:
             lecture_days.extend(user_course['cohort']['lecture_days'])
-            
+        print(lecture_days)
+        
         # Retrieve user's metadata
-        user_metadata = UserMetaData.objects.get(user=request.user)
+        try:
+            user_metadata = UserMetaData.objects.get(user=request.user)
+        except UserMetaData.DoesNotExist:
+            return Response({"error": "User metadata does not exist. It is required to generate time blocks."}, status=status.HTTP_404_NOT_FOUND)
         user_metadata = UserMetaDataSerializer(user_metadata).data
 
         # Process the data to create free time slots
