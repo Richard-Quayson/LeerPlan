@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ModalContainer from "./ModalContainer";
 import api from "../utility/api";
 import { ADD_USER_ROUTINE_URL } from "../utility/api_urls";
-import { NAME_REGEX } from "../utility/constants";
+import { NAME_REGEX, TIME_REGEX } from "../utility/constants";
 import SuccessGif from "../assets/gifs/Success.gif";
 
 const AddRoutineModal = ({ isOpen, onClose }) => {
@@ -70,7 +70,7 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
     const value = event.target.value;
     setStartTime(value);
     if (value !== "") {
-      setIsStartTimeValid(value.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/));
+      setIsStartTimeValid(value.match(TIME_REGEX));
     } else {
       setIsStartTimeValid(false);
     }
@@ -80,7 +80,7 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
     const value = event.target.value;
     setEndTime(value);
     if (value !== "") {
-      setIsEndTimeValid(value.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/));
+      setIsEndTimeValid(value.match(TIME_REGEX));
     } else {
       setIsEndTimeValid(false);
     }
