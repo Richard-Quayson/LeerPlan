@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import moment from "moment";
+import AddUserMetaData from "./AddUserMetaData";
+import EditPencilIcon from "../assets/icons/EditPencil.png";
 
 const UserMetaData = ({ metadata }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const formatTime = (time) => {
     return moment(time, "HH:mm:ss").format("hh:mm A");
   };
 
+  const handleEditClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
-      <h3 className="font-semibold mb-4">User Metadata</h3>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="font-semibold">User Metadata</h3>
+        <button onClick={handleEditClick}>
+          <img src={EditPencilIcon} alt="Edit" className="w-6 h-6" />
+        </button>
+      </div>
       <div className="space-y-2">
         <div className="flex items-center">
           <span className="text-yellow-800 font-semibold flex-[6] text-left">
@@ -43,6 +60,14 @@ const UserMetaData = ({ metadata }) => {
           </span>
         </div>
       </div>
+      {isModalOpen && (
+        <AddUserMetaData
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          metadata={metadata}
+          editMode={true}
+        />
+      )}
     </div>
   );
 };
