@@ -26,6 +26,7 @@ from .helper import LECTURER, FACULTY_INTERN
 from Account.models import UserAccount, UserMetaData, UserRoutine
 from Account.serializers import UserMetaDataSerializer, UserRoutineSerializer
 from Account.permissions import IsAccessTokenBlacklisted
+from Account.helper import get_extended_routine_data
 from DataSynthesis.extract import extract_text_from_pdf
 from DataSynthesis.synthesise import gemini_synthesise
 
@@ -730,6 +731,7 @@ class DetermineTimeChunksView(APIView):
         # retrieve user's routines
         user_routines = UserRoutine.objects.filter(user=request.user)
         user_routines = UserRoutineSerializer(user_routines, many=True, context={'request': request}).data
+        user_routines = get_extended_routine_data(user_routines)
         
         # retrieve user's metadata
         try:
@@ -751,7 +753,8 @@ class DetermineTimeChunksView(APIView):
 
         for day in days:
             day_lectures = [lecture for lecture in lecture_days if lecture['day'].lower() == day]
-            day_activities = day_lectures + user_routines
+            days_routines = [routine for routine in user_routines if routine['day'] == day]
+            day_activities = day_lectures + days_routines
 
             if not day_activities:
                 # if there are no lectures on this day, add the entire day as a free slot
