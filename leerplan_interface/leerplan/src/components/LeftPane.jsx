@@ -121,7 +121,8 @@ const LeftPane = ({ user, userCourses }) => {
       {/* YES/NO PROMPT */}
       {showYesNoPrompt && (
         <YesNoPrompt
-          question="Generating an academic calendar requires all course syllabus for the semester. Have you uploaded the necessary courses and created your routines?"
+          question="Generating an academic calendar requires all course syllabus for the semester. 
+          Have you uploaded the necessary courses and created your routines?"
           onYes={handleYesResponse}
           onNo={handleNoResponse}
         />
