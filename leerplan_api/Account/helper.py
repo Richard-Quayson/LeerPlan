@@ -1,3 +1,5 @@
+from datetime import datetime
+
 NAME_REGEX = r"^[a-zA-Z\-., ]{2,}$"
 
 EMAIL_REGEX = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
@@ -21,7 +23,7 @@ def adjust_time(time: str) -> str:
     Adjusts the time 00:00:00 to 23:59:59 to make time comparison easier
     """
 
-    if time == "00:00:00":
-        return "23:59:59"
+    if time == datetime.strptime("00:00:00", "%H:%M:%S").time():
+            time = datetime.strptime("23:59:59", "%H:%M:%S").time()
 
     return time
