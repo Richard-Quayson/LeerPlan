@@ -41,22 +41,23 @@ def adjust_time(time: str) -> str:
     return time
 
 
-def get_extended_routine_data(routine: dict) -> list[dict]:
+def get_extended_routine_data(routines: list[dict]) -> list[dict]:
     """
     Extends routine data to include routine data for specified routine days
     """
 
     extended_routine = list()
-    routine_days = routine["days"].split(",")
+    for routine in routines:
+        routine_days = routine["days"].split(",")
 
-    for day in routine_days:
-        extended_routine.append({
-            "id": routine["id"],
-            "user": routine["user"],
-            "name": routine["name"],
-            "start_time": routine["start_time"],
-            "end_time": routine["end_time"],
-            "day": DAYS_DICT[day].lower()
-        })
+        for day in routine_days:
+            extended_routine.append({
+                "id": routine["id"],
+                "user": routine["user"],
+                "name": routine["name"],
+                "start_time": routine["start_time"],
+                "end_time": routine["end_time"],
+                "day": DAYS_DICT[day].lower()
+            })
 
     return extended_routine
