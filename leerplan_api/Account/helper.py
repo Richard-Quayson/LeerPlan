@@ -8,6 +8,20 @@ USERNAME_INDEX = 0      # username index in an email after splitting on the @
 
 
 def profile_picture_upload_path(instance, filename: str) -> str:
+    """
+    Returns the path where the profile picture will be stored
+    """
     
     username = instance.email.split('@')[USERNAME_INDEX]
     return f"profile_picture/{username}_{filename}"
+
+
+def adjust_time(time: str) -> str:
+    """
+    Adjusts the time 00:00:00 to 23:59:59 to make time comparison easier
+    """
+
+    if time == "00:00:00":
+        return "23:59:59"
+
+    return time
