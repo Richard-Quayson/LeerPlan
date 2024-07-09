@@ -5,7 +5,7 @@ import {
   ADD_USER_METADATA_URL,
   UPDATE_USER_METADATA_URL,
 } from "../utility/api_urls";
-import { EXTENDED_TIME_REGEX, STUDY_TIME_REGEX } from "../utility/constants";
+import { TIME_REGEX, EXTENDED_TIME_REGEX, STUDY_TIME_REGEX } from "../utility/constants";
 import SuccessGif from "../assets/gifs/Success.gif";
 import StudyTimeIcon from "../assets/icons/StudyTime.png";
 import TimeIcon from "../assets/icons/Time.png";
@@ -83,6 +83,11 @@ const AddUserMetaData = ({
     }
   };
 
+  const getInputBorderColor = (value, regex) => {
+    if (value === "") return "border-gray-300"; // Default border color
+    return value.match(regex) ? "border-green-500" : "border-red-500";
+  };
+
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose}>
       <h2 className="text-xl font-semibold mb-4 text-center text-yellow-800">
@@ -117,11 +122,7 @@ const AddUserMetaData = ({
                 id="minStudyTime"
                 value={minStudyTime}
                 onChange={(e) => setMinStudyTime(e.target.value)}
-                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${
-                  minStudyTime.match(STUDY_TIME_REGEX)
-                    ? "border-green-500"
-                    : "border-gray-300"
-                }`}
+                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${getInputBorderColor(minStudyTime, STUDY_TIME_REGEX)}`}
                 placeholder="Enter min study time"
                 required
               />
@@ -145,11 +146,7 @@ const AddUserMetaData = ({
                 id="maxStudyTime"
                 value={maxStudyTime}
                 onChange={(e) => setMaxStudyTime(e.target.value)}
-                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${
-                  maxStudyTime.match(STUDY_TIME_REGEX)
-                    ? "border-green-500"
-                    : "border-gray-300"
-                }`}
+                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${getInputBorderColor(maxStudyTime, STUDY_TIME_REGEX)}`}
                 placeholder="Enter max study time"
                 required
               />
@@ -173,11 +170,7 @@ const AddUserMetaData = ({
                 id="sleepTime"
                 value={sleepTime}
                 onChange={(e) => setSleepTime(e.target.value)}
-                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${
-                  sleepTime.match(EXTENDED_TIME_REGEX)
-                    ? "border-green-500"
-                    : "border-gray-300"
-                }`}
+                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${getInputBorderColor(sleepTime, EXTENDED_TIME_REGEX)}`}
                 placeholder="HH:mm (e.g., 23:00)"
                 required
               />
@@ -201,11 +194,7 @@ const AddUserMetaData = ({
                 id="wakeTime"
                 value={wakeTime}
                 onChange={(e) => setWakeTime(e.target.value)}
-                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${
-                  wakeTime.match(EXTENDED_TIME_REGEX)
-                    ? "border-green-500"
-                    : "border-gray-300"
-                }`}
+                className={`block w-full mt-1 p-2 border rounded-md shadow-sm sm:text-sm focus:outline-none ${getInputBorderColor(wakeTime, EXTENDED_TIME_REGEX)}`}
                 placeholder="HH:mm (e.g., 06:00)"
                 required
               />
@@ -219,7 +208,7 @@ const AddUserMetaData = ({
           <div className="flex justify-center">
             <button
               type="submit"
-              className="mt-4 px-4 py-1 border-[1px] border-yellow-800 text-black rounded-md hover:bg-yellow-800 hover:text-white focus:outline-none"
+              className="mt-4 px-4 py-1 border-[1px] border-yellow-800 text-yellow-800 rounded-md hover:bg-yellow-800 hover:text-white focus:outline-none"
               disabled={isSubmitting}
             >
               {isSubmitting
