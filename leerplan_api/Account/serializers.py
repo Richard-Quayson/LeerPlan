@@ -6,7 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 from datetime import time
 
 from .models import UserAccount, University, UserUniversity, UserRoutine, UserMetaData
-from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
+from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, adjust_time
 
 
 class AccountRegistrationSerializer(serializers.ModelSerializer):
@@ -346,6 +346,12 @@ class UserRoutineSerializer(serializers.ModelSerializer):
         
         raise serializers.ValidationError("Invalid routine name format!")
     
+    def validate_start_time(self, value: time) -> time:
+        return adjust_time(value)
+    
+    def validate_end_time(self, value: time) -> time:
+        return adjust_time(value)
+    
     def validate(self, attrs: dict) -> dict:
         attrs["user"] = self.context["request"].user
 
@@ -355,10 +361,6 @@ class UserRoutineSerializer(serializers.ModelSerializer):
         if "start_time" in attrs and "end_time" in attrs:
             start_time = attrs["start_time"]
             end_time = attrs["end_time"]
-            
-            # handle case where end time is 00:00
-            if end_time == time(0, 0):
-                end_time = time(23, 59)
 
             if start_time >= end_time:
                 raise serializers.ValidationError("Start time must be before end time!")
@@ -408,6 +410,12 @@ class UserMetaDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserMetaData
         fields = ["id", "user", "min_study_time", "max_study_time", "sleep_time", "wake_time"]
+
+    def validate_sleep_time(self, value: time) -> time:
+        return adjust_time(value)
+    
+    def validate_wake_time(self, value: time) -> time:
+        return adjust_time(value)
 
     def create(self, validated_data: dict) -> UserMetaData:
         validated_data["user"] = self.context["request"].user
