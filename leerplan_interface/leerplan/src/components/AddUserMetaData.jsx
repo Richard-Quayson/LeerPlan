@@ -48,8 +48,8 @@ const AddUserMetaData = ({
     if (
       !minStudyTime.match(STUDY_TIME_REGEX) ||
       !maxStudyTime.match(STUDY_TIME_REGEX) ||
-      !sleepTime.match(EXTENDED_TIME_REGEX) ||
-      !wakeTime.match(EXTENDED_TIME_REGEX)
+      !(sleepTime.match(EXTENDED_TIME_REGEX) || sleepTime.match(TIME_REGEX)) ||
+      !(wakeTime.match(EXTENDED_TIME_REGEX) || wakeTime.match(TIME_REGEX))
     ) {
       setMessage("Please fill out all fields correctly.");
       setTimeout(() => setMessage(""), 5000);
@@ -94,7 +94,9 @@ const AddUserMetaData = ({
 
   const getTimeInputBorderColor = (value, firstRegex, secondRegex) => {
     if (value === "") return "border-gray-300";
-    return value.match(regex) ? "border-green-500" : "border-red-500";
+    return value.match(firstRegex) || value.match(secondRegex)
+      ? "border-green-500"
+      : "border-red-500";
   };
 
   return (
