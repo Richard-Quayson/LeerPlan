@@ -7,7 +7,7 @@ from .models import (
 )
 from Account.models import University, UserAccount
 from Account.serializers import UniversitySerializer
-from Account.helper import NAME_REGEX, EMAIL_REGEX
+from Account.helper import NAME_REGEX, EMAIL_REGEX, adjust_time
 
 
 class SemesterSerializer(serializers.ModelSerializer):
@@ -280,7 +280,7 @@ class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
             except ValueError:
                 raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate_end_time(self, value) -> str:
         if value is not None:
@@ -289,7 +289,7 @@ class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
             except ValueError:
                 raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate(self, attrs: dict) -> dict:
         start_time = attrs.get('start_time')
@@ -400,7 +400,7 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         except ValueError:
             raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate_end_time(self, value) -> str:
         try:
@@ -408,7 +408,7 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         except ValueError:
             raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate(self, attrs: dict) -> dict:
         if attrs['start_time'] > attrs['end_time']:
