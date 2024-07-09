@@ -218,15 +218,17 @@ class UserRoutine(models.Model):
             - name ([CharField]): [name of the routine]
             - start_time ([TimeField]): [start time of the routine]
             - end_time ([TimeField]): [end time of the routine]
+            - days ([CharField]): [days the routine occurs]
     """
 
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     start_time = models.TimeField()
     end_time = models.TimeField()
+    days = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.user.firstname} {self.user.lastname} has {self.name} routine"
+        return f"{self.user.firstname} {self.user.lastname} has {self.name} routine from {self.start_time} to {self.end_time} on {self.days}"
 
 
 class UserMetaData(models.Model):
