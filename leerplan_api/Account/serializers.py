@@ -6,7 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 from datetime import time
 
 from .models import UserAccount, University, UserUniversity, UserRoutine, UserMetaData
-from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, adjust_time
+from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, DAYS_ABBREVIATION, adjust_time
 
 
 class AccountRegistrationSerializer(serializers.ModelSerializer):
@@ -335,7 +335,7 @@ class UserRoutineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserRoutine
-        fields = ["id", "user", "name","start_time", "end_time"]
+        fields = ["id", "user", "name","start_time", "end_time", "days"]
 
     def get_user(self, obj: UserRoutine) -> dict:
         return self.context["request"].user.id
@@ -351,6 +351,14 @@ class UserRoutineSerializer(serializers.ModelSerializer):
     
     def validate_end_time(self, value: time) -> time:
         return adjust_time(value)
+    
+    def validate_days(self, value: str) -> str:
+        days = value.split(",")
+        for day in days:
+            if day not in DAYS_ABBREVIATION:
+                raise serializers.ValidationError(f"Invalid day abbreviation {day}!")
+        
+        return value
     
     def validate(self, attrs: dict) -> dict:
         attrs["user"] = self.context["request"].user
