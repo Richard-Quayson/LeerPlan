@@ -54,9 +54,14 @@ const RoutineCard = ({ routine, onDelete, summary, color }) => {
   return (
     <div className="flex items-center px-4 py-1 border-[2px] shadow rounded-md relative">
       <div className="flex-grow">
-        <div className="font-semibold">{routine.name}</div>
-        <div className="text-gray-500">
+        <div className="font-semibold text-gray-600">{routine.name}</div>
+        <div className="text-gray-500 text-sm">
           {formatTime(routine.start_time)} - {formatTime(routine.end_time)}
+        </div>
+        <div className="text-[12px] text-gray-400">
+          {routine.days === "M,T,W,Th,F,Sa,Su"
+            ? "Everyday"
+            : "Every " + routine.days.split(",").join(", ")}
         </div>
       </div>
       {!summary && !deleteSuccess && (
