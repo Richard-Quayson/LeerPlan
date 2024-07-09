@@ -23,8 +23,8 @@ from .serializers import (
     CourseFileSerializer, UserCourseSerializer,
 )
 from .helper import LECTURER, FACULTY_INTERN
-from Account.models import UserAccount, UserMetaData
-from Account.serializers import UserMetaDataSerializer
+from Account.models import UserAccount, UserMetaData, UserRoutine
+from Account.serializers import UserMetaDataSerializer, UserRoutineSerializer
 from Account.permissions import IsAccessTokenBlacklisted
 from DataSynthesis.extract import extract_text_from_pdf
 from DataSynthesis.synthesise import gemini_synthesise
@@ -720,27 +720,30 @@ class DetermineTimeChunksView(APIView):
     def post(self, request):
         courses = request.data['courses']
 
-        # Retrieve all lecture days for the courses
+        # retrieve all lecture days for the courses
         user_courses = UserCourse.objects.filter(course__id__in=courses, user=request.user)
         user_courses = UserCourseSerializer(user_courses, many=True).data
         lecture_days = []
         for user_course in user_courses:
             lecture_days.extend(user_course['cohort']['lecture_days'])
-        print(lecture_days)
         
-        # Retrieve user's metadata
+        # retrieve user's routines
+        user_routines = UserRoutine.objects.filter(user=request.user)
+        user_routines = UserRoutineSerializer(user_routines, many=True, context={'request': request}).data
+        
+        # retrieve user's metadata
         try:
             user_metadata = UserMetaData.objects.get(user=request.user)
         except UserMetaData.DoesNotExist:
             return Response({"error": "User metadata does not exist. It is required to generate time blocks."}, status=status.HTTP_404_NOT_FOUND)
         user_metadata = UserMetaDataSerializer(user_metadata).data
 
-        # Process the data to create free time slots
-        free_slots = self.generate_free_slots(lecture_days, user_metadata)
+        # process the data to create free time slots
+        free_slots = self.generate_free_slots(lecture_days, user_metadata, user_routines)
 
         return Response(free_slots, status=status.HTTP_200_OK)
 
-    def generate_free_slots(self, lecture_days, user_metadata):
+    def generate_free_slots(self, lecture_days, user_metadata, user_routines):
         days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
         free_slots = {day: [] for day in days}
         wake_time = datetime.strptime(user_metadata['wake_time'], "%H:%M:%S").time()
@@ -748,29 +751,30 @@ class DetermineTimeChunksView(APIView):
 
         for day in days:
             day_lectures = [lecture for lecture in lecture_days if lecture['day'].lower() == day]
-            
-            if not day_lectures:
-                # If there are no lectures on this day, add the entire day as a free slot
+            day_activities = day_lectures + user_routines
+
+            if not day_activities:
+                # if there are no lectures on this day, add the entire day as a free slot
                 free_slots[day].append({
                     "start_time": wake_time.strftime("%H:%M:%S"),
                     "end_time": sleep_time.strftime("%H:%M:%S")
                 })
             else:
-                day_lectures.sort(key=lambda x: x['start_time'])
+                day_activities.sort(key=lambda x: x['start_time'])
                 current_time = wake_time
 
-                for lecture in day_lectures:
-                    lecture_start = datetime.strptime(lecture['start_time'], "%H:%M:%S").time()
-                    lecture_end = datetime.strptime(lecture['end_time'], "%H:%M:%S").time()
+                for activity in day_activities:
+                    activity_start = datetime.strptime(activity['start_time'], "%H:%M:%S").time()
+                    activity_end = datetime.strptime(activity['end_time'], "%H:%M:%S").time()
 
-                    if current_time < lecture_start:
+                    if current_time < activity_start:
                         free_slots[day].append({
                             "start_time": current_time.strftime("%H:%M:%S"),
-                            "end_time": lecture_start.strftime("%H:%M:%S")
+                            "end_time": activity_start.strftime("%H:%M:%S")
                         })
-                    current_time = lecture_end
+                    current_time = activity_end
 
-                # Add the final free slot from the end of the last lecture to sleep time
+                # add the final free slot from the end of the last lecture to sleep time
                 if current_time < sleep_time:
                     free_slots[day].append({
                         "start_time": current_time.strftime("%H:%M:%S"),
