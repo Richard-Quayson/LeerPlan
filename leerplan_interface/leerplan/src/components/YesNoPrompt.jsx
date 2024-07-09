@@ -3,7 +3,7 @@ import React from "react";
 const YesNoPrompt = ({ question, onYes, onNo }) => {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-md shadow-md text-center">
+      <div className="bg-white w-1/2 p-6 rounded-md shadow-md text-center">
         <p className="text-lg mb-6">{question}</p>
         <div className="flex justify-center">
           <button
