@@ -10,6 +10,16 @@ USERNAME_INDEX = 0      # username index in an email after splitting on the @
 
 DAYS_ABBREVIATION = ["M", "T", "W", "Th", "F", "Sa", "Su"]
 
+DAYS_DICT = {
+    "M": "Monday",
+    "T": "Tuesday",
+    "W": "Wednesday",
+    "Th": "Thursday",
+    "F": "Friday",
+    "Sa": "Saturday",
+    "Su": "Sunday"
+}
+
 
 def profile_picture_upload_path(instance, filename: str) -> str:
     """
@@ -29,3 +39,24 @@ def adjust_time(time: str) -> str:
             time = datetime.strptime("23:59:59", "%H:%M:%S").time()
 
     return time
+
+
+def get_extended_routine_data(routine: dict) -> list[dict]:
+    """
+    Extends routine data to include routine data for specified routine days
+    """
+
+    extended_routine = list()
+    routine_days = routine["days"].split(",")
+
+    for day in routine_days:
+        extended_routine.append({
+            "id": routine["id"],
+            "user": routine["user"],
+            "name": routine["name"],
+            "start_time": routine["start_time"],
+            "end_time": routine["end_time"],
+            "day": DAYS_DICT[day].lower()
+        })
+
+    return extended_routine
