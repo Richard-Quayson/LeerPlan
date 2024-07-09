@@ -8,6 +8,8 @@ PASSWORD_REGEX = r"^(?=(.*[A-Z]){1,})(?=(.*[a-z]){1,})(?=(.*\d){1,})(?=(.*[!#$%&
 
 USERNAME_INDEX = 0      # username index in an email after splitting on the @
 
+DAYS_ABBREVIATION = ["M", "T", "W", "Th", "F", "Sa", "Su"]
+
 
 def profile_picture_upload_path(instance, filename: str) -> str:
     """
