@@ -19,7 +19,7 @@ const getColorForRoutineEvent = (index) => {
   return colors[(colors.length - 1 - index) % colors.length].deep;
 };
 
-const generateEvents = (courses, userRoutines) => {
+const generateEvents = (courses, userRoutines, userMetadata) => {
   const events = [];
   
   // Find global start and end dates
@@ -72,7 +72,7 @@ const generateEvents = (courses, userRoutines) => {
   });
 
   // Generate user routine events
-  userRoutines.forEach((routine, routineIndex) => {
+  userRoutines.forEach((routine) => {
     let current = moment(globalStartDate).startOf("week");
     while (current.isSameOrBefore(globalEndDate)) {
       if (current.format("dddd").toLowerCase() === routine.day) {
@@ -98,12 +98,48 @@ const generateEvents = (courses, userRoutines) => {
     }
   });
 
+  // Generate sleep events from user metadata
+  let sleepTime = userMetadata.sleep_time;
+  // Adjust sleep time if necessary
+  if (sleepTime === "23:59:59" || sleepTime === "23:59") {
+    sleepTime = "00:00:00";
+  }
+
+  const sleepMoment = moment(sleepTime, "HH:mm:ss");
+  const wakeMoment = moment(userMetadata.wake_time, "HH:mm:ss");
+  const daysOfWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+
+  daysOfWeek.forEach((day) => {
+    let current = moment(globalStartDate).startOf("week");
+    while (current.isSameOrBefore(globalEndDate)) {
+      const start = moment(current).day(day).set({
+        hour: sleepMoment.get("hour"),
+        minute: sleepMoment.get("minute"),
+      });
+      const end = moment(current).day(day).set({
+        hour: wakeMoment.get("hour"),
+        minute: wakeMoment.get("minute"),
+      });
+
+      events.push({
+        title: "Bed Time",
+        start: start.toDate(),
+        end: end.toDate(),
+        allDay: false,
+        color: "#86198f"
+      });
+
+      current.add(1, "week");
+    }
+  });
+
   return events;
 };
 
 const CustomCalendar = ({
   courses,
   userRoutines,
+  userMetadata,
   filterType,
   filterValue,
   applyFilter,
@@ -203,7 +239,7 @@ const CustomCalendar = ({
     <div className="h-full sans-serif text-sm relative">
       <Calendar
         localizer={localizer}
-        events={generateEvents(courses, userRoutines)}
+        events={generateEvents(courses, userRoutines, userMetadata)}
         startAccessor="start"
         endAccessor="end"
         views={["month", "week", "day"]}
