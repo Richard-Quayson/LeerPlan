@@ -718,11 +718,9 @@ class DeleteCourseView(APIView):
 class DetermineTimeBlocksView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
-    def post(self, request):
-        courses = request.data['courses']
-
-        # retrieve all lecture days for the courses
-        user_courses = UserCourse.objects.filter(course__id__in=courses, user=request.user)
+    def get(self, request):
+        # retrieve all lecture days for the user's courses
+        user_courses = UserCourse.objects.filter(user=request.user, course__is_completed=False)
         user_courses = UserCourseSerializer(user_courses, many=True).data
         lecture_days = []
         for user_course in user_courses:
