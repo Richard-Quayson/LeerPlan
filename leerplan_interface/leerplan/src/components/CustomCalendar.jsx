@@ -22,8 +22,6 @@ const getColorForRoutineEvent = (index) => {
 const generateEvents = (courses, userRoutines) => {
   const events = [];
   
-  console.log(userRoutines);
-
   // Find global start and end dates
   const allStartDates = courses.flatMap(courseObj => 
     courseObj.course.weekly_schedules.map(schedule => moment(schedule.start_date))
@@ -75,10 +73,9 @@ const generateEvents = (courses, userRoutines) => {
 
   // Generate user routine events
   userRoutines.forEach((routine, routineIndex) => {
-    const days = routine.days.split(',');
     let current = moment(globalStartDate).startOf("week");
     while (current.isSameOrBefore(globalEndDate)) {
-      if (days.includes(current.format("dd"))) {
+      if (current.format("dddd").toLowerCase() === routine.day) {
         const start = moment(current).set({
           hour: moment(routine.start_time, "HH:mm:ss").get("hour"),
           minute: moment(routine.start_time, "HH:mm:ss").get("minute"),
@@ -94,7 +91,7 @@ const generateEvents = (courses, userRoutines) => {
           end: end.toDate(),
           allDay: false,
           isRoutine: true,
-          color: getColorForRoutineEvent(routineIndex),
+          color: getColorForRoutineEvent(routine.routine_index),
         });
       }
       current.add(1, "day");
@@ -188,7 +185,7 @@ const CustomCalendar = ({
 
   const lectureEventStyleGetter = (event) => {
     const style = {
-      backgroundColor: event.color,
+      backgroundColor: event.color, // CHANGE TO #3b82f6 LATER
       borderRadius: "5px",
       color: "white",
       border: "0px",
