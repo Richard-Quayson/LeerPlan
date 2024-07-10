@@ -66,6 +66,7 @@ const DashboardPage = () => {
             <RightPane
               courses={userCourses}
               userRoutines={user.extended_routines}
+              userMetadata={user.metadata ? user.metadata : {}}
             />
           )}
         </div>
