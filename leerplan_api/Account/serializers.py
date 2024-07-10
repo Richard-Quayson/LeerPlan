@@ -363,7 +363,7 @@ class UserRoutineSerializer(serializers.ModelSerializer):
     def validate(self, attrs: dict) -> dict:
         attrs["user"] = self.context["request"].user
 
-        if "name" in attrs and UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
+        if not self.instance and "name" in attrs and UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
             raise serializers.ValidationError("Routine already exists!")
         
         if "start_time" in attrs and "end_time" in attrs:
