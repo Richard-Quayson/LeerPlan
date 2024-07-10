@@ -715,7 +715,7 @@ class DeleteCourseView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class DetermineTimeChunksView(APIView):
+class DetermineTimeBlocksView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
     def post(self, request):
