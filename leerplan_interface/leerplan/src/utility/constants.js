@@ -26,6 +26,20 @@ export const INSTRUCTOR_TYPES = {
   "Faculty Intern": "Faculty Intern / Teaching Assistant",
 }
 
+// days of the week
+export const DAYS_OF_THE_WEEK = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];
+
+// sleep event background colour
+export const SLEEP_EVENT_COLOUR = "#86198f";
+
 // course and routine colour list (list of dictionary objects)
 export const COURSE_ROUTINE_COLOURS = {
   red: {
