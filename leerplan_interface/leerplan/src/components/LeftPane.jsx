@@ -86,7 +86,7 @@ const LeftPane = ({ user, userCourses }) => {
               alt="Automate Icon"
               className="w-6 h-6 inline-block mr-2"
             />
-            Generate Schedule
+            Generate Timeblocks
           </button>
         </div>
       </div>
