@@ -5,7 +5,12 @@ import { SET_COURSE_COHORT_URL } from "../utility/api_urls";
 import api from "../utility/api";
 import SuccessGif from "../assets/gifs/Success.gif";
 
-const RightPane = ({ courses, userRoutines, userMetadata }) => {
+const RightPane = ({
+  courses,
+  userRoutines,
+  userMetadata,
+  displayTimeBlocks,
+}) => {
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
   const [applyFilter, setApplyFilter] = useState(false);
@@ -150,6 +155,7 @@ const RightPane = ({ courses, userRoutines, userMetadata }) => {
             filterValue={filterValue}
             applyFilter={applyFilter}
             resetFilter={() => setApplyFilter(false)}
+            displayTimeBlocks={displayTimeBlocks}
           />
         ) : null}
       </div>
