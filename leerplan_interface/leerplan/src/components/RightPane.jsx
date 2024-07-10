@@ -5,7 +5,7 @@ import { SET_COURSE_COHORT_URL } from "../utility/api_urls";
 import api from "../utility/api";
 import SuccessGif from "../assets/gifs/Success.gif";
 
-const RightPane = ({ courses, userRoutines }) => {
+const RightPane = ({ courses, userRoutines, userMetadata }) => {
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
   const [applyFilter, setApplyFilter] = useState(false);
@@ -145,6 +145,7 @@ const RightPane = ({ courses, userRoutines }) => {
           <CustomCalendar
             courses={courses}
             userRoutines={userRoutines}
+            userMetadata={userMetadata}
             filterType={filterType}
             filterValue={filterValue}
             applyFilter={applyFilter}
