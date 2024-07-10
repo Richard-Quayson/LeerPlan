@@ -684,21 +684,21 @@ class DeleteCourseView(APIView):
             return Response({"error": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         # Delete all related data
-        CourseInstructor.objects.filter(course=course).delete()
-        CourseCohort.objects.filter(course=course).delete()
-        CourseLectureDay.objects.filter(course_cohort__course=course).delete()
-        CourseWeeklySchedule.objects.filter(course=course).delete()
-        CourseInstructorOfficeHour.objects.filter(
-            course_instructor__course=course).delete()
-        CourseEvaluationCriteria.objects.filter(course=course).delete()
-        CourseTextbook.objects.filter(course=course).delete()
-        CourseWeeklyAssessment.objects.filter(
+        UserCourse.objects.filter(course=course).delete()
+        CourseWeeklyTopic.objects.filter(
             course_weekly_schedule__course=course).delete()
         CourseWeeklyReading.objects.filter(
             course_weekly_schedule__course=course).delete()
-        CourseWeeklyTopic.objects.filter(
+        CourseWeeklyAssessment.objects.filter(
             course_weekly_schedule__course=course).delete()
-        UserCourse.objects.filter(course=course).delete()
+        CourseWeeklySchedule.objects.filter(course=course).delete()
+        CourseTextbook.objects.filter(course=course).delete()
+        CourseLectureDay.objects.filter(course_cohort__course=course).delete()
+        CourseCohort.objects.filter(course=course).delete()
+        CourseEvaluationCriteria.objects.filter(course=course).delete()
+        CourseInstructorOfficeHour.objects.filter(
+            course_instructor__course=course).delete()
+        CourseInstructor.objects.filter(course=course).delete()
 
         # Delete course file from filesystem and database
         course_file = CourseFile.objects.filter(course=course).first()
