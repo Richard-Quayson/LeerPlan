@@ -20,10 +20,15 @@ const getColorForRoutineEvent = (index) => {
   return colors[(colors.length - 1 - index) % colors.length].deep;
 };
 
-const generateEvents = (courses, userRoutines, userMetadata) => {
+const generateEvents = (
+  courses,
+  userRoutines,
+  userMetadata,
+  displayTimeBlocks
+) => {
   const [timeBlocks, setTimeBlocks] = useState([]);
   const events = [];
-  console.log(timeBlocks);
+
   useEffect(() => {
     const fetchTimeBlocks = async () => {
       try {
@@ -160,42 +165,44 @@ const generateEvents = (courses, userRoutines, userMetadata) => {
   });
 
   // Generate time block events for all days
-  DAYS_OF_THE_WEEK.forEach((day) => {
-    if (timeBlocks[day]) {
-      timeBlocks[day].forEach((block) => {
-        const start = moment(block.start_time, "HH:mm:ss");
-        const end = moment(block.end_time, "HH:mm:ss");
-        if (end.diff(start, "minutes") >= 20) {
-          let current = moment(globalStartDate).startOf("week");
-          while (current.isSameOrBefore(globalEndDate)) {
-            if (current.format("dddd").toLowerCase() === day) {
-              const eventStart = moment(current)
-                .set({
-                  hour: start.get("hour"),
-                  minute: start.get("minute") + EVENT_BREAK,
-                })
-                .toDate();
-              const eventEnd = moment(current)
-                .set({
-                  hour: end.get("hour"),
-                  minute: end.get("minute") - EVENT_BREAK,
-                })
-                .toDate();
+  if (displayTimeBlocks) {
+    DAYS_OF_THE_WEEK.forEach((day) => {
+      if (timeBlocks[day]) {
+        timeBlocks[day].forEach((block) => {
+          const start = moment(block.start_time, "HH:mm:ss");
+          const end = moment(block.end_time, "HH:mm:ss");
+          if (end.diff(start, "minutes") >= 20) {
+            let current = moment(globalStartDate).startOf("week");
+            while (current.isSameOrBefore(globalEndDate)) {
+              if (current.format("dddd").toLowerCase() === day) {
+                const eventStart = moment(current)
+                  .set({
+                    hour: start.get("hour"),
+                    minute: start.get("minute") + EVENT_BREAK,
+                  })
+                  .toDate();
+                const eventEnd = moment(current)
+                  .set({
+                    hour: end.get("hour"),
+                    minute: end.get("minute") - EVENT_BREAK,
+                  })
+                  .toDate();
 
-              events.push({
-                title: "Time Block",
-                start: eventStart,
-                end: eventEnd,
-                allDay: false,
-                color: TIME_BLOCK_EVENT_COLOUR,
-              });
+                events.push({
+                  title: "Time Block",
+                  start: eventStart,
+                  end: eventEnd,
+                  allDay: false,
+                  color: TIME_BLOCK_EVENT_COLOUR,
+                });
+              }
+              current.add(1, "day");
             }
-            current.add(1, "day");
           }
-        }
-      });
-    }
-  });
+        });
+      }
+    });
+  }
 
   return events;
 };
