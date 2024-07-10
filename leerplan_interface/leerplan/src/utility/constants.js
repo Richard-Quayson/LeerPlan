@@ -43,6 +43,9 @@ export const DAYS_OF_THE_WEEK = [
 // sleep event background colour
 export const SLEEP_EVENT_COLOUR = "#86198f";
 
+// time block event background colour
+export const TIME_BLOCK_EVENT_COLOUR = "#22c55e";
+
 // course and routine colour list (list of dictionary objects)
 export const COURSE_ROUTINE_COLOURS = {
   red: {
@@ -73,9 +76,9 @@ export const COURSE_ROUTINE_COLOURS = {
     deep: "#ec4899",
     light: "#f9a8d4",
   },
-  green: {
-    deep: "#22c55e",
-    light: "#86efac",
+  bluish: {
+    deep: "#3174ad",
+    light: "#93c5fd",
   },
   amber: {
     deep: "#f59e0b",
