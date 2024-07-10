@@ -9,42 +9,92 @@ import NotificationIcon from "../assets/icons/Notification.png";
 
 const localizer = momentLocalizer(moment);
 
-const getColorForEvent = (index) => {
+const getColorForCourseEvent = (index) => {
   const colors = Object.values(COURSE_ROUTINE_COLOURS);
   return colors[index % colors.length].deep;
 };
 
-const generateEvents = (course, courseIndex, cohort) => {
+const getColorForRoutineEvent = (index) => {
+  const colors = Object.values(COURSE_ROUTINE_COLOURS);
+  return colors[(colors.length - 1 - index) % colors.length].deep;
+};
+
+const generateEvents = (courses, userRoutines) => {
   const events = [];
-  const weeklySchedules = course.weekly_schedules;
+  
+  console.log(userRoutines);
 
-  if (weeklySchedules.length === 0) return events;
+  // Find global start and end dates
+  const allStartDates = courses.flatMap(courseObj => 
+    courseObj.course.weekly_schedules.map(schedule => moment(schedule.start_date))
+  ).filter(date => date.isValid());
+  const allEndDates = courses.flatMap(courseObj => 
+    courseObj.course.weekly_schedules.map(schedule => moment(schedule.end_date))
+  ).filter(date => date.isValid());
 
-  const startDate = moment(weeklySchedules[0].start_date);
-  const endDate = moment(weeklySchedules[weeklySchedules.length - 1].end_date);
+  if (allStartDates.length === 0 || allEndDates.length === 0) {
+    return events;
+  }
 
-  cohort.lecture_days.forEach((lecture) => {
-    let current = moment(startDate).startOf("week");
-    while (current.isSameOrBefore(endDate)) {
-      if (current.format("dddd").toLowerCase() === lecture.day) {
+  const globalStartDate = moment.min(allStartDates);
+  const globalEndDate = moment.max(allEndDates);
+
+  // Generate course events
+  courses.forEach((courseObj, courseIndex) => {
+    const course = courseObj.course;
+    const cohort = courseObj.cohort;
+
+    cohort.lecture_days.forEach((lecture) => {
+      let current = moment(globalStartDate).startOf("week");
+      while (current.isSameOrBefore(globalEndDate)) {
+        if (current.format("dddd").toLowerCase() === lecture.day) {
+          const start = moment(current).set({
+            hour: moment(lecture.start_time, "HH:mm:ss").get("hour"),
+            minute: moment(lecture.start_time, "HH:mm:ss").get("minute"),
+          });
+          const end = moment(current).set({
+            hour: moment(lecture.end_time, "HH:mm:ss").get("hour"),
+            minute: moment(lecture.end_time, "HH:mm:ss").get("minute"),
+          });
+
+          events.push({
+            title: `${course.code} ${course.name}`,
+            start: start.toDate(),
+            end: end.toDate(),
+            allDay: false,
+            courseCode: course.code,
+            courseTitle: course.name,
+            location: lecture.location,
+            color: getColorForCourseEvent(courseIndex),
+          });
+        }
+        current.add(1, "day");
+      }
+    });
+  });
+
+  // Generate user routine events
+  userRoutines.forEach((routine, routineIndex) => {
+    const days = routine.days.split(',');
+    let current = moment(globalStartDate).startOf("week");
+    while (current.isSameOrBefore(globalEndDate)) {
+      if (days.includes(current.format("dd"))) {
         const start = moment(current).set({
-          hour: moment(lecture.start_time, "HH:mm:ss").get("hour"),
-          minute: moment(lecture.start_time, "HH:mm:ss").get("minute"),
+          hour: moment(routine.start_time, "HH:mm:ss").get("hour"),
+          minute: moment(routine.start_time, "HH:mm:ss").get("minute"),
         });
         const end = moment(current).set({
-          hour: moment(lecture.end_time, "HH:mm:ss").get("hour"),
-          minute: moment(lecture.end_time, "HH:mm:ss").get("minute"),
+          hour: moment(routine.end_time, "HH:mm:ss").get("hour"),
+          minute: moment(routine.end_time, "HH:mm:ss").get("minute"),
         });
 
         events.push({
-          title: `${course.code} ${course.name}`,
+          title: routine.name,
           start: start.toDate(),
           end: end.toDate(),
           allDay: false,
-          color: getColorForEvent(courseIndex),
-          courseCode: course.code,
-          courseTitle: course.name,
-          location: lecture.location,
+          isRoutine: true,
+          color: getColorForRoutineEvent(routineIndex),
         });
       }
       current.add(1, "day");
@@ -56,6 +106,7 @@ const generateEvents = (course, courseIndex, cohort) => {
 
 const CustomCalendar = ({
   courses,
+  userRoutines,
   filterType,
   filterValue,
   applyFilter,
@@ -135,7 +186,7 @@ const CustomCalendar = ({
     setSelectedEvent(null);
   };
 
-  const eventStyleGetter = (event) => {
+  const lectureEventStyleGetter = (event) => {
     const style = {
       backgroundColor: event.color,
       borderRadius: "5px",
@@ -155,15 +206,13 @@ const CustomCalendar = ({
     <div className="h-full sans-serif text-sm relative">
       <Calendar
         localizer={localizer}
-        events={courses.flatMap((courseObj, courseIndex) =>
-          generateEvents(courseObj.course, courseIndex, courseObj.cohort)
-        )}
+        events={generateEvents(courses, userRoutines)}
         startAccessor="start"
         endAccessor="end"
         views={["month", "week", "day"]}
         defaultView={defaultView}
         style={{ height: "calc(100vh - 80px)" }}
-        eventPropGetter={eventStyleGetter}
+        eventPropGetter={lectureEventStyleGetter}
         onSelectEvent={handleEventClick}
         date={defaultDate}
         onNavigate={(date) => setDefaultDate(date)}

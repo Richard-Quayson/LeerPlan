@@ -63,9 +63,5 @@ export const COURSE_ROUTINE_COLOURS = {
   amber: {
     deep: "#f59e0b",
     light: "#fcd34d",
-  },
-  blue: {
-    deep: "#3b82f6",
-    light: "#93c5fd",
   }
 };
