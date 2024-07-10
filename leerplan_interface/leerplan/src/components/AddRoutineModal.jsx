@@ -128,7 +128,7 @@ const AddRoutineModal = ({
     const value = event.target.value;
     setStartTime(value);
     if (value !== "") {
-      setIsStartTimeValid(value.match(TIME_REGEX));
+      setIsStartTimeValid(value.match(TIME_REGEX) || value.match(EXTENDED_TIME_REGEX));
     } else {
       setIsStartTimeValid(false);
     }
@@ -138,7 +138,7 @@ const AddRoutineModal = ({
     const value = event.target.value;
     setEndTime(value);
     if (value !== "") {
-      setIsEndTimeValid(value.match(TIME_REGEX));
+      setIsEndTimeValid(value.match(TIME_REGEX) || value.match(EXTENDED_TIME_REGEX));
     } else {
       setIsEndTimeValid(false);
     }
