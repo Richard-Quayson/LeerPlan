@@ -6,7 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 from datetime import time
 
 from .models import UserAccount, University, UserUniversity, UserRoutine, UserMetaData
-from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, DAYS_ABBREVIATION, adjust_time
+from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, DAYS_ABBREVIATION, adjust_time, get_extended_routine_data
 
 
 class AccountRegistrationSerializer(serializers.ModelSerializer):
@@ -403,6 +403,9 @@ class UserDetailsSerializer(serializers.ModelSerializer):
             data = UserRoutineSerializer(routine, context={"request": self.context["request"]}).data
             user_data["routines"].append(data)
 
+        # add extended routine data
+        user_data["extended_routines"] = get_extended_routine_data(user_data["routines"])
+        
         # retrieve user's metadata
         if UserMetaData.objects.filter(user=instance).exists():
             user_data["metadata"] = UserMetaDataSerializer(UserMetaData.objects.get(user=instance)).data
