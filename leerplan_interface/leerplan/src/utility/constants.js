@@ -20,6 +20,9 @@ export const EXTENDED_CALENDAR_FILTER_DISPLAY = "leerplan:EXTENDED_CALENDAR_FILT
 export const CALENDAR_FILTER_TYPE = "leerplan:CALENDAR_FILTER_TYPE";
 export const CALENDAR_FILTER_VALUE = "leerplan:CALENDAR_FILTER_VALUE";
 
+// event break
+export const EVENT_BREAK = 15;
+
 // instructor types
 export const INSTRUCTOR_TYPES = {
   Lecturer: "Lecturer",
