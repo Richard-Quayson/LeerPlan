@@ -1,0 +1,642 @@
+{
+  "code": "CS221",
+  "name": "Discrete Structures and Theory",
+  "description": "This course is designed to give students in Computer Science the mathematical foundations they need to study many other Computer Science courses including Data Structures, Algorithm Design and Analysis, Operating Systems...  Specifically, you will learn:  \n• Mathematical reasoning: the primary goal of this course is to help you develop your ability to understand and create mathematical arguments.  \n• Combinatorial analysis: to be a problem solver, it is important to be able to count objects. We will see some basic techniques for counting. \n• Discrete structures: of course, as the name of the course suggests, you will also learn how to manipulate discrete structures (logical statements, sets, permutations, graphs…) \n• Algorithmic thinking: for certain classes of problems, we will learn how to specify an algorithm, verify that it works properly, and analyze the computer memory and time required to perform it. \n• Applications and modeling: applications to show the relevance and practicality of mathematics. We will see some applications of discrete mathematics to computer science, data networking and biology. An important problem-solving skill is the construction of mathematical models. We will build our own models while solving some of the exercises. ",
+  "semester": {
+    "name": "Spring",
+    "year": 2022
+  },
+  "instructors": [
+    {
+      "name": "Ayawoa Dagbovie",
+      "email": "adagbovie@ashesi.edu.gh",
+      "office_hours": [
+        {
+          "day": "By appointment",
+          "time": null
+        }
+      ],
+      "phone": null
+    }
+  ],
+  "faculty_interns": [
+    {
+      "name": "Goodie Dawson",
+      "email": "Goodie.Dawson@ashesi.edu.gh",
+      "office_hours": [],
+      "phone": null
+    }
+  ],
+  "textbooks": [
+    {
+      "title": "Discrete Mathematics and its Applications",
+      "type": null
+    }
+  ],
+  "evaluation_criteria": [
+    {
+      "type": "midterm exam",
+      "weight": 20.0
+    },
+    {
+      "type": "final exam",
+      "weight": 35.0
+    },
+    {
+      "type": "homework assignments",
+      "weight": 15.0
+    },
+    {
+      "type": "quizzes",
+      "weight": 10.0
+    },
+    {
+      "type": "project",
+      "weight": 20.0
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_name": "Default",
+      "lecture_days": [
+        {
+          "day": "Monday",
+          "time": {
+            "start_time": "09:45:00",
+            "end_time": "11:15:00"
+          },
+          "location": "Zoom ID: 234 262 9485"
+        },
+        {
+          "day": "Wednesday",
+          "time": {
+            "start_time": "09:45:00",
+            "end_time": "11:15:00"
+          },
+          "location": "Zoom ID: 234 262 9485"
+        }
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "start_date": "2022-01-17",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Intro + Propositional Logic"
+        },
+        {
+          "title": "Propositional Logic"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "1.1"
+        },
+        {
+          "chapter": "1.1"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 2,
+      "start_date": "2022-01-24",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Propositional Equivalences"
+        },
+        {
+          "title": "Propositional Equivalences"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "1.3"
+        },
+        {
+          "chapter": "1.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 1",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW1",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "start_date": "2022-01-31",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Predicates and Quantifiers"
+        },
+        {
+          "title": "Predicates and Quantifiers\nNested Quantifiers"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "1.4"
+        },
+        {
+          "chapter": "1.4, 1.5"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 2",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW1",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW2",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "start_date": "2022-02-07",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Rules of Inference for Prop. Logic"
+        },
+        {
+          "title": "Rules of Inference for Prop. Logic"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "1.6"
+        },
+        {
+          "chapter": "1.6"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 3",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW2",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW3",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "start_date": "2022-02-14",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Rules of Inference for Quantified\nStatements"
+        },
+        {
+          "title": "Introduction to Proofs"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "1.6"
+        },
+        {
+          "chapter": "1.7"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 4",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW3",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW4",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "start_date": "2022-02-21",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Introduction to Proofs"
+        },
+        {
+          "title": "Introduction to Proofs"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "1.7"
+        },
+        {
+          "chapter": "1.7"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 5",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW4",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "start_date": "2022-02-28",
+      "end_date": null,
+      "type": "midterm",
+      "topics": [
+        {
+          "title": "Revision"
+        },
+        {
+          "title": "Midterm Exam"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 8,
+      "start_date": "2022-03-07",
+      "end_date": null,
+      "type": "break",
+      "topics": [
+        {
+          "title": "We have been working hard. Time for a break"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 9,
+      "start_date": "2022-03-14",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Sets"
+        },
+        {
+          "title": "Set operations"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "2.1"
+        },
+        {
+          "chapter": "2.2"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "HW5",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "start_date": "2022-03-21",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Boolean Functions"
+        },
+        {
+          "title": "Logic Gates"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "12.1"
+        },
+        {
+          "chapter": "12.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 6",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW5",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW6",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "start_date": "2022-03-28",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Algorithms"
+        },
+        {
+          "title": "Group Project Discussion\nThe Growth of Functions"
+        },
+        {
+          "title": "Complexity of Algorithms"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "3.1"
+        },
+        {
+          "chapter": "3.2"
+        },
+        {
+          "chapter": "3.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "HW6",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW7",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "start_date": "2022-04-04",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Mathematical Induction"
+        },
+        {
+          "title": "Program Correctness"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "5.1"
+        },
+        {
+          "chapter": "5.5"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 7",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW7",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW8",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 13,
+      "start_date": "2022-04-11",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "The Basics of Counting"
+        },
+        {
+          "title": "The Pigeonhole Principle"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "6.1"
+        },
+        {
+          "chapter": "6.2"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 8",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW8",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 14,
+      "start_date": "2022-04-18",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Permutations and Combinations"
+        },
+        {
+          "title": "Permutations and Combinations"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "6.3"
+        },
+        {
+          "chapter": "6.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 9",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "Group Project",
+          "type": "project",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW9",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 15,
+      "start_date": "2022-04-25",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Graphs and Special Types of Graphs"
+        },
+        {
+          "title": "Graph Isomorphism"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "10.1, 10.2"
+        },
+        {
+          "chapter": "10.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 10",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        },
+        {
+          "name": "HW9",
+          "type": "homework",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 16,
+      "start_date": "2022-05-02",
+      "end_date": null,
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Introduction to Trees"
+        },
+        {
+          "title": "Tree Traversal"
+        },
+        {
+          "title": "Revision"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "11.1"
+        },
+        {
+          "chapter": "11.3"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 17,
+      "start_date": "2022-05-10",
+      "end_date": "2022-05-17",
+      "type": "final exam",
+      "topics": [
+        {
+          "title": "Final Exam Period"
+        }
+      ],
+      "readings": [],
+      "assessments": []
+    }
+  ]
+}

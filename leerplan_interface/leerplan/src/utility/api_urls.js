@@ -52,6 +52,13 @@ export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/";          
 // export const DELETE_USER_ROUTINE_URL = "account/user/routine/delete/<int:routine_id>/";  // DELETE URL to delete a routine of a user
 
 
+// USER METADATA MODEL URLS
+export const ADD_USER_METADATA_URL = "account/user/metadata/add/";              // POST URL to add metadata to user's list
+
+export const UPDATE_USER_METADATA_URL = "account/user/metadata/update/";        // PATCH URL to update metadata details of a user
+// export const UPDATE_USER_METADATA_URL = "account/user/metadata/update/<int:metadata_id>/";  // PATCH URL to update metadata details of a user
+
+
 
 // COURSE APP MODELS
 
@@ -64,3 +71,5 @@ export const SET_COURSE_COHORT_URL = "course/cohort/specify/";                 /
 
 export const DELETE_USER_COURSE_URL = "course/delete/";                         // DELETE URL to delete a course of a user
 // export const DELETE_USER_COURSE_URL = "course/delete/<int:user_course_id>/";       // DELETE URL to delete a course of a user
+
+export const GENERATE_TIME_BLOCKS_URL = "course/timeblocks/";                   // POST URL to generate time blocks for a course

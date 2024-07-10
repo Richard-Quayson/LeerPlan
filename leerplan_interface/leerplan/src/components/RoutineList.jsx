@@ -74,7 +74,7 @@ const RoutineList = ({ routines }) => {
       {extendedDisplay && (
         <div className="routine-cards mt-4 ml-6">
           {routines.length === 0 ? (
-            <p className="text-gray-500">No routines have been added</p>
+            <p className="text-gray-400">No routines have been added</p>
           ) : (
             routines.map((routine, index) => {
               const colorIndex =

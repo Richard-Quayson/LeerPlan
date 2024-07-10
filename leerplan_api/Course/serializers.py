@@ -2,12 +2,12 @@ from rest_framework import serializers
 import re
 from .models import (
     Semester, Instructor, InstructorType, Course, CourseInstructor, CourseInstructorOfficeHour, Day,
-    CourseEvaluationCriteria, CourseCohort, CourseLectureDay, CourseTextbook, TextbookType, CourseWeeklySchedule,
+    CourseEvaluationCriteria, CourseCohort, CourseLectureDay, CourseTextbook, CourseWeeklySchedule,
     CourseWeeklyAssessment, CourseWeeklyReading, CourseWeeklyTopic, CourseFile, UserCourse,
 )
 from Account.models import University, UserAccount
 from Account.serializers import UniversitySerializer
-from Account.helper import NAME_REGEX, EMAIL_REGEX
+from Account.helper import NAME_REGEX, EMAIL_REGEX, adjust_time
 
 
 class SemesterSerializer(serializers.ModelSerializer):
@@ -268,37 +268,43 @@ class CourseInstructorOfficeHourSerializer(serializers.ModelSerializer):
         return value
     
     def validate_day(self, value: str) -> str:
-        if len(value) > 10:
+        if len(value) > 50:
             raise serializers.ValidationError("Day too long!")
-        
-        if value not in Day.values:
-            raise serializers.ValidationError("Invalid day!")
         
         return value
     
     def validate_start_time(self, value) -> str:
-        try:
-            value.strftime("%H:%M:%S")
-        except ValueError:
-            raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
+        if value is not None:
+            try:
+                value.strftime("%H:%M:%S")
+            except ValueError:
+                raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate_end_time(self, value) -> str:
-        try:
-            value.strftime("%H:%M:%S")
-        except ValueError:
-            raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
+        if value is not None:
+            try:
+                value.strftime("%H:%M:%S")
+            except ValueError:
+                raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate(self, attrs: dict) -> dict:
-        if attrs['start_time'] >= attrs['end_time']:
-            raise serializers.ValidationError("Start time must be less than end time!")
+        start_time = attrs.get('start_time')
+        end_time = attrs.get('end_time')
+        if start_time is not None and end_time is not None:
+            if start_time > end_time:
+                raise serializers.ValidationError("Start time must be less than end time!")
 
-        if CourseInstructorOfficeHour.objects.filter(course_instructor=attrs['course_instructor'], day=attrs['day'],
-                                                    start_time=attrs['start_time'], end_time=attrs['end_time']).exists():
-            raise serializers.ValidationError("Course instructor office hour already exists!")
+            if CourseInstructorOfficeHour.objects.filter(
+                course_instructor=attrs['course_instructor'], 
+                day=attrs['day'],
+                start_time=start_time, 
+                end_time=end_time
+            ).exists():
+                raise serializers.ValidationError("Course instructor office hour already exists!")
         
         return attrs
 
@@ -394,7 +400,7 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         except ValueError:
             raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate_end_time(self, value) -> str:
         try:
@@ -402,10 +408,10 @@ class CourseLectureDaySerializer(serializers.ModelSerializer):
         except ValueError:
             raise serializers.ValidationError("Incorrect time format, should be HH:MM:SS")
         
-        return value
+        return adjust_time(value)
     
     def validate(self, attrs: dict) -> dict:
-        if attrs['start_time'] >= attrs['end_time']:
+        if attrs['start_time'] > attrs['end_time']:
             raise serializers.ValidationError("Start time must be less than end time!")
 
         if CourseLectureDay.objects.filter(course_cohort=attrs['course_cohort'], day=attrs['day'],
@@ -436,8 +442,8 @@ class CourseTextbookSerializer(serializers.ModelSerializer):
         return value
     
     def validate_type(self, value: str) -> str:
-        if value not in TextbookType.values:
-            raise serializers.ValidationError("Invalid textbook type!")
+        if len(value) > 25:
+            raise serializers.ValidationError("Textbook type too long!")
         return value
     
     def validate(self, attrs: dict) -> dict:

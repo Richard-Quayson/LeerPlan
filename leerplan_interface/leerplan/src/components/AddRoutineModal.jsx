@@ -1,14 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModalContainer from "./ModalContainer";
 import api from "../utility/api";
-import { ADD_USER_ROUTINE_URL } from "../utility/api_urls";
-import { NAME_REGEX } from "../utility/constants";
+import {
+  ADD_USER_ROUTINE_URL,
+  UPDATE_USER_ROUTINE_URL,
+} from "../utility/api_urls";
+import { NAME_REGEX, TIME_REGEX } from "../utility/constants";
 import SuccessGif from "../assets/gifs/Success.gif";
 
-const AddRoutineModal = ({ isOpen, onClose }) => {
+const AddRoutineModal = ({
+  isOpen,
+  onClose,
+  editMode = false,
+  routine = {},
+}) => {
   const [name, setName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [days, setDays] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
@@ -16,10 +25,47 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
   const [isStartTimeValid, setIsStartTimeValid] = useState(false);
   const [isEndTimeValid, setIsEndTimeValid] = useState(false);
 
+  const daysOptions = [
+    { label: "Everyday", value: "M,T,W,Th,F,Sa,Su" },
+    { label: "Monday", value: "M" },
+    { label: "Tuesday", value: "T" },
+    { label: "Wednesday", value: "W" },
+    { label: "Thursday", value: "Th" },
+    { label: "Friday", value: "F" },
+    { label: "Saturday", value: "Sa" },
+    { label: "Sunday", value: "Su" },
+  ];
+
+  const daysOrder = ["M", "T", "W", "Th", "F", "Sa", "Su"];
+
+  useEffect(() => {
+    if (editMode && routine) {
+      setName(routine.name || "");
+      setStartTime(routine.start_time || "");
+      setEndTime(routine.end_time || "");
+
+      const routineDays = routine.days ? routine.days.split(",") : [];
+      if (routineDays.length === 7) {
+        setDays(["M,T,W,Th,F,Sa,Su"]);
+      } else {
+        setDays(routineDays);
+      }
+
+      setIsNameValid(true);
+      setIsStartTimeValid(true);
+      setIsEndTimeValid(true);
+    }
+  }, [editMode, routine]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!isNameValid || !isStartTimeValid || !isEndTimeValid) {
+    if (
+      !isNameValid ||
+      !isStartTimeValid ||
+      !isEndTimeValid ||
+      days.length === 0
+    ) {
       setMessage("Please fill out all fields correctly.");
       setTimeout(() => {
         setMessage("");
@@ -29,14 +75,26 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
 
     setIsSubmitting(true);
 
-    try {
-      const response = await api.post(ADD_USER_ROUTINE_URL, {
-        name,
-        start_time: startTime,
-        end_time: endTime,
-      });
+    let orderedDays;
+    if (days[0] === "M,T,W,Th,F,Sa,Su") {
+      orderedDays = "M,T,W,Th,F,Sa,Su";
+    } else {
+      orderedDays = daysOrder.filter((day) => days.includes(day)).join(",");
+    }
 
-      if (response.status === 201) {
+    const payload = {
+      name,
+      start_time: startTime,
+      end_time: endTime,
+      days: orderedDays,
+    };
+
+    try {
+      const response = editMode
+        ? await api.patch(`${UPDATE_USER_ROUTINE_URL}${routine.id}/`, payload)
+        : await api.post(ADD_USER_ROUTINE_URL, payload);
+
+      if (response.status === 200 || response.status === 201) {
         setIsSuccess(true);
         setTimeout(() => {
           window.location.reload();
@@ -46,7 +104,7 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
       setMessage(
         error.response?.data?.detail ||
           error.response?.data?.non_field_errors ||
-          "Failed to add routine."
+          `Failed to ${editMode ? "update" : "add"} routine.`
       );
       setTimeout(() => {
         setMessage("");
@@ -70,7 +128,7 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
     const value = event.target.value;
     setStartTime(value);
     if (value !== "") {
-      setIsStartTimeValid(value.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/));
+      setIsStartTimeValid(value.match(TIME_REGEX) || value.match(EXTENDED_TIME_REGEX));
     } else {
       setIsStartTimeValid(false);
     }
@@ -80,16 +138,28 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
     const value = event.target.value;
     setEndTime(value);
     if (value !== "") {
-      setIsEndTimeValid(value.match(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/));
+      setIsEndTimeValid(value.match(TIME_REGEX) || value.match(EXTENDED_TIME_REGEX));
     } else {
       setIsEndTimeValid(false);
+    }
+  };
+
+  const handleDaysChange = (event) => {
+    const value = event.target.value;
+    if (value === "M,T,W,Th,F,Sa,Su") {
+      setDays(days.includes(value) ? [] : [value]);
+    } else {
+      const updatedDays = days.includes(value)
+        ? days.filter((day) => day !== value)
+        : [...days.filter((day) => day !== "M,T,W,Th,F,Sa,Su"), value];
+      setDays(updatedDays);
     }
   };
 
   return (
     <ModalContainer isOpen={isOpen} onClose={onClose}>
       <h2 className="text-xl font-semibold mb-4 text-center text-yellow-800">
-        Add New Routine
+        {editMode ? "Edit Routine" : "Add New Routine"}
       </h2>
       {message && (
         <div className="text-center mb-4 text-red-500">{message}</div>
@@ -98,7 +168,7 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
         <div className="text-center">
           <img src={SuccessGif} alt="Success" className="mx-auto w-32" />
           <p className="text-green-500 font-semibold">
-            Routine added successfully!
+            Routine {editMode ? "updated" : "added"} successfully!
           </p>
         </div>
       ) : (
@@ -169,13 +239,43 @@ const AddRoutineModal = ({ isOpen, onClose }) => {
               required
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Days
+            </label>
+            <div className="mt-2 space-y-2">
+              {daysOptions.map((option) => (
+                <label
+                  key={option.value}
+                  className="inline-flex items-center mr-4"
+                >
+                  <input
+                    type="checkbox"
+                    value={option.value}
+                    checked={days.includes(option.value)}
+                    onChange={handleDaysChange}
+                    className="form-checkbox h-4 w-4 text-yellow-800 transition duration-150 ease-in-out"
+                    disabled={
+                      option.value !== "M,T,W,Th,F,Sa,Su" &&
+                      days.includes("M,T,W,Th,F,Sa,Su")
+                    }
+                  />
+                  <span className="ml-2">{option.label}</span>
+                </label>
+              ))}
+            </div>
+          </div>
           <div className="flex justify-center">
             <button
               type="submit"
               className="mt-4 px-4 py-1 border-[1px] border-yellow-800 text-black rounded-md hover:bg-yellow-800 hover:text-white focus:outline-none"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Creating..." : "Create Routine"}
+              {isSubmitting
+                ? "Submitting..."
+                : editMode
+                ? "Update Routine"
+                : "Create Routine"}
             </button>
           </div>
         </form>

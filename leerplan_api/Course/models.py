@@ -121,9 +121,9 @@ class CourseInstructorOfficeHour(models.Model):
     """
 
     course_instructor = models.ForeignKey(CourseInstructor, on_delete=models.CASCADE)
-    day = models.CharField(max_length=10, choices=Day.choices)
-    start_time = models.TimeField()
-    end_time = models.TimeField()
+    day = models.CharField(max_length=50)
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.course_instructor.course.name} : {self.course_instructor.instructor.firstname} {self.course_instructor.instructor.lastname} ({self.day} {self.start_time} - {self.end_time})"
@@ -176,22 +176,13 @@ class CourseLectureDay(models.Model):
     """
 
     course_cohort = models.ForeignKey(CourseCohort, on_delete=models.CASCADE)
-    day = models.CharField(max_length=10)
+    day = models.CharField(max_length=10, choices=Day.choices)
     location = models.CharField(max_length=255)
     start_time = models.TimeField()
     end_time = models.TimeField()
 
     def __str__(self):
         return f"{self.course_cohort.course.name} : Cohort {self.course_cohort.name} ({self.day} {self.start_time} - {self.end_time}) ({self.location})"
-
-
-class TextbookType(models.TextChoices):
-    """
-    defines the textbook types
-    """
-
-    PRIMARY = 'primary', 'Primary'
-    SECONDARY = 'secondary', 'Secondary'
 
 
 class CourseTextbook(models.Model):
@@ -206,7 +197,7 @@ class CourseTextbook(models.Model):
 
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    type = models.CharField(max_length=15, choices=TextbookType.choices, null=True, blank=True)
+    type = models.CharField(max_length=25, null=True, blank=True)
 
     def __str__(self):
         return f"{self.course.name} ({self.course.code}) : {self.title} ({self.type.capitalize()})"

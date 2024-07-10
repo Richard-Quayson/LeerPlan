@@ -1,0 +1,699 @@
+{
+  "code": "CS222",
+  "name": "Data Structures and Algorithms",
+  "description": "This course is about data structures; that is, the methods of organizing large amounts of data.  It is also about algorithm analysis; that is, the estimation of the running time of algorithms.  Specifically, this course will cover fundamental abstract data types and their implementations as data structures, such as lists, hash tables, trees, and priority queues, as well as asymptotic analyses of algorithms involving these data structures. Students will also learn about recursion, searching (sequential and binary); and sorting (selection sort, insertion sort, merge sort, and heap sort).  The Java programming language will be used as the language of implementation in this course.",
+  "semester": {
+    "name": "Jan-May",
+    "year": 2022
+  },
+  "instructors": [
+    {
+      "name": "Dr. Attlee M. Gamundani",
+      "email": "agamundani@ashesi.edu.gh",
+      "office_hours": [
+        {
+          "day": "Wednesday",
+          "time": {
+            "start_time": "08:00:00",
+            "end_time": "09:00:00"
+          }
+        },
+        {
+          "day": "Friday",
+          "time": {
+            "start_time": "11:30:00",
+            "end_time": "12:30:00"
+          }
+        }
+      ],
+      "phone": null
+    }
+  ],
+  "faculty_interns": [
+    {
+      "name": "Owusu-Banahene Osei",
+      "email": "owusu-banahene.osei@ashesi.edu.gh",
+      "office_hours": [
+        {
+          "day": "Monday",
+          "time": {
+            "start_time": "09:30:00",
+            "end_time": "11:30:00"
+          }
+        },
+        {
+          "day": "Thursday",
+          "time": {
+            "start_time": "14:30:00",
+            "end_time": "16:30:00"
+          }
+        }
+      ],
+      "phone": null
+    }
+  ],
+  "textbooks": [
+    {
+      "title": "Data structures and algorithms in Java",
+      "type": "primary"
+    },
+    {
+      "title": "A practical guide to data structures and algorithms using Java",
+      "type": "secondary"
+    },
+    {
+      "title": "Introduction to Java programming and data structures",
+      "type": "secondary"
+    },
+    {
+      "title": "Java: An Introduction to Problem-Solving and Programming",
+      "type": "secondary"
+    },
+    {
+      "title": "Data Structures and Algorithm Analysis in Java",
+      "type": "secondary"
+    },
+    {
+      "title": "Data Structures & Algorithms in Java",
+      "type": "secondary"
+    }
+  ],
+  "evaluation_criteria": [
+    {
+      "type": "Assignments & Lab Challenges",
+      "weight": 25.0
+    },
+    {
+      "type": "Quizzes",
+      "weight": 10.0
+    },
+    {
+      "type": "Attendance & Participation",
+      "weight": 5.0
+    },
+    {
+      "type": "Tests",
+      "weight": 20.0
+    },
+    {
+      "type": "Final Project",
+      "weight": 15.0
+    },
+    {
+      "type": "Final Exam",
+      "weight": 25.0
+    }
+  ],
+  "cohorts": [
+    {
+      "cohort_name": "A",
+      "lecture_days": [
+        {
+          "day": "Monday",
+          "time": {
+            "start_time": "11:30:00",
+            "end_time": "13:00:00"
+          },
+          "location": "ZOOM"
+        },
+        {
+          "day": "Wednesday",
+          "time": {
+            "start_time": "11:30:00",
+            "end_time": "13:00:00"
+          },
+          "location": "ZOOM"
+        }
+      ]
+    },
+    {
+      "cohort_name": "B",
+      "lecture_days": [
+        {
+          "day": "Monday",
+          "time": {
+            "start_time": "13:15:00",
+            "end_time": "14:45:00"
+          },
+          "location": "ZOOM"
+        },
+        {
+          "day": "Wednesday",
+          "time": {
+            "start_time": "13:15:00",
+            "end_time": "14:45:00"
+          },
+          "location": "ZOOM"
+        }
+      ]
+    },
+    {
+      "cohort_name": "A",
+      "lecture_days": [
+        {
+          "day": "Friday",
+          "time": {
+            "start_time": "13:50:00",
+            "end_time": "15:20:00"
+          },
+          "location": "ZOOM"
+        }
+      ]
+    },
+    {
+      "cohort_name": "B",
+      "lecture_days": [
+        {
+          "day": "Friday",
+          "time": {
+            "start_time": "15:30:00",
+            "end_time": "17:00:00"
+          },
+          "location": "ZOOM"
+        }
+      ]
+    }
+  ],
+  "weekly_schedule": [
+    {
+      "week_number": 1,
+      "start_date": "2022-01-17",
+      "end_date": "2022-01-21",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Course Outline and Housekeeping issues"
+        },
+        {
+          "title": "Virtual meet and greet session"
+        },
+        {
+          "title": "Sharing expectations about the course"
+        },
+        {
+          "title": "Course Outline walk through"
+        },
+        {
+          "title": "E-learning and course resources accessibility orientation."
+        },
+        {
+          "title": "Java programming Fundamentals, classes & Objects"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Chapter 1"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Course outline acknowledgement form",
+          "type": "assignment",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 1,
+      "start_date": "2022-01-21",
+      "end_date": "2022-01-21",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Getting started with Java"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Lab 1",
+          "type": "lab",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 2,
+      "start_date": "2022-01-24",
+      "end_date": "2022-01-26",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Object Oriented Design (OOD) programming and working with arrays"
+        },
+        {
+          "title": "Working with Arrays"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "Chapter 1"
+        },
+        {
+          "chapter": "3.1"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 2,
+      "start_date": "2022-01-26",
+      "end_date": "2022-01-26",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Working with Arrays"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Lab 2",
+          "type": "lab",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "start_date": "2022-01-31",
+      "end_date": "2022-02-04",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Equality of reference types"
+        },
+        {
+          "title": "Multi-dimensional arrays"
+        },
+        {
+          "title": "Inheritance"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "3.5"
+        },
+        {
+          "chapter": "3.1"
+        },
+        {
+          "chapter": "2.2"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 1",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 3,
+      "start_date": "2022-02-04",
+      "end_date": "2022-02-04",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Inheritance"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Lab 3",
+          "type": "lab",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 4,
+      "start_date": "2022-02-07",
+      "end_date": "2022-02-11",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Interfaces, abstract classes"
+        },
+        {
+          "title": "List ADT, array-based lists"
+        },
+        {
+          "title": "Generics in Java, array-based lists"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "2.3"
+        },
+        {
+          "chapter": "2.1.2"
+        },
+        {
+          "chapter": "7.1"
+        },
+        {
+          "chapter": "7.2"
+        },
+        {
+          "chapter": "2.5"
+        },
+        {
+          "chapter": "7.2"
+        }
+      ],
+      "assessments": []
+    },
+    {
+      "week_number": 4,
+      "start_date": "2022-02-11",
+      "end_date": "2022-02-11",
+      "type": "lab",
+      "topics": [
+        {
+          "title": "Generics in Java, array-based lists"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Lab 4",
+          "type": "lab",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 5,
+      "start_date": "2022-02-14",
+      "end_date": "2022-02-18",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Linked Lists"
+        },
+        {
+          "title": "Nested Classes in Java"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "2.6"
+        },
+        {
+          "chapter": "3.2"
+        },
+        {
+          "chapter": "3.3 – 3.4"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Assign 1",
+          "type": "assignment",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 6,
+      "start_date": "2022-02-21",
+      "end_date": "2022-02-25",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Linked Lists"
+        },
+        {
+          "title": "Algorithm Analysis"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "7.3"
+        },
+        {
+          "chapter": "7.4"
+        },
+        {
+          "chapter": "4.1 – 4.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Assign 2",
+          "type": "assignment",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 7,
+      "start_date": "2022-02-28",
+      "end_date": "2022-03-04",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Stacks, Queues and Dequeues"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "6.1"
+        },
+        {
+          "chapter": "6.2"
+        },
+        {
+          "chapter": "6.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Test 1",
+          "type": "test",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 8,
+      "start_date": "2022-03-07",
+      "end_date": "2022-03-11",
+      "type": "break",
+      "topics": [],
+      "readings": [],
+      "assessments": []
+    },
+    {
+      "week_number": 9,
+      "start_date": "2022-03-14",
+      "end_date": "2022-03-18",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Recursion"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Project Proposals",
+          "type": "assignment",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 10,
+      "start_date": "2022-03-21",
+      "end_date": "2022-03-25",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Trees"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "8.1 – 8.2"
+        },
+        {
+          "chapter": "8.3 – 8.4"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 2",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 11,
+      "start_date": "2022-03-28",
+      "end_date": "2022-04-01",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Binary Search Trees"
+        },
+        {
+          "title": "Balanced Search Trees"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "11.1"
+        },
+        {
+          "chapter": "11.2"
+        },
+        {
+          "chapter": "11.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 3",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 12,
+      "start_date": "2022-04-04",
+      "end_date": "2022-04-08",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Priority queues and heaps"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "9.1"
+        },
+        {
+          "chapter": "9.2"
+        },
+        {
+          "chapter": "9.3"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Test 2",
+          "type": "test",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 13,
+      "start_date": "2022-04-11",
+      "end_date": "2022-04-15",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Maps and Hashtables"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "10.1"
+        },
+        {
+          "chapter": "10.2"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Assign 3",
+          "type": "assignment",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 14,
+      "start_date": "2022-04-19",
+      "end_date": "2022-04-23",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Searching and Sorting"
+        }
+      ],
+      "readings": [
+        {
+          "chapter": "12.1 – 12.2"
+        },
+        {
+          "chapter": "12.3"
+        },
+        {
+          "chapter": "12.4"
+        }
+      ],
+      "assessments": [
+        {
+          "name": "Quiz 4",
+          "type": "quiz",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 15,
+      "start_date": "2022-04-25",
+      "end_date": "2022-04-29",
+      "type": "lecture",
+      "topics": [
+        {
+          "title": "Graphs"
+        },
+        {
+          "title": "Revision"
+        }
+      ],
+      "readings": [],
+      "assessments": [
+        {
+          "name": "Project",
+          "type": "assignment",
+          "due_date": null,
+          "weight": null
+        }
+      ]
+    },
+    {
+      "week_number": 16,
+      "start_date": "2022-05-03",
+      "end_date": "2022-05-05",
+      "type": "exam",
+      "topics": [],
+      "readings": [],
+      "assessments": []
+    }
+  ]
+}

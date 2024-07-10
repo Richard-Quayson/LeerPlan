@@ -3,63 +3,21 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import WeeklySchedule from "./WeeklySchedule";
-import { COURSE_ROUTINE_COLOURS } from "../utility/constants";
+import generateEvents from "./CalendarEvents";
 import LocationIcon from "../assets/icons/Location.png";
 import NotificationIcon from "../assets/icons/Notification.png";
 
 const localizer = momentLocalizer(moment);
 
-const getColorForEvent = (index) => {
-  const colors = Object.values(COURSE_ROUTINE_COLOURS);
-  return colors[index % colors.length].light;
-};
-
-const generateEvents = (course, courseIndex, cohort) => {
-  const events = [];
-  const weeklySchedules = course.weekly_schedules;
-
-  if (weeklySchedules.length === 0) return events;
-
-  const startDate = moment(weeklySchedules[0].start_date);
-  const endDate = moment(weeklySchedules[weeklySchedules.length - 1].end_date);
-
-  cohort.lecture_days.forEach((lecture) => {
-    let current = moment(startDate).startOf("week");
-    while (current.isSameOrBefore(endDate)) {
-      if (current.format("dddd").toLowerCase() === lecture.day) {
-        const start = moment(current).set({
-          hour: moment(lecture.start_time, "HH:mm:ss").get("hour"),
-          minute: moment(lecture.start_time, "HH:mm:ss").get("minute"),
-        });
-        const end = moment(current).set({
-          hour: moment(lecture.end_time, "HH:mm:ss").get("hour"),
-          minute: moment(lecture.end_time, "HH:mm:ss").get("minute"),
-        });
-
-        events.push({
-          title: `${course.code} ${course.name}`,
-          start: start.toDate(),
-          end: end.toDate(),
-          allDay: false,
-          color: getColorForEvent(courseIndex),
-          courseCode: course.code,
-          courseTitle: course.name,
-          location: lecture.location,
-        });
-      }
-      current.add(1, "day");
-    }
-  });
-
-  return events;
-};
-
 const CustomCalendar = ({
   courses,
+  userRoutines,
+  userMetadata,
   filterType,
   filterValue,
   applyFilter,
   resetFilter,
+  displayTimeBlocks,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -135,9 +93,9 @@ const CustomCalendar = ({
     setSelectedEvent(null);
   };
 
-  const eventStyleGetter = (event) => {
+  const lectureEventStyleGetter = (event) => {
     const style = {
-      backgroundColor: event.color,
+      backgroundColor: event.color, // CHANGE TO #3b82f6 LATER
       borderRadius: "5px",
       color: "white",
       border: "0px",
@@ -155,15 +113,18 @@ const CustomCalendar = ({
     <div className="h-full sans-serif text-sm relative">
       <Calendar
         localizer={localizer}
-        events={courses.flatMap((courseObj, courseIndex) =>
-          generateEvents(courseObj.course, courseIndex, courseObj.cohort)
+        events={generateEvents(
+          courses,
+          userRoutines,
+          userMetadata,
+          displayTimeBlocks
         )}
         startAccessor="start"
         endAccessor="end"
         views={["month", "week", "day"]}
         defaultView={defaultView}
         style={{ height: "calc(100vh - 80px)" }}
-        eventPropGetter={eventStyleGetter}
+        eventPropGetter={lectureEventStyleGetter}
         onSelectEvent={handleEventClick}
         date={defaultDate}
         onNavigate={(date) => setDefaultDate(date)}

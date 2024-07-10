@@ -16,6 +16,7 @@ import FilledPlusIcon from "../assets/icons/FilledPlus.png";
 import UnfilledPlusIcon from "../assets/icons/UnfilledPlus.png";
 import SubmitIcon from "../assets/icons/Submit.png";
 import SuccessGif from "../assets/gifs/Success.gif";
+import UserMetaData from "./UserMetaData";
 
 const UserDetailCard = ({ user, isOpen, onClose }) => {
   const [userData, setUserData] = useState(null);
@@ -66,7 +67,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
   };
 
   const handleUniversityAdded = async () => {
-    const response = await api.get(GET_USER_DETAILS_URL);
+    const response = await api.get(USER_DETAILS_URL);
     const data = response.data;
     setUserData(data);
     setUniversities(data.universities);
@@ -133,7 +134,6 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
         <div className="flex items-center mb-6 relative">
           <div className="relative">
             <img
-              // src={user.profile_picture || ProfilePicture}
               src={ProfilePicture}
               alt="Profile"
               className="w-16 h-16 rounded-lg mr-4"
@@ -213,6 +213,7 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
             </div>
           </div>
         </div>
+
         {/* LINE SEPARATOR */}
         <hr className="border-gray-400 w-full my-4" />
 
@@ -274,7 +275,16 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
             </div>
           )}
         </div>
+
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-400 w-full mt-8 mb-4" />
+
+        {/* METADATA SECTION */}
+        <div className="mt-8">
+          {userData && userData.metadata && <UserMetaData metadata={userData.metadata} />}
+        </div>
       </div>
+
       <div
         className={`w-2/3 bg-black bg-opacity-50 transition-opacity duration-300 ${
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -303,4 +313,5 @@ const UserDetailCard = ({ user, isOpen, onClose }) => {
     </div>
   );
 };
+
 export default UserDetailCard;

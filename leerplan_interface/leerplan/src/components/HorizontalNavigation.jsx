@@ -130,7 +130,7 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
       {isCoursePage && (
         <div className="h-20 pr-4 py-5 text-yellow-700 shadow-md flex items-center">
           <GoBack />
-          <h1 className="text-center text-2xl font-bold flex-grow">{title}</h1>
+          <h1 className="text-center px-8 text-2xl font-bold flex-grow">{title}</h1>
         </div>
       )}
     </>

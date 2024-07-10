@@ -7,7 +7,7 @@ import CoursesIcon from "../assets/icons/Courses.png";
 
 const CourseInstructorCard = ({ instructor }) => {
   const { name, email, phone, type, courses } = instructor.instructor;
-  const officeHours = instructor.office_hours;
+  const officeHours = instructor.office_hours || [];
 
   const borderColor =
     type === "Lecturer" ? "border-yellow-600" : "border-yellow-800";
@@ -36,24 +36,36 @@ const CourseInstructorCard = ({ instructor }) => {
       {/* OFFICE HOURS */}
       <div className="text-gray-500 mt-4">
         <div className="font-bold flex items-center">
-          <img src={MeetingTimeIcon} alt="Email" className="w-4 h-4 mr-2" />
+          <img
+            src={MeetingTimeIcon}
+            alt="Meeting Time"
+            className="w-4 h-4 mr-2"
+          />
           Office Hours for this Course:
         </div>
         <ul className="list-none ml-4">
-          {(officeHours.length > 0 &&
+          {officeHours.length > 0 ? (
             officeHours.map((oh) => (
               <li key={oh.id}>
-                {`${
-                  oh.day.charAt(0).toUpperCase() + oh.day.slice(1)
-                }, ${oh.start_time.slice(0, 5)} to ${oh.end_time.slice(0, 5)}`}
+                {oh.day && oh.start_time && oh.end_time
+                  ? `${
+                      oh.day.charAt(0).toUpperCase() + oh.day.slice(1)
+                    }, ${oh.start_time.slice(0, 5)} to ${oh.end_time.slice(
+                      0,
+                      5
+                    )}`
+                  : oh.day.charAt(0).toUpperCase() + oh.day.slice(1)}
               </li>
-            ))) || <li className="text-red-600">Not specified</li>}
+            ))
+          ) : (
+            <li className="text-red-600">Not specified</li>
+          )}
         </ul>
       </div>
       {/* COURSES */}
       <div className="text-gray-500 mt-4">
         <div className="font-bold flex items-center">
-          <img src={CoursesIcon} alt="Email" className="w-4 h-4 mr-2" />
+          <img src={CoursesIcon} alt="Courses" className="w-4 h-4 mr-2" />
           All Courses:
         </div>
         <ul className="list-none ml-4">

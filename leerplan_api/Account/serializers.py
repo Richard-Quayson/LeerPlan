@@ -5,8 +5,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.password_validation import validate_password
 from datetime import time
 
-from .models import UserAccount, University, UserUniversity, UserRoutine
-from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX
+from .models import UserAccount, University, UserUniversity, UserRoutine, UserMetaData
+from .helper import NAME_REGEX, EMAIL_REGEX, PASSWORD_REGEX, DAYS_ABBREVIATION, adjust_time, get_extended_routine_data
 
 
 class AccountRegistrationSerializer(serializers.ModelSerializer):
@@ -335,7 +335,7 @@ class UserRoutineSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserRoutine
-        fields = ["id", "user", "name","start_time", "end_time"]
+        fields = ["id", "user", "name","start_time", "end_time", "days"]
 
     def get_user(self, obj: UserRoutine) -> dict:
         return self.context["request"].user.id
@@ -346,19 +346,29 @@ class UserRoutineSerializer(serializers.ModelSerializer):
         
         raise serializers.ValidationError("Invalid routine name format!")
     
+    def validate_start_time(self, value: time) -> time:
+        return adjust_time(value)
+    
+    def validate_end_time(self, value: time) -> time:
+        return adjust_time(value)
+    
+    def validate_days(self, value: str) -> str:
+        days = value.split(",")
+        for day in days:
+            if day not in DAYS_ABBREVIATION:
+                raise serializers.ValidationError(f"Invalid day abbreviation {day}!")
+        
+        return value
+    
     def validate(self, attrs: dict) -> dict:
         attrs["user"] = self.context["request"].user
 
-        if "name" in attrs and UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
+        if not self.instance and "name" in attrs and UserRoutine.objects.filter(user=attrs["user"], name=attrs["name"]).exists():
             raise serializers.ValidationError("Routine already exists!")
         
         if "start_time" in attrs and "end_time" in attrs:
             start_time = attrs["start_time"]
             end_time = attrs["end_time"]
-            
-            # handle case where end time is 00:00
-            if end_time == time(0, 0):
-                end_time = time(23, 59)
 
             if start_time >= end_time:
                 raise serializers.ValidationError("Start time must be before end time!")
@@ -392,5 +402,40 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         for routine in routines:
             data = UserRoutineSerializer(routine, context={"request": self.context["request"]}).data
             user_data["routines"].append(data)
+
+        # add extended routine data
+        user_data["extended_routines"] = get_extended_routine_data(user_data["routines"])
+        
+        # retrieve user's metadata
+        if UserMetaData.objects.filter(user=instance).exists():
+            user_data["metadata"] = UserMetaDataSerializer(UserMetaData.objects.get(user=instance)).data
+        else:
+            user_data["metadata"] = None
         
         return user_data
+    
+
+class UserMetaDataSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True, default=serializers.CurrentUserDefault())
+
+    class Meta:
+        model = UserMetaData
+        fields = ["id", "user", "min_study_time", "max_study_time", "sleep_time", "wake_time"]
+
+    def validate_sleep_time(self, value: time) -> time:
+        return adjust_time(value)
+    
+    def validate_wake_time(self, value: time) -> time:
+        return adjust_time(value)
+
+    def create(self, validated_data: dict) -> UserMetaData:
+        validated_data["user"] = self.context["request"].user
+        return super().create(validated_data)
+    
+    def update(self, instance: UserMetaData, validated_data: dict) -> UserMetaData:
+        instance.min_study_time = validated_data.get("min_study_time", instance.min_study_time)
+        instance.max_study_time = validated_data.get("max_study_time", instance.max_study_time)
+        instance.sleep_time = validated_data.get("sleep_time", instance.sleep_time)
+        instance.wake_time = validated_data.get("wake_time", instance.wake_time)
+        instance.save()
+        return instance

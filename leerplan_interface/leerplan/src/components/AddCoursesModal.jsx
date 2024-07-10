@@ -4,6 +4,7 @@ import { CREATE_COURSES_URL } from "../utility/api_urls";
 import api from "../utility/api";
 import { PREFERRED_UNIVERSITY_ID } from "../utility/constants";
 import SuccessGif from "../assets/gifs/Success.gif";
+import CourseLoadingGif from "../assets/gifs/CourseLoading.gif";
 import FileIcon from "../assets/icons/File.png";
 import UploadIcon from "../assets/icons/Upload.png";
 
@@ -97,7 +98,8 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
         }, 5000);
       }
     } catch (error) {
-      setMessage(error.response?.data?.detail || "Failed to upload courses.");
+      console.log(error);
+      setMessage(error.response?.data[0] || "Failed to upload courses.");
       setTimeout(() => {
         setMessage("");
       }, 5000);
@@ -124,7 +126,9 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
             {message && <div className="mb-4 text-red-500">{message}</div>}
             <p className="text-gray-500 mb-2">
               Upload all your course syllabus for the semester here to create a
-              custom academic calendar.
+              custom academic calendar. This may take a while, processing one
+              syllabus takes approximately two and a half minutes. Please do not
+              refresh the screen while the process is ongoing.
             </p>
             <div className="ml-8 my-4 flex flex-col">
               {files.map((file, index) => (
@@ -142,40 +146,50 @@ const AddCoursesModal = ({ isOpen, onClose }) => {
                 </div>
               ))}
             </div>
-            <div className="mb-2">
-              <div className="flex justify-between">
-                <label
-                  htmlFor="file-upload"
-                  className="ml-4 cursor-pointer bg-white px-4 rounded-3xl border border-yellow-800 mr-2"
-                >
-                  <div className="flex items-center py-1">
-                    <img
-                      src={UploadIcon}
-                      alt="Upload"
-                      className="w-6 h-6 inline-block mr-2"
-                    />
-                    Select Files
-                  </div>
-                  <input
-                    id="file-upload"
-                    type="file"
-                    accept=".pdf"
-                    onChange={handleFileChange}
-                    multiple
-                    className="hidden"
-                  />
-                </label>
-                <button
-                  type="submit"
-                  className={`px-4 border border-yellow-800 bg-white font-semibold text-yellow-800 rounded-lg shadow hover:bg-yellow-800 hover:text-white ${
-                    isLoading && "opacity-50 cursor-not-allowed"
-                  }`}
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Uploading..." : "Upload"}
-                </button>
+            {isLoading ? (
+              <div className="flex justify-center mt-4">
+                <img
+                  src={CourseLoadingGif}
+                  alt="Loading"
+                  className="w-32 h-32"
+                />
               </div>
-            </div>
+            ) : (
+              <div className="mb-2">
+                <div className="flex justify-between">
+                  <label
+                    htmlFor="file-upload"
+                    className="ml-4 cursor-pointer bg-white px-4 rounded-3xl border border-yellow-800 mr-2"
+                  >
+                    <div className="flex items-center py-1">
+                      <img
+                        src={UploadIcon}
+                        alt="Upload"
+                        className="w-6 h-6 inline-block mr-2"
+                      />
+                      Select Files
+                    </div>
+                    <input
+                      id="file-upload"
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleFileChange}
+                      multiple
+                      className="hidden"
+                    />
+                  </label>
+                  <button
+                    type="submit"
+                    className={`px-4 border border-yellow-800 bg-white font-semibold text-yellow-800 rounded-lg shadow hover:bg-yellow-800 hover:text-white ${
+                      isLoading && "opacity-50 cursor-not-allowed"
+                    }`}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Uploading..." : "Upload"}
+                  </button>
+                </div>
+              </div>
+            )}
           </form>
         )}
       </div>

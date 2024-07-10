@@ -10,8 +10,11 @@ const truncateText = (text, maxLength) => {
 };
 
 const CourseSummaryCard = ({ code, title, color }) => {
-  const maxTextLength = 50;
-  const truncatedTitle = truncateText(`${code} - ${title}`, maxTextLength);
+  const maxTextLengthNormalDisplay = 29;
+  const maxTextLengthLargeDisplay = 60;
+
+  const truncatedTitleNormalDisplay = truncateText(`${code} - ${title}`, maxTextLengthNormalDisplay);
+  const truncatedTitleLargeDisplay = truncateText(`${code} - ${title}`, maxTextLengthLargeDisplay);
 
   const navigate = useNavigate();
 
@@ -32,7 +35,12 @@ const CourseSummaryCard = ({ code, title, color }) => {
       <div className="content p-2 pl-4 flex-1">
         <span className="font-bold">{code}</span>
         <span className="ml-2 font-semibold">
-          {truncatedTitle.slice(code.length + 3)}
+          <span className="xl:hidden">
+            {truncatedTitleNormalDisplay.slice(code.length + 3)}
+          </span>
+          <span className="hidden xl:inline">
+            {truncatedTitleLargeDisplay.slice(code.length + 3)}
+          </span>
         </span>
       </div>
     </div>

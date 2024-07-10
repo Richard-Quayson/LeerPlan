@@ -8,7 +8,9 @@ from .views import (
     RemoveUserUniversityView, RetrieveUserUniversitiesView,
 
     AddUserRoutineView, RetrieveUserRoutineView, RetrieveUserRoutinesView, 
-    UpdateUserRoutineView, DeleteUserRoutineView
+    UpdateUserRoutineView, DeleteUserRoutineView,
+
+    AddUserMetaDataView, UpdateUserMetaDataView
 )
 
 urlpatterns = [
@@ -34,4 +36,8 @@ urlpatterns = [
     path("user/routine/", RetrieveUserRoutinesView.as_view(), name="retrieve-user-routines"),
     path("user/routine/update/<int:routine_id>/", UpdateUserRoutineView.as_view(), name="update-user-routine"),
     path("user/routine/delete/<int:routine_id>/", DeleteUserRoutineView.as_view(), name="delete-user-routine"),
+
+    # METADATA ENDPOINTS
+    path("user/metadata/add/", AddUserMetaDataView.as_view(), name="add-user-metadata"),
+    path("user/metadata/update/<int:metadata_id>/", UpdateUserMetaDataView.as_view(), name="update-user-metadata"),
 ]
