@@ -62,7 +62,12 @@ const DashboardPage = () => {
           )}
         </div>
         <div className="w-3/4 overflow-y-auto">
-          {userCourses && <RightPane courses={userCourses} />}
+          {userCourses && user.extended_routines && (
+            <RightPane
+              courses={userCourses}
+              userRoutines={user.extended_routines}
+            />
+          )}
         </div>
       </div>
     </ProtectedRoute>
