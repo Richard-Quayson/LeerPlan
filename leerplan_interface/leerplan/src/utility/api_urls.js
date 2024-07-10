@@ -71,3 +71,5 @@ export const SET_COURSE_COHORT_URL = "course/cohort/specify/";                 /
 
 export const DELETE_USER_COURSE_URL = "course/delete/";                         // DELETE URL to delete a course of a user
 // export const DELETE_USER_COURSE_URL = "course/delete/<int:user_course_id>/";       // DELETE URL to delete a course of a user
+
+export const GENERATE_TIME_BLOCKS_URL = "course/timeblocks/";                   // POST URL to generate time blocks for a course
