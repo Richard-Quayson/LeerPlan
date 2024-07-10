@@ -47,6 +47,7 @@ def get_extended_routine_data(routines: list[dict]) -> list[dict]:
     """
 
     extended_routine = list()
+    routine_index = 0
     for routine in routines:
         routine_days = routine["days"].split(",")
 
@@ -57,7 +58,10 @@ def get_extended_routine_data(routines: list[dict]) -> list[dict]:
                 "name": routine["name"],
                 "start_time": routine["start_time"],
                 "end_time": routine["end_time"],
-                "day": DAYS_DICT[day].lower()
+                "day": DAYS_DICT[day].lower(),
+                "routine_index": routine_index
             })
+
+        routine_index += 1
 
     return extended_routine
