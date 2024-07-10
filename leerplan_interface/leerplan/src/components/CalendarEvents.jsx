@@ -1,8 +1,13 @@
+import { useState, useEffect } from "react";
 import moment from "moment";
+import api from "../utility/api";
+import { GENERATE_TIME_BLOCKS_URL } from "../utility/api_urls";
 import {
   COURSE_ROUTINE_COLOURS,
   SLEEP_EVENT_COLOUR,
+  TIME_BLOCK_EVENT_COLOUR,
   DAYS_OF_THE_WEEK,
+  EVENT_BREAK,
 } from "../utility/constants";
 
 const getColorForCourseEvent = (index) => {
@@ -16,7 +21,21 @@ const getColorForRoutineEvent = (index) => {
 };
 
 const generateEvents = (courses, userRoutines, userMetadata) => {
+  const [timeBlocks, setTimeBlocks] = useState([]);
   const events = [];
+  console.log(timeBlocks);
+  useEffect(() => {
+    const fetchTimeBlocks = async () => {
+      try {
+        const response = await api.get(GENERATE_TIME_BLOCKS_URL);
+        setTimeBlocks(response.data);
+      } catch (error) {
+        setTimeBlocks([]);
+      }
+    };
+
+    fetchTimeBlocks();
+  }, []);
 
   // Find global start and end dates
   const allStartDates = courses
@@ -137,6 +156,44 @@ const generateEvents = (courses, userRoutines, userMetadata) => {
       });
 
       current.add(1, "week");
+    }
+  });
+
+  // Generate time block events for all days
+  DAYS_OF_THE_WEEK.forEach((day) => {
+    if (timeBlocks[day]) {
+      timeBlocks[day].forEach((block) => {
+        const start = moment(block.start_time, "HH:mm:ss");
+        const end = moment(block.end_time, "HH:mm:ss");
+        if (end.diff(start, "minutes") >= 20) {
+          let current = moment(globalStartDate).startOf("week");
+          while (current.isSameOrBefore(globalEndDate)) {
+            if (current.format("dddd").toLowerCase() === day) {
+              const eventStart = moment(current)
+                .set({
+                  hour: start.get("hour"),
+                  minute: start.get("minute") + EVENT_BREAK,
+                })
+                .toDate();
+              const eventEnd = moment(current)
+                .set({
+                  hour: end.get("hour"),
+                  minute: end.get("minute") - EVENT_BREAK,
+                })
+                .toDate();
+
+              events.push({
+                title: "Time Block",
+                start: eventStart,
+                end: eventEnd,
+                allDay: false,
+                color: TIME_BLOCK_EVENT_COLOUR,
+              });
+            }
+            current.add(1, "day");
+          }
+        }
+      });
     }
   });
 
