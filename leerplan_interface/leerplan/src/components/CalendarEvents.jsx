@@ -1,5 +1,9 @@
 import moment from "moment";
-import { COURSE_ROUTINE_COLOURS } from "../utility/constants";
+import {
+  COURSE_ROUTINE_COLOURS,
+  SLEEP_EVENT_COLOUR,
+  DAYS_OF_THE_WEEK,
+} from "../utility/constants";
 
 const getColorForCourseEvent = (index) => {
   const colors = Object.values(COURSE_ROUTINE_COLOURS);
@@ -107,17 +111,8 @@ const generateEvents = (courses, userRoutines, userMetadata) => {
 
   const sleepMoment = moment(sleepTime, "HH:mm:ss");
   const wakeMoment = moment(userMetadata.wake_time, "HH:mm:ss");
-  const daysOfWeek = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ];
 
-  daysOfWeek.forEach((day) => {
+  DAYS_OF_THE_WEEK.forEach((day) => {
     let current = moment(globalStartDate).startOf("week");
     while (current.isSameOrBefore(globalEndDate)) {
       const start = moment(current)
@@ -138,7 +133,7 @@ const generateEvents = (courses, userRoutines, userMetadata) => {
         start: start.toDate(),
         end: end.toDate(),
         allDay: false,
-        color: "#86198f",
+        color: SLEEP_EVENT_COLOUR,
       });
 
       current.add(1, "week");
