@@ -17,6 +17,7 @@ const CustomCalendar = ({
   filterValue,
   applyFilter,
   resetFilter,
+  displayTimeBlocks,
 }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
@@ -112,7 +113,12 @@ const CustomCalendar = ({
     <div className="h-full sans-serif text-sm relative">
       <Calendar
         localizer={localizer}
-        events={generateEvents(courses, userRoutines, userMetadata)}
+        events={generateEvents(
+          courses,
+          userRoutines,
+          userMetadata,
+          displayTimeBlocks
+        )}
         startAccessor="start"
         endAccessor="end"
         views={["month", "week", "day"]}
