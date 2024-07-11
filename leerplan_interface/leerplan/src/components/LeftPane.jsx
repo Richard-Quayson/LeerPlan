@@ -6,6 +6,7 @@ import CourseList from "./CourseList";
 import RoutineList from "./RoutineList";
 import AddUserMetaData from "./AddUserMetaData";
 import YesNoPrompt from "./YesNoPrompt";
+import MiscellaneousItems from "./MiscellaneousItems";
 import { LOGOUT_ROUTE } from "../utility/routes";
 import { CURRENT_USER_ID, DISPLAY_TIME_BLOCKS } from "../utility/constants";
 import LeerPlanLogo from "../assets/images/leerplanlogo.png";
@@ -82,7 +83,7 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
         <hr className="border-gray-300 w-full mt-4" />
 
         {/* GENERATE ACADEMIC CALENDAR */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <button
             onClick={handleGenerateSchedule}
             className="w-[200px] py-2 border border-yellow-700 text-yellow-700 rounded-lg"
@@ -95,14 +96,22 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
             {displayTimeBlocks ? "Remove Timeblocks" : "Generate Timeblocks"}
           </button>
         </div>
-      </div>
 
-      {/* LINE SEPARATOR */}
-      <hr className="border-gray-300 w-full mt-4" />
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-300 w-full mt-4" />
+
+        {/* MISCELLANEOUS ITEMS: STUDY STREAMS, TIPS, ETC. */}
+        <div className="w-full">
+          <MiscellaneousItems />
+        </div>
+
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-300 w-full mt-4" />
+      </div>
 
       {/* LOGOUT */}
       <div
-        className="logout-container mt-auto"
+        className="logout-container"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
       >
