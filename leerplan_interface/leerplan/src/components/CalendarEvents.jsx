@@ -189,7 +189,7 @@ const generateEvents = (
                   .toDate();
 
                 events.push({
-                  title: "Time Block",
+                  title: block.label,
                   start: eventStart,
                   end: eventEnd,
                   allDay: false,
