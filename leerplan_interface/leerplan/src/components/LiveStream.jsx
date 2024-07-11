@@ -2,7 +2,7 @@ import React from "react";
 import StudyStreamLogo from "../assets/images/StudyStreamLogo.png";
 import LiveStreamGif from "../assets/gifs/LiveStream.gif";
 
-const MiscellaneousItems = () => {
+const LiveStream = () => {
   return (
     <div className="flex flex-col justify-center pt-4 pl-4">
       <div className="flex items-center">
@@ -30,4 +30,4 @@ const MiscellaneousItems = () => {
   );
 };
 
-export default MiscellaneousItems;
+export default LiveStream;

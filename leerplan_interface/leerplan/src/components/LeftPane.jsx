@@ -6,7 +6,7 @@ import CourseList from "./CourseList";
 import RoutineList from "./RoutineList";
 import AddUserMetaData from "./AddUserMetaData";
 import YesNoPrompt from "./YesNoPrompt";
-import MiscellaneousItems from "./MiscellaneousItems";
+import LiveStream from "./LiveStream";
 import { LOGOUT_ROUTE } from "../utility/routes";
 import { CURRENT_USER_ID, DISPLAY_TIME_BLOCKS } from "../utility/constants";
 import LeerPlanLogo from "../assets/images/leerplanlogo.png";
@@ -102,7 +102,7 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
 
         {/* MISCELLANEOUS ITEMS: STUDY STREAMS, TIPS, ETC. */}
         <div className="w-full">
-          <MiscellaneousItems />
+          <LiveStream />
         </div>
 
         {/* LINE SEPARATOR */}
