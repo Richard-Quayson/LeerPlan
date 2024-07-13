@@ -54,7 +54,7 @@ class Instructor(BaseModel):
     """
 
     name: str
-    email: str
+    email: EmailStr
     office_hours: List[OfficeHour]
     phone: Optional[str] = None
 
