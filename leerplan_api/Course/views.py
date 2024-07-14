@@ -872,7 +872,7 @@ class DeleteCourseView(APIView):
 #             (parse_time("12:00:00"), parse_time("13:00:00")),
 #             (parse_time("18:00:00"), parse_time("20:00:00")),
 #         ]
-
+    
 #         for day, slots in free_slots.items():
 #             for slot in slots:
 #                 start_time = datetime.combine(datetime.today(), parse_time(slot["start_time"]))
