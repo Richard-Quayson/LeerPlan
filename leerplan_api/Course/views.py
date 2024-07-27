@@ -716,201 +716,6 @@ class DeleteCourseView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# class DetermineTimeBlocksView(APIView):
-#     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
-
-#     def get(self, request):
-#         # retrieve all lecture days for the user's courses
-#         user_courses = UserCourse.objects.filter(user=request.user, course__is_completed=False)
-#         user_courses = UserCourseSerializer(user_courses, many=True).data
-#         lecture_days = []
-#         for user_course in user_courses:
-#             lecture_days.extend(user_course['cohort']['lecture_days'])
-        
-#         # retrieve user's routines
-#         user_routines = UserRoutine.objects.filter(user=request.user)
-#         user_routines = UserRoutineSerializer(user_routines, many=True, context={'request': request}).data
-#         user_routines = get_extended_routine_data(user_routines)
-        
-#         # retrieve user's metadata
-#         try:
-#             user_metadata = UserMetaData.objects.get(user=request.user)
-#         except UserMetaData.DoesNotExist:
-#             return Response({"error": "User metadata does not exist. It is required to generate time blocks."}, status=status.HTTP_404_NOT_FOUND)
-#         user_metadata = UserMetaDataSerializer(user_metadata).data
-
-#         # process the data to create free time slots
-#         free_slots = self.generate_free_slots(lecture_days, user_metadata, user_routines)
-
-#         return Response(free_slots, status=status.HTTP_200_OK)
-
-#     def generate_free_slots(self, lecture_days, user_metadata, user_routines):
-#         days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-#         free_slots = {day: [] for day in days}
-#         wake_time = datetime.strptime(user_metadata['wake_time'], "%H:%M:%S").time()
-#         sleep_time = datetime.strptime(user_metadata['sleep_time'], "%H:%M:%S").time()
-
-#         for day in days:
-#             day_lectures = [lecture for lecture in lecture_days if lecture['day'].lower() == day]
-#             days_routines = [routine for routine in user_routines if routine['day'] == day]
-#             day_activities = day_lectures + days_routines
-
-#             if not day_activities:
-#                 # if there are no lectures on this day, add the entire day as a free slot
-#                 free_slots[day].append({
-#                     "start_time": wake_time.strftime("%H:%M:%S"),
-#                     "end_time": sleep_time.strftime("%H:%M:%S")
-#                 })
-#             else:
-#                 day_activities.sort(key=lambda x: x['start_time'])
-#                 current_time = wake_time
-
-#                 for activity in day_activities:
-#                     activity_start = datetime.strptime(activity['start_time'], "%H:%M:%S").time()
-#                     activity_end = datetime.strptime(activity['end_time'], "%H:%M:%S").time()
-
-#                     if current_time < activity_start:
-#                         free_slots[day].append({
-#                             "start_time": current_time.strftime("%H:%M:%S"),
-#                             "end_time": activity_start.strftime("%H:%M:%S")
-#                         })
-#                     current_time = activity_end
-
-#                 # add the final free slot from the end of the last lecture to sleep time
-#                 if current_time < sleep_time:
-#                     free_slots[day].append({
-#                         "start_time": current_time.strftime("%H:%M:%S"),
-#                         "end_time": sleep_time.strftime("%H:%M:%S")
-#                     })
-
-#         return free_slots
-
-
-
-
-# class DetermineTimeBlocksView(APIView):
-#     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
-
-#     def get(self, request):
-#         # retrieve all lecture days for the user's courses
-#         user_courses = UserCourse.objects.filter(user=request.user, course__is_completed=False)
-#         user_courses = UserCourseSerializer(user_courses, many=True).data
-#         lecture_days = []
-#         for user_course in user_courses:
-#             lecture_days.extend(user_course['cohort']['lecture_days'])
-        
-#         # retrieve user's routines
-#         user_routines = UserRoutine.objects.filter(user=request.user)
-#         user_routines = UserRoutineSerializer(user_routines, many=True, context={'request': request}).data
-#         user_routines = get_extended_routine_data(user_routines)
-        
-#         # retrieve user's metadata
-#         try:
-#             user_metadata = UserMetaData.objects.get(user=request.user)
-#         except UserMetaData.DoesNotExist:
-#             return Response({"error": "User metadata does not exist. It is required to generate time blocks."}, status=status.HTTP_404_NOT_FOUND)
-#         user_metadata = UserMetaDataSerializer(user_metadata).data
-
-#         # process the data to create free time slots
-#         free_slots = self.generate_free_slots(lecture_days, user_metadata, user_routines)
-
-#         # determine mini blocks from free slots
-#         mini_blocks = self.determine_mini_blocks(free_slots, user_metadata)
-
-#         return Response(mini_blocks, status=status.HTTP_200_OK)
-
-#     def generate_free_slots(self, lecture_days, user_metadata, user_routines):
-#         days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-#         free_slots = {day: [] for day in days}
-#         wake_time = parse_time(user_metadata['wake_time'])
-#         sleep_time = parse_time(user_metadata['sleep_time'])
-
-#         for day in days:
-#             day_lectures = [lecture for lecture in lecture_days if lecture['day'].lower() == day]
-#             days_routines = [routine for routine in user_routines if routine['day'] == day]
-#             day_activities = day_lectures + days_routines
-
-#             if not day_activities:
-#                 # if there are no lectures on this day, add the entire day as a free slot
-#                 free_slots[day].append({
-#                     "start_time": wake_time.strftime("%H:%M:%S"),
-#                     "end_time": sleep_time.strftime("%H:%M:%S")
-#                 })
-#             else:
-#                 day_activities.sort(key=lambda x: parse_time(x['start_time']))
-#                 current_time = wake_time
-
-#                 for activity in day_activities:
-#                     activity_start = parse_time(activity['start_time'])
-#                     activity_end = parse_time(activity['end_time'])
-
-#                     if current_time < activity_start:
-#                         free_slots[day].append({
-#                             "start_time": current_time.strftime("%H:%M:%S"),
-#                             "end_time": activity_start.strftime("%H:%M:%S")
-#                         })
-#                     current_time = activity_end
-
-#                 # add the final free slot from the end of the last lecture to sleep time
-#                 if current_time < sleep_time:
-#                     free_slots[day].append({
-#                         "start_time": current_time.strftime("%H:%M:%S"),
-#                         "end_time": sleep_time.strftime("%H:%M:%S")
-#                     })
-
-#         return free_slots
-
-#     def determine_mini_blocks(self, free_slots, user_metadata):
-#         min_study_time = timedelta(hours=user_metadata['min_study_time'])
-#         max_study_time = timedelta(hours=user_metadata['max_study_time'])
-#         break_time_short = timedelta(minutes=15)
-#         break_time_long = timedelta(minutes=60)
-
-#         mini_blocks = {day: [] for day in free_slots}
-#         buffer_periods = [
-#             (parse_time("06:00:00"), parse_time("08:00:00")),
-#             (parse_time("12:00:00"), parse_time("13:00:00")),
-#             (parse_time("18:00:00"), parse_time("20:00:00")),
-#         ]
-    
-#         for day, slots in free_slots.items():
-#             for slot in slots:
-#                 start_time = datetime.combine(datetime.today(), parse_time(slot["start_time"]))
-#                 end_time = datetime.combine(datetime.today(), parse_time(slot["end_time"]))
-#                 current_time = start_time
-
-#                 while current_time < end_time:
-#                     next_buffer = next((buffer for buffer in buffer_periods if buffer[0] <= current_time.time() < buffer[1]), None)
-
-#                     if next_buffer:
-#                         current_time = datetime.combine(datetime.today(), next_buffer[1])
-#                         continue
-
-#                     period = min_study_time if (end_time - current_time) < max_study_time else max_study_time
-
-#                     if (end_time - current_time) < min_study_time:
-#                         break
-
-#                     mini_block_end = current_time + period
-#                     if mini_block_end > end_time:
-#                         mini_block_end = end_time
-
-#                     mini_blocks[day].append({
-#                         "start_time": current_time.time().strftime("%H:%M:%S"),
-#                         "end_time": mini_block_end.time().strftime("%H:%M:%S")
-#                     })
-
-#                     current_time = mini_block_end
-
-#                     if (end_time - current_time) < min_study_time:
-#                         break
-
-#                     break_period = break_time_short if len(mini_blocks[day]) % 2 == 0 else break_time_long
-#                     current_time += break_period
-
-#         return mini_blocks
-
-
 class DetermineTimeBlocksView(APIView):
     permission_classes = [IsAuthenticated, IsAccessTokenBlacklisted]
 
@@ -988,6 +793,8 @@ class DetermineTimeBlocksView(APIView):
         max_study_time = timedelta(hours=user_metadata['max_study_time'])
         break_time_short = timedelta(minutes=30)
         break_time_long = timedelta(hours=1)
+        min_block_length = timedelta(minutes=20)
+        chain_spacing = timedelta(minutes=15)
 
         mini_blocks = {day: [] for day in free_slots}
         buffer_periods = [
@@ -996,30 +803,42 @@ class DetermineTimeBlocksView(APIView):
         ]
 
         for day, slots in free_slots.items():
-            for slot in slots:
+            for slot_index, slot in enumerate(slots):
                 start_time = datetime.combine(datetime.today(), parse_time(slot["start_time"]))
                 end_time = datetime.combine(datetime.today(), parse_time(slot["end_time"]))
+                
+                # Add chain spacing if it's not the first slot of the day
+                if slot_index > 0:
+                    start_time += chain_spacing
+                
                 current_time = start_time
 
                 while current_time < end_time:
                     next_buffer = next((buffer for buffer in buffer_periods if buffer[0] <= current_time.time() < buffer[1]), None)
 
                     if next_buffer:
+                        buffer_end = min(datetime.combine(datetime.today(), next_buffer[1]), end_time)
                         mini_blocks[day].append({
                             "start_time": current_time.time().strftime("%H:%M:%S"),
-                            "end_time": next_buffer[1].strftime("%H:%M:%S"),
+                            "end_time": buffer_end.time().strftime("%H:%M:%S"),
                             "label": "Buffer"
                         })
-                        current_time = datetime.combine(datetime.today(), next_buffer[1])
+                        current_time = buffer_end
                         continue
 
                     # Determine the appropriate study time
-                    if (end_time - current_time) <= min_study_time:
-                        period = end_time - current_time
-                    elif (end_time - current_time) <= max_study_time:
-                        period = (end_time - current_time) if (end_time - current_time) < max_study_time else max_study_time
-                    else:
+                    remaining_time = end_time - current_time
+                    print(f"Day: {day}, Remaining time: {remaining_time}")
+
+                    if remaining_time < min_block_length:
+                        break  # Skip if remaining time is less than 20 minutes
+                    elif remaining_time >= (max_study_time + break_time_short):
+                        print(f"Creating max study time block: {max_study_time}")
                         period = max_study_time
+                    elif remaining_time >= min_study_time:
+                        period = min(remaining_time, max_study_time)
+                    else:
+                        break  # Skip if remaining time is less than min_study_time
 
                     mini_block_end = current_time + period
 
@@ -1029,14 +848,16 @@ class DetermineTimeBlocksView(APIView):
                         "label": "Free Slot"
                     })
 
+                    print(f"Created block: {current_time.time()} - {mini_block_end.time()}")
+
                     current_time = mini_block_end
 
-                    # If the remaining time is less than the min study time, break
-                    if (end_time - current_time) < min_study_time:
+                    # If we've reached the end of the slot, break
+                    if current_time >= end_time:
                         break
 
                     # Add a break between study blocks
-                    break_period = break_time_short if len(mini_blocks[day]) % 2 == 0 else break_time_long
-                    current_time += break_period
+                    break_period = break_time_short if len([b for b in mini_blocks[day] if b['label'] == 'Free Slot']) % 2 == 0 else break_time_long
+                    current_time = min(current_time + break_period, end_time)
 
         return mini_blocks
