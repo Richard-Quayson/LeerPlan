@@ -71,7 +71,7 @@ const DashboardPage = () => {
           )}
         </div>
         <div className="w-3/4 overflow-y-auto">
-          {userCourses && user.extended_routines && (
+          {user && userCourses && user.extended_routines && (
             <RightPane
               courses={userCourses}
               userRoutines={user.extended_routines}
