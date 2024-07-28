@@ -13,7 +13,7 @@ import LoadingGif from "../assets/gifs/Loading.gif";
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [userCourses, setUserCourses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [displayTimeBlocks, setDisplayTimeBlocks] = useState(
     localStorage.getItem(DISPLAY_TIME_BLOCKS) === "true"
