@@ -5,7 +5,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import transaction
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils.dateparse import parse_time
 from io import BytesIO
 import json
 import os
@@ -684,21 +685,21 @@ class DeleteCourseView(APIView):
             return Response({"error": "Course does not exist"}, status=status.HTTP_404_NOT_FOUND)
 
         # Delete all related data
-        CourseInstructor.objects.filter(course=course).delete()
-        CourseCohort.objects.filter(course=course).delete()
-        CourseLectureDay.objects.filter(course_cohort__course=course).delete()
-        CourseWeeklySchedule.objects.filter(course=course).delete()
-        CourseInstructorOfficeHour.objects.filter(
-            course_instructor__course=course).delete()
-        CourseEvaluationCriteria.objects.filter(course=course).delete()
-        CourseTextbook.objects.filter(course=course).delete()
-        CourseWeeklyAssessment.objects.filter(
+        UserCourse.objects.filter(course=course).delete()
+        CourseWeeklyTopic.objects.filter(
             course_weekly_schedule__course=course).delete()
         CourseWeeklyReading.objects.filter(
             course_weekly_schedule__course=course).delete()
-        CourseWeeklyTopic.objects.filter(
+        CourseWeeklyAssessment.objects.filter(
             course_weekly_schedule__course=course).delete()
-        UserCourse.objects.filter(course=course).delete()
+        CourseWeeklySchedule.objects.filter(course=course).delete()
+        CourseTextbook.objects.filter(course=course).delete()
+        CourseLectureDay.objects.filter(course_cohort__course=course).delete()
+        CourseCohort.objects.filter(course=course).delete()
+        CourseEvaluationCriteria.objects.filter(course=course).delete()
+        CourseInstructorOfficeHour.objects.filter(
+            course_instructor__course=course).delete()
+        CourseInstructor.objects.filter(course=course).delete()
 
         # Delete course file from filesystem and database
         course_file = CourseFile.objects.filter(course=course).first()
@@ -741,13 +742,16 @@ class DetermineTimeBlocksView(APIView):
         # process the data to create free time slots
         free_slots = self.generate_free_slots(lecture_days, user_metadata, user_routines)
 
-        return Response(free_slots, status=status.HTTP_200_OK)
+        # determine mini blocks from free slots
+        mini_blocks = self.determine_mini_blocks(free_slots, user_metadata)
+
+        return Response(mini_blocks, status=status.HTTP_200_OK)
 
     def generate_free_slots(self, lecture_days, user_metadata, user_routines):
         days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
         free_slots = {day: [] for day in days}
-        wake_time = datetime.strptime(user_metadata['wake_time'], "%H:%M:%S").time()
-        sleep_time = datetime.strptime(user_metadata['sleep_time'], "%H:%M:%S").time()
+        wake_time = parse_time(user_metadata['wake_time'])
+        sleep_time = parse_time(user_metadata['sleep_time'])
 
         for day in days:
             day_lectures = [lecture for lecture in lecture_days if lecture['day'].lower() == day]
@@ -761,12 +765,12 @@ class DetermineTimeBlocksView(APIView):
                     "end_time": sleep_time.strftime("%H:%M:%S")
                 })
             else:
-                day_activities.sort(key=lambda x: x['start_time'])
+                day_activities.sort(key=lambda x: parse_time(x['start_time']))
                 current_time = wake_time
 
                 for activity in day_activities:
-                    activity_start = datetime.strptime(activity['start_time'], "%H:%M:%S").time()
-                    activity_end = datetime.strptime(activity['end_time'], "%H:%M:%S").time()
+                    activity_start = parse_time(activity['start_time'])
+                    activity_end = parse_time(activity['end_time'])
 
                     if current_time < activity_start:
                         free_slots[day].append({
@@ -783,3 +787,73 @@ class DetermineTimeBlocksView(APIView):
                     })
 
         return free_slots
+
+    def determine_mini_blocks(self, free_slots, user_metadata):
+        min_study_time = timedelta(hours=user_metadata['min_study_time'])
+        max_study_time = timedelta(hours=user_metadata['max_study_time'])
+        break_time_short = timedelta(minutes=30)
+        break_time_long = timedelta(hours=1)
+        min_block_length = timedelta(minutes=20)
+        chain_spacing = timedelta(minutes=15)
+
+        mini_blocks = {day: [] for day in free_slots}
+        buffer_periods = [
+            (parse_time("12:00:00"), parse_time("13:00:00")),
+            (parse_time("18:00:00"), parse_time("20:00:00")),
+        ]
+
+        for day, slots in free_slots.items():
+            for slot_index, slot in enumerate(slots):
+                start_time = datetime.combine(datetime.today(), parse_time(slot["start_time"]))
+                end_time = datetime.combine(datetime.today(), parse_time(slot["end_time"]))
+                
+                # Add chain spacing if it's not the first slot of the day
+                if slot_index > 0:
+                    start_time += chain_spacing
+                
+                current_time = start_time
+
+                while current_time < end_time:
+                    next_buffer = next((buffer for buffer in buffer_periods if buffer[0] <= current_time.time() < buffer[1]), None)
+
+                    if next_buffer:
+                        buffer_end = min(datetime.combine(datetime.today(), next_buffer[1]), end_time)
+                        mini_blocks[day].append({
+                            "start_time": current_time.time().strftime("%H:%M:%S"),
+                            "end_time": buffer_end.time().strftime("%H:%M:%S"),
+                            "label": "Buffer"
+                        })
+                        current_time = buffer_end
+                        continue
+
+                    # Determine the appropriate study time
+                    remaining_time = end_time - current_time
+
+                    if remaining_time < min_block_length:
+                        break  # Skip if remaining time is less than 20 minutes
+                    elif remaining_time >= (max_study_time + break_time_short):
+                        period = max_study_time
+                    elif remaining_time >= min_study_time:
+                        period = min(remaining_time, max_study_time)
+                    else:
+                        break  # Skip if remaining time is less than min_study_time
+
+                    mini_block_end = current_time + period
+
+                    mini_blocks[day].append({
+                        "start_time": current_time.time().strftime("%H:%M:%S"),
+                        "end_time": mini_block_end.time().strftime("%H:%M:%S"),
+                        "label": "Free Slot"
+                    })
+
+                    current_time = mini_block_end
+
+                    # If we've reached the end of the slot, break
+                    if current_time >= end_time:
+                        break
+
+                    # Add a break between study blocks
+                    break_period = break_time_short if len([b for b in mini_blocks[day] if b['label'] == 'Free Slot']) % 2 == 0 else break_time_long
+                    current_time = min(current_time + break_period, end_time)
+
+        return mini_blocks

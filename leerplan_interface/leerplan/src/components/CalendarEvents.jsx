@@ -8,6 +8,10 @@ import {
   TIME_BLOCK_EVENT_COLOUR,
   DAYS_OF_THE_WEEK,
   EVENT_BREAK,
+  COURSE_EVENT,
+  ROUTINE_EVENT,
+  SLEEP_EVENT,
+  TIME_BLOCK_EVENT,
 } from "../utility/constants";
 
 const getColorForCourseEvent = (index) => {
@@ -84,6 +88,7 @@ const generateEvents = (
           });
 
           events.push({
+            type: COURSE_EVENT,
             title: `${course.code} ${course.name}`,
             start: start.toDate(),
             end: end.toDate(),
@@ -114,6 +119,7 @@ const generateEvents = (
         });
 
         events.push({
+          type: ROUTINE_EVENT,
           title: routine.name,
           start: start.toDate(),
           end: end.toDate(),
@@ -153,6 +159,7 @@ const generateEvents = (
         });
 
       events.push({
+        type: SLEEP_EVENT,
         title: "Bed Time",
         start: start.toDate(),
         end: end.toDate(),
@@ -189,7 +196,8 @@ const generateEvents = (
                   .toDate();
 
                 events.push({
-                  title: "Time Block",
+                  type: TIME_BLOCK_EVENT,
+                  title: block.label,
                   start: eventStart,
                   end: eventEnd,
                   allDay: false,

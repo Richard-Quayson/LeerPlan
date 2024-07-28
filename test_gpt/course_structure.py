@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 from typing import List, Optional
 from datetime import time, date
 
@@ -39,7 +39,7 @@ class OfficeHour(BaseModel):
     """
 
     day: str
-    time: TimeRange
+    time: Optional[TimeRange] = None
 
 
 class Instructor(BaseModel):
@@ -54,9 +54,9 @@ class Instructor(BaseModel):
     """
 
     name: str
-    email: str
+    email: EmailStr
     office_hours: List[OfficeHour]
-    phone: Optional[str]
+    phone: Optional[str] = None
 
 
 class Textbook(BaseModel):
@@ -69,7 +69,7 @@ class Textbook(BaseModel):
     """
 
     title: str
-    type: Optional[str]
+    type: Optional[str] = None
 
 
 class EvaluationCriteria(BaseModel):
@@ -135,8 +135,8 @@ class Assessment(BaseModel):
 
     name: str
     type: str
-    due_date: Optional[date]
-    weight: Optional[float]
+    due_date: Optional[date] = None
+    weight: Optional[float] = None
 
 
 class Week(BaseModel):
@@ -151,15 +151,35 @@ class Week(BaseModel):
         - topics (List[Topic]): the topics for the week (e.g. [Topic, Topic, ...])
         - readings (List[Chapter]): the readings for the week (e.g. [Chapter, Chapter, ...])
         - assessments (Optional[List[Assessment]]): the assessments for the week (e.g. [Assessment, Assessment, ...])
+    
+    Eg. {
+          "week_number": 1,
+          "start_date": "2022-01-17",
+          "end_date": "2022-01-21",
+          "type": "lecture",
+          "topics": [
+            {
+              "title": "Syllabus & course overview, Reading histograms, Statistics student data collection, Intro to R, Generating histograms in R"
+            }
+          ],
+          "readings": [],
+          "assessments": [
+            {
+              "name": "Homework 1",
+              "type": "homework",
+              "due_date": "2022-01-27"
+            }
+          ]
+        }
     """
 
     week_number: int
-    start_date: Optional[date]
-    end_date: Optional[date]
+    start_date: Optional[date] = None
+    end_date: Optional[date] = None
     type: str
     topics: List[Topic]
     readings: List[Chapter]
-    assessments: Optional[List[Assessment]]
+    assessments: Optional[List[Assessment]] = None
 
 
 class Cohort(BaseModel):
@@ -190,6 +210,8 @@ class Cohort(BaseModel):
             "location": "Room 101"
         }
     ]
+
+    if cohort not specified, assume cohort_name = "Default"
     """
 
     cohort_name: str

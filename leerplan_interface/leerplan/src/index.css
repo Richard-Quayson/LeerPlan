@@ -15,8 +15,8 @@
 
 .logout-container {
   position: relative;
-  margin-top: 5vh;
-  padding-bottom: 5vh;
+  margin-top: auto;
+  padding-bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
 }

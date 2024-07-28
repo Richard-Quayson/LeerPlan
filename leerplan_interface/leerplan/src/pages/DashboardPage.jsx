@@ -8,11 +8,12 @@ import { USER_COURSE_LIST_URL } from "../utility/api_urls";
 import { CURRENT_USER_ID, DISPLAY_TIME_BLOCKS } from "../utility/constants";
 import { USER_DETAILS_URL } from "../utility/api_urls";
 import { LOGIN_ROUTE } from "../utility/routes";
+import LoadingGif from "../assets/gifs/Loading.gif";
 
 const DashboardPage = () => {
   const [user, setUser] = useState(null);
   const [userCourses, setUserCourses] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [displayTimeBlocks, setDisplayTimeBlocks] = useState(
     localStorage.getItem(DISPLAY_TIME_BLOCKS) === "true"
@@ -52,10 +53,6 @@ const DashboardPage = () => {
     fetchUserCourses();
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   if (error) {
     navigate(LOGIN_ROUTE);
   }
@@ -69,11 +66,12 @@ const DashboardPage = () => {
               user={user}
               userCourses={userCourses}
               onTimeBlocksToggle={handleTimeBlocksToggle}
+              setIsLoading={setIsLoading}
             />
           )}
         </div>
         <div className="w-3/4 overflow-y-auto">
-          {userCourses && user.extended_routines && (
+          {user && userCourses && user.extended_routines && (
             <RightPane
               courses={userCourses}
               userRoutines={user.extended_routines}
@@ -82,6 +80,14 @@ const DashboardPage = () => {
             />
           )}
         </div>
+
+        {isLoading && (
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+            <div className="bg-white rounded-2xl">
+              <img src={LoadingGif} alt="Loading" className="w-32 h-32" />
+            </div>
+          </div>
+        )}
       </div>
     </ProtectedRoute>
   );

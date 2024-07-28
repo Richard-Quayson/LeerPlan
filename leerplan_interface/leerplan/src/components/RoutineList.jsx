@@ -63,7 +63,7 @@ const RoutineList = ({ routines }) => {
           </div>
         </div>
         <div
-          className="flex items-center text-blue-500 pr-4 cursor-pointer"
+          className="flex items-center text-sky-500 pr-4 cursor-pointer"
           onClick={openAddRoutineModal}
         >
           <img src={PlusIcon} alt="Add New Routine" className="mr-2 w-4 h-4" />

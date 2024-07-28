@@ -21,6 +21,12 @@ export const CALENDAR_FILTER_TYPE = "leerplan:CALENDAR_FILTER_TYPE";
 export const CALENDAR_FILTER_VALUE = "leerplan:CALENDAR_FILTER_VALUE";
 export const DISPLAY_TIME_BLOCKS = "leerplan:DISPLAY_TIME_BLOCKS";
 
+// event type constants
+export const COURSE_EVENT = "course";
+export const ROUTINE_EVENT = "routine";
+export const SLEEP_EVENT = "sleep";
+export const TIME_BLOCK_EVENT = "time_block";
+
 // event break
 export const EVENT_BREAK = 15;
 

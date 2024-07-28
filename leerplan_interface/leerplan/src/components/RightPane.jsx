@@ -126,7 +126,7 @@ const RightPane = ({
     <div className="flex flex-col h-full">
       <div className="flex-shrink-0">
         <HorizontalNavigation
-          title="Dashboard"
+          title="Calendar"
           handleSubmit={handleFilterSubmit}
         />
       </div>

@@ -63,7 +63,7 @@ const CourseList = ({ courses }) => {
           </div>
         </div>
         <div
-          className="flex items-center text-blue-500 pr-4 cursor-pointer"
+          className="flex items-center text-sky-500 pr-4 cursor-pointer"
           onClick={openModal}
         >
           <img src={PlusIcon} alt="Add New Course" className="mr-2 w-4 h-4" />

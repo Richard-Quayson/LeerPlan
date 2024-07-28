@@ -6,6 +6,7 @@ import CourseList from "./CourseList";
 import RoutineList from "./RoutineList";
 import AddUserMetaData from "./AddUserMetaData";
 import YesNoPrompt from "./YesNoPrompt";
+import LiveStream from "./LiveStream";
 import { LOGOUT_ROUTE } from "../utility/routes";
 import { CURRENT_USER_ID, DISPLAY_TIME_BLOCKS } from "../utility/constants";
 import LeerPlanLogo from "../assets/images/leerplanlogo.png";
@@ -13,7 +14,7 @@ import AutomateIcon from "../assets/icons/Automate.png";
 import FilledLogoutIcon from "../assets/icons/FilledLogout.png";
 import UnfilledLogoutIcon from "../assets/icons/UnfilledLogout.png";
 
-const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
+const LeftPane = ({ user, userCourses, onTimeBlocksToggle, setIsLoading }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [showAddMetadataForm, setShowAddMetadataForm] = useState(false);
@@ -32,10 +33,18 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
 
   const handleYesResponse = () => {
     setShowYesNoPrompt(false);
-    const newDisplayTimeBlocks = !displayTimeBlocks;
-    setDisplayTimeBlocks(newDisplayTimeBlocks);
-    localStorage.setItem(DISPLAY_TIME_BLOCKS, newDisplayTimeBlocks.toString());
-    onTimeBlocksToggle(newDisplayTimeBlocks);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      const newDisplayTimeBlocks = !displayTimeBlocks;
+      setDisplayTimeBlocks(newDisplayTimeBlocks);
+      localStorage.setItem(
+        DISPLAY_TIME_BLOCKS,
+        newDisplayTimeBlocks.toString()
+      );
+      onTimeBlocksToggle(newDisplayTimeBlocks);
+      setIsLoading(false);
+    }, 5000);
   };
 
   const handleNoResponse = () => {
@@ -43,7 +52,7 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
   };
 
   return (
-    <div className="left-pane h-full flex flex-col">
+    <div className="left-pane h-full flex flex-col relative">
       <div className="flex-shrink-0 w-full">
         {/* LOGO */}
         <img
@@ -82,7 +91,7 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
         <hr className="border-gray-300 w-full mt-4" />
 
         {/* GENERATE ACADEMIC CALENDAR */}
-        <div className="mt-8 flex justify-center">
+        <div className="mt-4 flex justify-center">
           <button
             onClick={handleGenerateSchedule}
             className="w-[200px] py-2 border border-yellow-700 text-yellow-700 rounded-lg"
@@ -95,14 +104,22 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
             {displayTimeBlocks ? "Remove Timeblocks" : "Generate Timeblocks"}
           </button>
         </div>
-      </div>
 
-      {/* LINE SEPARATOR */}
-      <hr className="border-gray-300 w-full mt-4" />
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-300 w-full mt-4" />
+
+        {/* MISCELLANEOUS ITEMS: STUDY STREAMS, TIPS, ETC. */}
+        <div className="w-full">
+          <LiveStream />
+        </div>
+
+        {/* LINE SEPARATOR */}
+        <hr className="border-gray-300 w-full mt-4" />
+      </div>
 
       {/* LOGOUT */}
       <div
-        className="logout-container mt-auto"
+        className="logout-container"
         onMouseOver={() => setIsHovered(true)}
         onMouseOut={() => setIsHovered(false)}
       >
