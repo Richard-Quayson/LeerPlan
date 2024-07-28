@@ -14,7 +14,7 @@ import AutomateIcon from "../assets/icons/Automate.png";
 import FilledLogoutIcon from "../assets/icons/FilledLogout.png";
 import UnfilledLogoutIcon from "../assets/icons/UnfilledLogout.png";
 
-const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
+const LeftPane = ({ user, userCourses, onTimeBlocksToggle, setIsLoading }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
   const [showAddMetadataForm, setShowAddMetadataForm] = useState(false);
@@ -33,10 +33,18 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
 
   const handleYesResponse = () => {
     setShowYesNoPrompt(false);
-    const newDisplayTimeBlocks = !displayTimeBlocks;
-    setDisplayTimeBlocks(newDisplayTimeBlocks);
-    localStorage.setItem(DISPLAY_TIME_BLOCKS, newDisplayTimeBlocks.toString());
-    onTimeBlocksToggle(newDisplayTimeBlocks);
+    setIsLoading(true);
+
+    setTimeout(() => {
+      const newDisplayTimeBlocks = !displayTimeBlocks;
+      setDisplayTimeBlocks(newDisplayTimeBlocks);
+      localStorage.setItem(
+        DISPLAY_TIME_BLOCKS,
+        newDisplayTimeBlocks.toString()
+      );
+      onTimeBlocksToggle(newDisplayTimeBlocks);
+      setIsLoading(false);
+    }, 5000);
   };
 
   const handleNoResponse = () => {
@@ -44,7 +52,7 @@ const LeftPane = ({ user, userCourses, onTimeBlocksToggle }) => {
   };
 
   return (
-    <div className="left-pane h-full flex flex-col">
+    <div className="left-pane h-full flex flex-col relative">
       <div className="flex-shrink-0 w-full">
         {/* LOGO */}
         <img
