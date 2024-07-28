@@ -828,12 +828,10 @@ class DetermineTimeBlocksView(APIView):
 
                     # Determine the appropriate study time
                     remaining_time = end_time - current_time
-                    print(f"Day: {day}, Remaining time: {remaining_time}")
 
                     if remaining_time < min_block_length:
                         break  # Skip if remaining time is less than 20 minutes
                     elif remaining_time >= (max_study_time + break_time_short):
-                        print(f"Creating max study time block: {max_study_time}")
                         period = max_study_time
                     elif remaining_time >= min_study_time:
                         period = min(remaining_time, max_study_time)
@@ -847,8 +845,6 @@ class DetermineTimeBlocksView(APIView):
                         "end_time": mini_block_end.time().strftime("%H:%M:%S"),
                         "label": "Free Slot"
                     })
-
-                    print(f"Created block: {current_time.time()} - {mini_block_end.time()}")
 
                     current_time = mini_block_end
 
