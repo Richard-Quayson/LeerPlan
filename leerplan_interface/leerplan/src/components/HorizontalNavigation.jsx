@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Tooltip } from "react-tooltip";
 import GoBack from "./GoBack";
 import {
   EXTENDED_CALENDAR_FILTER_DISPLAY,
@@ -103,12 +104,16 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
                   alt="Search"
                   className="w-6 h-6 cursor-pointer"
                   onClick={handleSearchClick}
+                  data-tooltip-id="icon-tooltip"
+                  data-tooltip-content="Search"
                 />
                 <img
                   src={CloseIcon}
                   alt="Close"
                   className="w-5 h-5 cursor-pointer"
                   onClick={handleCloseClick}
+                  data-tooltip-id="icon-tooltip"
+                  data-tooltip-content="Close"
                 />
               </>
             ) : (
@@ -117,14 +122,21 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
                 alt="Search"
                 className="w-5 h-5 cursor-pointer"
                 onClick={handleSearchClick}
+                data-tooltip-id="icon-tooltip"
+                data-tooltip-content="Filter Calendar"
               />
             )}
             <img
               src={ExportIcon}
-              alt="Export ICS File"
+              alt="Export Calendar"
               className="w-6 h-6 cursor-pointer"
+              onClick={() => () => {}}
+              data-tooltip-id="icon-tooltip"
+              data-tooltip-content="Export Calendar"
             />
           </div>
+
+          <Tooltip id="icon-tooltip" place="left" />
         </div>
       )}
       {isCoursePage && (
