@@ -96,7 +96,7 @@ const UserProfileCard = ({ user }) => {
     if (universities.length === 0) {
       return (
         <div
-          className="text-blue-500 cursor-pointer"
+          className="text-sky-500 cursor-pointer"
           onClick={handleAddUniversityClick}
         >
           Add University
@@ -104,7 +104,7 @@ const UserProfileCard = ({ user }) => {
       );
     } else if (universities.length === 1) {
       return (
-        <div className="text-blue-500 cursor-default">
+        <div className="text-sky-500 cursor-default">
           {universities[0] && universities[0].university.name}
         </div>
       );
@@ -114,7 +114,7 @@ const UserProfileCard = ({ user }) => {
       );
       return (
         <div
-          className="text-blue-500 cursor-pointer"
+          className="text-sky-500 cursor-pointer"
           onClick={() => setIsModalOpen(true)}
         >
           {selectedUni && selectedUni.university.name}
