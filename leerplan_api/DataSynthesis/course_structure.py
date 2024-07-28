@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import List, Optional
 from datetime import time, date
 
@@ -39,7 +39,7 @@ class OfficeHour(BaseModel):
     """
 
     day: str
-    time: Optional[TimeRange] = None
+    time: Optional[TimeRange]
 
 
 class Instructor(BaseModel):
@@ -54,9 +54,9 @@ class Instructor(BaseModel):
     """
 
     name: str
-    email: EmailStr
+    email: str
     office_hours: List[OfficeHour]
-    phone: Optional[str] = None
+    phone: Optional[str]
 
 
 class Textbook(BaseModel):
@@ -69,7 +69,7 @@ class Textbook(BaseModel):
     """
 
     title: str
-    type: Optional[str] = None
+    type: Optional[str]
 
 
 class EvaluationCriteria(BaseModel):
@@ -135,8 +135,8 @@ class Assessment(BaseModel):
 
     name: str
     type: str
-    due_date: Optional[date] = None
-    weight: Optional[float] = None
+    due_date: Optional[date]
+    weight: Optional[float]
 
 
 class Week(BaseModel):
@@ -174,12 +174,12 @@ class Week(BaseModel):
     """
 
     week_number: int
-    start_date: Optional[date] = None
-    end_date: Optional[date] = None
+    start_date: Optional[date]
+    end_date: Optional[date]
     type: str
     topics: List[Topic]
     readings: List[Chapter]
-    assessments: Optional[List[Assessment]] = None
+    assessments: Optional[List[Assessment]]
 
 
 class Cohort(BaseModel):
