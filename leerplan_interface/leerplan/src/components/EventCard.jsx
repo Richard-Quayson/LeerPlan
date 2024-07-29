@@ -5,40 +5,7 @@ import { COURSE_EVENT } from "../utility/constants";
 import LocationIcon from "../assets/icons/Location.png";
 import NotificationIcon from "../assets/icons/Notification.png";
 
-const EventCard = ({ selectedEvent, closeModal, modalRef, courses }) => {
-  console.log(selectedEvent);
-
-  const getWeeklySchedule = (course, date) => {
-    return course.weekly_schedules.find((schedule) =>
-      moment(date).isBetween(schedule.start_date, schedule.end_date, null, "[]")
-    );
-  };
-
-  const filterWeeklySchedule = (code, title, date) => {
-    const courseObj = courses.find(
-      (courseObj) =>
-        courseObj.course.code === code && courseObj.course.name === title
-    );
-    if (courseObj) {
-      const weeklySchedule = getWeeklySchedule(courseObj.course, date);
-      if (weeklySchedule) {
-        const weekStart = moment(weeklySchedule.start_date).format(
-          "MMMM Do YYYY"
-        );
-        const weekEnd = moment(weeklySchedule.end_date).format("MMMM Do YYYY");
-        return {
-          weekRange: `${weekStart} to ${weekEnd}`,
-          week_number: weeklySchedule.week_number,
-          type: weeklySchedule.type,
-          weekly_assessments: weeklySchedule.weekly_assessments,
-          weekly_topics: weeklySchedule.weekly_topics,
-          weekly_readings: weeklySchedule.weekly_readings,
-        };
-      }
-    }
-    return null;
-  };
-
+const EventCard = ({ selectedEvent, closeModal, modalRef }) => {
   return (
     <div
       className="absolute fit-content top-[200px] right-0 shadow-lg left-1/4 bottom-0 z-50 max-w-[500px] h-auto"
@@ -88,14 +55,10 @@ const EventCard = ({ selectedEvent, closeModal, modalRef, courses }) => {
         {selectedEvent.type === COURSE_EVENT && (
           <>
             <hr className="my-4 border-gray-300" />
-            {(() => {
-              const weeklySchedule = filterWeeklySchedule(
-                selectedEvent.courseCode,
-                selectedEvent.courseTitle,
-                selectedEvent.start
-              );
-              return <WeeklySchedule weeklySchedule={weeklySchedule} />;
-            })()}
+            {selectedEvent.type === COURSE_EVENT &&
+              selectedEvent.weeklySchedule && (
+                <WeeklySchedule weeklySchedule={selectedEvent.weeklySchedule} />
+              )}
           </>
         )}
       </div>
