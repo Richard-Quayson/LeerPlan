@@ -1,7 +1,4 @@
-import { useState, useEffect } from "react";
 import moment from "moment";
-import api from "../utility/api";
-import { GENERATE_TIME_BLOCKS_URL } from "../utility/api_urls";
 import {
   COURSE_ROUTINE_COLOURS,
   SLEEP_EVENT_COLOUR,
@@ -28,23 +25,10 @@ const generateEvents = (
   courses,
   userRoutines,
   userMetadata,
-  displayTimeBlocks
+  displayTimeBlocks,
+  timeBlocks
 ) => {
-  const [timeBlocks, setTimeBlocks] = useState([]);
   const events = [];
-
-  useEffect(() => {
-    const fetchTimeBlocks = async () => {
-      try {
-        const response = await api.get(GENERATE_TIME_BLOCKS_URL);
-        setTimeBlocks(response.data);
-      } catch (error) {
-        setTimeBlocks([]);
-      }
-    };
-
-    fetchTimeBlocks();
-  }, []);
 
   // Find global start and end dates
   const allStartDates = courses
@@ -87,6 +71,11 @@ const generateEvents = (
             minute: moment(lecture.end_time, "HH:mm:ss").get("minute"),
           });
 
+          // Find the weekly schedule for this event
+          const weeklySchedule = course.weekly_schedules.find((schedule) =>
+            start.isBetween(schedule.start_date, schedule.end_date, null, "[]")
+          );
+
           events.push({
             type: COURSE_EVENT,
             title: `${course.code} ${course.name}`,
@@ -97,6 +86,21 @@ const generateEvents = (
             courseTitle: course.name,
             location: lecture.location,
             color: getColorForCourseEvent(courseIndex),
+            notification: moment(start).subtract(15, "minutes").toDate(), // Add notification 15 minutes before
+            weeklySchedule: weeklySchedule
+              ? {
+                  weekRange: `${moment(weeklySchedule.start_date).format(
+                    "MMMM Do YYYY"
+                  )} to ${moment(weeklySchedule.end_date).format(
+                    "MMMM Do YYYY"
+                  )}`,
+                  week_number: weeklySchedule.week_number,
+                  type: weeklySchedule.type,
+                  weekly_assessments: weeklySchedule.weekly_assessments,
+                  weekly_topics: weeklySchedule.weekly_topics,
+                  weekly_readings: weeklySchedule.weekly_readings,
+                }
+              : null,
           });
         }
         current.add(1, "day");
@@ -172,7 +176,7 @@ const generateEvents = (
   });
 
   // Generate time block events for all days
-  if (displayTimeBlocks) {
+  if (displayTimeBlocks && timeBlocks) {
     DAYS_OF_THE_WEEK.forEach((day) => {
       if (timeBlocks[day]) {
         timeBlocks[day].forEach((block) => {
