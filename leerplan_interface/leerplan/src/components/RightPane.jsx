@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import HorizontalNavigation from "./HorizontalNavigation";
 import CustomCalendar from "./CustomCalendar";
+import { generateICSFile } from "../utility/ics_generator";
 import { SET_COURSE_COHORT_URL } from "../utility/api_urls";
 import api from "../utility/api";
 import SuccessGif from "../assets/gifs/Success.gif";
@@ -20,6 +21,7 @@ const RightPane = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const calendarRef = useRef();
 
   useEffect(() => {
     if (courses && courses.length > 0) {
@@ -60,6 +62,22 @@ const RightPane = ({
       }, 5000);
     }
     setIsSubmitting(false);
+  };
+
+  const handleExport = () => {
+    if (calendarRef.current) {
+      const events = calendarRef.current.getEvents();
+      const icsContent = generateICSFile(events);
+      if (icsContent) {
+        const blob = new Blob([icsContent], {
+          type: "text/calendar;charset=utf-8",
+        });
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = "calendar.ics";
+        link.click();
+      }
+    }
   };
 
   const renderCohortForm = () => (
@@ -128,6 +146,7 @@ const RightPane = ({
         <HorizontalNavigation
           title="Calendar"
           handleSubmit={handleFilterSubmit}
+          handleExport={handleExport}
         />
       </div>
       <div className="flex-grow overflow-y-auto">
@@ -148,6 +167,7 @@ const RightPane = ({
           )
         ) : courses && courses.length > 0 ? (
           <CustomCalendar
+            ref={calendarRef}
             courses={courses}
             userRoutines={userRoutines}
             userMetadata={userMetadata}
