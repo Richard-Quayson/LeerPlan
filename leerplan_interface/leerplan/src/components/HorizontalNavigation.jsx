@@ -12,7 +12,7 @@ import SearchIcon from "../assets/icons/Search.png";
 import CloseIcon from "../assets/icons/Close.png";
 import ExportIcon from "../assets/icons/Export.png";
 
-const HorizontalNavigation = ({ title, handleSubmit }) => {
+const HorizontalNavigation = ({ title, handleSubmit, handleExport }) => {
   const [extendedDisplay, setExtendedDisplay] = useState(false);
   const [filterType, setFilterType] = useState("");
   const [filterValue, setFilterValue] = useState("");
@@ -130,7 +130,7 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
               src={ExportIcon}
               alt="Export Calendar"
               className="w-6 h-6 cursor-pointer"
-              onClick={() => () => {}}
+              onClick={handleExport}
               data-tooltip-id="icon-tooltip"
               data-tooltip-content="Export Calendar"
             />
@@ -142,7 +142,9 @@ const HorizontalNavigation = ({ title, handleSubmit }) => {
       {isCoursePage && (
         <div className="h-20 pr-4 py-5 text-yellow-700 shadow-md flex items-center">
           <GoBack />
-          <h1 className="text-center px-8 text-2xl font-bold flex-grow">{title}</h1>
+          <h1 className="text-center px-8 text-2xl font-bold flex-grow">
+            {title}
+          </h1>
         </div>
       )}
     </>
