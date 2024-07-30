@@ -1,0 +1,40 @@
+# Load necessary libraries
+library(tidyverse)
+library(readr)
+library(ggplot2)
+
+# Read the CSV files
+mystudylife_data <- read_csv("MyStudyLife.csv")
+leerplan_data <- read_csv("LeerPlan.csv")
+
+# Calculate averages for each factor
+calculate_averages <- function(data) {
+  data %>%
+    summarise(across(c("Perceived Usefulness", "Perceived Ease of Use", 
+                       "Ease of Data Collection", "Behavioral Intentions", 
+                       "Active Use", "Satisfaction"), mean)) %>%
+    pivot_longer(everything(), names_to = "Factor", values_to = "Average")
+}
+
+mystudylife_avg <- calculate_averages(mystudylife_data)
+leerplan_avg <- calculate_averages(leerplan_data)
+
+# Combine the averages
+combined_avg <- bind_rows(
+  mutate(mystudylife_avg, Application = "MyStudyLife"),
+  mutate(leerplan_avg, Application = "LeerPlan")
+)
+
+# Create the comparative bar chart
+ggplot(combined_avg, aes(x = Factor, y = Average, fill = Application)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Comparison of MyStudyLife and LeerPlan",
+       x = "Factors",
+       y = "Average Score") +
+  scale_fill_manual(values = c("MyStudyLife" = "#FF9999", "LeerPlan" = "#99CCFF")) +
+  coord_cartesian(ylim = c(0, 5))  # Set y-axis limits from 0 to 5
+
+# Save the plot
+ggsave("comparative_bar_chart.png", width = 12, height = 8, dpi = 300)
