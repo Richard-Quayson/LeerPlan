@@ -8,8 +8,8 @@ mystudylife_data = pd.read_csv("MyStudyLife.csv")
 leerplan_data = pd.read_csv("LeerPlan.csv")
 
 # Define the factors
-factors = ["Perceived Usefulness", "Perceived Ease of Use", 
-           "Ease of Data Collection", "Behavioral Intentions", 
+factors = ["Perceived Usefulness", "Perceived Ease of Use",
+           "Ease of Data Collection", "Behavioral Intentions",
            "Active Use", "Satisfaction"]
 
 # Function to calculate averages for each factor by group
@@ -26,16 +26,16 @@ print(mystudylife_avg.to_string(index=False))
 print("\nLeerPlan Averages:")
 print(leerplan_avg.to_string(index=False))
 
-# Function to create comparative bar graph
+# Function to create comparative bar graph and save average values
 def create_comparative_bar_graph(data, title):
     plt.figure(figsize=(12, 8))
     sns.set_style("whitegrid")
     
-    melted_data = pd.melt(data, id_vars=['Group'], value_vars=factors, 
+    melted_data = pd.melt(data, id_vars=['Group'], value_vars=factors,
                           var_name='Factor', value_name='Average')
     
     sns.barplot(x='Factor', y='Average', hue='Group', data=melted_data,
-                     palette={'A': '#2DD4BF', 'B': '#99CCFF'})
+                palette={'A': '#2DD4BF', 'B': '#99CCFF'})
     
     plt.title(title, fontsize=16)
     plt.xlabel('Factors', fontsize=12)
@@ -46,17 +46,22 @@ def create_comparative_bar_graph(data, title):
     plt.tight_layout()
     
     # Save the plot
-    filename = f'{title.replace(" ", "_")}.png'
-    plt.savefig(filename, dpi=300)
-    print(f"Saved graph: {filename}")
+    image_filename = f'{title.replace(" ", "_")}.png'
+    plt.savefig(image_filename, dpi=300)
+    print(f"Saved graph: {image_filename}")
+    
+    # Save average values to CSV
+    csv_filename = f'{title.replace(" ", "_")}_averages.csv'
+    data.to_csv(csv_filename, index=False)
+    print(f"Saved averages: {csv_filename}")
     
     # Display the plot
     plt.show()
 
-# Create comparative bar graphs
+# Create comparative bar graphs and save average values
 create_comparative_bar_graph(mystudylife_avg, "MyStudyLife Group A vs Group B Comparison")
 create_comparative_bar_graph(leerplan_avg, "LeerPlan Group A vs Group B Comparison")
 
 # Print current working directory
 print(f"\nCurrent working directory: {os.getcwd()}")
-print("Check this directory for the saved PNG files.")
+print("Check this directory for the saved PNG and CSV files.")
