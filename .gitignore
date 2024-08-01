@@ -3,3 +3,4 @@ test_gpt/__pycache__/
 *.env
 django-venv/
 gemini-venv/
+analysis-venv/
