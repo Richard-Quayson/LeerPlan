@@ -44,6 +44,14 @@ Check the `leerplan_api` directory for instructions on how to set up the API and
 To contribute to this project create a fork of the repository, make the proposed changes in a branch and then create an issue with detailed descriptions on the proposed changes. Find detailed instructions [here](https://github.com/Richard-Quayson/LeerPlan/contribute)
 
 
+## Recommendations for Future Work
+
+1.	**LMS Integration:** Developing LeerPlan for seamless integration with existing Learning Management Systems could significantly improve data collection and ease of use. This integration could automate the process of importing course information, further reducing manual input.
+
+2.	**Enhanced Customisation:** Future iterations of LeerPlan should allow for customisation of event cards and editing of events after time block creation. This would give users more flexibility and control over their schedules, potentially increasing satisfaction and long-term adoption.
+
+
+
 ## Acknowledgements
 
 I would like to express our gratitude to Google for making their models available through the Gemini API Competition, which has significantly enhanced the data synthesis capabilities of our application.
