@@ -8,6 +8,7 @@ Leerplan is an innovative study planning application that leverages advanced tec
 
 ## Project Structure
 
+- `analysis`: Contains the script for analysing the experiment
 - `leerplan_api/`: Django backend with REST Framework
   - Account app: Manages user accounts and authentication
   - Course app: Handles course-related functionalities
