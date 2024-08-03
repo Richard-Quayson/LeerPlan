@@ -41,7 +41,7 @@ Check the `leerplan_api` directory for instructions on how to set up the API and
 
 ## Contributing
 
-To contribute to this project create a fork of the repository, make the proposed changes in a branch and then create an issue with detailed descriptions on the proposed changes. Find detailed instructions [here](https://github.com/Richard-Quayson/LeerPlan/contribute)
+To contribute to this project create a fork of the repository, make the proposed changes in a branch and then create an issue with detailed descriptions on the proposed changes. Find detailed instructions [here](https://github.com/Richard-Quayson/LeerPlan/main/contribute)
 
 
 ## Recommendations for Future Work
