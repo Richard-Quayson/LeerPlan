@@ -42,4 +42,4 @@ Please ensure your code adheres to the project's coding standards and include te
 
 Remember to update the documentation as necessary and always write clear, concise commit messages.
 
-Thank you for contributing to Leerplan!
+Thank you for [contributing](https://github.com/Richard-Quayson/LeerPlan/contribute) to Leerplan!
